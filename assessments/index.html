@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free B2B Marketing Assessments | 42 Agency</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MM5BTNS');</script>
+
+    <!-- HubSpot Tracking -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/44888286.js"></script>
+
+    <style>
+        :root {
+            --accent: #DFFE68;
+            --black: #1a1a1a;
+            --gray: #4a4a4a;
+            --muted: #6b6b6b;
+            --light-gray: #f5f5f5;
+            --green: #10B981;
+            --orange: #F59E0B;
+            --blue: #3B82F6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--light-gray);
+            color: var(--black);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .header {
+            border-bottom: 2px solid var(--black);
+            padding: 1rem 1.5rem;
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            border: 2px solid var(--black);
+            border-radius: 8px;
+            box-shadow: 2px 2px 0px 0px var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 14px;
+            color: var(--black);
+        }
+
+        .logo-text .title {
+            font-weight: 700;
+            color: var(--black);
+            font-size: 14px;
+        }
+
+        .logo-text .subtitle {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .contact-btn {
+            padding: 0.5rem 1rem;
+            background: var(--black);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+
+        .contact-btn:hover { background: #333; }
+
+        .hero {
+            background: var(--accent);
+            border-bottom: 2px solid var(--black);
+            padding: 4rem 1.5rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 1024px) {
+            .grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 4px 4px 0px 0px var(--black);
+            transition: all 0.15s ease;
+        }
+
+        .card.live:hover {
+            box-shadow: 6px 6px 0px 0px var(--black);
+            transform: translate(-2px, -2px);
+        }
+
+        .card.coming { opacity: 0.75; }
+
+        .card-header {
+            padding: 1rem;
+            border-bottom: 2px solid var(--black);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-icon { font-size: 2rem; }
+
+        .badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .badge.live {
+            background: var(--green);
+            color: white;
+        }
+
+        .badge.coming {
+            background: #e5e5e5;
+            color: #666;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-description {
+            font-size: 0.875rem;
+            color: var(--muted);
+            margin-bottom: 1rem;
+        }
+
+        .card-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--accent);
+            border: 2px solid var(--black);
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            color: var(--black);
+            text-decoration: none;
+            box-shadow: 2px 2px 0px 0px var(--black);
+            transition: all 0.15s ease;
+        }
+
+        .card-btn:hover {
+            box-shadow: 3px 3px 0px 0px var(--black);
+            transform: translate(-1px, -1px);
+        }
+
+        .card-btn.disabled {
+            background: #e5e5e5;
+            border-color: #ccc;
+            color: #999;
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+
+        .tools-section {
+            margin-top: 4rem;
+        }
+
+        .tools-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .tools-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .tool-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-decoration: none;
+            box-shadow: 4px 4px 0px 0px var(--black);
+            transition: all 0.15s ease;
+        }
+
+        .tool-card:hover {
+            box-shadow: 6px 6px 0px 0px var(--black);
+            transform: translate(-2px, -2px);
+        }
+
+        .tool-card h3 {
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-card:hover h3 { color: var(--orange); }
+
+        .tool-card p {
+            font-size: 0.875rem;
+            color: var(--muted);
+        }
+
+        .footer {
+            border-top: 2px solid var(--black);
+            background: var(--black);
+            padding: 3rem 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .footer-inner {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .footer-brand-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 10px;
+            color: var(--black);
+        }
+
+        .footer-brand p {
+            font-size: 0.875rem;
+            color: #9ca3af;
+        }
+
+        .footer-brand a { color: var(--accent); text-decoration: none; }
+        .footer-brand a:hover { text-decoration: underline; }
+
+        .footer-copyright {
+            font-size: 0.75rem;
+            color: #4b5563;
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MM5BTNS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <header class="header">
+        <div class="header-inner">
+            <a href="https://42agency.com" target="_blank" rel="noopener noreferrer" class="logo">
+                <div class="logo-icon">42</div>
+                <div class="logo-text">
+                    <div class="title">42 Agency</div>
+                    <div class="subtitle">B2B Demand Gen</div>
+                </div>
+            </a>
+            <a href="https://42agency.com/contact" target="_blank" rel="noopener noreferrer" class="contact-btn">Contact Us</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Free B2B Marketing Assessments</h1>
+        <p>Self-service diagnostics built by 42 Agency. Identify gaps, get recommendations, and benchmark your marketing operations.</p>
+    </section>
+
+    <main class="main">
+        <div class="grid">
+            <!-- HubSpot CRM Health -->
+            <div class="card live">
+                <div class="card-header" style="background: rgba(245, 158, 11, 0.1);">
+                    <span class="card-icon">🔍</span>
+                    <span class="badge live">LIVE</span>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">HubSpot CRM Health Assessment</h2>
+                    <p class="card-description">42-point diagnostic to identify gaps in your HubSpot setup across data hygiene, lifecycle management, lead scoring, attribution, and more.</p>
+                    <a href="/assessments/hubspot-health/" class="card-btn">
+                        Take Assessment
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- LinkedIn Ads Audit -->
+            <div class="card coming">
+                <div class="card-header" style="background: rgba(59, 130, 246, 0.1);">
+                    <span class="card-icon">📊</span>
+                    <span class="badge coming">COMING SOON</span>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">LinkedIn Ads Account Audit</h2>
+                    <p class="card-description">Comprehensive review of your LinkedIn Ads account structure, targeting, bidding, and creative performance.</p>
+                    <span class="card-btn disabled">Coming Soon</span>
+                </div>
+            </div>
+
+            <!-- Demand Gen Maturity -->
+            <div class="card coming">
+                <div class="card-header" style="background: rgba(16, 185, 129, 0.1);">
+                    <span class="card-icon">📈</span>
+                    <span class="badge coming">COMING SOON</span>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">Demand Gen Maturity Assessment</h2>
+                    <p class="card-description">Evaluate your B2B demand generation capabilities across channels, content, measurement, and operations.</p>
+                    <span class="card-btn disabled">Coming Soon</span>
+                </div>
+            </div>
+        </div>
+
+        <section class="tools-section">
+            <h2 class="tools-title">More Free Tools</h2>
+            <div class="tools-grid">
+                <a href="/b2b-benchmarks/calculator/" class="tool-card">
+                    <h3>B2B Benchmarks Calculator</h3>
+                    <p>Input your LinkedIn & Google Ads metrics. See how you compare to 87 B2B client benchmarks.</p>
+                </a>
+                <a href="https://copilot.42agency.com" target="_blank" rel="noopener noreferrer" class="tool-card">
+                    <h3>LinkedIn Ads Copilot</h3>
+                    <p>AI-powered LinkedIn Ads optimization with automation rules and bid discovery.</p>
+                </a>
+                <a href="https://copilot.42agency.com/linkedin-ads-targeting" target="_blank" rel="noopener noreferrer" class="tool-card">
+                    <h3>LinkedIn Targeting Guide</h3>
+                    <p>Browse 10,000+ LinkedIn targeting options. Job titles, industries, seniorities.</p>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <div class="footer-brand-icon">42</div>
+                <p>Built by <a href="https://42agency.com" target="_blank">42 Agency</a> — B2B Demand Gen & Marketing Ops</p>
+            </div>
+            <p class="footer-copyright">© 2026 42 Agency. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

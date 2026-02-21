@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HubSpot CRM Health Assessment | 42-Point Diagnostic | 42 Agency</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MM5BTNS');</script>
+
+    <!-- HubSpot Tracking -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/44888286.js"></script>
+
+    <!-- html-to-image for PNG export -->
+    <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.min.js"></script>
+
+    <meta property="og:title" content="HubSpot CRM Health Assessment - 42-Point Diagnostic">
+    <meta property="og:description" content="Answer 42 questions about your HubSpot setup. Get a personalized health score with recommendations.">
+
+    <style>
+        :root {
+            --accent: #DFFE68;
+            --accent-hover: #C8E85C;
+            --black: #1a1a1a;
+            --gray: #4a4a4a;
+            --muted: #6b6b6b;
+            --light-gray: #f5f5f5;
+            --green: #10B981;
+            --green-bg: #D1FAE5;
+            --orange: #F59E0B;
+            --orange-bg: #FEF3C7;
+            --red: #EF4444;
+            --red-bg: #FEE2E2;
+            --blue: #3B82F6;
+            --blue-bg: #DBEAFE;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--light-gray);
+            color: var(--black);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .header {
+            border-bottom: 2px solid var(--black);
+            padding: 1rem 1.5rem;
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            border: 2px solid var(--black);
+            border-radius: 8px;
+            box-shadow: 2px 2px 0px 0px var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 14px;
+            color: var(--black);
+        }
+
+        .logo-text {
+            display: none;
+        }
+
+        @media (min-width: 640px) {
+            .logo-text {
+                display: block;
+            }
+            .logo-text .title {
+                font-weight: 700;
+                color: var(--black);
+                font-size: 14px;
+            }
+            .logo-text .subtitle {
+                font-size: 12px;
+                color: var(--muted);
+            }
+        }
+
+        .divider {
+            width: 1px;
+            height: 32px;
+            background: #e5e5e5;
+            display: none;
+        }
+
+        @media (min-width: 640px) {
+            .divider { display: block; }
+        }
+
+        .assessment-title {
+            display: none;
+        }
+
+        @media (min-width: 640px) {
+            .assessment-title {
+                display: block;
+            }
+            .assessment-title .title {
+                font-weight: 700;
+                color: var(--black);
+                font-size: 14px;
+            }
+            .assessment-title .subtitle {
+                font-size: 12px;
+                color: var(--muted);
+            }
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .resources-link {
+            display: none;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 14px;
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        .resources-link:hover { color: var(--black); }
+
+        @media (min-width: 640px) {
+            .resources-link { display: flex; }
+        }
+
+        .progress-text {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .progress-bar-container {
+            background: white;
+            border-bottom: 2px solid var(--black);
+        }
+
+        .progress-bar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .progress-bar-bg {
+            height: 8px;
+            background: var(--light-gray);
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        /* Intro Screen */
+        .intro-screen { text-align: center; }
+
+        .intro-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--accent);
+            border: 2px solid var(--black);
+            border-radius: 20px;
+            box-shadow: 4px 4px 0px 0px var(--black);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .intro-description {
+            font-size: 1.125rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .start-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--accent);
+            border: 2px solid var(--black);
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.125rem;
+            color: var(--black);
+            cursor: pointer;
+            box-shadow: 4px 4px 0px 0px var(--black);
+            transition: all 0.15s ease;
+        }
+
+        .start-btn:hover {
+            box-shadow: 6px 6px 0px 0px var(--black);
+            transform: translate(-2px, -2px);
+        }
+
+        .categories-preview {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 3rem;
+            text-align: left;
+        }
+
+        @media (min-width: 640px) {
+            .categories-preview { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .category-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 3px 3px 0px 0px var(--black);
+        }
+
+        .category-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .category-name { font-weight: 600; font-size: 0.875rem; }
+
+        /* Question Screen */
+        .question-screen { display: none; }
+
+        .question-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 6px 6px 0px 0px var(--black);
+            text-align: center;
+        }
+
+        .category-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--light-gray);
+            border: 2px solid var(--black);
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .question-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            line-height: 1.4;
+        }
+
+        .answer-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .answer-btn {
+            flex: 1;
+            max-width: 200px;
+            padding: 1rem 2rem;
+            border: 2px solid var(--black);
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            box-shadow: 3px 3px 0px 0px var(--black);
+        }
+
+        .answer-btn.yes {
+            background: var(--green-bg);
+            color: var(--green);
+        }
+
+        .answer-btn.yes:hover {
+            background: var(--green);
+            color: white;
+            box-shadow: 4px 4px 0px 0px var(--black);
+            transform: translate(-1px, -1px);
+        }
+
+        .answer-btn.no {
+            background: var(--red-bg);
+            color: var(--red);
+        }
+
+        .answer-btn.no:hover {
+            background: var(--red);
+            color: white;
+            box-shadow: 4px 4px 0px 0px var(--black);
+            transform: translate(-1px, -1px);
+        }
+
+        .back-btn {
+            margin-top: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 8px;
+            font-weight: 500;
+            color: var(--gray);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-btn:hover { background: var(--light-gray); }
+
+        /* Lead Capture Screen */
+        .capture-screen { display: none; max-width: 500px; margin: 0 auto; }
+
+        .capture-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--accent);
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            box-shadow: 3px 3px 0px 0px var(--black);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 1.5rem;
+        }
+
+        .capture-screen h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .capture-description {
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .capture-form {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 4px 4px 0px 0px var(--black);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--black);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            background: white;
+            color: var(--black);
+        }
+
+        .form-group input::placeholder { color: #9a9a9a; }
+
+        .form-group input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(223, 254, 104, 0.5);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent);
+            border: 2px solid var(--black);
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.125rem;
+            color: var(--black);
+            cursor: pointer;
+            box-shadow: 4px 4px 0px 0px var(--black);
+            transition: all 0.15s ease;
+            margin-top: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            box-shadow: 6px 6px 0px 0px var(--black);
+            transform: translate(-2px, -2px);
+        }
+
+        .submit-btn:disabled {
+            background: #e5e5e5;
+            border-color: #ccc;
+            color: #999;
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .skip-link {
+            display: block;
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--muted);
+            font-size: 0.875rem;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .skip-link:hover { color: var(--black); }
+
+        .benefits-box {
+            background: var(--light-gray);
+            border: 2px solid var(--black);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .benefits-title {
+            font-weight: 700;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefits-list {
+            list-style: none;
+            font-size: 0.875rem;
+            color: var(--gray);
+        }
+
+        .benefits-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .benefits-list .check { color: var(--green); }
+
+        /* Results Screen */
+        .results-screen { display: none; }
+
+        .share-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 4px 4px 0px 0px var(--black);
+        }
+
+        .share-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .share-card-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .share-card-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            border: 2px solid var(--black);
+            border-radius: 8px;
+            box-shadow: 2px 2px 0px 0px var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 12px;
+        }
+
+        .share-card-logo-text .title {
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+
+        .share-card-logo-text .subtitle {
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .share-card-company {
+            text-align: right;
+        }
+
+        .share-card-company .label {
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .share-card-company .name {
+            font-weight: 700;
+        }
+
+        .score-circle {
+            width: 112px;
+            height: 112px;
+            border-radius: 50%;
+            border-width: 4px;
+            border-style: solid;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+
+        .score-circle .percentage {
+            font-size: 1.875rem;
+            font-weight: 800;
+        }
+
+        .score-circle .grade {
+            font-size: 0.875rem;
+            font-weight: 700;
+        }
+
+        .score-label {
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .category-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .category-bar-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .category-bar-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.875rem;
+        }
+
+        .category-bar-name { font-weight: 500; }
+        .category-bar-percentage { font-weight: 700; }
+
+        .category-bar-bg {
+            height: 8px;
+            background: var(--light-gray);
+            border-radius: 999px;
+            overflow: hidden;
+            border: 1px solid #e5e5e5;
+        }
+
+        .category-bar-fill {
+            height: 100%;
+            border-radius: 999px;
+        }
+
+        .share-card-footer {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e5e5;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .download-btn, .retake-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.5rem;
+            border: 2px solid var(--black);
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 3px 3px 0px 0px var(--black);
+            transition: all 0.15s ease;
+        }
+
+        .download-btn {
+            background: var(--accent);
+            color: var(--black);
+        }
+
+        .retake-btn {
+            background: white;
+            color: var(--black);
+        }
+
+        .download-btn:hover, .retake-btn:hover {
+            box-shadow: 4px 4px 0px 0px var(--black);
+            transform: translate(-1px, -1px);
+        }
+
+        .email-confirmation {
+            background: var(--green-bg);
+            border: 2px solid var(--green);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            margin-top: 2rem;
+            color: #065F46;
+            font-weight: 500;
+        }
+
+        .issues-box {
+            background: var(--red-bg);
+            border: 2px solid var(--red);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 4px 4px 0px 0px var(--red);
+            margin-top: 2rem;
+        }
+
+        .issues-box h3 {
+            color: var(--red);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .issues-list {
+            list-style: none;
+        }
+
+        .issues-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            color: #7F1D1D;
+            margin-bottom: 0.5rem;
+        }
+
+        .issues-list .x { color: var(--red); margin-top: 2px; }
+
+        .warnings-box {
+            background: var(--orange-bg);
+            border: 2px solid var(--orange);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 4px 4px 0px 0px var(--orange);
+            margin-top: 2rem;
+        }
+
+        .warnings-box h3 {
+            color: var(--orange);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .warnings-list {
+            list-style: none;
+        }
+
+        .warnings-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            color: #92400E;
+            margin-bottom: 0.5rem;
+        }
+
+        .warnings-list .exclaim { color: var(--orange); margin-top: 2px; }
+
+        .strengths-box {
+            background: var(--green-bg);
+            border: 2px solid var(--green);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 4px 4px 0px 0px var(--green);
+            margin-top: 2rem;
+        }
+
+        .strengths-box h3 {
+            color: var(--green);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .strengths-list {
+            list-style: none;
+        }
+
+        .strengths-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            color: #065F46;
+            margin-bottom: 0.5rem;
+        }
+
+        .strengths-list .check { color: var(--green); margin-top: 2px; }
+
+        .cta-box {
+            background: var(--accent);
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 6px 6px 0px 0px var(--black);
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+        }
+
+        .cta-box p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--black);
+            color: white;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.125rem;
+            text-decoration: none;
+        }
+
+        .cta-btn:hover { background: #333; }
+
+        .cta-note {
+            font-size: 0.875rem;
+            color: var(--muted);
+            margin-top: 1rem;
+        }
+
+        .summary-box {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 4px 4px 0px 0px var(--black);
+            margin-top: 2rem;
+        }
+
+        .summary-box h3 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            text-align: center;
+        }
+
+        @media (min-width: 640px) {
+            .summary-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        .summary-item .value {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .summary-item .label {
+            font-size: 0.875rem;
+            color: var(--muted);
+        }
+
+        .footer {
+            border-top: 2px solid var(--black);
+            background: var(--black);
+            padding: 3rem 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        .footer-col h4 {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-col ul li a {
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+
+        .footer-col ul li a:hover { color: white; }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .footer-brand-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 10px;
+            color: var(--black);
+        }
+
+        .footer-brand p {
+            font-size: 0.875rem;
+            color: #9ca3af;
+        }
+
+        .footer-brand a { color: var(--accent); text-decoration: none; }
+        .footer-brand a:hover { text-decoration: underline; }
+
+        .footer-copyright {
+            font-size: 0.75rem;
+            color: #4b5563;
+        }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MM5BTNS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo-section">
+                <a href="https://42agency.com" target="_blank" rel="noopener noreferrer" class="logo">
+                    <div class="logo-icon">42</div>
+                    <div class="logo-text">
+                        <div class="title">42 Agency</div>
+                        <div class="subtitle">B2B Demand Gen</div>
+                    </div>
+                </a>
+                <div class="divider"></div>
+                <div class="assessment-title">
+                    <div class="title">HubSpot CRM Health</div>
+                    <div class="subtitle">42-Point Diagnostic</div>
+                </div>
+            </div>
+            <div class="header-right">
+                <a href="/assessments" class="resources-link">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                    All Resources
+                </a>
+                <span class="progress-text" id="progressText"></span>
+            </div>
+        </div>
+    </header>
+
+    <div class="progress-bar-container" id="progressBar" style="display: none;">
+        <div class="progress-bar-inner">
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+        </div>
+    </div>
+
+    <main class="main">
+        <!-- Intro Screen -->
+        <div class="intro-screen" id="introScreen">
+            <div class="intro-icon">🔍</div>
+            <h1>HubSpot CRM Health Assessment</h1>
+            <p class="intro-description">Answer 42 questions about your HubSpot setup. Get a personalized health score with specific recommendations to improve your CRM operations.</p>
+            <button class="start-btn" onclick="startAssessment()">
+                Start Assessment
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </button>
+            <div class="categories-preview">
+                <div class="category-card">
+                    <div class="category-icon">🧹</div>
+                    <div class="category-name">Data Hygiene</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🔄</div>
+                    <div class="category-name">Lifecycle Management</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🎯</div>
+                    <div class="category-name">Lead Scoring</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">📊</div>
+                    <div class="category-name">Attribution</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🤝</div>
+                    <div class="category-name">Sales Alignment</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">📈</div>
+                    <div class="category-name">Reporting</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question Screen -->
+        <div class="question-screen" id="questionScreen">
+            <div class="question-card">
+                <div class="category-badge">
+                    <span id="categoryIcon"></span>
+                    <span id="categoryName"></span>
+                </div>
+                <div class="question-text" id="questionText"></div>
+                <div class="answer-buttons">
+                    <button class="answer-btn yes" onclick="answerQuestion(true)">✓ Yes</button>
+                    <button class="answer-btn no" onclick="answerQuestion(false)">✗ No</button>
+                </div>
+            </div>
+            <button class="back-btn" id="backBtn" onclick="goBack()">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                Previous Question
+            </button>
+        </div>
+
+        <!-- Lead Capture Screen -->
+        <div class="capture-screen" id="captureScreen">
+            <div style="text-align: center;">
+                <div class="capture-icon">✓</div>
+                <h2>Assessment Complete!</h2>
+                <p class="capture-description">Enter your details to get your personalized results and recommendations.</p>
+            </div>
+            <form class="capture-form" id="captureForm" onsubmit="submitLead(event)">
+                <div class="form-group">
+                    <label for="name">Your Name *</label>
+                    <input type="text" id="name" name="name" placeholder="Jane Smith" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Work Email *</label>
+                    <input type="email" id="email" name="email" placeholder="jane@company.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <input type="text" id="company" name="company" placeholder="Acme Corp">
+                </div>
+                <button type="submit" class="submit-btn" id="submitBtn">See My Results</button>
+            </form>
+            <span class="skip-link" onclick="skipCapture()">Skip and see results without saving</span>
+            <div class="benefits-box">
+                <div class="benefits-title">By providing your email, you get:</div>
+                <ul class="benefits-list">
+                    <li><span class="check">✓</span> Email copy of your results</li>
+                    <li><span class="check">✓</span> Personalized fix-it roadmap</li>
+                    <li><span class="check">✓</span> Option to book a free CRM review call</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div class="results-screen" id="resultsScreen">
+            <div class="share-card" id="shareCard">
+                <div class="share-card-header">
+                    <div class="share-card-logo">
+                        <div class="share-card-logo-icon">42</div>
+                        <div class="share-card-logo-text">
+                            <div class="title">HubSpot CRM Health</div>
+                            <div class="subtitle">42-Point Diagnostic</div>
+                        </div>
+                    </div>
+                    <div class="share-card-company" id="companyDisplay" style="display: none;">
+                        <div class="label">Results for</div>
+                        <div class="name" id="companyName"></div>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <div class="score-circle" id="scoreCircle">
+                        <div>
+                            <div class="percentage" id="scorePercentage"></div>
+                            <div class="grade" id="scoreGrade"></div>
+                        </div>
+                    </div>
+                    <div class="score-label" id="scoreLabel"></div>
+                </div>
+                <div class="category-bars" id="categoryBars"></div>
+                <div class="share-card-footer">
+                    Take the assessment: intel.42agency.com/assessments/hubspot-health
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="download-btn" onclick="downloadPNG()">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                    <span id="downloadText">Download PNG for LinkedIn</span>
+                </button>
+                <button class="retake-btn" onclick="location.reload()">Retake Assessment</button>
+            </div>
+
+            <div class="email-confirmation hidden" id="emailConfirmation">
+                ✓ Results sent to <span id="emailSent"></span>
+            </div>
+
+            <div class="issues-box hidden" id="issuesBox">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                    Critical Issues (Fix These First)
+                </h3>
+                <ul class="issues-list" id="issuesList"></ul>
+            </div>
+
+            <div class="warnings-box hidden" id="warningsBox">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Optimization Opportunities
+                </h3>
+                <ul class="warnings-list" id="warningsList"></ul>
+            </div>
+
+            <div class="strengths-box hidden" id="strengthsBox">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                    What's Working Well
+                </h3>
+                <ul class="strengths-list" id="strengthsList"></ul>
+            </div>
+
+            <div class="cta-box hidden" id="ctaBox">
+                <h3>Want Help Fixing These Issues?</h3>
+                <p>Book a free 15-minute CRM triage call with our MOPS team. We'll review your results and create a prioritized fix-it roadmap.</p>
+                <a href="https://42agency.com/contact?utm_source=assessment&utm_medium=hubspot-health&utm_campaign=cta" target="_blank" rel="noopener noreferrer" class="cta-btn">
+                    Book Free CRM Review
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                </a>
+                <p class="cta-note">No commitment. We'll tell you exactly what to fix and how long it takes.</p>
+            </div>
+
+            <div class="summary-box">
+                <h3>Assessment Summary</h3>
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <div class="value" id="totalScore"></div>
+                        <div class="label">Points Earned</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="value" id="maxScore"></div>
+                        <div class="label">Max Possible</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="value" id="criticalCount" style="color: var(--red);"></div>
+                        <div class="label">Critical Issues</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="value" id="strengthsCount" style="color: var(--green);"></div>
+                        <div class="label">Strengths</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Assessments</h4>
+                    <ul>
+                        <li><a href="/assessments/hubspot-health">HubSpot CRM Health</a></li>
+                        <li><a href="/assessments">All Assessments</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>LinkedIn Ads</h4>
+                    <ul>
+                        <li><a href="/">Ads Intel</a></li>
+                        <li><a href="https://copilot.42agency.com" target="_blank">Ads Copilot</a></li>
+                        <li><a href="https://copilot.42agency.com/linkedin-ads-targeting" target="_blank">Targeting Guide</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://42agency.com/blog" target="_blank">Blog</a></li>
+                        <li><a href="https://42agency.com/case-studies" target="_blank">Case Studies</a></li>
+                        <li><a href="https://42agency.com/contact" target="_blank">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="https://42agency.com" target="_blank">42agency.com</a></li>
+                        <li><a href="https://www.linkedin.com/company/42agency" target="_blank">LinkedIn</a></li>
+                        <li><a href="https://twitter.com/42aboratory" target="_blank">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-brand">
+                    <div class="footer-brand-icon">42</div>
+                    <p>Built by <a href="https://42agency.com" target="_blank">42 Agency</a> — B2B Demand Gen & Marketing Ops</p>
+                </div>
+                <p class="footer-copyright">© 2026 42 Agency. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // Assessment Questions Data
+    const CATEGORIES = [
+        {
+            id: 'data-hygiene',
+            name: 'Data Hygiene',
+            icon: '🧹',
+            questions: [
+                { id: 'dh-1', text: 'Do you have a consistent naming convention for contacts, companies, and deals?', weight: 2 },
+                { id: 'dh-2', text: 'Are duplicate records regularly identified and merged?', weight: 3 },
+                { id: 'dh-3', text: 'Do you have required fields on key objects (contacts, deals)?', weight: 2 },
+                { id: 'dh-4', text: 'Is there a process to clean up bounced emails and invalid contacts?', weight: 2, criticalIssue: 'Bounced emails hurt deliverability' },
+                { id: 'dh-5', text: 'Are picklist/dropdown values standardized and regularly audited?', weight: 1 },
+                { id: 'dh-6', text: 'Do you have data validation rules in place?', weight: 2 },
+                { id: 'dh-7', text: 'Is there ownership assigned to all active records?', weight: 2, criticalIssue: 'Unowned records = lost opportunities' },
+            ]
+        },
+        {
+            id: 'lifecycle',
+            name: 'Lifecycle Management',
+            icon: '🔄',
+            questions: [
+                { id: 'lc-1', text: 'Are lifecycle stages clearly defined and documented?', weight: 3 },
+                { id: 'lc-2', text: 'Do lifecycle stages automatically update based on actions?', weight: 2 },
+                { id: 'lc-3', text: 'Is there a clear handoff process between marketing and sales stages?', weight: 3, criticalIssue: 'No MQL→SQL handoff process' },
+                { id: 'lc-4', text: 'Are deal stages aligned with your actual sales process?', weight: 2 },
+                { id: 'lc-5', text: 'Do you track time spent in each stage?', weight: 1 },
+                { id: 'lc-6', text: 'Is there a process for recycling or disqualifying stale leads?', weight: 2 },
+                { id: 'lc-7', text: 'Are re-engagement workflows set up for dormant contacts?', weight: 1 },
+            ]
+        },
+        {
+            id: 'lead-scoring',
+            name: 'Lead Scoring',
+            icon: '🎯',
+            questions: [
+                { id: 'ls-1', text: 'Do you have a lead scoring model in place?', weight: 3, criticalIssue: 'No lead scoring model' },
+                { id: 'ls-2', text: 'Does scoring include both demographic (fit) and behavioral (interest) factors?', weight: 2 },
+                { id: 'ls-3', text: 'Is negative scoring used for disqualifying factors?', weight: 1 },
+                { id: 'ls-4', text: 'Are score thresholds aligned with sales feedback?', weight: 2 },
+                { id: 'ls-5', text: 'Is the scoring model reviewed and updated quarterly?', weight: 1 },
+                { id: 'ls-6', text: 'Do high-scoring leads trigger immediate sales notifications?', weight: 2 },
+                { id: 'ls-7', text: 'Can you report on score-to-close conversion rates?', weight: 2 },
+            ]
+        },
+        {
+            id: 'attribution',
+            name: 'Attribution & Tracking',
+            icon: '📊',
+            questions: [
+                { id: 'at-1', text: 'Is UTM tracking consistently used across all campaigns?', weight: 2, criticalIssue: 'Inconsistent UTM tracking' },
+                { id: 'at-2', text: 'Are original source and most recent source captured?', weight: 2 },
+                { id: 'at-3', text: 'Can you track multi-touch attribution across channels?', weight: 2 },
+                { id: 'at-4', text: 'Are offline touchpoints (events, calls) logged in HubSpot?', weight: 1 },
+                { id: 'at-5', text: 'Is there a clear process for campaign-to-revenue attribution?', weight: 3, criticalIssue: 'Cannot attribute revenue to campaigns' },
+                { id: 'at-6', text: 'Are ad platform integrations (LinkedIn, Google) properly connected?', weight: 2 },
+                { id: 'at-7', text: 'Can you report on first-touch vs last-touch attribution?', weight: 1 },
+            ]
+        },
+        {
+            id: 'alignment',
+            name: 'Sales & Marketing Alignment',
+            icon: '🤝',
+            questions: [
+                { id: 'al-1', text: 'Is there a documented SLA between marketing and sales?', weight: 2 },
+                { id: 'al-2', text: 'Are lead routing rules automated and working correctly?', weight: 3, criticalIssue: 'Leads not routed automatically' },
+                { id: 'al-3', text: 'Can sales easily see marketing engagement history?', weight: 2 },
+                { id: 'al-4', text: 'Is there regular feedback from sales on lead quality?', weight: 2 },
+                { id: 'al-5', text: 'Are marketing emails and sales sequences coordinated?', weight: 1 },
+                { id: 'al-6', text: 'Do sales and marketing share the same dashboards?', weight: 1 },
+                { id: 'al-7', text: 'Is there a formal closed-loop reporting process?', weight: 2 },
+            ]
+        },
+        {
+            id: 'reporting',
+            name: 'Reporting & Dashboards',
+            icon: '📈',
+            questions: [
+                { id: 'rp-1', text: 'Do you have executive-level funnel dashboards?', weight: 2 },
+                { id: 'rp-2', text: 'Can you report on conversion rates between stages?', weight: 2 },
+                { id: 'rp-3', text: 'Is there automated reporting sent to stakeholders?', weight: 1 },
+                { id: 'rp-4', text: 'Can you calculate cost-per-lead by source/campaign?', weight: 2 },
+                { id: 'rp-5', text: 'Are pipeline velocity metrics tracked?', weight: 2 },
+                { id: 'rp-6', text: 'Do you have custom reports for different team needs?', weight: 1 },
+                { id: 'rp-7', text: 'Is there a single source of truth for marketing metrics?', weight: 2, criticalIssue: 'No single source of truth for metrics' },
+            ]
+        }
+    ];
+
+    const TOTAL_QUESTIONS = CATEGORIES.reduce((sum, cat) => sum + cat.questions.length, 0);
+
+    // State
+    let currentCategoryIndex = 0;
+    let currentQuestionIndex = 0;
+    let answers = {};
+    let leadData = null;
+
+    // Navigation
+    function startAssessment() {
+        document.getElementById('introScreen').style.display = 'none';
+        document.getElementById('questionScreen').style.display = 'block';
+        document.getElementById('progressBar').style.display = 'block';
+        showQuestion();
+
+        // GTM Event
+        if (window.dataLayer) {
+            dataLayer.push({ event: 'assessment_started', assessment_type: 'hubspot_health' });
+        }
+    }
+
+    function showQuestion() {
+        const category = CATEGORIES[currentCategoryIndex];
+        const question = category.questions[currentQuestionIndex];
+
+        document.getElementById('categoryIcon').textContent = category.icon;
+        document.getElementById('categoryName').textContent = category.name;
+        document.getElementById('questionText').textContent = question.text;
+
+        const answeredCount = Object.keys(answers).length;
+        document.getElementById('progressText').textContent = `${answeredCount} / ${TOTAL_QUESTIONS}`;
+        document.getElementById('progressFill').style.width = `${(answeredCount / TOTAL_QUESTIONS) * 100}%`;
+
+        document.getElementById('backBtn').style.display =
+            (currentCategoryIndex === 0 && currentQuestionIndex === 0) ? 'none' : 'inline-flex';
+    }
+
+    function answerQuestion(value) {
+        const category = CATEGORIES[currentCategoryIndex];
+        const question = category.questions[currentQuestionIndex];
+        answers[question.id] = value;
+
+        setTimeout(() => {
+            if (currentQuestionIndex < category.questions.length - 1) {
+                currentQuestionIndex++;
+            } else if (currentCategoryIndex < CATEGORIES.length - 1) {
+                currentCategoryIndex++;
+                currentQuestionIndex = 0;
+            } else {
+                showCapture();
+                return;
+            }
+            showQuestion();
+        }, 200);
+    }
+
+    function goBack() {
+        if (currentQuestionIndex > 0) {
+            currentQuestionIndex--;
+        } else if (currentCategoryIndex > 0) {
+            currentCategoryIndex--;
+            currentQuestionIndex = CATEGORIES[currentCategoryIndex].questions.length - 1;
+        }
+        showQuestion();
+    }
+
+    function showCapture() {
+        document.getElementById('questionScreen').style.display = 'none';
+        document.getElementById('progressBar').style.display = 'none';
+        document.getElementById('captureScreen').style.display = 'block';
+        document.getElementById('progressText').textContent = '';
+
+        // GTM Event
+        if (window.dataLayer) {
+            dataLayer.push({ event: 'assessment_completed', assessment_type: 'hubspot_health' });
+        }
+    }
+
+    async function submitLead(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        btn.textContent = 'Loading...';
+        btn.disabled = true;
+
+        leadData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            company: document.getElementById('company').value
+        };
+
+        await new Promise(r => setTimeout(r, 300));
+        showResults();
+    }
+
+    function skipCapture() {
+        leadData = null;
+        showResults();
+    }
+
+    function calculateResults() {
+        let totalScore = 0;
+        let maxScore = 0;
+        const categoryResults = [];
+        const criticalIssues = [];
+        const warnings = [];
+        const strengths = [];
+
+        CATEGORIES.forEach(category => {
+            let catScore = 0;
+            let catMax = 0;
+
+            category.questions.forEach(q => {
+                catMax += q.weight;
+                maxScore += q.weight;
+
+                if (answers[q.id]) {
+                    catScore += q.weight;
+                    totalScore += q.weight;
+                    if (q.weight >= 2) {
+                        strengths.push(`${category.name}: ${q.text.replace('?', '')}`);
+                    }
+                } else {
+                    if (q.criticalIssue) {
+                        criticalIssues.push(q.criticalIssue);
+                    } else if (q.weight >= 2) {
+                        warnings.push(`${category.name}: ${q.text.replace('?', '')}`);
+                    }
+                }
+            });
+
+            const percentage = Math.round((catScore / catMax) * 100);
+            categoryResults.push({
+                categoryId: category.id,
+                categoryName: category.name,
+                percentage,
+                status: percentage >= 70 ? 'good' : percentage >= 40 ? 'warning' : 'critical'
+            });
+        });
+
+        const percentage = Math.round((totalScore / maxScore) * 100);
+        let grade;
+        if (percentage >= 90) grade = 'A';
+        else if (percentage >= 75) grade = 'B';
+        else if (percentage >= 60) grade = 'C';
+        else if (percentage >= 40) grade = 'D';
+        else grade = 'F';
+
+        return { totalScore, maxScore, percentage, grade, categories: categoryResults, criticalIssues, warnings, strengths };
+    }
+
+    async function showResults() {
+        document.getElementById('captureScreen').style.display = 'none';
+        document.getElementById('resultsScreen').style.display = 'block';
+
+        const result = calculateResults();
+
+        // Grade config
+        const gradeConfig = {
+            A: { color: '#10B981', bg: '#D1FAE5', label: 'Excellent', emoji: '🎉' },
+            B: { color: '#3B82F6', bg: '#DBEAFE', label: 'Good', emoji: '👍' },
+            C: { color: '#F59E0B', bg: '#FEF3C7', label: 'Needs Work', emoji: '⚠️' },
+            D: { color: '#F97316', bg: '#FFEDD5', label: 'At Risk', emoji: '🚨' },
+            F: { color: '#EF4444', bg: '#FEE2E2', label: 'Critical', emoji: '🔥' }
+        }[result.grade];
+
+        // Company display
+        if (leadData?.company) {
+            document.getElementById('companyDisplay').style.display = 'block';
+            document.getElementById('companyName').textContent = leadData.company;
+        }
+
+        // Score circle
+        const circle = document.getElementById('scoreCircle');
+        circle.style.borderColor = gradeConfig.color;
+        circle.style.background = gradeConfig.bg;
+        document.getElementById('scorePercentage').textContent = `${result.percentage}%`;
+        document.getElementById('scorePercentage').style.color = gradeConfig.color;
+        document.getElementById('scoreGrade').textContent = `Grade: ${result.grade}`;
+        document.getElementById('scoreGrade').style.color = gradeConfig.color;
+        document.getElementById('scoreLabel').textContent = `${gradeConfig.emoji} ${gradeConfig.label}`;
+
+        // Category bars
+        const barsHtml = result.categories.map(cat => {
+            const color = cat.status === 'good' ? '#10B981' : cat.status === 'warning' ? '#F59E0B' : '#EF4444';
+            return `
+                <div class="category-bar-item">
+                    <div class="category-bar-header">
+                        <span class="category-bar-name">${cat.categoryName}</span>
+                        <span class="category-bar-percentage" style="color: ${color}">${cat.percentage}%</span>
+                    </div>
+                    <div class="category-bar-bg">
+                        <div class="category-bar-fill" style="width: ${cat.percentage}%; background: ${color};"></div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+        document.getElementById('categoryBars').innerHTML = barsHtml;
+
+        // Issues
+        if (result.criticalIssues.length > 0) {
+            document.getElementById('issuesBox').classList.remove('hidden');
+            document.getElementById('issuesList').innerHTML = result.criticalIssues
+                .map(i => `<li><span class="x">✗</span><span>${i}</span></li>`).join('');
+        }
+
+        // Warnings
+        if (result.warnings.length > 0) {
+            document.getElementById('warningsBox').classList.remove('hidden');
+            document.getElementById('warningsList').innerHTML = result.warnings.slice(0, 5)
+                .map(w => `<li><span class="exclaim">!</span><span>${w}</span></li>`).join('');
+        }
+
+        // Strengths
+        if (result.strengths.length > 0) {
+            document.getElementById('strengthsBox').classList.remove('hidden');
+            document.getElementById('strengthsList').innerHTML = result.strengths.slice(0, 5)
+                .map(s => `<li><span class="check">✓</span><span>${s}</span></li>`).join('');
+        }
+
+        // CTA
+        if (result.percentage < 70) {
+            document.getElementById('ctaBox').classList.remove('hidden');
+        }
+
+        // Summary
+        document.getElementById('totalScore').textContent = result.totalScore;
+        document.getElementById('maxScore').textContent = result.maxScore;
+        document.getElementById('criticalCount').textContent = result.criticalIssues.length;
+        document.getElementById('strengthsCount').textContent = result.strengths.length;
+
+        // Send results if lead data
+        if (leadData) {
+            try {
+                const response = await fetch('/api/assessment-results', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ ...leadData, result })
+                });
+
+                if (response.ok) {
+                    document.getElementById('emailConfirmation').classList.remove('hidden');
+                    document.getElementById('emailSent').textContent = leadData.email;
+                }
+            } catch (err) {
+                console.error('Failed to send results:', err);
+            }
+
+            // GTM Event
+            if (window.dataLayer) {
+                dataLayer.push({
+                    event: 'assessment_lead_captured',
+                    assessment_type: 'hubspot_health',
+                    assessment_score: result.percentage,
+                    assessment_grade: result.grade
+                });
+            }
+        }
+    }
+
+    async function downloadPNG() {
+        const card = document.getElementById('shareCard');
+        const btn = document.getElementById('downloadText');
+        btn.textContent = 'Generating...';
+
+        try {
+            const dataUrl = await htmlToImage.toPng(card, {
+                quality: 1,
+                pixelRatio: 2,
+                backgroundColor: '#f5f5f5'
+            });
+
+            const link = document.createElement('a');
+            link.download = `hubspot-health-score-${document.getElementById('scorePercentage').textContent.replace('%', '')}.png`;
+            link.href = dataUrl;
+            link.click();
+
+            // GTM Event
+            if (window.dataLayer) {
+                dataLayer.push({ event: 'assessment_png_downloaded', assessment_type: 'hubspot_health' });
+            }
+        } catch (err) {
+            console.error('Failed to export PNG:', err);
+        } finally {
+            btn.textContent = 'Download PNG for LinkedIn';
+        }
+    }
+    </script>
+</body>
+</html>
