@@ -230,7 +230,7 @@
 
         .chart-container {
             position: relative;
-            height: 400px;
+            height: 600px;
         }
 
         /* Comparison Table */
@@ -712,7 +712,7 @@
                 Capterra, and Gartner Peer Insights.
             </p>
             <p style="margin-top: 1rem; font-size: 0.9rem; color: #6b6b6b;">
-                Analysis covers traditional SEO tools (Semrush, Ahrefs, Moz) and emerging AEO platforms (Profound, Peec AI, Otterly AI). February 2026.
+                Analysis covers traditional SEO tools (Semrush, Ahrefs, Moz), AI workflow tools (AirOps, Rankability), and emerging AEO/GEO platforms (Profound, Peec AI, AthenaHQ, Scrunch, Goodie AI, and more). February 2026.
             </p>
         </div>
     </section>
@@ -721,24 +721,24 @@
         <!-- Key Stats -->
         <div class="stats-row">
             <div class="stat-card">
-                <div class="stat-value blue">16</div>
+                <div class="stat-value blue">28</div>
                 <div class="stat-label">Tools Analyzed</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value positive">6</div>
+                <div class="stat-value positive">12</div>
                 <div class="stat-label">Positive Sentiment</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value" style="color: var(--orange);">7</div>
+                <div class="stat-value" style="color: var(--orange);">10</div>
                 <div class="stat-label">Mixed Sentiment</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value negative">3</div>
+                <div class="stat-value negative">4</div>
                 <div class="stat-label">Negative Sentiment</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value purple">5</div>
-                <div class="stat-label">AEO-Specific Tools</div>
+                <div class="stat-value purple">14</div>
+                <div class="stat-label">AEO/GEO Tools</div>
             </div>
         </div>
 
@@ -746,11 +746,12 @@
         <div class="insights-box">
             <h3>Key Findings</h3>
             <ul class="insights-list">
+                <li><strong>AirOps emerging as the workflow automation leader</strong> - 4.6/5 G2 rating, Webflow reports 5x faster content refresh and 40% traffic increases</li>
+                <li><strong>AEO/GEO category exploding</strong> - $200M+ raised across 24 platforms; Gartner forecasts 25% decline in traditional search by 2026</li>
                 <li><strong>Billing controversies dominate negative reviews</strong> for Semrush and Ahrefs - product quality is not the main complaint</li>
-                <li><strong>Ahrefs credit system</strong> generates significant frustration, with users calling it "the worst subscription type ever"</li>
-                <li><strong>AEO tools are emerging fast</strong> - Profound raised $58.5M and is the enterprise default; Peec AI hit EUR 650K ARR in 4 months</li>
-                <li><strong>94% of CMOs plan to increase AI visibility investment</strong> in 2026 as organic CTR drops 61% when AI Overviews appear</li>
-                <li><strong>Traditional SEO tools are adapting</strong> - Semrush acquired by Adobe (Nov 2025), both Semrush and Ahrefs added AI visibility tracking</li>
+                <li><strong>New entrants disrupting incumbents</strong> - Rankability (5.0/5 G2) combines IBM Watson + Google NLP; LLMrefs tracks 11+ AI platforms for $79/mo</li>
+                <li><strong>94% of CMOs increasing AI visibility investment</strong> in 2026 as organic CTR drops 61% when AI Overviews appear</li>
+                <li><strong>Enterprise vs SMB split emerging</strong> - Profound ($499/mo+) for enterprise; Goodie AI ($199/mo) and LLMrefs ($79/mo) for mid-market</li>
             </ul>
         </div>
 
@@ -759,7 +760,8 @@
             <button class="category-tab active" onclick="showCategory('all')">All Tools</button>
             <button class="category-tab" onclick="showCategory('seo')">Traditional SEO</button>
             <button class="category-tab" onclick="showCategory('content')">Content Optimization</button>
-            <button class="category-tab" onclick="showCategory('aeo')">AEO / AI Visibility</button>
+            <button class="category-tab" onclick="showCategory('workflow')">AI Workflow</button>
+            <button class="category-tab" onclick="showCategory('aeo')">AEO / GEO</button>
         </div>
 
         <!-- Comparison Table -->
@@ -913,6 +915,104 @@
                             <td><span class="sentiment-badge sentiment-mixed">Mixed</span></td>
                             <td>Quality data, clean UI</td>
                             <td>Newer, still populating data</td>
+                        </tr>
+                        <!-- AI Workflow Tools -->
+                        <tr class="tool-row workflow all">
+                            <td class="tool-name">AirOps</td>
+                            <td>AI Workflow</td>
+                            <td>4.6/5</td>
+                            <td><span class="sentiment-badge sentiment-positive">Positive</span></td>
+                            <td>Huge time saver, scales SEO content</td>
+                            <td>Steep learning curve, not for beginners</td>
+                        </tr>
+                        <tr class="tool-row workflow all">
+                            <td class="tool-name">Rankability</td>
+                            <td>AI Content Platform</td>
+                            <td>5.0/5</td>
+                            <td><span class="sentiment-badge sentiment-positive">Positive</span></td>
+                            <td>IBM Watson + Google NLP, coaching calls</td>
+                            <td>Credit-based system</td>
+                        </tr>
+                        <!-- Additional AEO/GEO Tools -->
+                        <tr class="tool-row aeo all">
+                            <td class="tool-name">AthenaHQ</td>
+                            <td>GEO Platform</td>
+                            <td>4.5/5</td>
+                            <td><span class="sentiment-badge sentiment-positive">Positive</span></td>
+                            <td>Google/DeepMind founders, quick ROI</td>
+                            <td>$295/mo+, enterprise-focused</td>
+                        </tr>
+                        <tr class="tool-row aeo all">
+                            <td class="tool-name">Scrunch AI</td>
+                            <td>AEO Platform</td>
+                            <td>4.4/5</td>
+                            <td><span class="sentiment-badge sentiment-mixed">Mixed</span></td>
+                            <td>Agent Experience Platform, granular segmentation</td>
+                            <td>$250/mo+, insights not actionable</td>
+                        </tr>
+                        <tr class="tool-row aeo all">
+                            <td class="tool-name">Goodie AI</td>
+                            <td>AEO Platform</td>
+                            <td>4.5/5</td>
+                            <td><span class="sentiment-badge sentiment-positive">Positive</span></td>
+                            <td>Most comprehensive, affordable</td>
+                            <td>Basic optimization recommendations</td>
+                        </tr>
+                        <tr class="tool-row aeo all">
+                            <td class="tool-name">LLMrefs</td>
+                            <td>AI Visibility Tracker</td>
+                            <td>4.5/5</td>
+                            <td><span class="sentiment-badge sentiment-positive">Positive</span></td>
+                            <td>11+ AI platforms, $79/mo, 50+ countries</td>
+                            <td>Keyword-focused vs prompt-level</td>
+                        </tr>
+                        <tr class="tool-row aeo all">
+                            <td class="tool-name">WriteSonic GEO</td>
+                            <td>Content + GEO</td>
+                            <td>4.7/5</td>
+                            <td><span class="sentiment-badge sentiment-mixed">Mixed</span></td>
+                            <td>200K+ users, 120M prompt dataset</td>
+                            <td>GEO features at $249/mo+</td>
+                        </tr>
+                        <tr class="tool-row aeo all">
+                            <td class="tool-name">Bluefish AI</td>
+                            <td>Brand Protection</td>
+                            <td>N/A</td>
+                            <td><span class="sentiment-badge sentiment-neutral">Neutral</span></td>
+                            <td>CB Insights GEO Leader, brand safety</td>
+                            <td>Custom pricing only, not SOC 2</td>
+                        </tr>
+                        <tr class="tool-row aeo all">
+                            <td class="tool-name">Adobe LLM Optimizer</td>
+                            <td>Enterprise GEO</td>
+                            <td>N/A</td>
+                            <td><span class="sentiment-badge sentiment-neutral">Neutral</span></td>
+                            <td>AEM integration, agentic traffic detection</td>
+                            <td>Enterprise pricing, Adobe ecosystem req</td>
+                        </tr>
+                        <tr class="tool-row content all">
+                            <td class="tool-name">SEO.ai</td>
+                            <td>AI SEO Writer</td>
+                            <td>3.8/5</td>
+                            <td><span class="sentiment-badge sentiment-negative">Negative</span></td>
+                            <td>Good for e-commerce automation</td>
+                            <td>Expensive, confusing UI, limited languages</td>
+                        </tr>
+                        <tr class="tool-row seo all">
+                            <td class="tool-name">GrowthBar</td>
+                            <td>SEO Suite</td>
+                            <td>4.8/5</td>
+                            <td><span class="sentiment-badge sentiment-positive">Positive</span></td>
+                            <td>Affordable ($79/mo), AI writer</td>
+                            <td>Smaller database than leaders</td>
+                        </tr>
+                        <tr class="tool-row seo all">
+                            <td class="tool-name">SEOmator</td>
+                            <td>SEO Suite</td>
+                            <td>4.6/5</td>
+                            <td><span class="sentiment-badge sentiment-positive">Positive</span></td>
+                            <td>Fraction of cost, matches core features</td>
+                            <td>Less brand recognition</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1312,6 +1412,294 @@
             </div>
         </div>
 
+        <!-- AI Workflow Tools Section -->
+        <h2 class="section-title" style="margin-top: 3rem;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            Deep Dive: AI Workflow & Emerging Tools
+        </h2>
+
+        <!-- AirOps -->
+        <div class="tool-card">
+            <div class="tool-header">
+                <div class="tool-info">
+                    <h3>AirOps</h3>
+                    <div class="tool-meta">
+                        <span class="tool-meta-item"><strong>Category:</strong> AI Workflow Automation</span>
+                        <span class="tool-meta-item"><strong>Pricing:</strong> Custom (workflow-based)</span>
+                        <span class="tool-meta-item"><strong>Best For:</strong> Agencies and teams with established SEO processes</span>
+                    </div>
+                </div>
+                <div class="tool-ratings">
+                    <div class="rating-badge">
+                        <div class="rating">4.6/5</div>
+                        <div class="source">G2</div>
+                    </div>
+                    <div class="rating-badge">
+                        <div class="rating">5.0/5</div>
+                        <div class="source">Product Hunt</div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-content">
+                <div class="praise-section">
+                    <h4>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+                        </svg>
+                        What Users Love
+                    </h4>
+                    <ul class="feedback-list">
+                        <li>
+                            <strong>"Easy to use & super intuitive - a huge time saver"</strong>
+                            Automates images, posts directly to WordPress, great for handling bulk work while keeping things SEO-friendly
+                        </li>
+                        <li>
+                            <strong>Proven enterprise results</strong>
+                            Webflow: 5x faster content refresh, 40% traffic increase. Toys "R" Us: 90% reduction in product launch time. Deepgram: 20x organic traffic growth
+                        </li>
+                        <li>
+                            <strong>Turns workflows into scalable systems</strong>
+                            For agencies with established processes, AirOps multiplies output while freeing teams to focus on strategy
+                        </li>
+                    </ul>
+                </div>
+                <div class="criticism-section">
+                    <h4>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/>
+                        </svg>
+                        What Users Criticize
+                    </h4>
+                    <ul class="feedback-list">
+                        <li>
+                            <strong>Steep learning curve</strong>
+                            "Notable time investment to master the workflow builder" - not for beginners without solid SEO fundamentals
+                        </li>
+                        <li>
+                            <strong>Unpredictable pricing</strong>
+                            Complaints focus on how pricing feels as workloads expand; performance shifts at scale
+                        </li>
+                        <li>
+                            <strong>Requires existing workflow</strong>
+                            "If you're just trying to leverage AI because your manager told you to, it's going to be confusing"
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- AthenaHQ -->
+        <div class="tool-card">
+            <div class="tool-header">
+                <div class="tool-info">
+                    <h3>AthenaHQ</h3>
+                    <div class="tool-meta">
+                        <span class="tool-meta-item"><strong>Category:</strong> GEO Platform</span>
+                        <span class="tool-meta-item"><strong>Pricing:</strong> $295-$595/mo</span>
+                        <span class="tool-meta-item"><strong>Founded by:</strong> Google Search & DeepMind alumni</span>
+                    </div>
+                </div>
+                <div class="tool-ratings">
+                    <div class="rating-badge">
+                        <div class="rating">4.5/5</div>
+                        <div class="source">Slashdot</div>
+                    </div>
+                    <div class="rating-badge">
+                        <div class="rating">$95</div>
+                        <div class="source">1st Month Trial</div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-content">
+                <div class="praise-section">
+                    <h4>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+                        </svg>
+                        What Users Love
+                    </h4>
+                    <ul class="feedback-list">
+                        <li>
+                            <strong>Quick ROI generation</strong>
+                            Users report being "very happy with the tool" as it has "already helped generate ROI in a very short period"
+                        </li>
+                        <li>
+                            <strong>Intuitive AI-powered setup</strong>
+                            "Really intuitive and uses AI itself to get your prompts and tracking set up quickly"
+                        </li>
+                        <li>
+                            <strong>Google Search expertise</strong>
+                            Founded by technical experts from Google Search and DeepMind - at the forefront of GEO
+                        </li>
+                    </ul>
+                </div>
+                <div class="criticism-section">
+                    <h4>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/>
+                        </svg>
+                        What Users Criticize
+                    </h4>
+                    <ul class="feedback-list">
+                        <li>
+                            <strong>Enterprise overkill for smaller teams</strong>
+                            "$295/mo price tag justified for large agencies/Shopify brands, but often feels like overkill for content teams and SaaS"
+                        </li>
+                        <li>
+                            <strong>No free trial</strong>
+                            $95 first month introductory offer, but no true free trial available
+                        </li>
+                        <li>
+                            <strong>Pricing creates barrier</strong>
+                            Sophisticated features but creates significant barrier for small and medium-sized businesses
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Goodie AI -->
+        <div class="tool-card">
+            <div class="tool-header">
+                <div class="tool-info">
+                    <h3>Goodie AI</h3>
+                    <div class="tool-meta">
+                        <span class="tool-meta-item"><strong>Category:</strong> All-in-One AEO Platform</span>
+                        <span class="tool-meta-item"><strong>Pricing:</strong> $199/mo entry point</span>
+                        <span class="tool-meta-item"><strong>Focus:</strong> SMB-friendly AEO</span>
+                    </div>
+                </div>
+                <div class="tool-ratings">
+                    <div class="rating-badge">
+                        <div class="rating">4.5/5</div>
+                        <div class="source">Avg Rating</div>
+                    </div>
+                    <div class="rating-badge">
+                        <div class="rating">335%</div>
+                        <div class="source">NoGood AI Traffic</div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-content">
+                <div class="praise-section">
+                    <h4>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+                        </svg>
+                        What Users Love
+                    </h4>
+                    <ul class="feedback-list">
+                        <li>
+                            <strong>"Most comprehensive GEO tool" at accessible pricing</strong>
+                            Covers all models customers want to track with a unique, affordable approach
+                        </li>
+                        <li>
+                            <strong>Clear, actionable steps</strong>
+                            Provides clear steps to fix visibility gaps rather than just showing charts
+                        </li>
+                        <li>
+                            <strong>Proven results</strong>
+                            SteelSeries: "Most retrieved gaming brand" with 3.2x AI conversions. NoGood: 335% AI traffic increase, 48 leads in Q1 2025
+                        </li>
+                    </ul>
+                </div>
+                <div class="criticism-section">
+                    <h4>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/>
+                        </svg>
+                        What Users Criticize
+                    </h4>
+                    <ul class="feedback-list">
+                        <li>
+                            <strong>Basic optimization recommendations</strong>
+                            More of an "AEO assistant" than comprehensive strategic platform for market leaders
+                        </li>
+                        <li>
+                            <strong>Limited competitive benchmarking</strong>
+                            Doesn't offer same depth of competitive analysis as higher-ranked tools
+                        </li>
+                        <li>
+                            <strong>Narrower platform coverage</strong>
+                            Platform coverage narrower than enterprise solutions like Profound
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- LLMrefs -->
+        <div class="tool-card">
+            <div class="tool-header">
+                <div class="tool-info">
+                    <h3>LLMrefs</h3>
+                    <div class="tool-meta">
+                        <span class="tool-meta-item"><strong>Category:</strong> AI Search Analytics</span>
+                        <span class="tool-meta-item"><strong>Pricing:</strong> Free - $79/mo (Pro)</span>
+                        <span class="tool-meta-item"><strong>Founded:</strong> May 2025 by James Berry</span>
+                    </div>
+                </div>
+                <div class="tool-ratings">
+                    <div class="rating-badge">
+                        <div class="rating">4.5/5</div>
+                        <div class="source">Industry Rating</div>
+                    </div>
+                    <div class="rating-badge">
+                        <div class="rating">11+</div>
+                        <div class="source">AI Platforms</div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-content">
+                <div class="praise-section">
+                    <h4>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+                        </svg>
+                        What Users Love
+                    </h4>
+                    <ul class="feedback-list">
+                        <li>
+                            <strong>Broadest AI platform coverage</strong>
+                            Tracks 11+ platforms: ChatGPT, Perplexity, Claude, Gemini, Grok, and more at $79/mo
+                        </li>
+                        <li>
+                            <strong>Global reach</strong>
+                            50+ countries, 20+ languages - ideal for global brands and agencies with international clients
+                        </li>
+                        <li>
+                            <strong>Clean design, valuable analytics</strong>
+                            Early user sentiment notably positive; praised for timely innovation and clean interface
+                        </li>
+                    </ul>
+                </div>
+                <div class="criticism-section">
+                    <h4>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/>
+                        </svg>
+                        What Users Criticize
+                    </h4>
+                    <ul class="feedback-list">
+                        <li>
+                            <strong>Keyword-focused vs prompt-level</strong>
+                            Tracks broader keyword-level patterns vs specific user-style questions - different approach
+                        </li>
+                        <li>
+                            <strong>New entrant</strong>
+                            Founded May 2025 - still building track record and feature set
+                        </li>
+                        <li>
+                            <strong>Limited on free tier</strong>
+                            Free tier provides low barrier but limited keyword tracking; Pro required for real utility
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
         <!-- What Practitioners Are Saying -->
         <h2 class="section-title" style="margin-top: 3rem;">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1321,6 +1709,13 @@
         </h2>
 
         <div class="quotes-grid">
+            <div class="quote-card positive">
+                <div class="quote-icon">"</div>
+                <p class="quote-text">"AirOps is easy to use & super intuitive - a huge time saver. It automates images and posts directly to WordPress, great for handling bulk work and keeping things SEO-friendly."</p>
+                <p class="quote-author">Product Hunt Review</p>
+                <p class="quote-source">On AirOps</p>
+            </div>
+
             <div class="quote-card negative">
                 <div class="quote-icon">"</div>
                 <p class="quote-text">"The credit system is a total scam, the worst subscription type I've ever seen."</p>
@@ -1328,18 +1723,11 @@
                 <p class="quote-source">On Ahrefs pricing model</p>
             </div>
 
-            <div class="quote-card negative">
-                <div class="quote-icon">"</div>
-                <p class="quote-text">"48% gave Semrush five stars and 36% gave it one star with almost nothing in between. The billing and cancellation experience is the problem."</p>
-                <p class="quote-author">Industry Analysis</p>
-                <p class="quote-source">Trustpilot review pattern</p>
-            </div>
-
             <div class="quote-card positive">
                 <div class="quote-icon">"</div>
-                <p class="quote-text">"Profound is the most complete AI visibility platform on the market - log-level AI crawler data, real-time visibility snapshots, SOC 2 compliance."</p>
-                <p class="quote-author">Industry Review</p>
-                <p class="quote-source">AEO Platform Comparison 2026</p>
+                <p class="quote-text">"Gartner forecasts a 25% decline in conventional search traffic by 2026 due to AI assistants. Brands that overlook GEO risk fading into obscurity."</p>
+                <p class="quote-author">Industry Report</p>
+                <p class="quote-source">GEO Market Analysis 2026</p>
             </div>
 
             <div class="quote-card negative">
@@ -1351,16 +1739,30 @@
 
             <div class="quote-card positive">
                 <div class="quote-icon">"</div>
-                <p class="quote-text">"Screaming Frog is definitely the best crawl tool out there. Best quality/price ratio of any SEO tool - competitors cost per month what Screaming Frog costs for a whole year."</p>
-                <p class="quote-author">SEO Professional</p>
-                <p class="quote-source">Capterra Review</p>
+                <p class="quote-text">"LLMrefs is the best AI SEO tool for tracking visibility in AI search. 11+ platforms, 50+ countries, 20+ languages at $79/month."</p>
+                <p class="quote-author">Industry Review</p>
+                <p class="quote-source">AI SEO Tools Comparison 2026</p>
             </div>
 
             <div class="quote-card positive">
                 <div class="quote-icon">"</div>
-                <p class="quote-text">"94% of CMOs plan to increase AI visibility investment this year. Organic click-through rates drop 61% when AI Overviews appear."</p>
-                <p class="quote-author">Industry Report</p>
-                <p class="quote-source">AEO Market Analysis 2026</p>
+                <p class="quote-text">"Rankability stands out by combining IBM Watson and Google NLP for exceptionally accurate keyword recommendations that consistently outperform Surfer SEO."</p>
+                <p class="quote-author">SEO Tool Comparison</p>
+                <p class="quote-source">Content Optimization Tools 2026</p>
+            </div>
+
+            <div class="quote-card negative">
+                <div class="quote-icon">"</div>
+                <p class="quote-text">"48% gave Semrush five stars and 36% gave it one star with almost nothing in between. The billing and cancellation experience is the problem."</p>
+                <p class="quote-author">Industry Analysis</p>
+                <p class="quote-source">Trustpilot review pattern</p>
+            </div>
+
+            <div class="quote-card positive">
+                <div class="quote-icon">"</div>
+                <p class="quote-text">"Goodie AI is the most comprehensive GEO tool in the space - unique approach that's also affordable and covers all the models customers want to track."</p>
+                <p class="quote-author">AEO Platform Review</p>
+                <p class="quote-source">GEO Tools Comparison 2026</p>
             </div>
         </div>
 
@@ -1517,18 +1919,30 @@
 
         // G2 Ratings Chart
         const ratingsData = [
+            { name: 'Rankability', rating: 5.0, category: 'content' },
+            { name: 'Peec AI', rating: 5.0, category: 'aeo' },
+            { name: 'Otterly AI', rating: 5.0, category: 'aeo' },
             { name: 'Clearscope', rating: 4.9, category: 'content' },
+            { name: 'GrowthBar', rating: 4.8, category: 'seo' },
             { name: 'SE Ranking', rating: 4.8, category: 'seo' },
             { name: 'Screaming Frog', rating: 4.8, category: 'seo' },
             { name: 'Surfer SEO', rating: 4.8, category: 'content' },
+            { name: 'WriteSonic', rating: 4.7, category: 'aeo' },
             { name: 'Profound', rating: 4.6, category: 'aeo' },
+            { name: 'AirOps', rating: 4.6, category: 'workflow' },
+            { name: 'SEOmator', rating: 4.6, category: 'seo' },
+            { name: 'AthenaHQ', rating: 4.5, category: 'aeo' },
+            { name: 'Goodie AI', rating: 4.5, category: 'aeo' },
+            { name: 'LLMrefs', rating: 4.5, category: 'aeo' },
             { name: 'Semrush', rating: 4.5, category: 'seo' },
             { name: 'Ahrefs', rating: 4.5, category: 'seo' },
             { name: 'Moz Pro', rating: 4.5, category: 'seo' },
+            { name: 'Scrunch AI', rating: 4.4, category: 'aeo' },
             { name: 'MarketMuse', rating: 4.4, category: 'content' },
             { name: 'Frase', rating: 4.3, category: 'content' },
             { name: 'Ubersuggest', rating: 4.2, category: 'seo' },
-            { name: 'Serpstat', rating: 3.9, category: 'seo' }
+            { name: 'Serpstat', rating: 3.9, category: 'seo' },
+            { name: 'SEO.ai', rating: 3.8, category: 'content' }
         ];
 
         function getCategoryColor(category) {
@@ -1536,6 +1950,7 @@
                 case 'seo': return colors.blue;
                 case 'content': return colors.positive;
                 case 'aeo': return colors.purple;
+                case 'workflow': return '#F59E0B';
                 default: return colors.neutral;
             }
         }
@@ -1597,7 +2012,7 @@
             data: {
                 labels: ['Positive', 'Mixed', 'Neutral', 'Negative'],
                 datasets: [{
-                    data: [6, 7, 2, 1],
+                    data: [12, 10, 2, 4],
                     backgroundColor: [colors.positive, colors.mixed, colors.neutral, colors.negative],
                     borderColor: colors.dark,
                     borderWidth: 2
