@@ -522,6 +522,12 @@ const playbooks = [
           <table>
             <tr><th>Vendor</th><th>Best For</th><th>Email Accuracy</th><th>Price</th></tr>
             <tr>
+              <td><strong>Clay</strong></td>
+              <td>Multi-provider waterfall, workflows</td>
+              <td>~90% (waterfall)</td>
+              <td>$149-720/mo</td>
+            </tr>
+            <tr>
               <td><strong>ZoomInfo</strong></td>
               <td>Enterprise, full platform</td>
               <td>~85%</td>
@@ -559,7 +565,49 @@ const playbooks = [
             </tr>
           </table>
           <div class="callout">
-            <strong>42 Agency Recommendation:</strong> Start with Apollo for cost-effectiveness. Graduate to ZoomInfo when you need deeper org charts and intent data. Use PDL for high-volume, one-time enrichment projects.
+            <strong>42 Agency Recommendation:</strong> Clay is the new gold standard for enrichment—150+ data providers with waterfall logic means higher match rates than any single vendor. Start with Clay for flexibility, use ZoomInfo for org charts, Apollo for budget-friendly prospecting.
+          </div>
+        `
+      },
+      {
+        title: 'Clay: The Enrichment Orchestration Layer',
+        content: `
+          <p>Clay has changed the enrichment game. Instead of choosing one data vendor, Clay lets you orchestrate 150+ providers through a single interface with <strong>waterfall enrichment</strong>.</p>
+
+          <h3>How Waterfall Enrichment Works</h3>
+          <p>Traditional enrichment: Query one provider → get ~80% match rate → accept gaps.</p>
+          <p>Clay waterfall: Query Provider A → if no match, query Provider B → then C → achieve 90%+ match rates.</p>
+
+          <h3>Clay Pricing Breakdown</h3>
+          <table>
+            <tr><th>Plan</th><th>Monthly</th><th>Credits/Month</th><th>Best For</th></tr>
+            <tr><td>Free</td><td>$0</td><td>100</td><td>Testing</td></tr>
+            <tr><td>Starter</td><td>$149</td><td>2,000</td><td>Small teams</td></tr>
+            <tr><td>Explorer</td><td>$349</td><td>10,000</td><td>Growth teams</td></tr>
+            <tr><td>Pro</td><td>$720</td><td>50,000</td><td>Scale operations</td></tr>
+          </table>
+          <p><em>Credits vary by action: basic verification = 1 credit, full profile enrichment = 5-10 credits.</em></p>
+
+          <h3>What You Can Enrich with Clay</h3>
+          <ul>
+            <li><strong>Company data:</strong> Revenue, employee count, industry, tech stack, funding</li>
+            <li><strong>Contact data:</strong> Emails (work + personal), phone numbers, LinkedIn URLs</li>
+            <li><strong>Intent signals:</strong> Job postings, tech changes, funding news, hiring velocity</li>
+            <li><strong>Social profiles:</strong> LinkedIn, Twitter, company pages</li>
+          </ul>
+
+          <h3>Clay ABM Workflow</h3>
+          <ol>
+            <li>Import target account list (CSV or CRM sync)</li>
+            <li>Enrich accounts with firmographics + technographics</li>
+            <li>Find 5-8 contacts per account using waterfall</li>
+            <li>Validate emails with built-in verification</li>
+            <li>Score/filter based on enriched data</li>
+            <li>Push to CRM or outbound tool</li>
+          </ol>
+
+          <div class="callout">
+            <strong>When to Use Clay vs. Direct Vendors:</strong> Use Clay when you need flexibility across multiple data types or have complex enrichment workflows. Use direct vendors (ZoomInfo, Apollo) when you need deep integrations or unlimited access to a specific dataset.
           </div>
         `
       },
