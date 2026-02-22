@@ -588,4 +588,63 @@ LinkedIn shows preview with actual score in title
 
 ---
 
-*Last updated: February 21, 2026 - Added LinkedIn share system with dynamic OG meta tags*
+## Budget Calculators (Feb 21, 2026)
+
+### LinkedIn Budget Calculator
+**URL:** `/tools/linkedin-budget-calculator/`
+**API:** `/api/linkedin-budget.js`
+
+**Features:**
+- ICP parsing with Claude → LinkedIn Marketing API for pricing
+- Chart.js graphs: Budget vs Reach/Clicks/Leads/Views (4 charts)
+- Gated results: Only audience size visible, everything else blurred until email entered
+- Floating sticky CTA for email unlock
+- Max reach: 40% of audience per month
+- Budget tiers: Test (5%), Growth (15%), Scale (40%)
+
+**User Flow:**
+1. Enter ICP → Click "Get Estimates"
+2. See preview (audience size visible, details blurred)
+3. Enter email in floating gate → Unlock full results
+4. HubSpot contact created, email sent via Resend
+
+### Google Ads Budget Calculator
+**URL:** `/tools/google-ads-budget-calculator/`
+**API:** `/api/google-budget.js`
+
+**Features:**
+- Keyword generation with Claude → DataForSEO for CPCs
+- Chart.js graphs: Budget Tiers bar chart + CPC Distribution donut
+- Gated results: Only stats visible (keyword count, searches, avg CPC)
+- Floating sticky CTA for email unlock
+- Budget tiers: Min (30%), Ideal (50%), Aggressive (100%)
+
+**User Flow:**
+1. Enter product/service → Click "Get Keywords & CPCs"
+2. See preview (stats visible, keywords/budgets blurred)
+3. Enter email in floating gate → Unlock full results
+4. HubSpot contact created, email sent via Resend
+
+### HubSpot Properties (must exist in HubSpot)
+
+**LinkedIn:**
+- `linkedin_budget_icp` (text) - ICP description
+- `linkedin_budget_audience` (text) - Audience size
+- `linkedin_budget_cpm` (text) - Awareness CPM
+- `linkedin_budget_date` (text) - Calculation date
+
+**Google:**
+- `google_budget_target` (text) - Product/service description
+- `google_budget_keywords` (text) - Keyword count
+- `google_budget_avg_cpc` (text) - Average CPC
+- `google_budget_date` (text) - Calculation date
+
+### Technical Notes
+- APIs use Edge Functions (`runtime: 'edge'`)
+- Must `await Promise.all()` for background tasks (HubSpot, Resend) or they get cut off
+- Preview calls use placeholder email, unlock calls use real email
+- Chart.js loaded via CDN: `https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js`
+
+---
+
+*Last updated: February 21, 2026 - Added budget calculators with gated results and charts*
