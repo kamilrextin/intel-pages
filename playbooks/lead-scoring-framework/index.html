@@ -171,16 +171,27 @@
             button.disabled = true;
             button.textContent = 'Sending...';
             try {
-                await fetch('https://api.hsforms.com/submissions/v3/integration/submit/44888286/collected-forms', {
+                const response = await fetch('/api/playbook-download', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        fields: [{ name: 'email', value: email }],
-                        context: { pageUri: window.location.href, pageName: 'Lead Scoring Framework Builder' }
+                        email: email,
+                        playbook: 'lead-scoring-framework'
                     })
                 });
-                if (window.dataLayer) window.dataLayer.push({ event: 'playbook_downloaded', playbook: 'lead-scoring-framework' });
-                e.target.innerHTML = '<p style="color: var(--green); font-weight: 700;">Check your inbox!</p>';
+                const data = await response.json();
+                if (data.success) {
+                    if (window.dataLayer) window.dataLayer.push({ event: 'playbook_downloaded', playbook: 'lead-scoring-framework' });
+                    const link = document.createElement('a');
+                    link.href = data.pdfUrl;
+                    link.download = 'lead-scoring-framework-playbook.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    e.target.innerHTML = '<p style="color: var(--green); font-weight: 700;">Download started! Check your email for a copy.</p>';
+                } else {
+                    throw new Error('Failed');
+                }
             } catch (error) {
                 button.textContent = 'Try Again';
                 button.disabled = false;

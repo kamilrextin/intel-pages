@@ -1,5 +1,8 @@
 {
   "name": "intel-pages",
   "version": "1.0.0",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "puppeteer": "^24.37.5"
+  }
 }
