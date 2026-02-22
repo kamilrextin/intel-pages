@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta Ads Budget Calculator | Get B2B Pricing Estimates | 42 Agency</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MM5BTNS');</script>
+
+    <!-- HubSpot Tracking -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/44888286.js"></script>
+
+    <!-- Chart.js for budget graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+    <meta property="og:title" content="Meta Ads Budget Calculator - Get B2B Pricing Estimates">
+    <meta property="og:description" content="Enter your campaign details. Get estimated reach, leads, and CPL based on B2B Meta Ads benchmarks.">
+
+    <style>
+        :root {
+            --accent: #DFFE68;
+            --accent-hover: #C8E85C;
+            --black: #1a1a1a;
+            --gray: #4a4a4a;
+            --muted: #6b6b6b;
+            --light-gray: #f5f5f5;
+            --meta: #0668E1;
+            --green: #10B981;
+            --orange: #F59E0B;
+            --red: #EF4444;
+            --blue: #3B82F6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--light-gray);
+            color: var(--black);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .header {
+            border-bottom: 2px solid var(--black);
+            padding: 0.75rem 1.5rem;
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+        .logo img { height: 28px; width: auto; }
+
+        .nav { display: flex; align-items: center; gap: 0.25rem; }
+
+        .nav a {
+            padding: 0.5rem 1rem;
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.15s;
+        }
+
+        .nav a:hover { color: var(--black); background: var(--light-gray); }
+        .nav a.active { color: var(--black); font-weight: 600; background: var(--accent); }
+        .nav a.external { display: flex; align-items: center; gap: 0.25rem; }
+
+        .nav-cta {
+            margin-left: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--black);
+            color: white !important;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .nav-cta:hover { background: #333 !important; }
+
+        /* Breadcrumbs */
+        .breadcrumbs { background: white; border-bottom: 2px solid var(--black); padding: 0.75rem 1.5rem; }
+        .breadcrumbs-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; }
+        .breadcrumbs a { color: #6b6b6b; text-decoration: none; }
+        .breadcrumbs a:hover { color: var(--black); }
+        .breadcrumbs span { color: #6b6b6b; }
+        .breadcrumbs .current { color: var(--black); font-weight: 600; }
+
+        @media (max-width: 768px) { .nav { display: none; } }
+
+        .main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .calculator-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 6px 6px 0px 0px var(--black);
+            margin-bottom: 2rem;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .step {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            background: white;
+            transition: all 0.2s;
+        }
+
+        .step.active { background: var(--accent); }
+        .step.completed { background: var(--green); color: white; border-color: var(--green); }
+
+        .step-line {
+            width: 60px;
+            height: 2px;
+            background: #e0e0e0;
+            align-self: center;
+        }
+
+        .form-section { display: none; }
+        .form-section.active { display: block; }
+
+        .form-section h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .form-section p.hint {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .platform-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--meta);
+        }
+
+        .platform-icon svg { width: 18px; height: 18px; fill: white; }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray);
+        }
+
+        input, textarea, select {
+            padding: 0.875rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+            background: white;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--black);
+        }
+
+        .campaign-types {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .campaign-types { grid-template-columns: 1fr; }
+        }
+
+        .campaign-type {
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.15s;
+            text-align: center;
+        }
+
+        .campaign-type:hover {
+            border-color: var(--black);
+        }
+
+        .campaign-type.selected {
+            border-color: var(--meta);
+            background: rgba(6, 104, 225, 0.05);
+        }
+
+        .campaign-type-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+            background: var(--light-gray);
+        }
+
+        .campaign-type.selected .campaign-type-icon {
+            background: var(--meta);
+        }
+
+        .campaign-type.selected .campaign-type-icon svg {
+            stroke: white;
+        }
+
+        .campaign-type-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .campaign-type-desc {
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .budget-slider-container {
+            margin-top: 0.5rem;
+        }
+
+        .budget-slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: #e0e0e0;
+            appearance: none;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .budget-slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--meta);
+            border: 2px solid var(--black);
+            cursor: pointer;
+        }
+
+        .budget-display {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .budget-display .selected-budget {
+            font-weight: 700;
+            color: var(--meta);
+            font-size: 1.25rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--black);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:disabled {
+            background: #e0e0e0;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--black);
+        }
+
+        .btn-secondary:hover { background: var(--light-gray); }
+
+        .loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--black);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Results Section */
+        .results-section { display: none; }
+        .results-section.active { display: block !important; }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .results-header h2 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .campaign-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--meta);
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .score-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 6px 6px 0px 0px var(--black);
+            margin-bottom: 1.5rem;
+        }
+
+        .score-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .metrics-grid { grid-template-columns: 1fr; }
+        }
+
+        .metric-item {
+            padding: 1rem;
+            background: var(--light-gray);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .metric-item .label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.25rem;
+        }
+
+        .metric-item .value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--black);
+        }
+
+        .metric-item .range {
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        /* Budget Tiers */
+        .budget-tiers {
+            margin-top: 1.5rem;
+        }
+
+        .budget-tier {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--light-gray);
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+        }
+
+        .budget-tier:last-child { margin-bottom: 0; }
+
+        .budget-tier.recommended {
+            background: var(--accent);
+            border: 2px solid var(--black);
+        }
+
+        .budget-tier-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .budget-tier-right {
+            text-align: right;
+        }
+
+        .tier-badge {
+            font-size: 0.65rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .tier-badge.test { background: #fee2e2; color: #991b1b; }
+        .tier-badge.growth { background: #d1fae5; color: #065f46; }
+        .tier-badge.scale { background: #dbeafe; color: #1e40af; }
+
+        .budget-tier-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .budget-tier-desc {
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .budget-tier-amount {
+            font-size: 1.25rem;
+            font-weight: 800;
+        }
+
+        .budget-tier-detail {
+            font-size: 0.7rem;
+            color: var(--muted);
+        }
+
+        /* Chart containers */
+        .chart-container {
+            position: relative;
+            height: 280px;
+            margin: 1.5rem 0;
+        }
+
+        .chart-card {
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .chart-card h4 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--gray);
+        }
+
+        /* Benchmark Note */
+        .benchmark-note {
+            background: rgba(6, 104, 225, 0.08);
+            border: 2px solid var(--meta);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .benchmark-note h4 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--meta);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .benchmark-note p {
+            font-size: 0.85rem;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+
+        /* Gated Results */
+        .results-wrapper {
+            position: relative;
+        }
+
+        .results-wrapper.locked .gated-section {
+            filter: blur(8px);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .results-wrapper.unlocked .gated-section {
+            filter: none;
+            pointer-events: auto;
+            user-select: auto;
+        }
+
+        .sticky-gate {
+            position: sticky;
+            top: 100px;
+            z-index: 40;
+            display: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .results-wrapper.locked .sticky-gate {
+            display: block;
+        }
+
+        .results-wrapper.unlocked .sticky-gate {
+            display: none;
+        }
+
+        .gate-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 6px 6px 0px 0px var(--black);
+            text-align: center;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .gate-card h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .gate-card p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .gate-card input {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .gate-card .btn {
+            width: 100%;
+        }
+
+        /* Actions Section */
+        .actions-section {
+            margin-top: 2rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            margin: 3rem auto;
+            padding: 2.5rem;
+            background: var(--light-gray);
+            border-radius: 16px;
+            max-width: 700px;
+        }
+
+        .cta-section h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-section p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section a {
+            display: inline-block;
+            background: var(--black);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        /* Toast */
+        #toast {
+            display: none;
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--black);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        #toast .title { font-weight: 700; margin-bottom: 0.25rem; }
+        #toast .message { font-size: 0.85rem; color: #ccc; }
+
+        /* Footer */
+        .footer {
+            background: var(--black);
+            color: white;
+            padding: 4rem 1.5rem 2rem;
+            border-top: 2px solid var(--black);
+        }
+
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr repeat(4, 1fr);
+            gap: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid #333;
+        }
+
+        .footer-brand img {
+            height: 24px;
+            filter: brightness(0) invert(1);
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.85rem;
+            color: #999;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            color: #999;
+            transition: color 0.15s;
+        }
+
+        .footer-social a:hover { color: var(--accent); }
+
+        .footer-col h4 {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .footer-col a {
+            display: block;
+            color: #999;
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 0.6rem;
+            transition: color 0.15s;
+        }
+
+        .footer-col a:hover { color: white; }
+        .footer-col .sublink { padding-left: 0.75rem; font-size: 0.8rem; color: #666; }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .footer-bottom a { color: #666; text-decoration: none; }
+        .footer-bottom a:hover { color: #999; }
+
+        @media (max-width: 900px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MM5BTNS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <header class="header">
+        <div class="header-inner">
+            <a href="/" class="logo">
+                <img src="/42-logo.png" alt="42 Agency">
+            </a>
+            <nav class="nav">
+                <a href="/assess/">Assess</a>
+                <a href="/b2b-benchmarks/">Benchmarks</a>
+                <a href="/tools/" class="active">Tools</a>
+                <a href="https://42agency.com/contact" target="_blank" class="nav-cta">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <a href="/">Home</a><span>/</span><a href="/tools/">Tools</a><span>/</span><span class="current">Meta Budget Calculator</span>
+        </div>
+    </nav>
+
+    <main class="main">
+        <h1>Meta Ads Budget Calculator</h1>
+        <p class="subtitle">Get estimated reach, leads, and CPL for B2B Meta campaigns based on real benchmarks.</p>
+
+        <div class="calculator-card" id="calculatorCard">
+            <div class="step-indicator">
+                <div class="step active" id="step1">1</div>
+                <div class="step-line"></div>
+                <div class="step" id="step2">2</div>
+            </div>
+
+            <!-- Step 1: Campaign Details -->
+            <div class="form-section active" id="section1">
+                <h2>
+                    <span class="platform-icon">
+                        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </span>
+                    Enter Campaign Details
+                </h2>
+                <p class="hint">Tell us about your campaign so we can provide accurate estimates.</p>
+
+                <div class="form-group">
+                    <label for="productDescription">Product/Service Description</label>
+                    <textarea id="productDescription" placeholder="e.g., Cloud-based project management software for enterprise teams"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Campaign Type</label>
+                    <div class="campaign-types">
+                        <div class="campaign-type" data-type="awareness" onclick="selectCampaignType(this)">
+                            <div class="campaign-type-icon">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                            </div>
+                            <div class="campaign-type-name">Awareness</div>
+                            <div class="campaign-type-desc">Brand visibility & reach</div>
+                        </div>
+                        <div class="campaign-type selected" data-type="leadgen" onclick="selectCampaignType(this)">
+                            <div class="campaign-type-icon">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                            </div>
+                            <div class="campaign-type-name">Lead Gen</div>
+                            <div class="campaign-type-desc">Capture B2B leads</div>
+                        </div>
+                        <div class="campaign-type" data-type="retargeting" onclick="selectCampaignType(this)">
+                            <div class="campaign-type-icon">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                            </div>
+                            <div class="campaign-type-name">Retargeting</div>
+                            <div class="campaign-type-desc">Re-engage warm audiences</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="monthlyBudget">Monthly Budget</label>
+                    <div class="budget-slider-container">
+                        <input type="range" id="monthlyBudget" class="budget-slider" min="1000" max="50000" step="500" value="5000">
+                        <div class="budget-display">
+                            <span>$1,000</span>
+                            <span class="selected-budget" id="budgetDisplay">$5,000</span>
+                            <span>$50,000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="calculateEstimates()" id="step1Btn">
+                        <span id="step1BtnText">Get Estimates</span>
+                        <div class="loading-spinner" id="step1Spinner" style="display: none;"></div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 2: Processing -->
+            <div class="form-section" id="section2">
+                <div style="text-align: center; padding: 2rem;">
+                    <div class="loading-spinner" style="width: 40px; height: 40px; margin: 0 auto 1rem;"></div>
+                    <h2 style="margin-bottom: 0.5rem;">Calculating Your Estimates</h2>
+                    <p style="color: var(--muted);" id="loadingStatus">Analyzing campaign parameters...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results-section" id="resultsSection">
+            <div class="results-wrapper locked" id="resultsWrapper">
+                <!-- Sticky Email Gate -->
+                <div class="sticky-gate">
+                    <div class="gate-card">
+                        <h3>Unlock Your Full Budget Analysis</h3>
+                        <p>Enter your email to see detailed CPL estimates, budget tiers, and download the full report.</p>
+                        <input type="email" id="gateEmail" placeholder="you@company.com">
+                        <button class="btn btn-primary" onclick="unlockResults()" id="unlockBtn">
+                            <span id="unlockBtnText">Unlock Full Results</span>
+                            <div class="loading-spinner" id="unlockSpinner" style="display: none;"></div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Preview Section (always visible) -->
+                <div class="results-header">
+                    <h2>Your Meta Ads Budget Estimate</h2>
+                    <div class="campaign-badge">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        <span id="campaignTypeLabel">Lead Gen Campaign</span>
+                    </div>
+                    <p class="subtitle" id="budgetLabel">$5,000/month budget</p>
+                </div>
+
+                <!-- GATED SECTION -->
+                <div class="gated-section">
+
+                <div class="score-card">
+                    <h3>
+                        <span class="platform-icon">
+                            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </span>
+                        Estimated Performance
+                    </h3>
+                    <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 1.5rem;">Based on B2B Meta Ads benchmarks from 42 Agency campaigns</p>
+
+                    <div class="metrics-grid">
+                        <div class="metric-item">
+                            <div class="label">Estimated Reach</div>
+                            <div class="value" id="reachValue">--</div>
+                            <div class="range" id="reachRange">people/month</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="label">Estimated Clicks</div>
+                            <div class="value" id="clicksValue">--</div>
+                            <div class="range" id="ctrRange">CTR: 0.8-1.5%</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="label">Estimated Leads</div>
+                            <div class="value" id="leadsValue">--</div>
+                            <div class="range" id="leadsRange">for lead gen campaigns</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="label">CPL Range</div>
+                            <div class="value" id="cplValue">--</div>
+                            <div class="range" id="cplRange">B2B benchmark</div>
+                        </div>
+                    </div>
+
+                    <div class="benchmark-note">
+                        <h4>
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            B2B Meta Ads Reality Check
+                        </h4>
+                        <p id="benchmarkNote">Meta is best for retargeting warm audiences. Cold prospecting for B2B typically yields higher CPLs ($50-$150) compared to LinkedIn but offers broader reach at lower CPMs.</p>
+                    </div>
+                </div>
+
+                <!-- Budget Tier Chart -->
+                <div class="score-card">
+                    <h3>
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin-right: 0.5rem;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                        Budget Tier Recommendations
+                    </h3>
+                    <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem;">Compare Test, Growth, and Scale budget levels for your campaign.</p>
+
+                    <div class="chart-card">
+                        <h4>Budget vs Expected Leads</h4>
+                        <div class="chart-container">
+                            <canvas id="budgetChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="budget-tiers" id="budgetTiers">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Actions Section -->
+                <div class="actions-section">
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <button onclick="exportToCSV()" class="btn btn-primary" style="max-width: 220px;">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            Export to CSV
+                        </button>
+                        <button class="btn btn-secondary" onclick="resetCalculator()" style="max-width: 180px;">
+                            Start Over
+                        </button>
+                    </div>
+                </div>
+                </div><!-- end gated-section -->
+            </div><!-- end results-wrapper -->
+        </div>
+
+        <!-- CTA Sections -->
+        <div class="cta-section" style="background: var(--accent); border: 2px solid var(--black); box-shadow: 6px 6px 0px 0px var(--black);">
+            <h3>Need Expert Help With Meta Ads?</h3>
+            <p style="color: var(--black);">Our B2B performance marketing team can help you build high-converting Meta campaigns with proper audience targeting and creative strategy.</p>
+            <a href="https://42agency.com/contact?utm_source=meta_budget_calculator&utm_medium=intel" target="_blank" style="background: var(--black);">
+                Get a Free Consultation
+            </a>
+        </div>
+
+        <div class="cta-section">
+            <h3>Compare With Other Platforms</h3>
+            <p>See how Meta stacks up against LinkedIn and Google for your B2B campaigns.</p>
+            <a href="/tools/">View All Budget Calculators</a>
+        </div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast">
+        <div class="title">Success!</div>
+        <div class="message">Your results have been unlocked.</div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="/42-logo.png" alt="42 Agency">
+                    <p>B2B performance marketing for companies that sell to enterprises.</p>
+                    <div class="footer-social">
+                        <a href="https://linkedin.com/company/42agency" target="_blank">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                        <a href="https://x.com/42aboratory" target="_blank">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a href="https://www.youtube.com/@Get42Agency" target="_blank">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Assess</h4>
+                    <a href="/assessments/hubspot-health/">HubSpot Health Check</a>
+                    <a href="/assess/calculator/">Benchmark Calculator</a>
+                    <a href="/linkedin-audit/">LinkedIn Ads Audit</a>
+                    <a href="/google-ads-audit/">Google Ads Audit</a>
+                    <a href="/meta-audit/">Meta Ads Audit</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Benchmarks</h4>
+                    <a href="/b2b-benchmarks/">All B2B Benchmarks</a>
+                    <a href="/b2b-benchmarks/linkedin-ads-benchmarks/">LinkedIn Ads</a>
+                    <a href="/b2b-benchmarks/google-ads-benchmarks/">Google Ads</a>
+                    <a href="/b2b-benchmarks/meta-ads-benchmarks/">Meta Ads</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Tools</h4>
+                    <a href="/tools/linkedin-budget-calculator/">LinkedIn Budget Calculator</a>
+                    <a href="/tools/google-ads-budget-calculator/">Google Ads Budget Calculator</a>
+                    <a href="/tools/meta-budget-calculator/">Meta Budget Calculator</a>
+                    <a href="/tools/company-sampler/">Company Sampler</a>
+                    <a href="/tools/company-resolver/">Company Resolver</a>
+                </div>
+                <div class="footer-col">
+                    <h4>42 Agency</h4>
+                    <a href="https://42agency.com" target="_blank">Website</a>
+                    <a href="https://42agency.com/contact" target="_blank">Contact Us</a>
+                    <a href="https://42agency.com/case-studies" target="_blank">Case Studies</a>
+                    <a href="https://42slash.com" target="_blank">42/ Essays</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 42 Agency. All rights reserved.</p>
+                <p>
+                    <a href="https://42agency.com/privacy">Privacy</a>
+                    <span>&nbsp;·&nbsp;</span>
+                    <a href="https://42agency.com/terms">Terms</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/email-validation.js"></script>
+
+    <script>
+        // B2B Meta Ads Benchmarks (42 Agency data)
+        const META_BENCHMARKS = {
+            cpl: { min: 50, max: 150, avg: 100 },       // B2B Cost Per Lead
+            ctr: { min: 0.8, max: 1.5, avg: 1.15 },     // Click-through rate %
+            cpm: { min: 8, max: 25, avg: 15 },          // Cost per 1000 impressions
+            conversionRate: { min: 2, max: 8, avg: 5 }, // Landing page conversion %
+            ecommerceRoas: { min: 300, max: 500 }       // E-commerce ROAS %
+        };
+
+        // Campaign type multipliers
+        const CAMPAIGN_MULTIPLIERS = {
+            awareness: { cpm: 0.7, cpl: null, leads: 0 },      // Lower CPM, no leads
+            leadgen: { cpm: 1.0, cpl: 1.0, leads: 1.0 },       // Standard
+            retargeting: { cpm: 1.3, cpl: 0.5, leads: 1.8 }    // Higher CPM but better CPL
+        };
+
+        let calculatorResults = null;
+        let isLoading = false;
+        let isUnlocked = false;
+        let selectedCampaignType = 'leadgen';
+        let chartInstance = null;
+
+        // Update budget display
+        document.getElementById('monthlyBudget').addEventListener('input', function() {
+            document.getElementById('budgetDisplay').textContent = formatCurrency(this.value);
+        });
+
+        function selectCampaignType(element) {
+            document.querySelectorAll('.campaign-type').forEach(el => el.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedCampaignType = element.dataset.type;
+        }
+
+        function formatNumber(num) {
+            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(0) + 'K';
+            return Math.round(num).toLocaleString();
+        }
+
+        function formatCurrency(num) {
+            return '$' + parseInt(num).toLocaleString();
+        }
+
+        function calculateEstimates() {
+            if (isLoading) return;
+
+            const product = document.getElementById('productDescription').value.trim();
+            const budget = parseInt(document.getElementById('monthlyBudget').value);
+
+            if (!product) {
+                alert('Please describe your product/service');
+                return;
+            }
+
+            isLoading = true;
+            document.getElementById('step1BtnText').textContent = 'Calculating...';
+            document.getElementById('step1Spinner').style.display = 'block';
+            document.getElementById('step1Btn').disabled = true;
+
+            // Move to loading step
+            document.getElementById('section1').classList.remove('active');
+            document.getElementById('section2').classList.add('active');
+            document.getElementById('step1').classList.remove('active');
+            document.getElementById('step1').classList.add('completed');
+            document.getElementById('step2').classList.add('active');
+
+            // Simulate loading messages
+            const loadingMessages = [
+                'Analyzing campaign parameters...',
+                'Calculating reach estimates...',
+                'Applying B2B benchmarks...',
+                'Generating recommendations...'
+            ];
+            let msgIndex = 0;
+            const msgInterval = setInterval(() => {
+                msgIndex++;
+                if (msgIndex < loadingMessages.length) {
+                    document.getElementById('loadingStatus').textContent = loadingMessages[msgIndex];
+                }
+            }, 800);
+
+            // Calculate locally using benchmarks (no API needed for Meta)
+            setTimeout(() => {
+                clearInterval(msgInterval);
+
+                const multipliers = CAMPAIGN_MULTIPLIERS[selectedCampaignType];
+                const cpm = META_BENCHMARKS.cpm.avg * multipliers.cpm;
+
+                // Calculate impressions from budget and CPM
+                const impressions = (budget / cpm) * 1000;
+
+                // Calculate reach (assume 3x frequency)
+                const reach = Math.round(impressions / 3);
+
+                // Calculate clicks from CTR
+                const ctr = META_BENCHMARKS.ctr.avg / 100;
+                const clicks = Math.round(impressions * ctr);
+
+                // Calculate leads (for lead gen campaigns)
+                let leads = 0;
+                let cpl = null;
+
+                if (selectedCampaignType === 'leadgen' || selectedCampaignType === 'retargeting') {
+                    const conversionRate = META_BENCHMARKS.conversionRate.avg / 100;
+                    leads = Math.round(clicks * conversionRate * multipliers.leads);
+                    cpl = leads > 0 ? budget / leads : META_BENCHMARKS.cpl.avg;
+
+                    // Apply CPL multiplier
+                    if (multipliers.cpl !== null) {
+                        cpl = META_BENCHMARKS.cpl.avg * multipliers.cpl;
+                        leads = Math.round(budget / cpl);
+                    }
+                }
+
+                // Budget tiers
+                const budgetTiers = [
+                    {
+                        tier: 'Test',
+                        budget: 3000,
+                        description: 'Validate messaging & audiences',
+                        leads: selectedCampaignType !== 'awareness' ? Math.round(3000 / (cpl || META_BENCHMARKS.cpl.avg)) : 0,
+                        reach: Math.round((3000 / cpm) * 1000 / 3)
+                    },
+                    {
+                        tier: 'Growth',
+                        budget: 7500,
+                        description: 'Scale winning campaigns',
+                        leads: selectedCampaignType !== 'awareness' ? Math.round(7500 / (cpl || META_BENCHMARKS.cpl.avg)) : 0,
+                        reach: Math.round((7500 / cpm) * 1000 / 3)
+                    },
+                    {
+                        tier: 'Scale',
+                        budget: 15000,
+                        description: 'Maximize reach & conversions',
+                        leads: selectedCampaignType !== 'awareness' ? Math.round(15000 / (cpl || META_BENCHMARKS.cpl.avg)) : 0,
+                        reach: Math.round((15000 / cpm) * 1000 / 3)
+                    }
+                ];
+
+                calculatorResults = {
+                    product,
+                    campaignType: selectedCampaignType,
+                    budget,
+                    reach,
+                    impressions,
+                    clicks,
+                    leads,
+                    cpl,
+                    cpm,
+                    budgetTiers
+                };
+
+                displayResults(calculatorResults);
+
+                // Track preview event
+                if (window.dataLayer) {
+                    window.dataLayer.push({
+                        event: 'meta_budget_preview',
+                        campaign_type: selectedCampaignType,
+                        budget: budget
+                    });
+                }
+
+                isLoading = false;
+                document.getElementById('step1BtnText').textContent = 'Get Estimates';
+                document.getElementById('step1Spinner').style.display = 'none';
+                document.getElementById('step1Btn').disabled = false;
+            }, 3200);
+        }
+
+        function displayResults(data) {
+            const { campaignType, budget, reach, clicks, leads, cpl, budgetTiers } = data;
+
+            // Hide calculator, show results
+            document.getElementById('calculatorCard').style.display = 'none';
+            document.getElementById('resultsSection').classList.add('active');
+
+            // Ensure results are locked initially
+            document.getElementById('resultsWrapper').classList.add('locked');
+            document.getElementById('resultsWrapper').classList.remove('unlocked');
+
+            // Campaign type label
+            const typeLabels = {
+                awareness: 'Awareness Campaign',
+                leadgen: 'Lead Gen Campaign',
+                retargeting: 'Retargeting Campaign'
+            };
+            document.getElementById('campaignTypeLabel').textContent = typeLabels[campaignType];
+            document.getElementById('budgetLabel').textContent = formatCurrency(budget) + '/month budget';
+
+            // Metrics
+            document.getElementById('reachValue').textContent = formatNumber(reach);
+            document.getElementById('clicksValue').textContent = formatNumber(clicks);
+
+            if (campaignType === 'awareness') {
+                document.getElementById('leadsValue').textContent = 'N/A';
+                document.getElementById('leadsRange').textContent = 'awareness-focused';
+                document.getElementById('cplValue').textContent = 'N/A';
+                document.getElementById('cplRange').textContent = 'no lead gen';
+                document.getElementById('benchmarkNote').textContent = 'Meta awareness campaigns are great for top-of-funnel visibility. Expect broad reach at low CPMs ($8-$25) but no direct lead capture.';
+            } else if (campaignType === 'retargeting') {
+                document.getElementById('leadsValue').textContent = formatNumber(leads);
+                document.getElementById('leadsRange').textContent = 'from warm audiences';
+                document.getElementById('cplValue').textContent = '$' + Math.round(cpl);
+                document.getElementById('cplRange').textContent = '$' + Math.round(cpl * 0.7) + ' - $' + Math.round(cpl * 1.3);
+                document.getElementById('benchmarkNote').textContent = 'Retargeting is Meta\'s B2B sweet spot. Warm audiences convert at 2-3x the rate of cold, with CPLs 40-60% lower than cold prospecting.';
+            } else {
+                document.getElementById('leadsValue').textContent = formatNumber(leads);
+                document.getElementById('leadsRange').textContent = 'estimated leads';
+                document.getElementById('cplValue').textContent = '$' + Math.round(META_BENCHMARKS.cpl.avg);
+                document.getElementById('cplRange').textContent = '$' + META_BENCHMARKS.cpl.min + ' - $' + META_BENCHMARKS.cpl.max;
+                document.getElementById('benchmarkNote').textContent = 'B2B lead gen on Meta typically yields $50-$150 CPLs. Best results come from combining with LinkedIn targeting data or using lookalike audiences from your CRM.';
+            }
+
+            // Budget tiers
+            renderBudgetTiers(budgetTiers, campaignType);
+
+            // Chart
+            renderChart(budgetTiers, campaignType);
+        }
+
+        function renderBudgetTiers(tiers, campaignType) {
+            const container = document.getElementById('budgetTiers');
+
+            container.innerHTML = tiers.map((tier, i) => `
+                <div class="budget-tier ${i === 1 ? 'recommended' : ''}">
+                    <div class="budget-tier-left">
+                        <span class="tier-badge ${tier.tier.toLowerCase()}">${tier.tier.toUpperCase()}</span>
+                        <div>
+                            <div class="budget-tier-name">${tier.description}</div>
+                            <div class="budget-tier-desc">${campaignType === 'awareness' ? formatNumber(tier.reach) + ' reach' : tier.leads + ' leads'}</div>
+                        </div>
+                    </div>
+                    <div class="budget-tier-right">
+                        <div class="budget-tier-amount">${formatCurrency(tier.budget)}</div>
+                        <div class="budget-tier-detail">/month</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderChart(tiers, campaignType) {
+            // Destroy existing chart
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+
+            const ctx = document.getElementById('budgetChart').getContext('2d');
+            const isAwareness = campaignType === 'awareness';
+
+            chartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: tiers.map(t => t.tier),
+                    datasets: [{
+                        label: isAwareness ? 'People Reached' : 'Expected Leads',
+                        data: tiers.map(t => isAwareness ? t.reach : t.leads),
+                        backgroundColor: ['#FEF3C7', '#DFFE68', '#0668E1'],
+                        borderColor: '#1a1a1a',
+                        borderWidth: 2,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#1a1a1a',
+                            titleFont: { family: 'Inter', weight: 'bold' },
+                            bodyFont: { family: 'Inter' },
+                            padding: 12,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function(ctx) {
+                                    const tier = tiers[ctx.dataIndex];
+                                    if (isAwareness) {
+                                        return [
+                                            formatNumber(tier.reach) + ' people',
+                                            'Budget: ' + formatCurrency(tier.budget) + '/mo'
+                                        ];
+                                    }
+                                    return [
+                                        tier.leads + ' leads',
+                                        'Budget: ' + formatCurrency(tier.budget) + '/mo'
+                                    ];
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#e5e5e5' },
+                            ticks: {
+                                font: { family: 'Inter', size: 11 },
+                                callback: function(val) { return formatNumber(val); }
+                            }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { font: { family: 'Inter', size: 11 } }
+                        }
+                    }
+                }
+            });
+        }
+
+        async function unlockResults() {
+            const email = document.getElementById('gateEmail').value.trim();
+            if (!email) {
+                alert('Please enter your email');
+                return;
+            }
+
+            if (!email.includes('@') || !email.includes('.')) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            document.getElementById('unlockBtnText').textContent = 'Unlocking...';
+            document.getElementById('unlockSpinner').style.display = 'block';
+            document.getElementById('unlockBtn').disabled = true;
+
+            try {
+                // Call API to push to HubSpot + send email
+                const response = await fetch('/api/meta-budget', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email,
+                        product: calculatorResults.product,
+                        campaignType: calculatorResults.campaignType,
+                        budget: calculatorResults.budget,
+                        leads: calculatorResults.leads,
+                        cpl: calculatorResults.cpl,
+                        reach: calculatorResults.reach
+                    })
+                });
+
+                if (!response.ok) {
+                    const data = await response.json();
+                    throw new Error(data.error || 'Failed to unlock');
+                }
+
+                // Unlock the results
+                isUnlocked = true;
+                document.getElementById('resultsWrapper').classList.remove('locked');
+                document.getElementById('resultsWrapper').classList.add('unlocked');
+
+                // Track unlock event
+                if (window.dataLayer) {
+                    window.dataLayer.push({
+                        event: 'meta_budget_unlocked',
+                        campaign_type: calculatorResults.campaignType,
+                        budget: calculatorResults.budget
+                    });
+                }
+
+                showToast('Results Unlocked!', 'Check your email for a copy of your budget estimate.');
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error unlocking results: ' + error.message);
+            } finally {
+                document.getElementById('unlockBtnText').textContent = 'Unlock Full Results';
+                document.getElementById('unlockSpinner').style.display = 'none';
+                document.getElementById('unlockBtn').disabled = false;
+            }
+        }
+
+        function showToast(title, message) {
+            const toast = document.getElementById('toast');
+            toast.querySelector('.title').textContent = title;
+            toast.querySelector('.message').textContent = message;
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 5000);
+        }
+
+        function resetCalculator() {
+            document.getElementById('calculatorCard').style.display = 'block';
+            document.getElementById('resultsSection').classList.remove('active');
+
+            // Reset steps
+            document.querySelectorAll('.step').forEach((s, i) => {
+                s.classList.remove('active', 'completed');
+                if (i === 0) s.classList.add('active');
+            });
+
+            // Reset sections
+            document.querySelectorAll('.form-section').forEach((s, i) => {
+                s.classList.remove('active');
+                if (i === 0) s.classList.add('active');
+            });
+
+            // Reset locked state
+            document.getElementById('resultsWrapper').classList.add('locked');
+            document.getElementById('resultsWrapper').classList.remove('unlocked');
+            isUnlocked = false;
+
+            // Clear inputs
+            document.getElementById('productDescription').value = '';
+            document.getElementById('monthlyBudget').value = 5000;
+            document.getElementById('budgetDisplay').textContent = '$5,000';
+            document.getElementById('gateEmail').value = '';
+
+            // Reset campaign type
+            document.querySelectorAll('.campaign-type').forEach(el => el.classList.remove('selected'));
+            document.querySelector('.campaign-type[data-type="leadgen"]').classList.add('selected');
+            selectedCampaignType = 'leadgen';
+
+            // Destroy chart
+            if (chartInstance) {
+                chartInstance.destroy();
+                chartInstance = null;
+            }
+
+            calculatorResults = null;
+        }
+
+        function exportToCSV() {
+            if (!calculatorResults) {
+                alert('Please complete the calculator first.');
+                return;
+            }
+
+            const { product, campaignType, budget, reach, clicks, leads, cpl, budgetTiers } = calculatorResults;
+
+            let csv = 'Meta Ads Budget Estimate\n\n';
+            csv += 'Product/Service,"' + product.replace(/"/g, '""') + '"\n';
+            csv += 'Campaign Type,' + campaignType + '\n';
+            csv += 'Monthly Budget,' + formatCurrency(budget) + '\n\n';
+
+            csv += 'Estimated Performance\n';
+            csv += 'Metric,Value\n';
+            csv += 'Estimated Reach,' + formatNumber(reach) + '\n';
+            csv += 'Estimated Clicks,' + formatNumber(clicks) + '\n';
+            if (campaignType !== 'awareness') {
+                csv += 'Estimated Leads,' + leads + '\n';
+                csv += 'Estimated CPL,' + (cpl ? '$' + Math.round(cpl) : 'N/A') + '\n';
+            }
+
+            csv += '\nBudget Tiers\n';
+            csv += 'Tier,Budget,Description,' + (campaignType === 'awareness' ? 'Reach' : 'Leads') + '\n';
+            budgetTiers.forEach(tier => {
+                csv += `${tier.tier},${formatCurrency(tier.budget)},${tier.description},${campaignType === 'awareness' ? formatNumber(tier.reach) : tier.leads}\n`;
+            });
+
+            csv += '\nB2B Meta Ads Benchmarks (42 Agency)\n';
+            csv += 'CPL Range,$' + META_BENCHMARKS.cpl.min + ' - $' + META_BENCHMARKS.cpl.max + '\n';
+            csv += 'CTR Range,' + META_BENCHMARKS.ctr.min + '% - ' + META_BENCHMARKS.ctr.max + '%\n';
+            csv += 'Best Use Case,Retargeting warm audiences\n';
+
+            csv += '\nGenerated by intel.42agency.com/tools/meta-budget-calculator\n';
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `meta-budget-estimate-${campaignType}-${formatCurrency(budget).replace('$', '').replace(',', '')}.csv`;
+            link.click();
+
+            if (window.dataLayer) {
+                window.dataLayer.push({
+                    event: 'meta_budget_exported',
+                    campaign_type: campaignType,
+                    budget: budget
+                });
+            }
+        }
+    </script>
+</body>
+</html>

@@ -42,20 +42,40 @@ intel.42agency.com/
 ├── /                           # Main resources hub
 ├── /tools/                     # AI Tools hub
 │   ├── /company-sampler/       # B2B Company Sample Builder
-│   └── /company-resolver/      # Company Name to LinkedIn Resolver
+│   ├── /company-resolver/      # Company Name to LinkedIn Resolver
+│   ├── /linkedin-budget-calculator/   # LinkedIn Ads Budget Calculator
+│   ├── /linkedin-inmail-calculator/   # InMail ROI Calculator
+│   ├── /google-ads-budget-calculator/ # Google Ads Budget Calculator
+│   └── /meta-budget-calculator/       # Meta Ads Budget Calculator
 ├── /assess/                    # Assessments & diagnostics hub
 │   └── /calculator/            # B2B Benchmark Calculator
 ├── /assessments/
 │   └── /hubspot-health/        # HubSpot CRM Health Assessment
+├── /playbooks/                 # B2B Playbooks hub
+│   ├── /closed-lost-revival/   # Closed Lost Revival Playbook
+│   ├── /lead-scoring-framework/ # Lead Scoring Framework Builder
+│   ├── /lead-reengagement/     # Lead Re-Engagement Playbook
+│   ├── /intent-signals/        # Intent Signals Playbook
+│   └── /abm-enrichment/        # ABM Enrichment Playbook
 ├── /b2b-benchmarks/            # Benchmarks hub (data)
 │   ├── /linkedin-ads-benchmarks/
 │   ├── /google-ads-benchmarks/
 │   ├── /meta-ads-benchmarks/
 │   ├── /linkedin-inmail-benchmarks/
-│   ├── /legal-tech-linkedin-ads/      # Industry pSEO
+│   ├── /legal-tech-linkedin-ads/           # Industry pSEO
 │   ├── /healthcare-tech-linkedin-ads/
 │   ├── /fintech-linkedin-ads/
-│   └── /devops-linkedin-ads/
+│   ├── /devops-linkedin-ads/
+│   ├── /privacy-security-linkedin-ads/
+│   ├── /logistics-linkedin-ads/
+│   ├── /construction-tech-linkedin-ads/
+│   ├── /ecommerce-retail-linkedin-ads/
+│   ├── /digital-workplace-linkedin-ads/
+│   ├── /edtech-hrtech-linkedin-ads/
+│   ├── /martech-salestech-linkedin-ads/
+│   ├── /life-sciences-linkedin-ads/
+│   ├── /ucaas-telecom-linkedin-ads/
+│   └── /consumer-b2b-linkedin-ads/
 ├── /linkedin-audit/            # Audit templates
 ├── /google-ads-audit/
 ├── /meta-audit/
@@ -89,6 +109,10 @@ intel.42agency.com/
 | `/api/assessment-results` | HubSpot Assessment → Email + HubSpot CRM + Resend |
 | `/api/calculator-results` | Benchmark Calculator → Email + HubSpot CRM + Resend |
 | `/api/validate-email` | Email validation via mails.so |
+| `/api/linkedin-budget` | LinkedIn Budget Calculator → Email + HubSpot CRM + Resend |
+| `/api/google-budget` | Google Ads Budget Calculator → Email + HubSpot CRM + Resend |
+| `/api/inmail-calculator` | InMail ROI Calculator → Email + HubSpot CRM + Resend |
+| `/api/meta-budget` | Meta Budget Calculator → Email + HubSpot CRM + Resend |
 
 ### Environment Variables (Vercel)
 

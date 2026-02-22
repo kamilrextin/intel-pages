@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intent Signals Playbook | B2B Buying Intent | 42 Agency</title>
+    <meta name="description" content="Identify and act on B2B buying intent signals. First-party, second-party, and third-party intent data strategies that actually work.">
+    <link rel="canonical" href="https://intel.42agency.com/playbooks/intent-signals/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MM5BTNS');</script>
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/44888286.js"></script>
+
+    <style>
+        :root { --accent: #DFFE68; --black: #1a1a1a; --gray: #4a4a4a; --light-gray: #f5f5f5; --green: #10B981; --red: #EF4444; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--light-gray); color: var(--black); line-height: 1.6; }
+        .header { border-bottom: 2px solid var(--black); padding: 0.75rem 1.5rem; background: white; position: sticky; top: 0; z-index: 50; }
+        .header-inner { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 28px; }
+        .nav { display: flex; align-items: center; gap: 0.25rem; }
+        .nav a { padding: 0.5rem 1rem; color: var(--gray); text-decoration: none; font-size: 0.9rem; font-weight: 500; border-radius: 6px; }
+        .nav a:hover { color: var(--black); background: var(--light-gray); }
+        .nav-cta { background: var(--black); color: white !important; font-weight: 600; }
+        @media (max-width: 768px) { .nav { display: none; } }
+        .breadcrumbs { background: white; border-bottom: 2px solid var(--black); padding: 0.75rem 1.5rem; }
+        .breadcrumbs-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; }
+        .breadcrumbs a { color: var(--gray); text-decoration: none; }
+        .breadcrumbs .current { color: var(--black); font-weight: 600; }
+        .main { max-width: 800px; margin: 0 auto; padding: 3rem 2rem; }
+        .hero { text-align: center; margin-bottom: 3rem; }
+        .hero-badge { display: inline-block; background: var(--red); color: white; padding: 0.4rem 1rem; font-size: 0.75rem; font-weight: 700; border-radius: 20px; margin-bottom: 1rem; text-transform: uppercase; }
+        h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 1rem; }
+        .subtitle { color: var(--gray); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+        .signal-types { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0; }
+        .signal-type { text-align: center; padding: 1.5rem 1rem; background: white; border: 2px solid var(--black); border-radius: 12px; box-shadow: 3px 3px 0 var(--black); }
+        .signal-type h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .signal-type p { font-size: 0.75rem; color: var(--gray); }
+        .preview-card { background: white; border: 2px solid var(--black); border-radius: 16px; padding: 2rem; box-shadow: 6px 6px 0 var(--black); margin-bottom: 2rem; }
+        .preview-card h2 { font-size: 1.25rem; font-weight: 800; margin-bottom: 1.5rem; }
+        .preview-list { list-style: none; }
+        .preview-list li { padding: 0.75rem 0; border-bottom: 1px solid #e0e0e0; display: flex; align-items: flex-start; gap: 0.75rem; }
+        .preview-list li:last-child { border-bottom: none; }
+        .preview-list .check { width: 24px; height: 24px; background: var(--accent); border: 2px solid var(--black); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .preview-list .check svg { width: 14px; height: 14px; }
+        .preview-list strong { display: block; margin-bottom: 0.25rem; }
+        .preview-list span { color: var(--gray); font-size: 0.9rem; }
+        .gate-card { background: var(--accent); border: 2px solid var(--black); border-radius: 16px; padding: 2.5rem; box-shadow: 6px 6px 0 var(--black); text-align: center; margin: 2rem 0; }
+        .gate-card h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .gate-card p { color: var(--gray); margin-bottom: 1.5rem; }
+        .email-form { display: flex; gap: 0.5rem; max-width: 400px; margin: 0 auto; }
+        .email-form input { flex: 1; padding: 0.875rem; border: 2px solid var(--black); border-radius: 8px; font-size: 1rem; }
+        .email-form button { padding: 0.875rem 1.5rem; background: var(--black); color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; }
+        .insight-box { background: #fee2e2; border: 2px solid var(--red); border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
+        .insight-box strong { color: var(--red); }
+        .related-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2rem; }
+        .related-link { display: block; padding: 1rem; background: white; border: 2px solid var(--black); border-radius: 8px; text-decoration: none; color: var(--black); font-weight: 600; box-shadow: 3px 3px 0 var(--black); }
+        .related-link:hover { background: var(--accent); }
+        .footer { background: var(--black); color: white; padding: 3rem 2rem 2rem; margin-top: 3rem; }
+        .footer-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+        .footer img { height: 24px; filter: brightness(0) invert(1); margin-bottom: 1rem; }
+        .footer p { font-size: 0.85rem; color: #666; }
+        @media (max-width: 768px) { .signal-types { grid-template-columns: 1fr; } .related-links { grid-template-columns: 1fr; } .email-form { flex-direction: column; } }
+    </style>
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MM5BTNS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <header class="header">
+        <div class="header-inner">
+            <a href="/" class="logo"><img src="/42-logo.png" alt="42 Agency"></a>
+            <nav class="nav">
+                <a href="/assess/">Assess</a>
+                <a href="/b2b-benchmarks/">Benchmarks</a>
+                <a href="/tools/">Tools</a>
+                <a href="https://42agency.com/contact" target="_blank" class="nav-cta">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <a href="/">Home</a><span>/</span><a href="/playbooks/">Playbooks</a><span>/</span><span class="current">Intent Signals</span>
+        </div>
+    </nav>
+
+    <main class="main">
+        <section class="hero">
+            <span class="hero-badge">ABM Playbook</span>
+            <h1>Intent Signals Playbook</h1>
+            <p class="subtitle">Stop guessing who's in-market. Learn to identify, prioritize, and act on buying intent signals across first-party, second-party, and third-party data sources.</p>
+        </section>
+
+        <div class="signal-types">
+            <div class="signal-type">
+                <h3>First-Party</h3>
+                <p>Website behavior, content downloads, demo requests, pricing page visits</p>
+            </div>
+            <div class="signal-type">
+                <h3>Second-Party</h3>
+                <p>G2, Capterra, review sites, comparison shopping behavior</p>
+            </div>
+            <div class="signal-type">
+                <h3>Third-Party</h3>
+                <p>Bombora, 6sense, Demandbase, cross-web research activity</p>
+            </div>
+        </div>
+
+        <div class="preview-card">
+            <h2>What's Inside</h2>
+            <ul class="preview-list">
+                <li>
+                    <div class="check"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
+                    <div><strong>Intent Signal Taxonomy</strong><span>Complete categorization of signals by strength: high (demo request), medium (case study), low (blog)</span></div>
+                </li>
+                <li>
+                    <div class="check"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
+                    <div><strong>First-Party Setup Guide</strong><span>UTM taxonomy, page scoring, event tracking for GA4 + HubSpot</span></div>
+                </li>
+                <li>
+                    <div class="check"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
+                    <div><strong>Third-Party Vendor Comparison</strong><span>Bombora vs 6sense vs Demandbase vs ZoomInfo—what works for different budgets</span></div>
+                </li>
+                <li>
+                    <div class="check"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
+                    <div><strong>Intent-to-Action Playbook</strong><span>What to do when you detect intent: SDR sequences, ad targeting, content serving</span></div>
+                </li>
+                <li>
+                    <div class="check"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
+                    <div><strong>ROI Measurement Framework</strong><span>How to prove intent data is actually working</span></div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="insight-box">
+            <strong>42 Agency Insight:</strong> Third-party intent data is oversold. Most companies should master first-party signals (their own website) before spending $30K+ on Bombora. Start with pricing page visitors + content engagement + demo requesters—that's 80% of the value.
+        </div>
+
+        <div class="gate-card">
+            <h3>Download the Playbook</h3>
+            <p>Get the complete framework with signal taxonomy, setup guides, and vendor comparisons.</p>
+            <form class="email-form" id="downloadForm" onsubmit="handleSubmit(event)">
+                <input type="email" name="email" placeholder="you@company.com" required>
+                <button type="submit">Get Playbook</button>
+            </form>
+        </div>
+
+        <section>
+            <h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1rem;">Related Resources</h2>
+            <div class="related-links">
+                <a href="/playbooks/abm-enrichment/" class="related-link">ABM Enrichment Playbook</a>
+                <a href="/playbooks/lead-scoring-framework/" class="related-link">Lead Scoring Framework</a>
+                <a href="/assess/calculator/" class="related-link">Benchmark Calculator</a>
+                <a href="/b2b-benchmarks/" class="related-link">B2B Benchmarks</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <img src="/42-logo.png" alt="42 Agency">
+            <p>&copy; 2026 42 Agency. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/email-validation.js"></script>
+    <script>
+        async function handleSubmit(e) {
+            e.preventDefault();
+            const email = e.target.email.value;
+            const button = e.target.querySelector('button');
+            button.disabled = true;
+            button.textContent = 'Sending...';
+            try {
+                await fetch('https://api.hsforms.com/submissions/v3/integration/submit/44888286/collected-forms', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        fields: [{ name: 'email', value: email }],
+                        context: { pageUri: window.location.href, pageName: 'Intent Signals Playbook' }
+                    })
+                });
+                if (window.dataLayer) window.dataLayer.push({ event: 'playbook_downloaded', playbook: 'intent-signals' });
+                e.target.innerHTML = '<p style="color: var(--green); font-weight: 700;">Check your inbox!</p>';
+            } catch (error) {
+                button.textContent = 'Try Again';
+                button.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

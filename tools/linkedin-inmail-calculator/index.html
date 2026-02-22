@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn InMail ROI Calculator | Gift Card Incentive Analysis | 42 Agency</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MM5BTNS');</script>
+
+    <!-- HubSpot Tracking -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/44888286.js"></script>
+
+    <!-- Chart.js for comparison graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+    <!-- html-to-image for LinkedIn share -->
+    <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.min.js"></script>
+
+    <meta property="og:title" content="LinkedIn InMail ROI Calculator - Gift Card Incentive Analysis">
+    <meta property="og:description" content="Compare InMail campaigns with and without gift card incentives. Real data from 42 Agency clients.">
+    <meta property="og:image" content="https://intel.42agency.com/og-share.png">
+
+    <style>
+        :root {
+            --accent: #DFFE68;
+            --accent-hover: #C8E85C;
+            --black: #1a1a1a;
+            --gray: #4a4a4a;
+            --muted: #6b6b6b;
+            --light-gray: #f5f5f5;
+            --linkedin: #0A66C2;
+            --green: #10B981;
+            --orange: #F59E0B;
+            --red: #EF4444;
+            --blue: #3B82F6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--light-gray);
+            color: var(--black);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .header {
+            border-bottom: 2px solid var(--black);
+            padding: 0.75rem 1.5rem;
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+        .logo img { height: 28px; width: auto; }
+
+        .nav { display: flex; align-items: center; gap: 0.25rem; }
+
+        .nav a {
+            padding: 0.5rem 1rem;
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.15s;
+        }
+
+        .nav a:hover { color: var(--black); background: var(--light-gray); }
+        .nav a.active { color: var(--black); font-weight: 600; background: var(--accent); }
+        .nav a.external { display: flex; align-items: center; gap: 0.25rem; }
+
+        .nav-cta {
+            margin-left: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--black);
+            color: white !important;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .nav-cta:hover { background: #333 !important; }
+
+        /* Breadcrumbs */
+        .breadcrumbs { background: white; border-bottom: 2px solid var(--black); padding: 0.75rem 1.5rem; }
+        .breadcrumbs-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; }
+        .breadcrumbs a { color: #6b6b6b; text-decoration: none; }
+        .breadcrumbs a:hover { color: var(--black); }
+        .breadcrumbs span { color: #6b6b6b; }
+        .breadcrumbs .current { color: var(--black); font-weight: 600; }
+
+        @media (max-width: 768px) { .nav { display: none; } }
+
+        .main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .data-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .data-badge span {
+            background: var(--linkedin);
+            color: white;
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .calculator-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 6px 6px 0px 0px var(--black);
+            margin-bottom: 2rem;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .step {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            background: white;
+            transition: all 0.2s;
+        }
+
+        .step.active { background: var(--accent); }
+        .step.completed { background: var(--green); color: white; border-color: var(--green); }
+
+        .step-line {
+            width: 60px;
+            height: 2px;
+            background: #e0e0e0;
+            align-self: center;
+        }
+
+        .form-section { display: none; }
+        .form-section.active { display: block; }
+
+        .form-section h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .form-section p.hint {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .platform-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--linkedin);
+        }
+
+        .platform-icon svg { width: 18px; height: 18px; fill: white; }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .form-row { grid-template-columns: 1fr; }
+        }
+
+        label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray);
+        }
+
+        input, select {
+            padding: 0.875rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+            width: 100%;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--black);
+        }
+
+        .input-prefix {
+            position: relative;
+        }
+
+        .input-prefix span {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        .input-prefix input {
+            padding-left: 1.75rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--black);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:disabled {
+            background: #e0e0e0;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--black);
+        }
+
+        .btn-secondary:hover { background: var(--light-gray); }
+
+        .loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--black);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Results Section */
+        .results-section { display: none; }
+        .results-section.active { display: block !important; }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .results-header h2 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .results-wrapper {
+            position: relative;
+        }
+
+        .results-wrapper.locked .gated-section {
+            filter: blur(8px);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .results-wrapper.unlocked .gated-section {
+            filter: none;
+            pointer-events: auto;
+            user-select: auto;
+        }
+
+        .sticky-gate {
+            position: sticky;
+            top: 100px;
+            z-index: 40;
+            display: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .results-wrapper.locked .sticky-gate {
+            display: block;
+        }
+
+        .results-wrapper.unlocked .sticky-gate {
+            display: none;
+        }
+
+        .gate-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 6px 6px 0px 0px var(--black);
+            text-align: center;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .gate-card h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .gate-card p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .gate-card input {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .gate-card .btn {
+            width: 100%;
+        }
+
+        /* Comparison Cards */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 700px) {
+            .comparison-grid { grid-template-columns: 1fr; }
+        }
+
+        .comparison-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 4px 4px 0px 0px var(--black);
+        }
+
+        .comparison-card.without { border-color: var(--muted); box-shadow: 4px 4px 0px 0px var(--muted); }
+        .comparison-card.with { border-color: var(--green); box-shadow: 4px 4px 0px 0px var(--green); }
+
+        .comparison-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .comparison-card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .comparison-card.without .comparison-card-icon { background: var(--light-gray); }
+        .comparison-card.with .comparison-card-icon { background: #d1fae5; }
+
+        .comparison-card-title {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .comparison-card-subtitle {
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .comparison-metric {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .comparison-metric:last-child { border-bottom: none; }
+
+        .comparison-metric-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-bottom: 0.25rem;
+        }
+
+        .comparison-metric-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .comparison-metric-range {
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .comparison-card.without .comparison-metric-value { color: var(--muted); }
+        .comparison-card.with .comparison-metric-value { color: var(--green); }
+
+        /* Verdict Card */
+        .verdict-card {
+            background: var(--accent);
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 6px 6px 0px 0px var(--black);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .verdict-card h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .verdict-savings {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--green);
+            margin: 1rem 0;
+        }
+
+        .verdict-card p {
+            color: var(--gray);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .verdict-badge {
+            display: inline-block;
+            background: var(--black);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+
+        /* Chart Container */
+        .chart-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 4px 4px 0px 0px var(--black);
+            margin-bottom: 2rem;
+        }
+
+        .chart-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .chart-card p.hint {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-bottom: 1rem;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+
+        /* Break-even Table */
+        .breakeven-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 4px 4px 0px 0px var(--black);
+            margin-bottom: 2rem;
+        }
+
+        .breakeven-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .breakeven-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .breakeven-table th {
+            text-align: left;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--muted);
+            text-transform: uppercase;
+            padding: 0.75rem;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .breakeven-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .breakeven-table tr:last-child td { border-bottom: none; }
+
+        .breakeven-table .highlight {
+            background: #d1fae5;
+            font-weight: 700;
+        }
+
+        /* Shareable Card */
+        #shareableCard {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 6px 6px 0px 0px var(--black);
+            max-width: 500px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .share-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .share-card-logo {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            border: 2px solid var(--black);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .share-card-title { font-weight: 700; font-size: 14px; }
+        .share-card-subtitle { font-size: 12px; color: var(--muted); }
+
+        .share-card-verdict {
+            text-align: center;
+            padding: 1.5rem 0;
+        }
+
+        .share-card-verdict .savings {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1;
+            color: var(--green);
+        }
+
+        .share-card-verdict .label {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-top: 0.25rem;
+        }
+
+        .share-card-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #e5e5e5;
+        }
+
+        .share-card-comparison-item {
+            text-align: center;
+        }
+
+        .share-card-comparison-item .label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+
+        .share-card-comparison-item .value {
+            font-size: 1.25rem;
+            font-weight: 800;
+        }
+
+        .share-card-comparison-item.without .value { color: var(--muted); }
+        .share-card-comparison-item.with .value { color: var(--green); }
+
+        .share-card-footer {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 2px solid #e5e5e5;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #999;
+        }
+
+        .share-actions {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .btn-linkedin {
+            max-width: 300px;
+            background: var(--linkedin);
+            border-color: var(--linkedin);
+            color: white;
+        }
+
+        .btn-linkedin:hover {
+            background: #004182;
+        }
+
+        /* Actions Section */
+        .actions-section {
+            margin-top: 2rem;
+        }
+
+        .actions-section .actions-row {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .actions-section .btn {
+            max-width: 220px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            margin: 3rem auto;
+            padding: 2.5rem;
+            background: var(--light-gray);
+            border-radius: 16px;
+            max-width: 700px;
+        }
+
+        .cta-section h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-section p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section a {
+            display: inline-block;
+            background: var(--black);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        /* Toast */
+        #toast {
+            display: none;
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--black);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        #toast .title { font-weight: 700; margin-bottom: 0.25rem; }
+        #toast .message { font-size: 0.85rem; color: #ccc; }
+
+        /* Footer */
+        .footer {
+            background: var(--black);
+            color: white;
+            padding: 4rem 1.5rem 2rem;
+            border-top: 2px solid var(--black);
+        }
+
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr repeat(4, 1fr);
+            gap: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid #333;
+        }
+
+        .footer-brand img {
+            height: 24px;
+            filter: brightness(0) invert(1);
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.85rem;
+            color: #999;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            color: #999;
+            transition: color 0.15s;
+        }
+
+        .footer-social a:hover { color: var(--accent); }
+
+        .footer-col h4 {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .footer-col a {
+            display: block;
+            color: #999;
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 0.6rem;
+            transition: color 0.15s;
+        }
+
+        .footer-col a:hover { color: white; }
+        .footer-col .sublink { padding-left: 0.75rem; font-size: 0.8rem; color: #666; }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .footer-bottom a { color: #666; text-decoration: none; }
+        .footer-bottom a:hover { color: #999; }
+
+        @media (max-width: 900px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MM5BTNS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <header class="header">
+        <div class="header-inner">
+            <a href="/" class="logo">
+                <img src="/42-logo.png" alt="42 Agency">
+            </a>
+            <nav class="nav">
+                <a href="/assess/">Assess</a>
+                <a href="/b2b-benchmarks/">Benchmarks</a>
+                <a href="/tools/" class="active">Tools</a>
+                <a href="https://42agency.com/contact" target="_blank" class="nav-cta">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <a href="/">Home</a><span>/</span><a href="/tools/">Tools</a><span>/</span><span class="current">LinkedIn InMail Calculator</span>
+        </div>
+    </nav>
+
+    <main class="main">
+        <h1>LinkedIn InMail ROI Calculator</h1>
+        <p class="subtitle">Should you use gift card incentives for InMail campaigns? Compare costs and see the break-even analysis with real data from 42 Agency clients.</p>
+
+        <div class="data-badge">
+            <span>Based on 42 Agency Client Data</span>
+        </div>
+
+        <div class="calculator-card" id="calculatorCard">
+            <div class="step-indicator">
+                <div class="step active" id="step1">1</div>
+                <div class="step-line"></div>
+                <div class="step" id="step2">2</div>
+                <div class="step-line"></div>
+                <div class="step" id="step3">3</div>
+            </div>
+
+            <!-- Step 1: Campaign Details -->
+            <div class="form-section active" id="section1">
+                <h2>
+                    <span class="platform-icon">
+                        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </span>
+                    Enter Campaign Details
+                </h2>
+                <p class="hint">Tell us about your planned InMail campaign to see the ROI comparison.</p>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="monthlyBudget">Monthly InMail Budget</label>
+                        <div class="input-prefix">
+                            <span>$</span>
+                            <input type="number" id="monthlyBudget" placeholder="5,000" min="1000" step="500">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="targetCPL">Target Cost Per Lead</label>
+                        <div class="input-prefix">
+                            <span>$</span>
+                            <input type="number" id="targetCPL" placeholder="500" min="50" step="50">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="giftCardValue">Gift Card Value</label>
+                    <select id="giftCardValue">
+                        <option value="25">$25 Gift Card</option>
+                        <option value="50" selected>$50 Gift Card</option>
+                        <option value="100">$100 Gift Card</option>
+                    </select>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="calculateROI()" id="step1Btn">
+                        <span id="step1BtnText">Calculate ROI</span>
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results-section" id="resultsSection">
+            <div class="results-wrapper locked" id="resultsWrapper">
+                <!-- Sticky Email Gate -->
+                <div class="sticky-gate">
+                    <div class="gate-card">
+                        <h3>Unlock Full Analysis</h3>
+                        <p>Enter your email to see the detailed report and break-even analysis.</p>
+                        <input type="email" id="gateEmail" placeholder="you@company.com">
+                        <button class="btn btn-primary" onclick="unlockResults()" id="unlockBtn">
+                            <span id="unlockBtnText">Unlock Full Report</span>
+                            <div class="loading-spinner" id="unlockSpinner" style="display: none;"></div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Preview: Comparison Cards -->
+                <div class="results-header">
+                    <h2>InMail Campaign Comparison</h2>
+                    <p class="subtitle">Side-by-side analysis based on your budget of <strong id="budgetLabel">$5,000/month</strong></p>
+                </div>
+
+                <div class="comparison-grid">
+                    <!-- Without Gift Card -->
+                    <div class="comparison-card without">
+                        <div class="comparison-card-header">
+                            <div class="comparison-card-icon">
+                                <svg width="20" height="20" fill="none" stroke="#6b6b6b" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            </div>
+                            <div>
+                                <div class="comparison-card-title">Without Gift Card</div>
+                                <div class="comparison-card-subtitle">Standard InMail Campaign</div>
+                            </div>
+                        </div>
+                        <div class="comparison-metric">
+                            <div class="comparison-metric-label">Open Rate</div>
+                            <div class="comparison-metric-value" id="withoutOpenRate">25-35%</div>
+                        </div>
+                        <div class="comparison-metric">
+                            <div class="comparison-metric-label">Cost Per Lead</div>
+                            <div class="comparison-metric-value" id="withoutCPL">$1,000 - $2,000</div>
+                        </div>
+                        <div class="comparison-metric">
+                            <div class="comparison-metric-label">Estimated Leads</div>
+                            <div class="comparison-metric-value" id="withoutLeads">3 - 5</div>
+                        </div>
+                    </div>
+
+                    <!-- With Gift Card -->
+                    <div class="comparison-card with">
+                        <div class="comparison-card-header">
+                            <div class="comparison-card-icon">
+                                <svg width="20" height="20" fill="none" stroke="#10B981" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/></svg>
+                            </div>
+                            <div>
+                                <div class="comparison-card-title">With Gift Card</div>
+                                <div class="comparison-card-subtitle" id="giftCardLabel">$50 Incentive</div>
+                            </div>
+                        </div>
+                        <div class="comparison-metric">
+                            <div class="comparison-metric-label">Open Rate</div>
+                            <div class="comparison-metric-value" id="withOpenRate">40-50%</div>
+                        </div>
+                        <div class="comparison-metric">
+                            <div class="comparison-metric-label">Cost Per Lead</div>
+                            <div class="comparison-metric-value" id="withCPL">$300 - $500</div>
+                            <div class="comparison-metric-range" id="withCPLNote">Including gift card cost</div>
+                        </div>
+                        <div class="comparison-metric">
+                            <div class="comparison-metric-label">Estimated Leads</div>
+                            <div class="comparison-metric-value" id="withLeads">10 - 17</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GATED SECTION -->
+                <div class="gated-section">
+
+                <!-- Verdict Card -->
+                <div class="verdict-card" id="verdictCard">
+                    <h3>The Verdict</h3>
+                    <div class="verdict-savings" id="verdictSavings">Save $750/lead</div>
+                    <p id="verdictText">Using gift card incentives could save you an estimated $750 per lead while generating 3x more leads with the same budget.</p>
+                    <div class="verdict-badge" id="verdictBadge">Gift Cards Recommended</div>
+                </div>
+
+                <!-- Chart -->
+                <div class="chart-card">
+                    <h3>
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                        Cost Per Lead Comparison
+                    </h3>
+                    <p class="hint">Visual comparison of CPL ranges with and without incentives</p>
+                    <div class="chart-container">
+                        <canvas id="cplChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Break-even Analysis -->
+                <div class="breakeven-card">
+                    <h3>Break-Even Analysis by Gift Card Value</h3>
+                    <table class="breakeven-table">
+                        <thead>
+                            <tr>
+                                <th>Gift Card</th>
+                                <th>CPL (With Incentive)</th>
+                                <th>CPL (Without)</th>
+                                <th>Savings/Lead</th>
+                                <th>Worth It?</th>
+                            </tr>
+                        </thead>
+                        <tbody id="breakevenTableBody">
+                            <tr>
+                                <td>$25</td>
+                                <td>$250 - $450</td>
+                                <td>$1,000 - $2,000</td>
+                                <td>$700 - $1,600</td>
+                                <td><span style="color: var(--green); font-weight: 700;">Yes</span></td>
+                            </tr>
+                            <tr class="highlight">
+                                <td>$50</td>
+                                <td>$300 - $500</td>
+                                <td>$1,000 - $2,000</td>
+                                <td>$650 - $1,550</td>
+                                <td><span style="color: var(--green); font-weight: 700;">Yes</span></td>
+                            </tr>
+                            <tr>
+                                <td>$100</td>
+                                <td>$400 - $600</td>
+                                <td>$1,000 - $2,000</td>
+                                <td>$550 - $1,450</td>
+                                <td><span style="color: var(--green); font-weight: 700;">Yes</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Shareable Card -->
+                <div style="margin-top: 2rem;">
+                    <h3 style="text-align: center; font-weight: 700; margin-bottom: 1rem;">Share Your Results</h3>
+                    <div id="shareableCard">
+                        <div class="share-card-header">
+                            <div class="share-card-logo">42</div>
+                            <div>
+                                <div class="share-card-title">LinkedIn InMail ROI Calculator</div>
+                                <div class="share-card-subtitle">intel.42agency.com</div>
+                            </div>
+                        </div>
+                        <div class="share-card-verdict">
+                            <div class="savings" id="shareSavings">Save $750/lead</div>
+                            <div class="label">with gift card incentives</div>
+                        </div>
+                        <div class="share-card-comparison">
+                            <div class="share-card-comparison-item without">
+                                <div class="label">Without Incentive</div>
+                                <div class="value" id="shareWithoutCPL">$1,500 CPL</div>
+                            </div>
+                            <div class="share-card-comparison-item with">
+                                <div class="label">With Incentive</div>
+                                <div class="value" id="shareWithCPL">$400 CPL</div>
+                            </div>
+                        </div>
+                        <div class="share-card-footer">
+                            Based on 42 Agency client data | intel.42agency.com/tools/linkedin-inmail-calculator
+                        </div>
+                    </div>
+
+                    <div class="share-actions">
+                        <button class="btn btn-linkedin" onclick="shareToLinkedIn()">
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                            Share to LinkedIn
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="actions-section">
+                    <div class="actions-row">
+                        <button class="btn btn-secondary" onclick="resetCalculator()">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                            Start Over
+                        </button>
+                    </div>
+                </div>
+
+                </div><!-- end gated-section -->
+            </div><!-- end results-wrapper -->
+        </div>
+
+        <!-- CTA Sections -->
+        <div class="cta-section" style="background: var(--accent); border: 2px solid var(--black); box-shadow: 6px 6px 0px 0px var(--black);">
+            <h3>Need Help Running InMail Campaigns?</h3>
+            <p style="color: var(--black);">Our team has run hundreds of InMail campaigns with gift card incentives. Let us help you maximize your ROI.</p>
+            <a href="https://42agency.com/contact?utm_source=inmail_calculator&utm_medium=intel" target="_blank" style="background: var(--black);">
+                Get a Free Strategy Call
+            </a>
+        </div>
+
+        <div class="cta-section">
+            <h3>Explore More LinkedIn Data</h3>
+            <p>Check out our InMail benchmarks and other LinkedIn resources.</p>
+            <a href="/b2b-benchmarks/linkedin-inmail-benchmarks/">View InMail Benchmarks</a>
+        </div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast">
+        <div class="title">Image downloaded, text copied!</div>
+        <div class="message">Paste the text and attach your image to post.</div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="/42-logo.png" alt="42 Agency">
+                    <p>B2B performance marketing for companies that sell to enterprises.</p>
+                    <div class="footer-social">
+                        <a href="https://linkedin.com/company/42agency" target="_blank">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                        <a href="https://x.com/42aboratory" target="_blank">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a href="https://www.youtube.com/@Get42Agency" target="_blank">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Assess</h4>
+                    <a href="/assessments/hubspot-health/">HubSpot Health Check</a>
+                    <a href="/assess/calculator/">Benchmark Calculator</a>
+                    <a href="/linkedin-audit/">LinkedIn Ads Audit</a>
+                    <a href="/google-ads-audit/">Google Ads Audit</a>
+                    <a href="/meta-audit/">Meta Ads Audit</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Benchmarks</h4>
+                    <a href="/b2b-benchmarks/">All B2B Benchmarks</a>
+                    <a href="/b2b-benchmarks/linkedin-ads-benchmarks/">LinkedIn Ads</a>
+                    <a href="/b2b-benchmarks/google-ads-benchmarks/">Google Ads</a>
+                    <a href="/b2b-benchmarks/linkedin-inmail-benchmarks/">InMail Benchmarks</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Tools</h4>
+                    <a href="/tools/linkedin-budget-calculator/">LinkedIn Budget Calculator</a>
+                    <a href="/tools/linkedin-inmail-calculator/">InMail ROI Calculator</a>
+                    <a href="/tools/google-ads-budget-calculator/">Google Ads Budget Calculator</a>
+                    <a href="/tools/company-sampler/">Company Sampler</a>
+                </div>
+                <div class="footer-col">
+                    <h4>42 Agency</h4>
+                    <a href="https://42agency.com" target="_blank">Website</a>
+                    <a href="https://42agency.com/contact" target="_blank">Contact Us</a>
+                    <a href="https://42agency.com/case-studies" target="_blank">Case Studies</a>
+                    <a href="https://42slash.com" target="_blank">42/ Essays</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 42 Agency. All rights reserved.</p>
+                <p>
+                    <a href="https://42agency.com/privacy">Privacy</a>
+                    <span>&nbsp;·&nbsp;</span>
+                    <a href="https://42agency.com/terms">Terms</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/email-validation.js"></script>
+
+    <script>
+        // Benchmark data from 42 Agency clients
+        const BENCHMARKS = {
+            withGiftCard: {
+                openRateMin: 40,
+                openRateMax: 50,
+                cplMin: 300,
+                cplMax: 500
+            },
+            withoutGiftCard: {
+                openRateMin: 25,
+                openRateMax: 35,
+                cplMin: 1000,
+                cplMax: 2000
+            }
+        };
+
+        // Store results globally
+        let calculatorResults = null;
+        let isUnlocked = false;
+        let chartInstance = null;
+
+        function formatCurrency(num) {
+            return '$' + num.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+        }
+
+        function calculateROI() {
+            const budget = parseFloat(document.getElementById('monthlyBudget').value);
+            const targetCPL = parseFloat(document.getElementById('targetCPL').value);
+            const giftCardValue = parseFloat(document.getElementById('giftCardValue').value);
+
+            if (!budget || budget < 1000) {
+                alert('Please enter a monthly budget of at least $1,000');
+                return;
+            }
+
+            if (!targetCPL || targetCPL < 50) {
+                alert('Please enter a target CPL of at least $50');
+                return;
+            }
+
+            // Calculate estimates
+            const withoutGiftCard = {
+                openRateMin: BENCHMARKS.withoutGiftCard.openRateMin,
+                openRateMax: BENCHMARKS.withoutGiftCard.openRateMax,
+                cplMin: BENCHMARKS.withoutGiftCard.cplMin,
+                cplMax: BENCHMARKS.withoutGiftCard.cplMax,
+                leadsMin: Math.floor(budget / BENCHMARKS.withoutGiftCard.cplMax),
+                leadsMax: Math.floor(budget / BENCHMARKS.withoutGiftCard.cplMin)
+            };
+
+            // Gift card adjusts CPL (gift card cost added to base CPL)
+            const baseCplWithGiftMin = BENCHMARKS.withGiftCard.cplMin - 50 + giftCardValue; // Adjust for gift card value
+            const baseCplWithGiftMax = BENCHMARKS.withGiftCard.cplMax - 50 + giftCardValue;
+
+            const withGiftCard = {
+                openRateMin: BENCHMARKS.withGiftCard.openRateMin,
+                openRateMax: BENCHMARKS.withGiftCard.openRateMax,
+                cplMin: baseCplWithGiftMin,
+                cplMax: baseCplWithGiftMax,
+                leadsMin: Math.floor(budget / baseCplWithGiftMax),
+                leadsMax: Math.floor(budget / baseCplWithGiftMin)
+            };
+
+            // Calculate savings
+            const avgCplWithout = (withoutGiftCard.cplMin + withoutGiftCard.cplMax) / 2;
+            const avgCplWith = (withGiftCard.cplMin + withGiftCard.cplMax) / 2;
+            const savingsPerLead = Math.round(avgCplWithout - avgCplWith);
+            const leadsMultiplier = ((withGiftCard.leadsMin + withGiftCard.leadsMax) / 2) / ((withoutGiftCard.leadsMin + withoutGiftCard.leadsMax) / 2);
+
+            calculatorResults = {
+                budget,
+                targetCPL,
+                giftCardValue,
+                withoutGiftCard,
+                withGiftCard,
+                savingsPerLead,
+                leadsMultiplier,
+                recommendation: savingsPerLead > 0 ? 'use_gift_card' : 'skip_gift_card'
+            };
+
+            displayResults();
+
+            // Track calculation event
+            if (window.dataLayer) {
+                window.dataLayer.push({
+                    event: 'inmail_calculator_preview',
+                    budget: budget,
+                    gift_card_value: giftCardValue,
+                    savings_per_lead: savingsPerLead
+                });
+            }
+        }
+
+        function displayResults() {
+            const { budget, giftCardValue, withoutGiftCard, withGiftCard, savingsPerLead, leadsMultiplier } = calculatorResults;
+
+            // Hide calculator, show results
+            document.getElementById('calculatorCard').style.display = 'none';
+            document.getElementById('resultsSection').classList.add('active');
+
+            // Ensure results are locked initially
+            document.getElementById('resultsWrapper').classList.add('locked');
+            document.getElementById('resultsWrapper').classList.remove('unlocked');
+
+            // Update labels
+            document.getElementById('budgetLabel').textContent = formatCurrency(budget) + '/month';
+            document.getElementById('giftCardLabel').textContent = formatCurrency(giftCardValue) + ' Incentive';
+
+            // Without gift card metrics
+            document.getElementById('withoutOpenRate').textContent = `${withoutGiftCard.openRateMin}-${withoutGiftCard.openRateMax}%`;
+            document.getElementById('withoutCPL').textContent = `${formatCurrency(withoutGiftCard.cplMin)} - ${formatCurrency(withoutGiftCard.cplMax)}`;
+            document.getElementById('withoutLeads').textContent = `${withoutGiftCard.leadsMin} - ${withoutGiftCard.leadsMax}`;
+
+            // With gift card metrics
+            document.getElementById('withOpenRate').textContent = `${withGiftCard.openRateMin}-${withGiftCard.openRateMax}%`;
+            document.getElementById('withCPL').textContent = `${formatCurrency(withGiftCard.cplMin)} - ${formatCurrency(withGiftCard.cplMax)}`;
+            document.getElementById('withLeads').textContent = `${withGiftCard.leadsMin} - ${withGiftCard.leadsMax}`;
+
+            // Verdict
+            if (savingsPerLead > 0) {
+                document.getElementById('verdictSavings').textContent = `Save ${formatCurrency(savingsPerLead)}/lead`;
+                document.getElementById('verdictText').textContent = `Using gift card incentives could save you an estimated ${formatCurrency(savingsPerLead)} per lead while generating ${leadsMultiplier.toFixed(1)}x more leads with the same budget.`;
+                document.getElementById('verdictBadge').textContent = 'Gift Cards Recommended';
+                document.getElementById('verdictBadge').style.background = 'var(--black)';
+                document.getElementById('verdictBadge').style.color = 'var(--accent)';
+            } else {
+                document.getElementById('verdictSavings').textContent = 'Similar Costs';
+                document.getElementById('verdictText').textContent = `With your target CPL, gift card incentives may not provide significant savings. However, you would still get higher response rates and more leads.`;
+                document.getElementById('verdictBadge').textContent = 'Consider Testing';
+                document.getElementById('verdictBadge').style.background = 'var(--orange)';
+                document.getElementById('verdictBadge').style.color = 'white';
+            }
+
+            // Shareable card
+            document.getElementById('shareSavings').textContent = savingsPerLead > 0 ? `Save ${formatCurrency(savingsPerLead)}/lead` : 'Similar Costs';
+            document.getElementById('shareWithoutCPL').textContent = `${formatCurrency(Math.round((withoutGiftCard.cplMin + withoutGiftCard.cplMax) / 2))} CPL`;
+            document.getElementById('shareWithCPL').textContent = `${formatCurrency(Math.round((withGiftCard.cplMin + withGiftCard.cplMax) / 2))} CPL`;
+
+            // Update break-even table to highlight selected gift card
+            updateBreakevenTable(giftCardValue);
+
+            // Render chart
+            renderChart();
+        }
+
+        function updateBreakevenTable(selectedValue) {
+            const tbody = document.getElementById('breakevenTableBody');
+            const giftCardOptions = [25, 50, 100];
+
+            tbody.innerHTML = giftCardOptions.map(value => {
+                const baseCplMin = BENCHMARKS.withGiftCard.cplMin - 50 + value;
+                const baseCplMax = BENCHMARKS.withGiftCard.cplMax - 50 + value;
+                const savingsMin = BENCHMARKS.withoutGiftCard.cplMin - baseCplMax;
+                const savingsMax = BENCHMARKS.withoutGiftCard.cplMax - baseCplMin;
+                const isSelected = value === selectedValue;
+
+                return `
+                    <tr class="${isSelected ? 'highlight' : ''}">
+                        <td>${formatCurrency(value)}</td>
+                        <td>${formatCurrency(baseCplMin)} - ${formatCurrency(baseCplMax)}</td>
+                        <td>${formatCurrency(BENCHMARKS.withoutGiftCard.cplMin)} - ${formatCurrency(BENCHMARKS.withoutGiftCard.cplMax)}</td>
+                        <td>${formatCurrency(savingsMin)} - ${formatCurrency(savingsMax)}</td>
+                        <td><span style="color: var(--green); font-weight: 700;">Yes</span></td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function renderChart() {
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+
+            const ctx = document.getElementById('cplChart').getContext('2d');
+            const { withoutGiftCard, withGiftCard } = calculatorResults;
+
+            chartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Without Gift Card', 'With Gift Card'],
+                    datasets: [
+                        {
+                            label: 'Min CPL',
+                            data: [withoutGiftCard.cplMin, withGiftCard.cplMin],
+                            backgroundColor: ['#e5e5e5', '#d1fae5'],
+                            borderColor: ['#6b6b6b', '#10B981'],
+                            borderWidth: 2,
+                            borderRadius: 6
+                        },
+                        {
+                            label: 'Max CPL',
+                            data: [withoutGiftCard.cplMax, withGiftCard.cplMax],
+                            backgroundColor: ['#6b6b6b', '#10B981'],
+                            borderColor: ['#1a1a1a', '#065f46'],
+                            borderWidth: 2,
+                            borderRadius: 6
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: { family: 'Inter', size: 12 },
+                                usePointStyle: true,
+                                padding: 20
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: '#1a1a1a',
+                            titleFont: { family: 'Inter', weight: 'bold' },
+                            bodyFont: { family: 'Inter' },
+                            padding: 12,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: (ctx) => `${ctx.dataset.label}: ${formatCurrency(ctx.raw)}`
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#e5e5e5' },
+                            ticks: {
+                                font: { family: 'Inter', size: 11 },
+                                callback: (val) => formatCurrency(val)
+                            }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { font: { family: 'Inter', size: 12, weight: '600' } }
+                        }
+                    }
+                }
+            });
+        }
+
+        async function unlockResults() {
+            const email = document.getElementById('gateEmail').value.trim();
+            if (!email) {
+                alert('Please enter your email');
+                return;
+            }
+
+            if (!email.includes('@') || !email.includes('.')) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            document.getElementById('unlockBtnText').textContent = 'Unlocking...';
+            document.getElementById('unlockSpinner').style.display = 'block';
+            document.getElementById('unlockBtn').disabled = true;
+
+            try {
+                // Call API to send email and push to HubSpot
+                const response = await fetch('/api/inmail-calculator', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email,
+                        results: calculatorResults
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to unlock');
+                }
+
+                // Unlock the results
+                isUnlocked = true;
+                document.getElementById('resultsWrapper').classList.remove('locked');
+                document.getElementById('resultsWrapper').classList.add('unlocked');
+
+                // Track unlock event
+                if (window.dataLayer) {
+                    window.dataLayer.push({
+                        event: 'inmail_calculator_unlocked',
+                        savings_per_lead: calculatorResults.savingsPerLead
+                    });
+                }
+
+                showToast('Results Unlocked!', 'Check your email for a copy of your analysis.');
+
+            } catch (error) {
+                console.error('Error:', error);
+                // Still unlock on error (graceful degradation)
+                isUnlocked = true;
+                document.getElementById('resultsWrapper').classList.remove('locked');
+                document.getElementById('resultsWrapper').classList.add('unlocked');
+                showToast('Results Unlocked!', 'Your analysis is ready.');
+            } finally {
+                document.getElementById('unlockBtnText').textContent = 'Unlock Full Report';
+                document.getElementById('unlockSpinner').style.display = 'none';
+                document.getElementById('unlockBtn').disabled = false;
+            }
+        }
+
+        function showToast(title, message) {
+            const toast = document.getElementById('toast');
+            toast.querySelector('.title').textContent = title;
+            toast.querySelector('.message').textContent = message;
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 5000);
+        }
+
+        async function shareToLinkedIn() {
+            const card = document.getElementById('shareableCard');
+
+            try {
+                // 1. Generate and download PNG
+                const dataUrl = await htmlToImage.toPng(card, {
+                    quality: 1,
+                    pixelRatio: 2,
+                    backgroundColor: '#ffffff'
+                });
+                const link = document.createElement('a');
+                link.download = `linkedin-inmail-roi-analysis.png`;
+                link.href = dataUrl;
+                link.click();
+
+                // 2. Copy post text to clipboard
+                const { savingsPerLead, leadsMultiplier, giftCardValue } = calculatorResults;
+                const postText = `Just ran the numbers on LinkedIn InMail campaigns...
+
+Using a ${formatCurrency(giftCardValue)} gift card incentive could save me ${formatCurrency(savingsPerLead)} per lead while generating ${leadsMultiplier.toFixed(1)}x more leads.
+
+The data is based on actual 42 Agency client campaigns:
+- Without incentive: $1,000-$2,000 CPL, 25-35% open rate
+- With incentive: $300-$500 CPL, 40-50% open rate
+
+Try the calculator yourself: intel.42agency.com/tools/linkedin-inmail-calculator`;
+
+                await navigator.clipboard.writeText(postText);
+
+                // 3. Show toast
+                showToast('Image downloaded, text copied!', 'Paste the text and attach your image to post.');
+
+                // 4. Open LinkedIn feed
+                setTimeout(() => {
+                    window.open('https://www.linkedin.com/feed/', '_blank');
+                }, 500);
+
+                // Track share event
+                if (window.dataLayer) {
+                    window.dataLayer.push({
+                        event: 'inmail_calculator_shared',
+                        savings_per_lead: savingsPerLead
+                    });
+                }
+
+            } catch (error) {
+                console.error('Error sharing:', error);
+                alert('Error generating share image. Please try again.');
+            }
+        }
+
+        function resetCalculator() {
+            document.getElementById('calculatorCard').style.display = 'block';
+            document.getElementById('resultsSection').classList.remove('active');
+
+            // Reset steps
+            document.querySelectorAll('.step').forEach((s, i) => {
+                s.classList.remove('active', 'completed');
+                if (i === 0) s.classList.add('active');
+            });
+
+            // Reset locked state
+            document.getElementById('resultsWrapper').classList.add('locked');
+            document.getElementById('resultsWrapper').classList.remove('unlocked');
+            isUnlocked = false;
+
+            // Clear inputs
+            document.getElementById('monthlyBudget').value = '';
+            document.getElementById('targetCPL').value = '';
+            document.getElementById('giftCardValue').value = '50';
+            document.getElementById('gateEmail').value = '';
+
+            // Destroy chart
+            if (chartInstance) {
+                chartInstance.destroy();
+                chartInstance = null;
+            }
+
+            calculatorResults = null;
+        }
+    </script>
+</body>
+</html>
