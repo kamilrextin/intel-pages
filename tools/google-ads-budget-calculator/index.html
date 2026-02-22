@@ -18,6 +18,9 @@
     <!-- HubSpot Tracking -->
     <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/44888286.js"></script>
 
+    <!-- Chart.js for budget graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
     <meta property="og:title" content="Google Ads Budget Calculator - Get Real CPC Estimates">
     <meta property="og:description" content="Enter your product or service. Get high-intent keywords with real CPCs from Google's API.">
 
@@ -620,6 +623,104 @@
         #toast .title { font-weight: 700; margin-bottom: 0.25rem; }
         #toast .message { font-size: 0.85rem; color: #ccc; }
 
+        /* Gated Results */
+        .results-wrapper {
+            position: relative;
+        }
+
+        .results-wrapper.locked .gated-section {
+            filter: blur(8px);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .results-wrapper.unlocked .gated-section {
+            filter: none;
+            pointer-events: auto;
+            user-select: auto;
+        }
+
+        .sticky-gate {
+            position: sticky;
+            top: 100px;
+            z-index: 40;
+            display: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .results-wrapper.locked .sticky-gate {
+            display: block;
+        }
+
+        .results-wrapper.unlocked .sticky-gate {
+            display: none;
+        }
+
+        .gate-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 6px 6px 0px 0px var(--black);
+            text-align: center;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .gate-card h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .gate-card p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .gate-card input {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .gate-card .btn {
+            width: 100%;
+        }
+
+        /* Chart containers */
+        .chart-container {
+            position: relative;
+            height: 250px;
+            margin: 1rem 0;
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .chart-card {
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 1rem;
+        }
+
+        .chart-card h4 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--gray);
+        }
+
         /* Footer */
         .footer {
             background: var(--black);
@@ -732,8 +833,6 @@
                 <div class="step active" id="step1">1</div>
                 <div class="step-line"></div>
                 <div class="step" id="step2">2</div>
-                <div class="step-line"></div>
-                <div class="step" id="step3">3</div>
             </div>
 
             <!-- Step 1: Target Input -->
@@ -758,33 +857,15 @@
                 </div>
 
                 <div class="btn-group">
-                    <button class="btn btn-primary" onclick="nextStep(1)" id="step1Btn">
-                        <span>Get Keywords & CPCs</span>
+                    <button class="btn btn-primary" onclick="getEstimates()" id="step1Btn">
+                        <span id="step1BtnText">Get Keywords & CPCs</span>
+                        <div class="loading-spinner" id="step1Spinner" style="display: none;"></div>
                     </button>
                 </div>
             </div>
 
-            <!-- Step 2: Email Gate -->
+            <!-- Step 2: Processing -->
             <div class="form-section" id="section2">
-                <h2>Get Your Budget Estimates</h2>
-                <p class="hint">Enter your email to see real keyword data and budget recommendations.</p>
-
-                <div class="form-group">
-                    <label for="leadEmail">Work Email</label>
-                    <input type="email" id="leadEmail" placeholder="you@company.com" required>
-                </div>
-
-                <div class="btn-group">
-                    <button class="btn btn-secondary" onclick="prevStep(2)">Back</button>
-                    <button class="btn btn-primary" id="getResultsBtn" onclick="submitAndShowResults()">
-                        <span id="submitBtnText">See Results</span>
-                        <div class="loading-spinner" id="submitSpinner" style="display: none;"></div>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Step 3: Processing -->
-            <div class="form-section" id="section3">
                 <div style="text-align: center; padding: 2rem;">
                     <div class="loading-spinner" style="width: 40px; height: 40px; margin: 0 auto 1rem;"></div>
                     <h2 style="margin-bottom: 0.5rem;">Researching Keywords</h2>
@@ -795,76 +876,118 @@
 
         <!-- Results Section -->
         <div class="results-section" id="resultsSection">
-            <div class="results-header">
-                <h2>Your Google Ads Budget Estimate</h2>
-                <div class="stats-row">
-                    <div class="stat-badge google">
-                        <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="currentColor"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="currentColor"/></svg>
-                        <span id="keywordCount">--</span> keywords
-                    </div>
-                    <div class="stat-badge">
-                        <span id="totalSearches">--</span> monthly searches
-                    </div>
-                    <div class="stat-badge">
-                        <span id="avgCpc">--</span> avg CPC
-                    </div>
-                </div>
-                <p class="subtitle" id="targetLabel"></p>
-            </div>
-
-            <div class="score-card">
-                <h3>
-                    <span class="platform-icon">
-                        <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="white"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="white"/></svg>
-                    </span>
-                    High-Intent Keywords
-                </h3>
-
-                <table class="keywords-table">
-                    <thead>
-                        <tr>
-                            <th>Keyword</th>
-                            <th>Monthly Searches</th>
-                            <th>Avg CPC</th>
-                            <th>Competition</th>
-                        </tr>
-                    </thead>
-                    <tbody id="keywordsTableBody">
-                        <!-- Keywords will be inserted here -->
-                    </tbody>
-                </table>
-
-                <div class="budget-summary">
-                    <div class="budget-item">
-                        <div class="label">Min Budget</div>
-                        <div class="value" id="budgetMin">--</div>
-                        <div class="note">30% click share</div>
-                    </div>
-                    <div class="budget-item recommended">
-                        <div class="label">Recommended</div>
-                        <div class="value" id="budgetIdeal">--</div>
-                        <div class="note">50% click share</div>
-                    </div>
-                    <div class="budget-item">
-                        <div class="label">Aggressive</div>
-                        <div class="value" id="budgetAggressive">--</div>
-                        <div class="note">100% click share</div>
+            <div class="results-wrapper locked" id="resultsWrapper">
+                <!-- Sticky Email Gate -->
+                <div class="sticky-gate">
+                    <div class="gate-card">
+                        <h3>Unlock Your Full Keyword Analysis</h3>
+                        <p>Enter your email to see all keywords, CPCs, and budget recommendations.</p>
+                        <input type="email" id="gateEmail" placeholder="you@company.com">
+                        <button class="btn btn-primary" onclick="unlockResults()" id="unlockBtn">
+                            <span id="unlockBtnText">Unlock Full Results</span>
+                            <div class="loading-spinner" id="unlockSpinner" style="display: none;"></div>
+                        </button>
                     </div>
                 </div>
-            </div>
 
-            <!-- Actions Section -->
-            <div class="actions-section" style="margin-top: 2rem;">
-                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <button onclick="exportToExcel()" class="btn btn-primary" style="max-width: 220px;">
-                        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                        Export to Excel
-                    </button>
-                    <button class="btn btn-secondary" onclick="resetCalculator()" style="max-width: 180px;">
-                        Start Over
-                    </button>
+                <!-- Preview Section (always visible) -->
+                <div class="results-header">
+                    <h2>Your Google Ads Budget Estimate</h2>
+                    <div class="stats-row">
+                        <div class="stat-badge google">
+                            <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="currentColor"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="currentColor"/></svg>
+                            <span id="keywordCount">--</span> keywords
+                        </div>
+                        <div class="stat-badge">
+                            <span id="totalSearches">--</span> monthly searches
+                        </div>
+                        <div class="stat-badge">
+                            <span id="avgCpc">--</span> avg CPC
+                        </div>
+                    </div>
+                    <p class="subtitle" id="targetLabel"></p>
                 </div>
-            </div>
+
+                <!-- GATED SECTION: Everything below stats -->
+                <div class="gated-section">
+
+                <!-- Budget Charts -->
+                <div class="score-card">
+                    <h3>
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin-right: 0.5rem;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                        Budget Tiers & CPC Distribution
+                    </h3>
+                    <div class="charts-grid">
+                        <div class="chart-card">
+                            <h4>Budget Tiers (Monthly)</h4>
+                            <div class="chart-container">
+                                <canvas id="budgetChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="chart-card">
+                            <h4>Keyword CPC Distribution</h4>
+                            <div class="chart-container">
+                                <canvas id="cpcChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="score-card" style="margin-top: 1.5rem;">
+                    <h3>
+                        <span class="platform-icon">
+                            <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="white"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="white"/></svg>
+                        </span>
+                        High-Intent Keywords
+                    </h3>
+
+                    <table class="keywords-table">
+                        <thead>
+                            <tr>
+                                <th>Keyword</th>
+                                <th>Monthly Searches</th>
+                                <th>Avg CPC</th>
+                                <th>Competition</th>
+                            </tr>
+                        </thead>
+                        <tbody id="keywordsTableBody">
+                            <!-- Keywords will be inserted here -->
+                        </tbody>
+                    </table>
+
+                    <div class="budget-summary">
+                        <div class="budget-item">
+                            <div class="label">Min Budget</div>
+                            <div class="value" id="budgetMin">--</div>
+                            <div class="note">30% click share</div>
+                        </div>
+                        <div class="budget-item recommended">
+                            <div class="label">Recommended</div>
+                            <div class="value" id="budgetIdeal">--</div>
+                            <div class="note">50% click share</div>
+                        </div>
+                        <div class="budget-item">
+                            <div class="label">Aggressive</div>
+                            <div class="value" id="budgetAggressive">--</div>
+                            <div class="note">100% click share</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions Section (inside gated) -->
+                <div class="actions-section" style="margin-top: 2rem;">
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <button onclick="exportToExcel()" class="btn btn-primary" style="max-width: 220px;">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            Export to Excel
+                        </button>
+                        <button class="btn btn-secondary" onclick="resetCalculator()" style="max-width: 180px;">
+                            Start Over
+                        </button>
+                    </div>
+                </div>
+                </div><!-- end gated-section -->
+            </div><!-- end results-wrapper -->
         </div>
 
         <div class="cta-section">
@@ -873,6 +996,12 @@
             <a href="https://42agency.com/contact?utm_source=google_budget_calculator&utm_medium=intel">Get Your Free Audit</a>
         </div>
     </main>
+
+    <!-- Toast Notification -->
+    <div id="toast">
+        <div class="title">Success!</div>
+        <div class="message">Your results have been unlocked.</div>
+    </div>
 
     <footer class="footer">
         <div class="footer-inner">
@@ -938,34 +1067,12 @@
     <script>
         // Store results globally
         let calculatorResults = null;
-        let isSending = false;
+        let isLoading = false;
+        let isUnlocked = false;
+        let chartInstances = {};
 
         function setExample(text) {
             document.getElementById('targetDescription').value = text;
-        }
-
-        function nextStep(current) {
-            if (current === 1) {
-                const target = document.getElementById('targetDescription').value.trim();
-                if (!target) {
-                    alert('Please describe your product or service');
-                    return;
-                }
-            }
-
-            document.getElementById('section' + current).classList.remove('active');
-            document.getElementById('section' + (current + 1)).classList.add('active');
-            document.getElementById('step' + current).classList.remove('active');
-            document.getElementById('step' + current).classList.add('completed');
-            document.getElementById('step' + (current + 1)).classList.add('active');
-        }
-
-        function prevStep(current) {
-            document.getElementById('section' + current).classList.remove('active');
-            document.getElementById('section' + (current - 1)).classList.add('active');
-            document.getElementById('step' + current).classList.remove('active');
-            document.getElementById('step' + (current - 1)).classList.remove('completed');
-            document.getElementById('step' + (current - 1)).classList.add('active');
         }
 
         function formatNumber(num) {
@@ -978,27 +1085,109 @@
             return '$' + num.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
         }
 
-        async function submitAndShowResults() {
-            if (isSending) return;
+        // New flow: Get estimates without email first
+        async function getEstimates() {
+            if (isLoading) return;
 
-            const email = document.getElementById('leadEmail').value.trim();
             const target = document.getElementById('targetDescription').value.trim();
+            if (!target) {
+                alert('Please describe your product or service');
+                return;
+            }
 
+            isLoading = true;
+            document.getElementById('step1BtnText').textContent = 'Researching...';
+            document.getElementById('step1Spinner').style.display = 'block';
+            document.getElementById('step1Btn').disabled = true;
+
+            // Move to loading step
+            document.getElementById('section1').classList.remove('active');
+            document.getElementById('section2').classList.add('active');
+            document.getElementById('step1').classList.remove('active');
+            document.getElementById('step1').classList.add('completed');
+            document.getElementById('step2').classList.add('active');
+
+            // Simulate loading messages
+            const loadingMessages = [
+                'Generating high-intent keywords...',
+                'Fetching CPC data from Google...',
+                'Calculating budget recommendations...',
+                'Building your report...'
+            ];
+            let msgIndex = 0;
+            const msgInterval = setInterval(() => {
+                msgIndex++;
+                if (msgIndex < loadingMessages.length) {
+                    document.getElementById('loadingStatus').textContent = loadingMessages[msgIndex];
+                }
+            }, 1200);
+
+            try {
+                // Call API with placeholder email - we'll update HubSpot when they unlock
+                const response = await fetch('/api/google-budget', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: 'preview@temp.local', target })
+                });
+
+                const data = await response.json();
+                clearInterval(msgInterval);
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to get estimates');
+                }
+
+                calculatorResults = data;
+                displayResults(data);
+
+                // Track preview event
+                if (window.dataLayer) {
+                    window.dataLayer.push({
+                        event: 'google_budget_preview',
+                        keyword_count: data.keywords?.length,
+                        avg_cpc: data.avgCpc
+                    });
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                clearInterval(msgInterval);
+                alert('Error getting estimates: ' + error.message);
+                // Go back to step 1
+                document.getElementById('section2').classList.remove('active');
+                document.getElementById('section1').classList.add('active');
+                document.getElementById('step2').classList.remove('active');
+                document.getElementById('step1').classList.remove('completed');
+                document.getElementById('step1').classList.add('active');
+            } finally {
+                isLoading = false;
+                document.getElementById('step1BtnText').textContent = 'Get Keywords & CPCs';
+                document.getElementById('step1Spinner').style.display = 'none';
+                document.getElementById('step1Btn').disabled = false;
+            }
+        }
+
+        // Unlock results with email
+        async function unlockResults() {
+            const email = document.getElementById('gateEmail').value.trim();
             if (!email) {
                 alert('Please enter your email');
                 return;
             }
 
-            isSending = true;
-            document.getElementById('submitBtnText').textContent = 'Loading...';
-            document.getElementById('submitSpinner').style.display = 'block';
-            document.getElementById('getResultsBtn').disabled = true;
+            // Basic email validation
+            if (!email.includes('@') || !email.includes('.')) {
+                alert('Please enter a valid email address');
+                return;
+            }
 
-            // Move to loading step
-            nextStep(2);
+            document.getElementById('unlockBtnText').textContent = 'Unlocking...';
+            document.getElementById('unlockSpinner').style.display = 'block';
+            document.getElementById('unlockBtn').disabled = true;
 
             try {
-                // Call the API
+                // Call API again with real email to trigger HubSpot + Resend
+                const target = document.getElementById('targetDescription').value.trim();
                 const response = await fetch('/api/google-budget', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -1008,36 +1197,41 @@
                 const data = await response.json();
 
                 if (!response.ok) {
-                    throw new Error(data.error || 'Failed to get estimates');
+                    throw new Error(data.error || 'Failed to unlock');
                 }
 
-                calculatorResults = data;
-                displayResults(data);
+                // Unlock the results
+                isUnlocked = true;
+                document.getElementById('resultsWrapper').classList.remove('locked');
+                document.getElementById('resultsWrapper').classList.add('unlocked');
 
-                // Track event
+                // Track unlock event
                 if (window.dataLayer) {
                     window.dataLayer.push({
-                        event: 'google_budget_calculated',
-                        keyword_count: data.keywords?.length,
-                        avg_cpc: data.avgCpc
+                        event: 'google_budget_unlocked',
+                        keyword_count: data.keywords?.length
                     });
                 }
 
+                // Show toast
+                showToast('Results Unlocked!', 'Check your email for a copy of your keyword research.');
+
             } catch (error) {
                 console.error('Error:', error);
-                alert('Error getting estimates: ' + error.message);
-                // Go back to step 2
-                document.getElementById('section3').classList.remove('active');
-                document.getElementById('section2').classList.add('active');
-                document.getElementById('step3').classList.remove('active');
-                document.getElementById('step2').classList.remove('completed');
-                document.getElementById('step2').classList.add('active');
+                alert('Error unlocking results: ' + error.message);
             } finally {
-                isSending = false;
-                document.getElementById('submitBtnText').textContent = 'See Results';
-                document.getElementById('submitSpinner').style.display = 'none';
-                document.getElementById('getResultsBtn').disabled = false;
+                document.getElementById('unlockBtnText').textContent = 'Unlock Full Results';
+                document.getElementById('unlockSpinner').style.display = 'none';
+                document.getElementById('unlockBtn').disabled = false;
             }
+        }
+
+        function showToast(title, message) {
+            const toast = document.getElementById('toast');
+            toast.querySelector('.title').textContent = title;
+            toast.querySelector('.message').textContent = message;
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 5000);
         }
 
         function displayResults(data) {
@@ -1046,6 +1240,10 @@
             // Hide calculator, show results
             document.getElementById('calculatorCard').style.display = 'none';
             document.getElementById('resultsSection').classList.add('active');
+
+            // Ensure results are locked initially
+            document.getElementById('resultsWrapper').classList.add('locked');
+            document.getElementById('resultsWrapper').classList.remove('unlocked');
 
             // Stats
             document.getElementById('keywordCount').textContent = keywords?.length || 0;
@@ -1073,6 +1271,131 @@
             document.getElementById('budgetIdeal').textContent = formatCurrency(budgets?.ideal || 0);
             document.getElementById('budgetAggressive').textContent = formatCurrency(budgets?.aggressive || 0);
 
+            // Render charts
+            renderCharts(keywords, budgets);
+        }
+
+        function renderCharts(keywords, budgets) {
+            // Destroy existing charts if any
+            Object.values(chartInstances).forEach(chart => chart.destroy());
+            chartInstances = {};
+
+            const chartConfig = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#1a1a1a',
+                        titleFont: { family: 'Inter', weight: 'bold' },
+                        bodyFont: { family: 'Inter' },
+                        padding: 12,
+                        cornerRadius: 8
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: '#e5e5e5' },
+                        ticks: { font: { family: 'Inter', size: 11 } }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { font: { family: 'Inter', size: 11 } }
+                    }
+                }
+            };
+
+            // Budget Tiers Chart
+            if (budgets) {
+                const ctx = document.getElementById('budgetChart').getContext('2d');
+                chartInstances.budget = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Min (30%)', 'Ideal (50%)', 'Aggressive (100%)'],
+                        datasets: [{
+                            label: 'Monthly Budget',
+                            data: [budgets.min, budgets.ideal, budgets.aggressive],
+                            backgroundColor: ['#FEF3C7', '#DFFE68', '#4285F4'],
+                            borderColor: '#1a1a1a',
+                            borderWidth: 2,
+                            borderRadius: 6
+                        }]
+                    },
+                    options: {
+                        ...chartConfig,
+                        plugins: {
+                            ...chartConfig.plugins,
+                            tooltip: {
+                                ...chartConfig.plugins.tooltip,
+                                callbacks: {
+                                    label: (ctx) => formatCurrency(ctx.raw) + '/month'
+                                }
+                            }
+                        },
+                        scales: {
+                            ...chartConfig.scales,
+                            y: {
+                                ...chartConfig.scales.y,
+                                ticks: {
+                                    ...chartConfig.scales.y.ticks,
+                                    callback: (val) => '$' + formatNumber(val)
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // CPC Distribution Chart
+            if (keywords && keywords.length > 0) {
+                const ctx = document.getElementById('cpcChart').getContext('2d');
+                // Group keywords by CPC ranges
+                const ranges = { '$0-5': 0, '$5-10': 0, '$10-20': 0, '$20+': 0 };
+                keywords.forEach(kw => {
+                    const cpc = kw.cpc || 0;
+                    if (cpc < 5) ranges['$0-5']++;
+                    else if (cpc < 10) ranges['$5-10']++;
+                    else if (cpc < 20) ranges['$10-20']++;
+                    else ranges['$20+']++;
+                });
+
+                chartInstances.cpc = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: Object.keys(ranges),
+                        datasets: [{
+                            data: Object.values(ranges),
+                            backgroundColor: ['#d1fae5', '#fef3c7', '#fed7aa', '#fecaca'],
+                            borderColor: '#1a1a1a',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    font: { family: 'Inter', size: 11 },
+                                    padding: 12
+                                }
+                            },
+                            tooltip: {
+                                backgroundColor: '#1a1a1a',
+                                titleFont: { family: 'Inter', weight: 'bold' },
+                                bodyFont: { family: 'Inter' },
+                                padding: 12,
+                                cornerRadius: 8,
+                                callbacks: {
+                                    label: (ctx) => ctx.raw + ' keywords'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
         }
 
         function resetCalculator() {
@@ -1091,9 +1414,18 @@
                 if (i === 0) s.classList.add('active');
             });
 
+            // Reset locked state
+            document.getElementById('resultsWrapper').classList.add('locked');
+            document.getElementById('resultsWrapper').classList.remove('unlocked');
+            isUnlocked = false;
+
             // Clear inputs
             document.getElementById('targetDescription').value = '';
-            document.getElementById('leadEmail').value = '';
+            document.getElementById('gateEmail').value = '';
+
+            // Destroy charts
+            Object.values(chartInstances).forEach(chart => chart.destroy());
+            chartInstances = {};
 
             calculatorResults = null;
         }

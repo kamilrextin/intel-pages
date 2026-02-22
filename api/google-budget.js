@@ -102,13 +102,14 @@ export default async function handler(request) {
       budgets
     }).catch(err => console.error('Email error:', err)));
 
-    // Push to HubSpot
+    // Push to HubSpot with enhanced data
     resultPromises.push(pushToHubSpot(email, {
       target,
       keywordCount: keywordData.length,
+      keywords: keywordData,
       totalSearches,
       avgCpc,
-      budgetIdeal: budgets.ideal
+      budgets
     }).catch(err => console.error('HubSpot error:', err)));
 
     // Push to Resend Audience
@@ -426,14 +427,19 @@ async function pushToHubSpot(email, result) {
     const searchData = await searchResponse.json();
     const existingContactId = searchData.results?.[0]?.id;
 
+    // Enhanced HubSpot payload with all budget data
+    const topKeywords = (result.keywords || []).slice(0, 5).map(k => k.keyword).join(', ');
     const properties = {
       email,
-      google_budget_calculator_date: new Date().toISOString().split('T')[0],
-      google_budget_calculator_keywords: result.keywordCount?.toString() || '',
-      google_budget_calculator_searches: result.totalSearches?.toString() || '',
-      google_budget_calculator_avg_cpc: result.avgCpc?.toFixed(2) || '',
-      google_budget_calculator_budget: result.budgetIdeal?.toString() || '',
-      google_budget_calculator_target: result.target?.substring(0, 255) || '',
+      google_budget_target: (result.target || '').substring(0, 500),
+      google_budget_keyword_count: result.keywordCount?.toString() || '',
+      google_budget_total_searches: result.totalSearches?.toString() || '',
+      google_budget_avg_cpc: result.avgCpc?.toFixed(2) || '',
+      google_budget_min: result.budgets?.min?.toString() || '',
+      google_budget_ideal: result.budgets?.ideal?.toString() || '',
+      google_budget_aggressive: result.budgets?.aggressive?.toString() || '',
+      google_budget_top_keywords: topKeywords.substring(0, 500),
+      google_budget_date: new Date().toISOString().split('T')[0],
       lifecyclestage: 'lead',
     };
 
