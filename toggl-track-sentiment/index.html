@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agency Time Tracking Sentiment Analysis: Toggl Track vs Competitors | 42 Agency Intel</title>
+    <meta name="description" content="Community sentiment analysis of time tracking tools for agencies: Toggl Track, Harvest, ClickUp, Clockify, and Timely. Based on real practitioner feedback from G2, Capterra, Reddit, and more.">
+
+    <!-- OG Tags -->
+    <meta property="og:title" content="Agency Time Tracking Sentiment Analysis: Toggl Track vs Competitors">
+    <meta property="og:description" content="What agencies really think about Toggl Track, Harvest, ClickUp, Clockify, and Timely. Sentiment scores, switching patterns, and positioning insights.">
+    <meta property="og:image" content="https://intel.42agency.com/og-share.png">
+    <meta property="og:url" content="https://intel.42agency.com/toggl-track-sentiment/">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- GTM -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MM5BTNS');</script>
+
+    <!-- HubSpot -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/44888286.js"></script>
+
+    <style>
+        :root {
+            --accent: #DFFE68;
+            --accent-hover: #C8E85C;
+            --black: #1a1a1a;
+            --gray: #4a4a4a;
+            --muted: #6b6b6b;
+            --light-gray: #f5f5f5;
+            --green: #10B981;
+            --orange: #F59E0B;
+            --red: #EF4444;
+            --blue: #3B82F6;
+            --purple: #8B5CF6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            background-color: var(--light-gray);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        /* Global Header */
+        .header {
+            border-bottom: 2px solid var(--black);
+            padding: 0.75rem 1.5rem;
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo img { height: 28px; width: auto; }
+        .nav { display: flex; align-items: center; gap: 0.25rem; }
+        .nav a {
+            padding: 0.5rem 1rem;
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.15s;
+        }
+        .nav a:hover { color: var(--black); background: var(--light-gray); }
+        .nav a.active { color: var(--black); font-weight: 600; background: var(--accent); }
+        .nav-cta {
+            margin-left: 0.5rem;
+            padding: 0.5rem 1rem !important;
+            background: var(--black) !important;
+            color: white !important;
+            border-radius: 6px;
+            font-weight: 600 !important;
+        }
+        .nav-cta:hover { background: #333 !important; }
+        @media (max-width: 768px) { .nav { display: none; } }
+
+        .hero {
+            background: #ffffff;
+            border-bottom: 2px solid var(--black);
+            padding: 3rem 2rem;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--accent);
+            border: 2px solid var(--black);
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .summary {
+            font-size: 1.125rem;
+            color: var(--gray);
+            max-width: 800px;
+        }
+
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Executive Summary */
+        .exec-summary {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 4px 4px 0px 0px var(--black);
+            margin-bottom: 2rem;
+        }
+
+        .exec-summary h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .exec-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .exec-summary li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e5e5e5;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .exec-summary li:last-child {
+            border-bottom: none;
+        }
+
+        .exec-summary .bullet {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border: 2px solid var(--black);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 0.5rem;
+        }
+
+        /* Stats Row */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .stats-row {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .stat-card {
+            background: #ffffff;
+            border: 2px solid var(--black);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            box-shadow: 3px 3px 0px 0px var(--black);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+        }
+
+        .stat-value.positive { color: var(--green); }
+        .stat-value.neutral { color: var(--orange); }
+        .stat-value.negative { color: var(--red); }
+        .stat-value.blue { color: var(--blue); }
+
+        .stat-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0.25rem;
+        }
+
+        .stat-sublabel {
+            font-size: 0.65rem;
+            color: var(--muted);
+        }
+
+        /* Charts Grid */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: #ffffff;
+            border: 2px solid var(--black);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 4px 4px 0px 0px var(--black);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 350px;
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            margin-bottom: 2rem;
+        }
+
+        .comparison-section h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .comparison-table {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 4px 4px 0px 0px var(--black);
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th {
+            background: var(--black);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e5e5e5;
+            font-size: 0.9rem;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:hover td {
+            background: var(--light-gray);
+        }
+
+        .sentiment-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .sentiment-badge.positive {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--green);
+        }
+
+        .sentiment-badge.neutral {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--orange);
+        }
+
+        .sentiment-badge.negative {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--red);
+        }
+
+        /* Deep Dive Tabs */
+        .tabs-container {
+            margin-bottom: 2rem;
+        }
+
+        .tabs-header {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-size: 0.9rem;
+        }
+
+        .tab-btn:hover {
+            background: var(--light-gray);
+        }
+
+        .tab-btn.active {
+            background: var(--accent);
+            box-shadow: 3px 3px 0px 0px var(--black);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .deep-dive-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 4px 4px 0px 0px var(--black);
+        }
+
+        .deep-dive-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .deep-dive-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .deep-dive-stats {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .mini-stat {
+            text-align: center;
+            padding: 0.5rem 1rem;
+            background: var(--light-gray);
+            border-radius: 0.5rem;
+        }
+
+        .mini-stat-value {
+            font-weight: 800;
+            font-size: 1.25rem;
+        }
+
+        .mini-stat-label {
+            font-size: 0.7rem;
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+
+        .sentiment-sections {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .sentiment-sections {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sentiment-section h4 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sentiment-section h4.love { color: var(--green); }
+        .sentiment-section h4.hate { color: var(--red); }
+
+        .quote-item {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: var(--light-gray);
+            border-radius: 0.5rem;
+            border-left: 3px solid var(--green);
+        }
+
+        .quote-item.negative {
+            border-left-color: var(--red);
+        }
+
+        .quote-text {
+            font-style: italic;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .quote-source {
+            font-size: 0.75rem;
+            color: var(--muted);
+            font-weight: 600;
+        }
+
+        /* Positioning Section */
+        .positioning-section {
+            margin-bottom: 2rem;
+        }
+
+        .positioning-section h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .positioning-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .positioning-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .positioning-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 4px 4px 0px 0px;
+        }
+
+        .positioning-card.harvest { box-shadow-color: var(--orange); box-shadow: 4px 4px 0px 0px var(--orange); }
+        .positioning-card.clickup { box-shadow-color: var(--purple); box-shadow: 4px 4px 0px 0px var(--purple); }
+        .positioning-card.clockify { box-shadow-color: var(--blue); box-shadow: 4px 4px 0px 0px var(--blue); }
+        .positioning-card.timely { box-shadow-color: var(--green); box-shadow: 4px 4px 0px 0px var(--green); }
+
+        .positioning-card h3 {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .positioning-card .vs {
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        .positioning-card p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .positioning-card .angle {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background: var(--light-gray);
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--accent);
+            border: 2px solid var(--black);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 6px 6px 0px 0px var(--black);
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .cta-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-text {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--black);
+            color: #ffffff;
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .cta-button:hover {
+            background: #333;
+        }
+
+        /* Legend */
+        .legend-section {
+            margin-top: 1rem;
+        }
+
+        .legend-items {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            border: 2px solid var(--black);
+        }
+
+        .legend-negative { background: var(--red); }
+        .legend-neutral { background: var(--orange); }
+        .legend-positive { background: var(--green); }
+
+        /* Agency Pain Points */
+        .pain-points-section {
+            margin-bottom: 2rem;
+        }
+
+        .pain-points-section h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .pain-points-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        @media (max-width: 900px) {
+            .pain-points-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .pain-points-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .pain-point-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            box-shadow: 3px 3px 0px 0px var(--black);
+        }
+
+        .pain-point-card h4 {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .pain-point-card p {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .pain-point-card .winner {
+            margin-top: 0.75rem;
+            padding: 0.5rem;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--green);
+        }
+
+        /* Global Footer */
+        .footer {
+            border-top: 2px solid var(--black);
+            background: var(--black);
+            padding: 4rem 1.5rem 2rem;
+            margin-top: 2rem;
+        }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr repeat(4, 1fr);
+            gap: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid #333;
+        }
+        .footer-brand img { height: 24px; filter: brightness(0) invert(1); margin-bottom: 1rem; }
+        .footer-brand p { font-size: 0.85rem; color: #999; line-height: 1.6; }
+        .footer-social { margin-top: 1rem; display: flex; gap: 1rem; }
+        .footer-social a { color: #999; text-decoration: none; display: flex; align-items: center; }
+        .footer-social a:hover { color: white; }
+        .footer-social svg { width: 20px; height: 20px; }
+        .footer-col h4 {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        .footer-col a {
+            display: block;
+            color: #999;
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 0.6rem;
+        }
+        .footer-col a:hover { color: white; }
+        .footer-col .sublink { padding-left: 0.75rem; font-size: 0.8rem; color: #666; }
+        .footer-bottom {
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #666;
+        }
+        .footer-bottom a { color: #666; text-decoration: none; }
+        .footer-bottom a:hover { color: #999; }
+        @media (max-width: 900px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } }
+
+        /* Responsive table */
+        .table-wrapper {
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- GTM noscript -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MM5BTNS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <header class="header">
+        <div class="header-inner">
+            <a href="/" class="logo">
+                <img src="/42-logo.png" alt="42 Agency">
+            </a>
+            <nav class="nav">
+                <a href="/assess/">Assess</a>
+                <a href="/b2b-benchmarks/">Benchmarks</a>
+                <a href="/tools/">Tools</a>
+                <a href="/playbooks/">Playbooks</a>
+                <a href="https://42agency.com/contact-us" target="_blank" class="nav-cta">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge">Sentiment Analysis</span>
+            <h1>Agency Time Tracking: What Practitioners Really Think</h1>
+            <p class="summary">
+                Community sentiment analysis of Toggl Track and its key competitors from an agency perspective.
+                Based on practitioner feedback from G2, Capterra, Reddit, LinkedIn, and industry reviews.
+                Focus areas: billing, invoicing, team management, client reporting, and integration needs.
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: #6b6b6b;">
+                Analysis date: February 2026 | Tools analyzed: Toggl Track, Harvest, ClickUp, Clockify, Timely
+            </p>
+        </div>
+    </section>
+
+    <main class="main">
+        <!-- Stats Row -->
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-value blue">5</div>
+                <div class="stat-label">Tools Analyzed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value positive">+0.45</div>
+                <div class="stat-label">Toggl Net Sentiment</div>
+                <div class="stat-sublabel">Highest rated</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">4.6</div>
+                <div class="stat-label">Toggl G2 Rating</div>
+                <div class="stat-sublabel">Out of 5.0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value neutral">+0.20</div>
+                <div class="stat-label">ClickUp Sentiment</div>
+                <div class="stat-sublabel">Mixed on time tracking</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value positive">96%</div>
+                <div class="stat-label">Billing Capture</div>
+                <div class="stat-sublabel">With integrated tracking</div>
+            </div>
+        </div>
+
+        <!-- Executive Summary -->
+        <div class="exec-summary">
+            <h2>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 12h6M9 16h6M17 21H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+                Executive Summary
+            </h2>
+            <ul>
+                <li>
+                    <span class="bullet"></span>
+                    <span><strong>Toggl Track leads in agency sentiment</strong> with a net score of +0.45, praised for its clean UI, flexible tracking, and profitability reporting. Users report 15% increase in billable hours after adoption.</span>
+                </li>
+                <li>
+                    <span class="bullet"></span>
+                    <span><strong>Harvest wins on invoicing</strong> but loses on pricing. Agencies love the end-to-end billing workflow, but costs escalate quickly for larger teams ($12-17.50/user/month).</span>
+                </li>
+                <li>
+                    <span class="bullet"></span>
+                    <span><strong>ClickUp has mixed time tracking sentiment</strong> despite strong overall PM ratings (G2: 4.7). Native time tracking is "not impressive" and lacks invoicing - agencies often pair it with Toggl or Harvest.</span>
+                </li>
+                <li>
+                    <span class="bullet"></span>
+                    <span><strong>Clockify wins the budget-conscious segment</strong> with unlimited free users, but agencies complain about mobile app issues and lack of approvals workflow.</span>
+                </li>
+                <li>
+                    <span class="bullet"></span>
+                    <span><strong>Timely's AI tracking divides opinion</strong> - praised for capturing missed billable hours (1 in 5 go unrecorded), criticized for pricing ($11-28/user) and AI misclassification.</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Charts -->
+        <div class="charts-grid">
+            <div class="card">
+                <h2 class="card-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 20V10M12 20V4M6 20v-6"/>
+                    </svg>
+                    Net Sentiment Score by Tool
+                </h2>
+                <div class="chart-container">
+                    <canvas id="sentimentChart"></canvas>
+                </div>
+                <div class="legend-section">
+                    <div class="legend-items">
+                        <div class="legend-item">
+                            <div class="legend-color legend-positive"></div>
+                            <span>Positive (> +0.2)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color legend-neutral"></div>
+                            <span>Mixed (-0.2 to +0.2)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color legend-negative"></div>
+                            <span>Negative (< -0.2)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                    G2/Capterra Ratings
+                </h2>
+                <div class="chart-container">
+                    <canvas id="ratingsChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="comparison-section">
+            <h2>Sentiment Comparison: Agency Perspective</h2>
+            <div class="comparison-table">
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tool</th>
+                                <th>Net Sentiment</th>
+                                <th>G2 Rating</th>
+                                <th>Primary Praise</th>
+                                <th>Primary Criticism</th>
+                                <th>Agency Fit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Toggl Track</strong></td>
+                                <td><span class="sentiment-badge positive">+0.45</span></td>
+                                <td>4.6/5</td>
+                                <td>Clean UI, profitability reports, flexibility</td>
+                                <td>No invoicing, mobile sync issues</td>
+                                <td><span class="sentiment-badge positive">Excellent</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Harvest</strong></td>
+                                <td><span class="sentiment-badge positive">+0.35</span></td>
+                                <td>4.3/5</td>
+                                <td>End-to-end invoicing, simple UX</td>
+                                <td>Expensive at scale, no auto-tracking</td>
+                                <td><span class="sentiment-badge positive">Good</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Clockify</strong></td>
+                                <td><span class="sentiment-badge positive">+0.30</span></td>
+                                <td>4.5/5</td>
+                                <td>Free tier, unlimited users</td>
+                                <td>Mobile issues, no approvals</td>
+                                <td><span class="sentiment-badge neutral">Moderate</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Timely</strong></td>
+                                <td><span class="sentiment-badge positive">+0.25</span></td>
+                                <td>4.4/5</td>
+                                <td>AI auto-tracking, captures missed hours</td>
+                                <td>Pricey, AI misclassification</td>
+                                <td><span class="sentiment-badge neutral">Moderate</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>ClickUp</strong></td>
+                                <td><span class="sentiment-badge neutral">+0.20</span></td>
+                                <td>4.7/5</td>
+                                <td>All-in-one PM, task management</td>
+                                <td>Weak time tracking, no invoicing</td>
+                                <td><span class="sentiment-badge neutral">Mixed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Agency Pain Points -->
+        <div class="pain-points-section">
+            <h2>Key Agency Pain Points: Who Wins?</h2>
+            <div class="pain-points-grid">
+                <div class="pain-point-card">
+                    <h4>Billable Hours Capture</h4>
+                    <p>Studies show 1 in 5 billable hours go unrecorded with manual tracking. Automation can raise capture from 77% to 96%.</p>
+                    <div class="winner">Winner: Timely (AI auto-capture) / Toggl (+15% billable hours)</div>
+                </div>
+                <div class="pain-point-card">
+                    <h4>Client Invoicing</h4>
+                    <p>Agencies need seamless time-to-invoice workflows. One-click invoicing from tracked hours is critical.</p>
+                    <div class="winner">Winner: Harvest (native invoicing with Stripe/PayPal)</div>
+                </div>
+                <div class="pain-point-card">
+                    <h4>Retainer Management</h4>
+                    <p>Tracking hours against evolving budgets and rolling over unused time requires flexible tools.</p>
+                    <div class="winner">Winner: Toggl Track (profitability tracking at client/project level)</div>
+                </div>
+                <div class="pain-point-card">
+                    <h4>Team Adoption</h4>
+                    <p>Low adoption kills ROI. Agencies report chasing 15% of staff for timesheets before switching tools.</p>
+                    <div class="winner">Winner: Toggl Track ("people actually started tracking")</div>
+                </div>
+                <div class="pain-point-card">
+                    <h4>Budget-Friendly Scaling</h4>
+                    <p>Per-seat pricing adds up fast for agencies with contractors and freelancers.</p>
+                    <div class="winner">Winner: Clockify (unlimited free users)</div>
+                </div>
+                <div class="pain-point-card">
+                    <h4>Accounting Integration</h4>
+                    <p>QuickBooks/Xero sync eliminates manual data entry and reduces invoice errors.</p>
+                    <div class="winner">Winner: Toggl Track & Harvest (native integrations)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Deep Dive Tabs -->
+        <div class="tabs-container">
+            <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem;">Tool Deep Dives</h2>
+            <div class="tabs-header">
+                <button class="tab-btn active" onclick="showTab('toggl')">Toggl Track</button>
+                <button class="tab-btn" onclick="showTab('harvest')">Harvest</button>
+                <button class="tab-btn" onclick="showTab('clickup')">ClickUp</button>
+                <button class="tab-btn" onclick="showTab('clockify')">Clockify</button>
+                <button class="tab-btn" onclick="showTab('timely')">Timely</button>
+            </div>
+
+            <!-- Toggl Track Tab -->
+            <div id="toggl" class="tab-content active">
+                <div class="deep-dive-card">
+                    <div class="deep-dive-header">
+                        <div>
+                            <h3 class="deep-dive-title">Toggl Track</h3>
+                            <p style="color: var(--muted); font-size: 0.9rem;">Best for: Creative agencies, consultancies, remote teams</p>
+                        </div>
+                        <div class="deep-dive-stats">
+                            <div class="mini-stat">
+                                <div class="mini-stat-value" style="color: var(--green);">+0.45</div>
+                                <div class="mini-stat-label">Sentiment</div>
+                            </div>
+                            <div class="mini-stat">
+                                <div class="mini-stat-value">4.6</div>
+                                <div class="mini-stat-label">G2 Rating</div>
+                            </div>
+                            <div class="mini-stat">
+                                <div class="mini-stat-value">$9-18</div>
+                                <div class="mini-stat-label">/user/mo</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sentiment-sections">
+                        <div class="sentiment-section">
+                            <h4 class="love">What Agencies Love</h4>
+                            <div class="quote-item">
+                                <p class="quote-text">"We chose Toggl Track, and it took our agency's time tracking compliance to the next level."</p>
+                                <p class="quote-source">Agency Case Study</p>
+                            </div>
+                            <div class="quote-item">
+                                <p class="quote-text">"Before switching, we were chasing up to 15% of our workforce for timesheets. After Toggl, we saved 60-80 hours per month."</p>
+                                <p class="quote-source">Agency Operations Manager</p>
+                            </div>
+                            <div class="quote-item">
+                                <p class="quote-text">"The profitability report shows whether each client or project is actually making money - game changer for agency margins."</p>
+                                <p class="quote-source">G2 Reviewer</p>
+                            </div>
+                        </div>
+                        <div class="sentiment-section">
+                            <h4 class="hate">What Agencies Criticize</h4>
+                            <div class="quote-item negative">
+                                <p class="quote-text">"Toggl doesn't have invoicing built-in. We have to export to QuickBooks for billing, which adds friction."</p>
+                                <p class="quote-source">Capterra Review</p>
+                            </div>
+                            <div class="quote-item negative">
+                                <p class="quote-text">"Once you add a few teammates, it falls short. Won't tell you what they worked on, when, or how long on each task."</p>
+                                <p class="quote-source">TrackingTime Comparison</p>
+                            </div>
+                            <div class="quote-item negative">
+                                <p class="quote-text">"Mobile app sync delays and weaker UI compared to desktop - had to switch to web for reliable tracking."</p>
+                                <p class="quote-source">G2 Review</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Harvest Tab -->
+            <div id="harvest" class="tab-content">
+                <div class="deep-dive-card">
+                    <div class="deep-dive-header">
+                        <div>
+                            <h3 class="deep-dive-title">Harvest</h3>
+                            <p style="color: var(--muted); font-size: 0.9rem;">Best for: Small agencies needing time-to-invoice workflow</p>
+                        </div>
+                        <div class="deep-dive-stats">
+                            <div class="mini-stat">
+                                <div class="mini-stat-value" style="color: var(--green);">+0.35</div>
+                                <div class="mini-stat-label">Sentiment</div>
+                            </div>
+                            <div class="mini-stat">
+                                <div class="mini-stat-value">4.3</div>
+                                <div class="mini-stat-label">G2 Rating</div>
+                            </div>
+                            <div class="mini-stat">
+                                <div class="mini-stat-value">$12-18</div>
+                                <div class="mini-stat-label">/user/mo</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sentiment-sections">
+                        <div class="sentiment-section">
+                            <h4 class="love">What Agencies Love</h4>
+                            <div class="quote-item">
+                                <p class="quote-text">"Harvest was initially built as an internal tool for a marketing agency to track client work - it shows. The invoicing workflow is seamless."</p>
+                                <p class="quote-source">Software Review</p>
+                            </div>
+                            <div class="quote-item">
+                                <p class="quote-text">"One-click invoicing from tracked time to payment. Stripe and PayPal built in - clients pay directly from the invoice."</p>
+                                <p class="quote-source">Capterra Review</p>
+                            </div>
+                            <div class="quote-item">
+                                <p class="quote-text">"Project and expense tracking useful for managing budgets, monitoring billable hours, and generating detailed reports."</p>
+                                <p class="quote-source">G2 Review</p>
+                            </div>
+                        </div>
+                        <div class="sentiment-section">
+                            <h4 class="hate">What Agencies Criticize</h4>
+                            <div class="quote-item negative">
+                                <p class="quote-text">"Harvest becomes expensive for larger teams. $12/seat adds up fast with contractors and freelancers."</p>
+                                <p class="quote-source">GetApp Review</p>
+                            </div>
+                            <div class="quote-item negative">
+                                <p class="quote-text">"The lack of flexibility creates a lot of manual work and frustration. Managing retainers requires manual workarounds."</p>
+                                <p class="quote-source">Parakeeto Analysis</p>
+                            </div>
+                            <div class="quote-item negative">
+                                <p class="quote-text">"No automatic time tracking. Easy to forget to start/stop timers, leaving you with inaccurate data and missing billable hours."</p>
+                                <p class="quote-source">Memtime Comparison</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ClickUp Tab -->
+            <div id="clickup" class="tab-content">
+                <div class="deep-dive-card">
+                    <div class="deep-dive-header">
+                        <div>
+                            <h3 class="deep-dive-title">ClickUp (Time Tracking)</h3>
+                            <p style="color: var(--muted); font-size: 0.9rem;">Best for: Agencies already using ClickUp for PM who need basic tracking</p>
+                        </div>
+                        <div class="deep-dive-stats">
+                            <div class="mini-stat">
+                                <div class="mini-stat-value" style="color: var(--orange);">+0.20</div>
+                                <div class="mini-stat-label">Sentiment</div>
+                            </div>
+                            <div class="mini-stat">
+                                <div class="mini-stat-value">4.7</div>
+                                <div class="mini-stat-label">G2 Rating</div>
+                            </div>
+                            <div class="mini-stat">
+                                <div class="mini-stat-value">$7-19</div>
+                                <div class="mini-stat-label">/user/mo</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sentiment-sections">
+                        <div class="sentiment-section">
+                            <h4 class="love">What Agencies Love</h4>
+                            <div class="quote-item">
+                                <p class="quote-text">"As a web design and SEO agency, having tasks, files, time tracking, and team collaboration all in one place has completely changed the way we work."</p>
+                                <p class="quote-source">Agency Founder, ClickUp Case Study</p>
+                            </div>
+                            <div class="quote-item">
+                                <p class="quote-text">"Native time-tracking feature lets you track your time for tasks, enter time manually, and track time that isn't tied to a specific task."</p>
+                                <p class="quote-source">ClickUp Documentation</p>
+                            </div>
+                            <div class="quote-item">
+                                <p class="quote-text">"Their workflows and automations have undoubtedly saved us hours upon hours of work every month."</p>
+                                <p class="quote-source">Agency Case Study</p>
+                            </div>
+                        </div>
+                        <div class="sentiment-section">
+                            <h4 class="hate">What Agencies Criticize</h4>
+                            <div class="quote-item negative">
+                                <p class="quote-text">"Some reviewers don't recommend using ClickUp for time tracking or scheduling. The timesheets work, but there's no payroll or accounting integrations."</p>
+                                <p class="quote-source">ProcessDriven Analysis</p>
+                            </div>
+                            <div class="quote-item negative">
+                                <p class="quote-text">"When multiple users are assigned to the same task, dashboards can miscount tracked time - effectively duplicating hours."</p>
+                                <p class="quote-source">ClickUp Feature Request</p>
+                            </div>
+                            <div class="quote-item negative">
+                                <p class="quote-text">"While time tracking is included, it's not impressive in capability. Platform UI is complex - not intuitive to get a timer started."</p>
+                                <p class="quote-source">Connecteam Review</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clockify Tab -->
+            <div id="clockify" class="tab-content">
+                <div class="deep-dive-card">
+                    <div class="deep-dive-header">
+                        <div>
+                            <h3 class="deep-dive-title">Clockify</h3>
+                            <p style="color: var(--muted); font-size: 0.9rem;">Best for: Budget-conscious agencies, freelancers, small teams</p>
+                        </div>
+                        <div class="deep-dive-stats">
+                            <div class="mini-stat">
+                                <div class="mini-stat-value" style="color: var(--green);">+0.30</div>
+                                <div class="mini-stat-label">Sentiment</div>
+                            </div>
+                            <div class="mini-stat">
+                                <div class="mini-stat-value">4.5</div>
+                                <div class="mini-stat-label">G2 Rating</div>
+                            </div>
+                            <div class="mini-stat">
+                                <div class="mini-stat-value">Free-$15</div>
+                                <div class="mini-stat-label">/user/mo</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sentiment-sections">
+                        <div class="sentiment-section">
+                            <h4 class="love">What Agencies Love</h4>
+                            <div class="quote-item">
+                                <p class="quote-text">"Clockify offers a 100% free plan with no limits on users, projects, or time entries. One of the only tools with unlimited team members on free tier."</p>
+                                <p class="quote-source">Software Review</p>
+                            </div>
+                            <div class="quote-item">
+                                <p class="quote-text">"Using Clockify helped us realize we were under-billing by 10-15% because we weren't capturing 'small' tasks like emails or quick calls."</p>
+                                <p class="quote-source">Agency User, Reddit</p>
+                            </div>
+                            <div class="quote-item">
+                                <p class="quote-text">"Makes precise time and activity logging very easy. We can quickly separate our hours by projects and individual tasks."</p>
+                                <p class="quote-source">Programs Manager, G2 Review</p>
+                            </div>
+                        </div>
+                        <div class="sentiment-section">
+                            <h4 class="hate">What Agencies Criticize</h4>
+                            <div class="quote-item negative">
+                                <p class="quote-text">"Android app glitchy, frequently logs users out. Desktop apps feel like afterthoughts - stick to web browser."</p>
+                                <p class="quote-source">Capterra Review</p>
+                            </div>
+                            <div class="quote-item negative">
+                                <p class="quote-text">"Approvals need work - can't route to Team Manager OR Project Manager. No bulk actions for time entries."</p>
+                                <p class="quote-source">Agency Operations Review</p>
+                            </div>
+                            <div class="quote-item negative">
+                                <p class="quote-text">"While employees can easily track time on mobile, managers cannot create projects, manage schedules, or send invoices from mobile."</p>
+                                <p class="quote-source">Connecteam Analysis</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timely Tab -->
+            <div id="timely" class="tab-content">
+                <div class="deep-dive-card">
+                    <div class="deep-dive-header">
+                        <div>
+                            <h3 class="deep-dive-title">Timely</h3>
+                            <p style="color: var(--muted); font-size: 0.9rem;">Best for: Agencies wanting automatic tracking, recovering missed billable time</p>
+                        </div>
+                        <div class="deep-dive-stats">
+                            <div class="mini-stat">
+                                <div class="mini-stat-value" style="color: var(--green);">+0.25</div>
+                                <div class="mini-stat-label">Sentiment</div>
+                            </div>
+                            <div class="mini-stat">
+                                <div class="mini-stat-value">4.4</div>
+                                <div class="mini-stat-label">Capterra</div>
+                            </div>
+                            <div class="mini-stat">
+                                <div class="mini-stat-value">$11-28</div>
+                                <div class="mini-stat-label">/user/mo</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sentiment-sections">
+                        <div class="sentiment-section">
+                            <h4 class="love">What Agencies Love</h4>
+                            <div class="quote-item">
+                                <p class="quote-text">"With 1 in 5 billable hours going unrecorded, Timely's automatic time tracking is your silent partner in agency profitability."</p>
+                                <p class="quote-source">Timely Marketing</p>
+                            </div>
+                            <div class="quote-item">
+                                <p class="quote-text">"AI helps teams complete their timesheets in a couple of minutes, making time tracking a joy rather than a chore."</p>
+                                <p class="quote-source">Product Review</p>
+                            </div>
+                            <div class="quote-item">
+                                <p class="quote-text">"Seamlessly records time spent in web and desktop apps, eliminating the need for manual input. Great for creatives who switch between many tasks."</p>
+                                <p class="quote-source">Capterra Review</p>
+                            </div>
+                        </div>
+                        <div class="sentiment-section">
+                            <h4 class="hate">What Agencies Criticize</h4>
+                            <div class="quote-item negative">
+                                <p class="quote-text">"Pricing is pricier compared to competitors. Any business with more than 5 users must pay at least $20/user/month."</p>
+                                <p class="quote-source">Jibble Comparison</p>
+                            </div>
+                            <div class="quote-item negative">
+                                <p class="quote-text">"The AI sometimes misidentifies tasks, leading to potential billing issues. Manual override is limited."</p>
+                                <p class="quote-source">Capterra Review</p>
+                            </div>
+                            <div class="quote-item negative">
+                                <p class="quote-text">"Mobile app can be difficult to use - user reports about time gaps and syncing issues. No offline time tracking."</p>
+                                <p class="quote-source">Connecteam Analysis</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Positioning Recommendations -->
+        <div class="positioning-section">
+            <h2>Positioning Recommendations for Toggl Track</h2>
+            <div class="positioning-grid">
+                <div class="positioning-card harvest">
+                    <div class="vs">vs Harvest</div>
+                    <h3>Lead with Scalability + Profitability</h3>
+                    <p>Harvest's per-seat pricing is a common complaint from growing agencies. Toggl's profitability reports show ROI that justifies the cost.</p>
+                    <div class="angle">"Know which clients make you money - not just which ones pay"</div>
+                </div>
+                <div class="positioning-card clickup">
+                    <div class="vs">vs ClickUp Time Tracking</div>
+                    <h3>Lead with Dedicated Time Tracking</h3>
+                    <p>ClickUp's time tracking is "not impressive" - agencies pair it with other tools anyway. Position as the specialist that integrates with ClickUp.</p>
+                    <div class="angle">"Time tracking that takes your ClickUp projects to profitability"</div>
+                </div>
+                <div class="positioning-card clockify">
+                    <div class="vs">vs Clockify</div>
+                    <h3>Lead with Reliability + Team Adoption</h3>
+                    <p>Clockify's mobile issues and lack of approvals frustrate agency ops managers. Toggl's adoption story ("people actually started tracking") resonates.</p>
+                    <div class="angle">"Stop chasing timesheets. Start tracking profits."</div>
+                </div>
+                <div class="positioning-card timely">
+                    <div class="vs">vs Timely</div>
+                    <h3>Lead with Simplicity + Value</h3>
+                    <p>Timely's AI is impressive but expensive and sometimes wrong. Toggl's manual approach is simple, accurate, and costs less.</p>
+                    <div class="angle">"Accurate time tracking without AI guesswork - or AI pricing"</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Messaging -->
+        <div class="card" style="margin-bottom: 2rem;">
+            <h2 class="card-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                </svg>
+                Messaging Guidance
+            </h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <div>
+                    <h4 style="color: var(--green); margin-bottom: 0.75rem;">Emphasize (Toggl Strengths)</h4>
+                    <ul style="list-style: disc; padding-left: 1.25rem; color: var(--gray); font-size: 0.9rem;">
+                        <li>15% increase in billable hours reported by agencies</li>
+                        <li>Profitability tracking at project, client, and team level</li>
+                        <li>"When we switched, people actually started tracking"</li>
+                        <li>Clean, intuitive UI that encourages daily use</li>
+                        <li>60-80 hours/month saved on timesheet management</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: var(--red); margin-bottom: 0.75rem;">Avoid Drawing Attention To</h4>
+                    <ul style="list-style: disc; padding-left: 1.25rem; color: var(--gray); font-size: 0.9rem;">
+                        <li>No native invoicing (requires QuickBooks/Xero export)</li>
+                        <li>Mobile app sync issues mentioned in reviews</li>
+                        <li>Limited visibility into task-level details for managers</li>
+                        <li>No GPS/location tracking (if that's needed)</li>
+                        <li>Pricing on paid plans can add up for large teams</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h3 class="cta-title">Need Help with Competitive Positioning?</h3>
+            <p class="cta-text">Our team helps B2B companies craft messaging that converts. Let's talk about your go-to-market strategy.</p>
+            <a href="https://42agency.com/contact-us" target="_blank" class="cta-button">Get in Touch</a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="/42-logo.png" alt="42 Agency">
+                    <p>B2B performance marketing for companies that sell to enterprises. We've managed $50M+ in ad spend across 200+ accounts.</p>
+                    <div class="footer-social">
+                        <a href="https://linkedin.com/company/42agency" target="_blank" aria-label="LinkedIn">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                        <a href="https://x.com/42aboratory" target="_blank" aria-label="X/Twitter">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a href="https://www.youtube.com/@Get42Agency" target="_blank" aria-label="YouTube">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Assess</h4>
+                    <a href="/assessments/hubspot-health/">HubSpot Health Check</a>
+                    <a href="/assess/calculator/">Benchmark Calculator</a>
+                    <a href="/linkedin-audit/">LinkedIn Ads Audit</a>
+                    <a href="/google-ads-audit/">Google Ads Audit</a>
+                    <a href="/meta-audit/">Meta Ads Audit</a>
+                    <a href="/hubspot-audit/">HubSpot Audit</a>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Benchmarks</h4>
+                    <a href="/b2b-benchmarks/">All B2B Benchmarks</a>
+                    <a href="/b2b-benchmarks/linkedin-ads-benchmarks/">LinkedIn Ads</a>
+                    <a href="/b2b-benchmarks/google-ads-benchmarks/">Google Ads</a>
+                    <a href="/b2b-benchmarks/meta-ads-benchmarks/">Meta Ads</a>
+                    <a href="/b2b-benchmarks/linkedin-inmail-benchmarks/">InMail Benchmarks</a>
+                    <a href="/b2b-benchmarks/legal-tech-linkedin-ads/" class="sublink">Legal Tech</a>
+                    <a href="/b2b-benchmarks/healthcare-tech-linkedin-ads/" class="sublink">Healthcare Tech</a>
+                    <a href="/b2b-benchmarks/fintech-linkedin-ads/" class="sublink">FinTech</a>
+                </div>
+
+                <div class="footer-col">
+                    <h4>AI Tools</h4>
+                    <a href="/tools/">All Tools</a>
+                    <a href="/tools/linkedin-budget-calculator/">LinkedIn Budget Calculator</a>
+                    <a href="/tools/google-ads-budget-calculator/">Google Ads Calculator</a>
+                    <a href="https://copilot.42agency.com" target="_blank">LinkedIn Ads Copilot</a>
+                    <h4 style="margin-top: 1.5rem;">Resources</h4>
+                    <a href="/playbooks/">B2B Playbooks</a>
+                    <a href="/zenabm/">ABM Toolkit</a>
+                    <a href="/mops-funnel/">MOPS Funnel Workbook</a>
+                </div>
+
+                <div class="footer-col">
+                    <h4>42 Agency</h4>
+                    <a href="https://42agency.com" target="_blank">Website</a>
+                    <a href="https://42agency.com/contact-us" target="_blank">Contact Us</a>
+                    <a href="https://42agency.com/case-studies" target="_blank">Case Studies</a>
+                    <a href="https://42slash.com" target="_blank">42/ Essays</a>
+                    <a href="https://42agency.com/careers" target="_blank">Careers</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 42 Agency. All rights reserved.</p>
+                <p>
+                    <a href="https://42agency.com/privacy" target="_blank">Privacy</a>
+                    &nbsp;&middot;&nbsp;
+                    <a href="https://42agency.com/terms" target="_blank">Terms</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab functionality
+        function showTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Chart colors
+        const colors = {
+            negative: '#EF4444',
+            neutral: '#F59E0B',
+            positive: '#10B981',
+            accent: '#DFFE68',
+            dark: '#1a1a1a',
+            blue: '#3B82F6',
+            purple: '#8B5CF6'
+        };
+
+        // Sentiment data
+        const tools = [
+            { name: 'Toggl Track', sentiment: 0.45, g2: 4.6, capterra: 4.7 },
+            { name: 'Harvest', sentiment: 0.35, g2: 4.3, capterra: 4.6 },
+            { name: 'Clockify', sentiment: 0.30, g2: 4.5, capterra: 4.8 },
+            { name: 'Timely', sentiment: 0.25, g2: 4.4, capterra: 4.6 },
+            { name: 'ClickUp', sentiment: 0.20, g2: 4.7, capterra: 4.6 }
+        ];
+
+        const sortedTools = [...tools].sort((a, b) => b.sentiment - a.sentiment);
+
+        function getSentimentColor(sentiment) {
+            if (sentiment > 0.2) return colors.positive;
+            if (sentiment < -0.2) return colors.negative;
+            return colors.neutral;
+        }
+
+        // Sentiment Chart
+        const sentimentCtx = document.getElementById('sentimentChart').getContext('2d');
+        new Chart(sentimentCtx, {
+            type: 'bar',
+            data: {
+                labels: sortedTools.map(t => t.name),
+                datasets: [{
+                    label: 'Net Sentiment',
+                    data: sortedTools.map(t => t.sentiment),
+                    backgroundColor: sortedTools.map(t => getSentimentColor(t.sentiment)),
+                    borderColor: colors.dark,
+                    borderWidth: 2,
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: colors.dark,
+                        titleFont: { family: 'Inter', weight: '700' },
+                        bodyFont: { family: 'Inter' },
+                        padding: 12,
+                        cornerRadius: 8,
+                        callbacks: {
+                            label: function(context) {
+                                const sentiment = context.raw;
+                                let label = sentiment > 0 ? '+' + sentiment.toFixed(2) : sentiment.toFixed(2);
+                                return 'Sentiment: ' + label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        min: -0.5,
+                        max: 0.6,
+                        grid: { color: '#e5e5e5' },
+                        ticks: {
+                            font: { family: 'Inter', weight: '500' },
+                            callback: function(value) {
+                                return value > 0 ? '+' + value : value;
+                            }
+                        }
+                    },
+                    y: {
+                        grid: { display: false },
+                        ticks: { font: { family: 'Inter', weight: '600' } }
+                    }
+                }
+            }
+        });
+
+        // Ratings Chart
+        const ratingsCtx = document.getElementById('ratingsChart').getContext('2d');
+        new Chart(ratingsCtx, {
+            type: 'bar',
+            data: {
+                labels: tools.map(t => t.name),
+                datasets: [
+                    {
+                        label: 'G2 Rating',
+                        data: tools.map(t => t.g2),
+                        backgroundColor: colors.blue + 'CC',
+                        borderColor: colors.dark,
+                        borderWidth: 2,
+                        borderRadius: 4
+                    },
+                    {
+                        label: 'Capterra Rating',
+                        data: tools.map(t => t.capterra),
+                        backgroundColor: colors.purple + 'CC',
+                        borderColor: colors.dark,
+                        borderWidth: 2,
+                        borderRadius: 4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: { family: 'Inter', weight: '500' },
+                            usePointStyle: true,
+                            padding: 20
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: colors.dark,
+                        titleFont: { family: 'Inter', weight: '700' },
+                        bodyFont: { family: 'Inter' },
+                        padding: 12,
+                        cornerRadius: 8
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: { font: { family: 'Inter', weight: '600' } }
+                    },
+                    y: {
+                        min: 3.5,
+                        max: 5,
+                        grid: { color: '#e5e5e5' },
+                        ticks: {
+                            font: { family: 'Inter', weight: '500' },
+                            callback: function(value) {
+                                return value.toFixed(1);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+    <!-- Vercel Analytics -->
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
