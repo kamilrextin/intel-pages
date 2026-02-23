@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Competitor Weakness Map: D&B Supplier Data | TealBook</title>
+    <meta name="description" content="Conquest campaign intelligence for TealBook. Real practitioner complaints about Dun & Bradstreet and legacy supplier data platforms from Trustpilot, Gartner, and procurement communities.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- GTM -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MM5BTNS');</script>
+
+    <!-- HubSpot -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/44888286.js"></script>
+
+    <style>
+        :root {
+            --accent: #DFFE68;
+            --accent-hover: #C8E85C;
+            --black: #1a1a1a;
+            --gray: #4a4a4a;
+            --muted: #6b6b6b;
+            --light-gray: #f5f5f5;
+            --green: #10B981;
+            --orange: #F59E0B;
+            --red: #EF4444;
+            --blue: #3B82F6;
+            --teal: #0D9488;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            background-color: var(--light-gray);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        /* Global Header */
+        .header {
+            border-bottom: 2px solid var(--black);
+            padding: 0.75rem 1.5rem;
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo img { height: 28px; width: auto; }
+        .nav { display: flex; align-items: center; gap: 0.25rem; }
+        .nav a {
+            padding: 0.5rem 1rem;
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.15s;
+        }
+        .nav a:hover { color: var(--black); background: var(--light-gray); }
+        .nav-cta {
+            margin-left: 0.5rem;
+            padding: 0.5rem 1rem !important;
+            background: var(--black) !important;
+            color: white !important;
+            border-radius: 6px;
+            font-weight: 600 !important;
+        }
+        @media (max-width: 768px) { .nav { display: none; } }
+
+        /* Hero */
+        .hero {
+            background: #ffffff;
+            border-bottom: 2px solid var(--black);
+            padding: 3rem 2rem;
+        }
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .prepared-for {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--light-gray);
+            border: 2px solid var(--black);
+            border-radius: 8px;
+        }
+        .prepared-for img { height: 28px; }
+        .prepared-for span { font-size: 0.85rem; color: var(--muted); }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+        }
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+        .date { font-size: 0.875rem; color: var(--muted); }
+
+        .methodology {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: var(--light-gray);
+            border: 2px solid var(--black);
+            border-radius: 8px;
+        }
+        .methodology-title {
+            font-weight: 700;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+        .methodology p { font-size: 0.85rem; color: var(--gray); }
+        .source-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+        .source-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--gray);
+        }
+
+        /* Main Content */
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.5rem;
+        }
+        .section-subtitle {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Quote Cards */
+        .quotes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .quote-card {
+            background: #ffffff;
+            border: 2px solid var(--black);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 4px 4px 0px 0px var(--red);
+        }
+        .quote-theme {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        .quote-theme::before { content: ""; }
+        .quote-text {
+            font-size: 0.95rem;
+            font-style: italic;
+            color: var(--gray);
+            margin-bottom: 0.75rem;
+            padding-left: 0.75rem;
+            border-left: 3px solid var(--red);
+        }
+        .quote-source {
+            font-size: 0.8rem;
+            color: var(--muted);
+            text-align: right;
+        }
+        .badge-trustpilot {
+            display: inline-block;
+            background: #00B67A;
+            color: white;
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .badge-hn {
+            display: inline-block;
+            background: #FF6600;
+            color: white;
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .badge-gartner {
+            display: inline-block;
+            background: #002856;
+            color: white;
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .badge-ftc {
+            display: inline-block;
+            background: #1a1a1a;
+            color: white;
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        /* Opportunity Card */
+        .card {
+            background: #ffffff;
+            border: 2px solid var(--black);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 4px 4px 0px 0px var(--black);
+            margin-bottom: 2rem;
+        }
+        .card-accent {
+            background: var(--accent);
+            box-shadow: 6px 6px 0px 0px var(--black);
+        }
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        @media (max-width: 600px) { .stat-grid { grid-template-columns: 1fr; } }
+        .stat-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--black);
+        }
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+        .campaign-concept {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .campaign-concept h4 {
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+        .campaign-concept li {
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 0.5rem;
+        }
+        .campaign-concept li:last-child { border-bottom: none; }
+        .campaign-concept .label { font-weight: 600; min-width: 60px; }
+
+        /* Messaging Angles */
+        .angles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        .angle-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 3px 3px 0px 0px var(--black);
+        }
+        .angle-card strong { display: block; margin-bottom: 0.25rem; }
+        .angle-card span { color: var(--gray); font-size: 0.9rem; }
+
+        /* CTA */
+        .cta-section {
+            background: var(--accent);
+            border: 2px solid var(--black);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 6px 6px 0px 0px var(--black);
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .cta-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+        .cta-text {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+        .cta-button {
+            display: inline-block;
+            background: var(--black);
+            color: white;
+            padding: 0.875rem 2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .cta-button:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0px 0px var(--black);
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 2px solid var(--black);
+            padding: 3rem 1.5rem;
+            background: var(--black);
+            margin-top: 2rem;
+        }
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer img { height: 24px; filter: brightness(0) invert(1); }
+        .footer p { color: #999; font-size: 0.85rem; }
+        @media (max-width: 600px) {
+            .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+
+        /* Competitor context */
+        .competitor-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .competitor-tag {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--black);
+        }
+        .competitor-tag.primary {
+            background: var(--red);
+            color: white;
+            border-color: var(--red);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <a href="/" class="logo">
+                <img src="/42-logo.png" alt="42 Agency">
+            </a>
+            <nav class="nav">
+                <a href="/assess/">Assess</a>
+                <a href="/b2b-benchmarks/">Benchmarks</a>
+                <a href="/tools/">Tools</a>
+                <a href="/playbooks/">Playbooks</a>
+                <a href="https://42agency.com/contact" target="_blank" class="nav-cta">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="prepared-for">
+                <img src="https://www.tealbook.com/wp-content/uploads/2021/10/TealBook-Logo-RGB-Color.png" alt="TealBook">
+                <span>Prepared for TealBook</span>
+            </div>
+            <h1>Competitor Weakness Map</h1>
+            <p class="subtitle">D&B, SAP Ariba & Legacy Supplier Data Platforms</p>
+            <p class="date">February 2026</p>
+
+            <div class="methodology">
+                <div class="methodology-title">Why This Matters</div>
+                <p>Legacy supplier data providers like Dun & Bradstreet dominate the market through entrenchment, not quality. Procurement teams are frustrated with outdated records, duplicate suppliers, and paying to fix errors. These pain points become your messaging angles for conquest campaigns targeting D&B users and SAP Ariba customers struggling with supplier data quality.</p>
+                <div class="source-tags">
+                    <span class="source-tag">Trustpilot (1.1 stars)</span>
+                    <span class="source-tag">Hacker News</span>
+                    <span class="source-tag">Gartner Peer Insights</span>
+                    <span class="source-tag">FTC Settlement 2025</span>
+                    <span class="source-tag">Proformative</span>
+                </div>
+                <div class="competitor-list">
+                    <span class="competitor-tag primary">D&B (Primary Target)</span>
+                    <span class="competitor-tag">SAP Ariba</span>
+                    <span class="competitor-tag">Scoutbee/Coupa</span>
+                    <span class="competitor-tag">Manual Spreadsheets</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main">
+        <section style="margin-bottom: 2rem;">
+            <h2 class="section-title">What Procurement Teams Are Saying</h2>
+            <p class="section-subtitle">Real complaints from procurement leaders and finance professionals</p>
+
+            <div class="quotes-grid">
+                <div class="quote-card">
+                    <div class="quote-theme">Data Quality "Drags Everything Down"</div>
+                    <p class="quote-text">"The data quality constantly drags the whole thing down. The weakest link is data accuracy - too many contacts outdated, people who've left, retired, or died."</p>
+                    <p class="quote-text">"Financials are unreliable, even for public companies. Modeled revenue inaccurate enough to flood searches with wrong targets."</p>
+                    <p class="quote-source"><span class="badge-gartner">Gartner</span> Peer Insights Review</p>
+                </div>
+
+                <div class="quote-card">
+                    <div class="quote-theme">Paying to Fix Their Errors</div>
+                    <p class="quote-text">"Does it make sense when D&B asks you to pay to correct an error in their records?"</p>
+                    <p class="quote-text">"Once D&B gets information wrong, it is not always easy to fix. Their website is archaic, unintuitive, and clearly built for a pre-digital era."</p>
+                    <p class="quote-source"><span class="badge-trustpilot">Trustpilot</span> Finance Director, 2026</p>
+                </div>
+
+                <div class="quote-card">
+                    <div class="quote-theme">Aggressive Sales, No Value</div>
+                    <p class="quote-text">"The salesman's phone pitch bordered on 'Nice little business you got there. It'd be a shame if anything happened to your DUNS rating.'"</p>
+                    <p class="quote-text">"It ended up taking 3 tries and six weeks for D&B to update my information."</p>
+                    <p class="quote-source"><span class="badge-hn">HN</span> Hacker News Discussion</p>
+                </div>
+
+                <div class="quote-card">
+                    <div class="quote-theme">FTC Settlement: $5.7M Fine</div>
+                    <p class="quote-text">"D&B provided inaccurate information about products to customers before renewing subscriptions, leading to overcharging."</p>
+                    <p class="quote-text">"Misrepresenting that purchasing fee-based products would improve credit scores."</p>
+                    <p class="quote-source"><span class="badge-ftc">FTC</span> September 2025 Settlement</p>
+                </div>
+            </div>
+        </section>
+
+        <section style="margin-bottom: 2rem;">
+            <h2 class="section-title">The Opportunity</h2>
+            <p class="section-subtitle">Targetable procurement professionals struggling with supplier data</p>
+
+            <div class="card card-accent">
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">350K+</div>
+                        <div class="stat-label">Procurement Professionals on LinkedIn</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">49%</div>
+                        <div class="stat-label">CPOs cite data accuracy as top challenge (Gartner 2025)</div>
+                    </div>
+                </div>
+
+                <p style="font-size: 0.9rem; color: var(--gray);">
+                    <strong>Targeting:</strong> Job titles (CPO, VP Procurement, Director Supply Chain, Procurement Manager) + Skills (SAP Ariba, Supplier Management, Vendor Data) + Enterprise (1,000+ employees) + Industries (Manufacturing, Financial Services, Healthcare)
+                </p>
+
+                <div class="campaign-concept">
+                    <h4>Conquest Campaign Concept</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li><span class="label">Hook:</span> "Still cleaning up supplier duplicates every quarter?"</li>
+                        <li><span class="label">Pain:</span> Target D&B's data accuracy issues + "pay to fix errors" model</li>
+                        <li><span class="label">Proof:</span> TealBook's AI-powered entity resolution + 225M verified suppliers</li>
+                        <li><span class="label">CTA:</span> "See your vendor master transformed in 15 minutes"</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Messaging Angles</h2>
+            <p class="section-subtitle">Ad copy directions based on competitor weaknesses</p>
+
+            <div class="angles-grid">
+                <div class="angle-card">
+                    <strong>Against "Outdated Data"</strong>
+                    <span>"225M supplier profiles. Continuously verified. Not guesswork from 2019."</span>
+                </div>
+                <div class="angle-card">
+                    <strong>Against "Pay to Fix Errors"</strong>
+                    <span>"Your supplier data should improve automatically - not cost more to correct."</span>
+                </div>
+                <div class="angle-card">
+                    <strong>Against "Duplicate Records"</strong>
+                    <span>"Entity resolution that actually works. One supplier, one record, one truth."</span>
+                </div>
+                <div class="angle-card">
+                    <strong>Against "Modeled Revenue"</strong>
+                    <span>"Real financials from verified sources. Not algorithms guessing at revenue."</span>
+                </div>
+                <div class="angle-card">
+                    <strong>Against "Manual Cleanup"</strong>
+                    <span>"Stop the quarterly vendor master cleanup. Automate it."</span>
+                </div>
+                <div class="angle-card">
+                    <strong>Against "SAP Ariba Gaps"</strong>
+                    <span>"Push clean, enriched data into Ariba. The way it was meant to work."</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="cta-section">
+            <h3 class="cta-title">Ready to Build This Campaign?</h3>
+            <p class="cta-text">15 minutes to walk through the targeting, messaging, and budget.</p>
+            <a href="https://42agency.com/contact" class="cta-button">Schedule a Strategy Call</a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <img src="/42-logo.png" alt="42 Agency">
+            <p>B2B Performance Marketing</p>
+        </div>
+    </footer>
+</body>
+</html>
