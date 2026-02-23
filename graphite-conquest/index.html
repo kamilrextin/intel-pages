@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Competitor Weakness Map: SAP Ariba & Coupa | Graphite Connect</title>
+    <meta name="description" content="Conquest campaign intelligence for Graphite Connect. Real practitioner complaints about SAP Ariba and Coupa from G2, Trustpilot, and procurement communities.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- GTM -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MM5BTNS');</script>
+
+    <!-- HubSpot -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/44888286.js"></script>
+
+    <style>
+        :root {
+            --accent: #DFFE68;
+            --accent-hover: #C8E85C;
+            --black: #1a1a1a;
+            --gray: #4a4a4a;
+            --muted: #6b6b6b;
+            --light-gray: #f5f5f5;
+            --green: #10B981;
+            --orange: #F59E0B;
+            --red: #EF4444;
+            --blue: #3B82F6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            background-color: var(--light-gray);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        /* Global Header */
+        .header {
+            border-bottom: 2px solid var(--black);
+            padding: 0.75rem 1.5rem;
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo img { height: 28px; width: auto; }
+        .nav { display: flex; align-items: center; gap: 0.25rem; }
+        .nav a {
+            padding: 0.5rem 1rem;
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.15s;
+        }
+        .nav a:hover { color: var(--black); background: var(--light-gray); }
+        .nav-cta {
+            margin-left: 0.5rem;
+            padding: 0.5rem 1rem !important;
+            background: var(--black) !important;
+            color: white !important;
+            border-radius: 6px;
+            font-weight: 600 !important;
+        }
+        @media (max-width: 768px) { .nav { display: none; } }
+
+        /* Hero */
+        .hero {
+            background: #ffffff;
+            border-bottom: 2px solid var(--black);
+            padding: 3rem 2rem;
+        }
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .prepared-for {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--light-gray);
+            border: 2px solid var(--black);
+            border-radius: 8px;
+        }
+        .prepared-for img { height: 24px; }
+        .prepared-for span { font-size: 0.85rem; color: var(--muted); }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+        }
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+        .date { font-size: 0.875rem; color: var(--muted); }
+
+        .methodology {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: var(--light-gray);
+            border: 2px solid var(--black);
+            border-radius: 8px;
+        }
+        .methodology-title {
+            font-weight: 700;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+        .methodology p { font-size: 0.85rem; color: var(--gray); }
+        .source-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+        .source-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--gray);
+        }
+
+        /* Main Content */
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.5rem;
+        }
+        .section-subtitle {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Quote Cards */
+        .quotes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .quote-card {
+            background: #ffffff;
+            border: 2px solid var(--black);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 4px 4px 0px 0px var(--red);
+        }
+        .quote-theme {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        .quote-theme::before { content: ""; }
+        .quote-text {
+            font-size: 0.95rem;
+            font-style: italic;
+            color: var(--gray);
+            margin-bottom: 0.75rem;
+            padding-left: 0.75rem;
+            border-left: 3px solid var(--red);
+        }
+        .quote-source {
+            font-size: 0.8rem;
+            color: var(--muted);
+            text-align: right;
+        }
+        .badge-trustpilot {
+            display: inline-block;
+            background: #00b67a;
+            color: white;
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .badge-g2 {
+            display: inline-block;
+            background: #FF492C;
+            color: white;
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .badge-procurist {
+            display: inline-block;
+            background: #6366F1;
+            color: white;
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .badge-bbb {
+            display: inline-block;
+            background: #0067C5;
+            color: white;
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        /* Opportunity Card */
+        .card {
+            background: #ffffff;
+            border: 2px solid var(--black);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 4px 4px 0px 0px var(--black);
+            margin-bottom: 2rem;
+        }
+        .card-accent {
+            background: var(--accent);
+            box-shadow: 6px 6px 0px 0px var(--black);
+        }
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        @media (max-width: 600px) { .stat-grid { grid-template-columns: 1fr; } }
+        .stat-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--black);
+        }
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+        .campaign-concept {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .campaign-concept h4 {
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+        .campaign-concept li {
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 0.5rem;
+        }
+        .campaign-concept li:last-child { border-bottom: none; }
+        .campaign-concept .label { font-weight: 600; min-width: 60px; }
+
+        /* Messaging Angles */
+        .angles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        .angle-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 3px 3px 0px 0px var(--black);
+        }
+        .angle-card strong { display: block; margin-bottom: 0.25rem; }
+        .angle-card span { color: var(--gray); font-size: 0.9rem; }
+
+        /* CTA */
+        .cta-section {
+            background: var(--accent);
+            border: 2px solid var(--black);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 6px 6px 0px 0px var(--black);
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .cta-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+        .cta-text {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+        .cta-button {
+            display: inline-block;
+            background: var(--black);
+            color: white;
+            padding: 0.875rem 2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .cta-button:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0px 0px var(--black);
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 2px solid var(--black);
+            padding: 3rem 1.5rem;
+            background: var(--black);
+            margin-top: 2rem;
+        }
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer img { height: 24px; filter: brightness(0) invert(1); }
+        .footer p { color: #999; font-size: 0.85rem; }
+        @media (max-width: 600px) {
+            .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+
+        /* Competitor tabs */
+        .competitor-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .competitor-tab {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--black);
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            background: white;
+            transition: all 0.15s;
+        }
+        .competitor-tab.active {
+            background: var(--black);
+            color: white;
+        }
+        .competitor-tab:hover:not(.active) {
+            background: var(--light-gray);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <a href="/" class="logo">
+                <img src="/42-logo.png" alt="42 Agency">
+            </a>
+            <nav class="nav">
+                <a href="/assess/">Assess</a>
+                <a href="/b2b-benchmarks/">Benchmarks</a>
+                <a href="/tools/">Tools</a>
+                <a href="/playbooks/">Playbooks</a>
+                <a href="https://42agency.com/contact" target="_blank" class="nav-cta">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="prepared-for">
+                <img src="https://cdn.prod.website-files.com/691cd35f19ecbb108803b3a7/691cd7eb979a65fd3789a4db_logo-1.svg" alt="Graphite Connect">
+                <span>Prepared for Graphite Connect</span>
+            </div>
+            <h1>Competitor Weakness Map</h1>
+            <p class="subtitle">SAP Ariba & Coupa Procurement Platforms</p>
+            <p class="date">February 2026</p>
+
+            <div class="methodology">
+                <div class="methodology-title">Why This Matters</div>
+                <p>SAP Ariba and Coupa dominate enterprise procurement and supplier management, but their users are increasingly vocal about frustrations. "Ariba doesn't have customers, it has prisoners" reflects a widespread sentiment. These pain points create openings for Graphite Connect's faster onboarding and network-based approach.</p>
+                <div class="source-tags">
+                    <span class="source-tag">Trustpilot</span>
+                    <span class="source-tag">G2</span>
+                    <span class="source-tag">BBB Complaints</span>
+                    <span class="source-tag">The Procurist</span>
+                    <span class="source-tag">Software Advice</span>
+                    <span class="source-tag">PissedConsumer</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main">
+        <section style="margin-bottom: 2rem;">
+            <h2 class="section-title">What Practitioners Are Saying</h2>
+            <p class="section-subtitle">Real complaints from procurement teams and suppliers</p>
+
+            <div class="quotes-grid">
+                <div class="quote-card">
+                    <div class="quote-theme">Supplier Onboarding Nightmare</div>
+                    <p class="quote-text">"Ariba doesn't have customers, it has prisoners."</p>
+                    <p class="quote-text">"I invested over $10 million in an Ariba implementation that ultimately failed, despite having strong talent leading the project."</p>
+                    <p class="quote-source"><span class="badge-procurist">The Procurist</span> Nico Bac, Digital Procurement Now</p>
+                </div>
+
+                <div class="quote-card">
+                    <div class="quote-theme">Horrible User Experience</div>
+                    <p class="quote-text">"The user experience is easily the worst imaginable. Pages don't even fit on desktop let alone mobile."</p>
+                    <p class="quote-text">"Incredibly slow, unintuitive, consistently bugged. Systems never work on the first attempt."</p>
+                    <p class="quote-source"><span class="badge-trustpilot">Trustpilot</span> SAP Ariba Reviews</p>
+                </div>
+
+                <div class="quote-card">
+                    <div class="quote-theme">Invoice Processing Hell</div>
+                    <p class="quote-text">"Invoices take 4-5 tries to get into the system. Wasted hours trying to get invoices approved with extremely vague rejection reasons."</p>
+                    <p class="quote-text">"Invoices on average take longer to receive payment than non-Ariba customers. Some delayed 3+ months."</p>
+                    <p class="quote-source"><span class="badge-bbb">BBB</span> Supplier Complaints</p>
+                </div>
+
+                <div class="quote-card">
+                    <div class="quote-theme">Complex & Time-Consuming</div>
+                    <p class="quote-text">"The interface is complex, and it took time to figure out how to click through many redundant pages."</p>
+                    <p class="quote-text">"It takes a whole army of consultants to discover how the heck it should be implemented."</p>
+                    <p class="quote-source"><span class="badge-g2">G2</span> Coupa Reviews</p>
+                </div>
+            </div>
+        </section>
+
+        <section style="margin-bottom: 2rem;">
+            <h2 class="section-title">The Opportunity</h2>
+            <p class="section-subtitle">Targetable procurement & supplier management professionals on LinkedIn</p>
+
+            <div class="card card-accent">
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">149K+</div>
+                        <div class="stat-label">SAP Ariba followers on LinkedIn</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">85K+</div>
+                        <div class="stat-label">Procurement Directors at Enterprise</div>
+                    </div>
+                </div>
+
+                <p style="font-size: 0.9rem; color: var(--gray);">
+                    <strong>Targeting:</strong> Skills-based (Procurement, Supplier Management, Vendor Management, Strategic Sourcing) + Enterprise (1,000+ employees) + Director/VP seniority + SAP Ariba/Coupa member groups
+                </p>
+
+                <div class="campaign-concept">
+                    <h4>Conquest Campaign Concept</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li><span class="label">Hook:</span> "Supplier onboarding shouldn't take 3 months."</li>
+                        <li><span class="label">Pain:</span> Target Ariba's complexity + supplier friction</li>
+                        <li><span class="label">Proof:</span> Graphite's 85% faster onboarding + network approach</li>
+                        <li><span class="label">CTA:</span> "See Graphite Connect in action"</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Messaging Angles</h2>
+            <p class="section-subtitle">Ad copy directions based on competitor weaknesses</p>
+
+            <div class="angles-grid">
+                <div class="angle-card">
+                    <strong>Against "Implementation Nightmare"</strong>
+                    <span>"Supplier management that works on day one, not year one."</span>
+                </div>
+                <div class="angle-card">
+                    <strong>Against "Supplier Friction"</strong>
+                    <span>"Your suppliers update once. Every customer benefits."</span>
+                </div>
+                <div class="angle-card">
+                    <strong>Against "Slow Invoice Processing"</strong>
+                    <span>"Stop losing supplier trust to broken workflows."</span>
+                </div>
+                <div class="angle-card">
+                    <strong>Against "Enterprise Complexity"</strong>
+                    <span>"Enterprise supplier management without the enterprise headache."</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="cta-section">
+            <h3 class="cta-title">Ready to Build This Campaign?</h3>
+            <p class="cta-text">15 minutes to walk through the targeting, messaging, and budget.</p>
+            <a href="https://42agency.com/contact" class="cta-button">Schedule a Strategy Call</a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <img src="/42-logo.png" alt="42 Agency">
+            <p>B2B Performance Marketing</p>
+        </div>
+    </footer>
+</body>
+</html>
