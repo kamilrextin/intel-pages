@@ -41,6 +41,58 @@ When building:
 
 ---
 
+## ⚠️ Pages Manifest & Validation
+
+**All 135+ pages are tracked in `pages-manifest.json`**
+
+### After Creating/Modifying Pages:
+
+```bash
+cd ~/intel-pages
+
+# 1. Add new page to pages-manifest.json under appropriate category
+# 2. Validate before deploy
+node scripts/validate-pages.js
+
+# 3. Deploy
+vercel --prod
+
+# 4. Validate production (confirms all pages are live)
+node scripts/validate-pages.js
+```
+
+### Validation Commands:
+
+```bash
+# Check all 135 pages
+node scripts/validate-pages.js
+
+# Check only critical pages (faster)
+node scripts/validate-pages.js --critical
+
+# Check specific category
+node scripts/validate-pages.js --category tools
+node scripts/validate-pages.js --category playbooks
+node scripts/validate-pages.js --category benchmarks
+```
+
+### Manifest Categories:
+
+| Category | Description |
+|----------|-------------|
+| `core` | Main hub pages (/, /assess/, /tools/, etc.) |
+| `assessments` | Interactive diagnostic tools |
+| `tools` | AI-powered calculators |
+| `playbooks` | Soft-gated B2B playbooks |
+| `benchmarks` | Industry benchmark data |
+| `audits` | Audit template downloads |
+| `client_intel` | AI SDR generated intel pages |
+| `sentiment_analysis` | Market sentiment pages |
+| `agents` | Claude Code agent pages |
+| `test` | Non-critical test pages |
+
+---
+
 ## Site Architecture
 
 ### Information Architecture (User Intent)
@@ -222,7 +274,7 @@ HUBSPOT_ACCESS_TOKEN=pat-na1-xxx
             <a href="/b2b-benchmarks/">Benchmarks</a>
             <a href="/tools/">Tools</a>
             <a href="/playbooks/">Playbooks</a>
-            <a href="https://42agency.com/contact" target="_blank" class="nav-cta">Contact Us</a>
+            <a href="https://www.42agency.com/contact-us" target="_blank" class="nav-cta">Contact Us</a>
         </nav>
     </div>
 </header>
@@ -333,7 +385,7 @@ HUBSPOT_ACCESS_TOKEN=pat-na1-xxx
             <div class="footer-col">
                 <h4>42 Agency</h4>
                 <a href="https://42agency.com" target="_blank">Website</a>
-                <a href="https://42agency.com/contact" target="_blank">Contact Us</a>
+                <a href="https://www.42agency.com/contact-us" target="_blank">Contact Us</a>
                 <a href="https://42agency.com/case-studies" target="_blank">Case Studies</a>
                 <a href="https://42slash.com" target="_blank">42/ Essays</a>
                 <a href="https://42agency.com/careers" target="_blank">Careers</a>
