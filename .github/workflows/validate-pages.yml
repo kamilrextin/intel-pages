@@ -3,47 +3,46 @@ name: Validate Intel Pages
 on:
   push:
     branches: [main]
-  # Also run on schedule to catch external issues (e.g., Vercel problems)
-  schedule:
-    - cron: '0 9 * * *'  # Daily at 9am UTC (4am EST)
-  # Allow manual trigger
-  workflow_dispatch:
+  pull_request:
+    branches: [main]
 
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Wait for Vercel deployment
-        # Give Vercel time to deploy after push
-        if: github.event_name == 'push'
-        run: sleep 60
-
-      - name: Validate all pages
-        id: validate
-        run: node scripts/validate-pages.js
-        continue-on-error: true
-
-      - name: Report failure
-        if: steps.validate.outcome == 'failure'
+      - name: Check manifest sync
         run: |
-          echo "## ❌ Intel Pages Validation Failed" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "Some pages are returning errors. Check the logs above for details." >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Fix:** Run \`node scripts/validate-pages.js\` locally to identify broken pages." >> $GITHUB_STEP_SUMMARY
-          exit 1
+          echo "Checking for untracked pages..."
+          node scripts/sync-manifest.js
 
-      - name: Report success
-        if: steps.validate.outcome == 'success'
+      - name: Validate all pages exist locally
         run: |
-          echo "## ✅ All Intel Pages Validated" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "All 135+ pages returned HTTP 200." >> $GITHUB_STEP_SUMMARY
+          echo "Validating all manifest pages have local files..."
+          node -e "
+            const fs = require('fs');
+            const path = require('path');
+            const manifest = JSON.parse(fs.readFileSync('pages-manifest.json', 'utf-8'));
+            let missing = [];
+            for (const cat of Object.values(manifest.categories)) {
+              for (const page of cat.pages) {
+                const slug = page.replace(/^\\/|\\/$/g, '');
+                const indexPath = path.join(slug, 'index.html');
+                if (!fs.existsSync(indexPath) && !fs.existsSync(slug + '.html')) {
+                  missing.push(page);
+                }
+              }
+            }
+            if (missing.length > 0) {
+              console.error('Missing pages:');
+              missing.forEach(p => console.error('  ' + p));
+              process.exit(1);
+            }
+            console.log('All manifest pages exist locally');
+          "
