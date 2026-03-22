@@ -43,28 +43,68 @@ When building:
 
 ## ⚠️ Pages Manifest & Validation
 
-**All 135+ pages are tracked in `pages-manifest.json`**
+**All 140+ pages are tracked in `pages-manifest.json`**
 
-### After Creating/Modifying Pages:
+### Auto-Registration (Recommended)
+
+When creating new intel pages, use the auto-registration script:
 
 ```bash
 cd ~/intel-pages
 
-# 1. Add new page to pages-manifest.json under appropriate category
-# 2. Validate before deploy
-node scripts/validate-pages.js
+# After creating a new intel page (e.g., /mycompany-abc123/)
+node scripts/register-page.js mycompany-abc123 --deploy
 
-# 3. Deploy
-vercel --prod
-
-# 4. Validate production (confirms all pages are live)
-node scripts/validate-pages.js
+# This will:
+# 1. Add page to pages-manifest.json (auto-detects category)
+# 2. Git commit the page + manifest
+# 3. Git push to origin (triggers Vercel deploy)
 ```
+
+**Options:**
+```bash
+# Just register (no commit)
+node scripts/register-page.js mycompany-abc123
+
+# Register with specific category
+node scripts/register-page.js mycompany-abc123 --category client_intel
+
+# Register + commit (no deploy)
+node scripts/register-page.js mycompany-abc123 --commit
+
+# Full deploy (commit + push + vercel auto-deploys)
+node scripts/register-page.js mycompany-abc123 --deploy
+```
+
+### Sync All Pages
+
+If pages were created without registration, run sync to catch them:
+
+```bash
+cd ~/intel-pages
+
+# Dry-run: show what's missing
+node scripts/sync-manifest.js
+
+# Add all untracked pages to manifest
+node scripts/sync-manifest.js --write
+
+# Remove pages from manifest that don't exist locally
+node scripts/sync-manifest.js --prune
+```
+
+### CI Protection
+
+GitHub Actions validates on every push:
+- Checks for untracked pages (warns in CI logs)
+- Fails if manifest pages don't exist locally
+
+This prevents pages from being accidentally unpublished.
 
 ### Validation Commands:
 
 ```bash
-# Check all 135 pages
+# Check all pages return 200
 node scripts/validate-pages.js
 
 # Check only critical pages (faster)
