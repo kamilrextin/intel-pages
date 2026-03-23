@@ -1,0 +1,1983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post-Raise Budget Allocator | Marketing Budget Planning Tool | 42 Agency</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MM5BTNS');</script>
+
+    <!-- HubSpot Tracking -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/44888286.js"></script>
+
+    <!-- Chart.js for pie chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+    <meta name="description" content="Post-raise marketing budget allocator: Get a data-driven channel mix recommendation based on your funding round, goals, and sales motion. Free tool from 42 Agency.">
+    <link rel="canonical" href="https://intel.42agency.com/tools/post-raise-allocator/">
+
+    <meta property="og:title" content="Post-Raise Budget Allocator | 42 Agency">
+    <meta property="og:description" content="Just raised funding? Get a data-driven marketing budget allocation across channels based on your stage, goals, and ICP.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://intel.42agency.com/og-share.png">
+
+    <!-- Schema.org for AI -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Post-Raise Budget Allocator",
+        "applicationCategory": "BusinessApplication",
+        "description": "Free marketing budget allocation tool for companies that just raised funding. Get channel mix recommendations based on funding round, goals, and sales motion.",
+        "author": {
+            "@type": "Organization",
+            "name": "42 Agency",
+            "url": "https://42agency.com"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+    <style>
+        :root {
+            --accent: #DFFE68;
+            --accent-hover: #C8E85C;
+            --black: #1a1a1a;
+            --gray: #4a4a4a;
+            --muted: #6b6b6b;
+            --light-gray: #f5f5f5;
+            --green: #10B981;
+            --orange: #F59E0B;
+            --red: #EF4444;
+            --blue: #3B82F6;
+            --purple: #8B5CF6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--light-gray);
+            color: var(--black);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .header {
+            border-bottom: 2px solid var(--black);
+            padding: 0.75rem 1.5rem;
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+        .logo img { height: 28px; width: auto; }
+
+        .nav { display: flex; align-items: center; gap: 0.25rem; }
+
+        .nav a {
+            padding: 0.5rem 1rem;
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.15s;
+        }
+
+        .nav a:hover { color: var(--black); background: var(--light-gray); }
+        .nav a.active { color: var(--black); font-weight: 600; background: var(--accent); }
+
+        .nav-cta {
+            margin-left: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--black);
+            color: white !important;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .nav-cta:hover { background: #333 !important; }
+
+        /* Breadcrumbs */
+        .breadcrumbs { background: white; border-bottom: 2px solid var(--black); padding: 0.75rem 1.5rem; }
+        .breadcrumbs-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; }
+        .breadcrumbs a { color: #6b6b6b; text-decoration: none; }
+        .breadcrumbs a:hover { color: var(--black); }
+        .breadcrumbs span { color: #6b6b6b; }
+        .breadcrumbs .current { color: var(--black); font-weight: 600; }
+
+        @media (max-width: 768px) { .nav { display: none; } }
+
+        .main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .calculator-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 6px 6px 0px 0px var(--black);
+            margin-bottom: 2rem;
+        }
+
+        .form-section h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .form-section p.hint {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent);
+            border: 2px solid var(--black);
+        }
+
+        .section-icon svg { width: 18px; height: 18px; stroke: var(--black); }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray);
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        select, input[type="email"] {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+            background: white;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        select:focus, input[type="email"]:focus {
+            outline: none;
+            border-color: var(--black);
+        }
+
+        .select-arrow {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        /* Budget Slider */
+        .slider-container {
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 2px solid #e0e0e0;
+        }
+
+        .slider-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .slider-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--black);
+        }
+
+        .slider-range {
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: #e0e0e0;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 2px solid var(--black);
+            cursor: pointer;
+            box-shadow: 2px 2px 0px 0px var(--black);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 2px solid var(--black);
+            cursor: pointer;
+            box-shadow: 2px 2px 0px 0px var(--black);
+        }
+
+        /* Option Cards */
+        .option-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .option-card {
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.15s;
+            background: white;
+        }
+
+        .option-card:hover {
+            border-color: var(--black);
+        }
+
+        .option-card.selected {
+            border-color: var(--black);
+            background: var(--accent);
+        }
+
+        .option-card .title {
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .option-card .desc {
+            font-size: 0.7rem;
+            color: var(--muted);
+        }
+
+        .option-card.selected .desc {
+            color: var(--gray);
+        }
+
+        /* Section Divider */
+        .section-divider {
+            height: 2px;
+            background: #e0e0e0;
+            margin: 2rem 0;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--black);
+            box-shadow: 4px 4px 0px 0px var(--black);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            box-shadow: 6px 6px 0px 0px var(--black);
+            transform: translate(-2px, -2px);
+        }
+
+        .btn-primary:disabled {
+            background: #e0e0e0;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: 4px 4px 0px 0px var(--black);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--black);
+        }
+
+        .btn-secondary:hover { background: var(--light-gray); }
+
+        /* Results Section */
+        .results-section { display: none; }
+        .results-section.active { display: block !important; }
+
+        .results-wrapper {
+            position: relative;
+        }
+
+        .results-wrapper.locked .gated-section {
+            filter: blur(8px);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .results-wrapper.unlocked .gated-section {
+            filter: none;
+            pointer-events: auto;
+            user-select: auto;
+        }
+
+        .sticky-gate {
+            position: sticky;
+            top: 100px;
+            z-index: 40;
+            display: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .results-wrapper.locked .sticky-gate {
+            display: block;
+        }
+
+        .results-wrapper.unlocked .sticky-gate {
+            display: none;
+        }
+
+        .gate-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 6px 6px 0px 0px var(--black);
+            text-align: center;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .gate-card h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .gate-card p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .gate-card input {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .gate-card .btn {
+            width: 100%;
+        }
+
+        /* Results Header */
+        .results-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .results-header h2 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .results-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--accent);
+            border: 2px solid var(--black);
+            border-radius: 8px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* Chart Container */
+        .chart-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 6px 6px 0px 0px var(--black);
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .chart-container { height: 250px; }
+        }
+
+        /* Allocation Table */
+        .allocation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .allocation-table th {
+            text-align: left;
+            padding: 0.75rem;
+            border-bottom: 2px solid var(--black);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--muted);
+        }
+
+        .allocation-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #e0e0e0;
+            vertical-align: middle;
+        }
+
+        .allocation-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .channel-name {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .channel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .channel-label {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .channel-pct {
+            font-weight: 800;
+            font-size: 1rem;
+        }
+
+        .channel-amount {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--black);
+        }
+
+        .channel-why {
+            font-size: 0.8rem;
+            color: var(--muted);
+            max-width: 200px;
+        }
+
+        /* Timeline */
+        .timeline-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 6px 6px 0px 0px var(--black);
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline {
+            display: flex;
+            gap: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .timeline { flex-direction: column; }
+        }
+
+        .timeline-phase {
+            flex: 1;
+            padding: 1rem;
+            background: var(--light-gray);
+            border-radius: 12px;
+            border: 2px solid #e0e0e0;
+        }
+
+        .timeline-phase.active {
+            border-color: var(--black);
+            background: var(--accent);
+        }
+
+        .phase-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-phase.active .phase-label {
+            color: var(--gray);
+        }
+
+        .phase-title {
+            font-weight: 800;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .phase-desc {
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        .timeline-phase.active .phase-desc {
+            color: var(--gray);
+        }
+
+        /* Expected Metrics */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .metrics-grid { grid-template-columns: 1fr; }
+        }
+
+        .metric-item {
+            padding: 1rem;
+            background: var(--light-gray);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .metric-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .metric-value {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--black);
+        }
+
+        .metric-note {
+            font-size: 0.7rem;
+            color: var(--muted);
+        }
+
+        /* Board Summary */
+        .board-summary-card {
+            background: var(--black);
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 6px 6px 0px 0px var(--accent);
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .board-summary-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .board-summary-card p.hint {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 1rem;
+        }
+
+        .board-summary-content {
+            background: #2a2a2a;
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Inter', monospace;
+            font-size: 0.85rem;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            color: #ccc;
+        }
+
+        .copy-btn {
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--accent);
+            color: var(--black);
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .copy-btn:hover {
+            background: var(--accent-hover);
+        }
+
+        /* Related Resources */
+        .resources-section {
+            margin-top: 2rem;
+        }
+
+        .resources-section h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .resource-grid { grid-template-columns: 1fr; }
+        }
+
+        .resource-card {
+            padding: 1rem;
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--black);
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .resource-card:hover {
+            box-shadow: 4px 4px 0px 0px var(--black);
+            transform: translate(-2px, -2px);
+        }
+
+        .resource-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .resource-icon.essay { background: #FEE2E2; }
+        .resource-icon.tool { background: #DBEAFE; }
+
+        .resource-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .resource-desc {
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        /* Actions */
+        .actions-section {
+            margin-top: 2rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            margin: 3rem auto;
+            padding: 2.5rem;
+            background: var(--accent);
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            box-shadow: 6px 6px 0px 0px var(--black);
+            max-width: 700px;
+        }
+
+        .cta-section h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-section p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section a {
+            display: inline-block;
+            background: var(--black);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        /* Toast */
+        #toast {
+            display: none;
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--black);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        #toast .title { font-weight: 700; margin-bottom: 0.25rem; }
+        #toast .message { font-size: 0.85rem; color: #ccc; }
+
+        .loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--black);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--black);
+            color: white;
+            padding: 4rem 1.5rem 2rem;
+            border-top: 2px solid var(--black);
+        }
+
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr repeat(4, 1fr);
+            gap: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid #333;
+        }
+
+        .footer-brand img {
+            height: 24px;
+            filter: brightness(0) invert(1);
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.85rem;
+            color: #999;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            color: #999;
+            transition: color 0.15s;
+        }
+
+        .footer-social a:hover { color: var(--accent); }
+
+        .footer-col h4 {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .footer-col a {
+            display: block;
+            color: #999;
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 0.6rem;
+            transition: color 0.15s;
+        }
+
+        .footer-col a:hover { color: white; }
+        .footer-col .sublink { padding-left: 0.75rem; font-size: 0.8rem; color: #666; }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .footer-bottom a { color: #666; text-decoration: none; }
+        .footer-bottom a:hover { color: #999; }
+
+        @media (max-width: 900px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MM5BTNS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <header class="header">
+        <div class="header-inner">
+            <a href="/" class="logo">
+                <img src="../../42-logo.png" alt="42 Agency">
+            </a>
+            <nav class="nav">
+                <a href="/assess/">Assess</a>
+                <a href="/b2b-benchmarks/">Benchmarks</a>
+                <a href="/tools/" class="active">Tools</a>
+                <a href="/playbooks/">Playbooks</a>
+                <a href="https://www.42agency.com/contact-us" target="_blank" class="nav-cta">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <a href="/">Home</a><span>/</span><a href="/tools/">Tools</a><span>/</span><span class="current">Post-Raise Budget Allocator</span>
+        </div>
+    </nav>
+
+    <main class="main">
+        <h1>Post-Raise Budget Allocator</h1>
+        <p class="subtitle">Just raised funding? Get a data-driven marketing budget allocation across channels based on your stage, goals, and ICP.</p>
+
+        <!-- Calculator Form -->
+        <div class="calculator-card" id="calculatorCard">
+            <!-- Company Info Section -->
+            <div class="form-section">
+                <h2>
+                    <span class="section-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" /></svg>
+                    </span>
+                    Company Info
+                </h2>
+                <p class="hint">Tell us about your company stage and goals.</p>
+
+                <div class="form-group">
+                    <label>Funding Round</label>
+                    <div class="option-cards" id="fundingRound">
+                        <div class="option-card" data-value="seed" onclick="selectOption('fundingRound', 'seed', this)">
+                            <div class="title">Seed</div>
+                            <div class="desc">Pre-product market fit</div>
+                        </div>
+                        <div class="option-card selected" data-value="series-a" onclick="selectOption('fundingRound', 'series-a', this)">
+                            <div class="title">Series A</div>
+                            <div class="desc">Scaling GTM</div>
+                        </div>
+                        <div class="option-card" data-value="series-b" onclick="selectOption('fundingRound', 'series-b', this)">
+                            <div class="title">Series B</div>
+                            <div class="desc">Market expansion</div>
+                        </div>
+                        <div class="option-card" data-value="series-c" onclick="selectOption('fundingRound', 'series-c', this)">
+                            <div class="title">Series C+</div>
+                            <div class="desc">Category leadership</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Monthly Marketing Budget</label>
+                    <div class="slider-container">
+                        <div class="slider-header">
+                            <span class="slider-value" id="budgetValue">$50,000</span>
+                            <span class="slider-range">$10K - $200K</span>
+                        </div>
+                        <input type="range" id="budgetSlider" min="10000" max="200000" step="5000" value="50000" oninput="updateBudgetDisplay()">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Primary Goal</label>
+                    <div class="option-cards" id="primaryGoal">
+                        <div class="option-card selected" data-value="pipeline" onclick="selectOption('primaryGoal', 'pipeline', this)">
+                            <div class="title">Pipeline Generation</div>
+                            <div class="desc">Drive qualified leads</div>
+                        </div>
+                        <div class="option-card" data-value="awareness" onclick="selectOption('primaryGoal', 'awareness', this)">
+                            <div class="title">Brand Awareness</div>
+                            <div class="desc">Build market presence</div>
+                        </div>
+                        <div class="option-card" data-value="both" onclick="selectOption('primaryGoal', 'both', this)">
+                            <div class="title">Both Equally</div>
+                            <div class="desc">Balanced approach</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Sales Motion</label>
+                    <div class="option-cards" id="salesMotion">
+                        <div class="option-card" data-value="plg" onclick="selectOption('salesMotion', 'plg', this)">
+                            <div class="title">PLG</div>
+                            <div class="desc">Product-led growth</div>
+                        </div>
+                        <div class="option-card selected" data-value="sales-led" onclick="selectOption('salesMotion', 'sales-led', this)">
+                            <div class="title">Sales-Led</div>
+                            <div class="desc">Outbound + inbound</div>
+                        </div>
+                        <div class="option-card" data-value="hybrid" onclick="selectOption('salesMotion', 'hybrid', this)">
+                            <div class="title">Hybrid</div>
+                            <div class="desc">PLG + sales assist</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Current Pipeline Coverage</label>
+                    <div class="option-cards" id="pipelineCoverage">
+                        <div class="option-card selected" data-value="low" onclick="selectOption('pipelineCoverage', 'low', this)">
+                            <div class="title">&lt;1x</div>
+                            <div class="desc">Critical gap</div>
+                        </div>
+                        <div class="option-card" data-value="medium" onclick="selectOption('pipelineCoverage', 'medium', this)">
+                            <div class="title">1-2x</div>
+                            <div class="desc">Below target</div>
+                        </div>
+                        <div class="option-card" data-value="good" onclick="selectOption('pipelineCoverage', 'good', this)">
+                            <div class="title">2-3x</div>
+                            <div class="desc">On track</div>
+                        </div>
+                        <div class="option-card" data-value="great" onclick="selectOption('pipelineCoverage', 'great', this)">
+                            <div class="title">&gt;3x</div>
+                            <div class="desc">Healthy buffer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- ICP Info Section -->
+            <div class="form-section">
+                <h2>
+                    <span class="section-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" /></svg>
+                    </span>
+                    ICP Info
+                </h2>
+                <p class="hint">Your ideal customer profile affects channel selection.</p>
+
+                <div class="form-group">
+                    <label>Target Company Size</label>
+                    <div class="option-cards" id="companySize">
+                        <div class="option-card" data-value="smb" onclick="selectOption('companySize', 'smb', this)">
+                            <div class="title">SMB</div>
+                            <div class="desc">&lt;200 employees</div>
+                        </div>
+                        <div class="option-card selected" data-value="mid-market" onclick="selectOption('companySize', 'mid-market', this)">
+                            <div class="title">Mid-Market</div>
+                            <div class="desc">200-2,000 employees</div>
+                        </div>
+                        <div class="option-card" data-value="enterprise" onclick="selectOption('companySize', 'enterprise', this)">
+                            <div class="title">Enterprise</div>
+                            <div class="desc">2,000+ employees</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Buying Committee Size</label>
+                    <div class="option-cards" id="committeeSize">
+                        <div class="option-card" data-value="small" onclick="selectOption('committeeSize', 'small', this)">
+                            <div class="title">1-2 People</div>
+                            <div class="desc">Single decision maker</div>
+                        </div>
+                        <div class="option-card selected" data-value="medium" onclick="selectOption('committeeSize', 'medium', this)">
+                            <div class="title">3-5 People</div>
+                            <div class="desc">Team decision</div>
+                        </div>
+                        <div class="option-card" data-value="large" onclick="selectOption('committeeSize', 'large', this)">
+                            <div class="title">6+ People</div>
+                            <div class="desc">Committee buy-in</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="calculateAllocation()" id="calculateBtn">
+                    <span id="calculateBtnText">Calculate Budget Allocation</span>
+                    <div class="loading-spinner" id="calculateSpinner" style="display: none;"></div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results-section" id="resultsSection">
+            <div class="results-wrapper locked" id="resultsWrapper">
+                <!-- Sticky Email Gate -->
+                <div class="sticky-gate">
+                    <div class="gate-card">
+                        <h3>Unlock Your Full Budget Plan</h3>
+                        <p>Enter your email to see dollar amounts, board summary, and detailed rationale.</p>
+                        <input type="email" id="gateEmail" placeholder="you@company.com">
+                        <button class="btn btn-primary" onclick="unlockResults()" id="unlockBtn">
+                            <span id="unlockBtnText">Unlock Full Results</span>
+                            <div class="loading-spinner" id="unlockSpinner" style="display: none;"></div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Preview Section (always visible) -->
+                <div class="results-header">
+                    <h2>Your Budget Allocation</h2>
+                    <div class="results-badge" id="resultsBadge">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <span id="totalBudgetDisplay">$50,000/mo</span>
+                    </div>
+                    <p class="subtitle" id="allocatorSummary">Series A | Pipeline Focus | Sales-Led</p>
+                </div>
+
+                <!-- Pie Chart (ungated) -->
+                <div class="chart-card">
+                    <h3>
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"/></svg>
+                        Channel Mix
+                    </h3>
+                    <div class="chart-container">
+                        <canvas id="allocationChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- GATED CONTENT -->
+                <div class="gated-section">
+                    <!-- Allocation Table -->
+                    <div class="chart-card">
+                        <h3>
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/></svg>
+                            Budget Allocation Breakdown
+                        </h3>
+                        <table class="allocation-table" id="allocationTable">
+                            <thead>
+                                <tr>
+                                    <th>Channel</th>
+                                    <th>% of Budget</th>
+                                    <th>Monthly $</th>
+                                    <th>Why</th>
+                                </tr>
+                            </thead>
+                            <tbody id="allocationTableBody">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Timeline -->
+                    <div class="timeline-card">
+                        <h3>
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            6-Month Rollout Timeline
+                        </h3>
+                        <div class="timeline">
+                            <div class="timeline-phase active">
+                                <div class="phase-label">Month 1-2</div>
+                                <div class="phase-title">Foundation</div>
+                                <div class="phase-desc">Set up tracking, launch core channels, establish baselines</div>
+                            </div>
+                            <div class="timeline-phase">
+                                <div class="phase-label">Month 3-4</div>
+                                <div class="phase-title">Scale</div>
+                                <div class="phase-desc">Double down on winners, test new creative, expand targeting</div>
+                            </div>
+                            <div class="timeline-phase">
+                                <div class="phase-label">Month 5-6</div>
+                                <div class="phase-title">Optimize</div>
+                                <div class="phase-desc">Refine based on data, shift budget to best performers</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Expected Metrics -->
+                    <div class="chart-card">
+                        <h3>
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                            Expected Outcomes (Based on B2B Benchmarks)
+                        </h3>
+                        <div class="metrics-grid" id="metricsGrid">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Board Summary -->
+                    <div class="board-summary-card">
+                        <h3>
+                            <svg width="20" height="20" fill="none" stroke="var(--accent)" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            Board-Ready Summary
+                        </h3>
+                        <p class="hint">Copy/paste for investor updates or board presentations</p>
+                        <div class="board-summary-content" id="boardSummary">
+                            <!-- Populated by JS -->
+                        </div>
+                        <button class="copy-btn" onclick="copyBoardSummary()">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: inline; vertical-align: middle; margin-right: 0.5rem;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                            Copy to Clipboard
+                        </button>
+                    </div>
+
+                    <!-- Related Resources -->
+                    <div class="resources-section">
+                        <h3>Related Resources</h3>
+                        <div class="resource-grid">
+                            <a href="https://42slash.com/p/forecasting-in-demand-generation" target="_blank" class="resource-card">
+                                <div class="resource-icon essay">
+                                    <svg width="20" height="20" fill="none" stroke="#EF4444" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                                </div>
+                                <div>
+                                    <div class="resource-title">Forecasting in Demand Gen</div>
+                                    <div class="resource-desc">How to forecast pipeline from paid media</div>
+                                </div>
+                            </a>
+                            <a href="/tools/linkedin-budget-calculator/" class="resource-card">
+                                <div class="resource-icon tool">
+                                    <svg width="20" height="20" fill="none" stroke="#3B82F6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                                </div>
+                                <div>
+                                    <div class="resource-title">LinkedIn Budget Calculator</div>
+                                    <div class="resource-desc">Get real CPM/CPC estimates for your ICP</div>
+                                </div>
+                            </a>
+                            <a href="/tools/google-ads-budget-calculator/" class="resource-card">
+                                <div class="resource-icon tool">
+                                    <svg width="20" height="20" fill="none" stroke="#3B82F6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                                </div>
+                                <div>
+                                    <div class="resource-title">Google Ads Budget Calculator</div>
+                                    <div class="resource-desc">Get keyword CPCs for your product</div>
+                                </div>
+                            </a>
+                            <a href="/b2b-benchmarks/" class="resource-card">
+                                <div class="resource-icon tool">
+                                    <svg width="20" height="20" fill="none" stroke="#3B82F6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                                </div>
+                                <div>
+                                    <div class="resource-title">B2B Benchmarks</div>
+                                    <div class="resource-desc">CPL, CTR, and conversion benchmarks</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="actions-section">
+                        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                            <button onclick="exportToCSV()" class="btn btn-primary" style="max-width: 220px;">
+                                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                                Export to CSV
+                            </button>
+                            <button class="btn btn-secondary" onclick="resetCalculator()" style="max-width: 180px;">
+                                Start Over
+                            </button>
+                        </div>
+                    </div>
+                </div><!-- end gated-section -->
+            </div><!-- end results-wrapper -->
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h3>Need Help Executing This Plan?</h3>
+            <p>Get a free strategy session with our team to discuss your post-raise marketing strategy.</p>
+            <a href="https://www.42agency.com/contact-us?utm_source=post_raise_allocator&utm_medium=intel">Book a Strategy Call</a>
+        </div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast">
+        <div class="title">Success!</div>
+        <div class="message">Your results have been unlocked.</div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="../../42-logo.png" alt="42 Agency">
+                    <p>B2B performance marketing for companies that sell to enterprises.</p>
+                    <div class="footer-social">
+                        <a href="https://linkedin.com/company/42agency" target="_blank">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                        <a href="https://x.com/42aboratory" target="_blank">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a href="https://www.youtube.com/@Get42Agency" target="_blank">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Assess</h4>
+                    <a href="/assessments/hubspot-health/">HubSpot Health Check</a>
+                    <a href="/assess/calculator/">Benchmark Calculator</a>
+                    <a href="/linkedin-audit/">LinkedIn Ads Audit</a>
+                    <a href="/google-ads-audit/">Google Ads Audit</a>
+                    <a href="/meta-audit/">Meta Ads Audit</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Benchmarks</h4>
+                    <a href="/b2b-benchmarks/">All B2B Benchmarks</a>
+                    <a href="/b2b-benchmarks/linkedin-ads-benchmarks/">LinkedIn Ads</a>
+                    <a href="/b2b-benchmarks/google-ads-benchmarks/">Google Ads</a>
+                    <a href="/b2b-benchmarks/meta-ads-benchmarks/">Meta Ads</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Tools</h4>
+                    <a href="/tools/linkedin-budget-calculator/">LinkedIn Budget Calculator</a>
+                    <a href="/tools/google-ads-budget-calculator/">Google Ads Budget Calculator</a>
+                    <a href="/tools/post-raise-allocator/">Post-Raise Budget Allocator</a>
+                    <a href="/tools/company-sampler/">Company Sampler</a>
+                </div>
+                <div class="footer-col">
+                    <h4>42 Agency</h4>
+                    <a href="https://42agency.com" target="_blank">Website</a>
+                    <a href="https://www.42agency.com/contact-us" target="_blank">Contact Us</a>
+                    <a href="https://42agency.com/case-studies" target="_blank">Case Studies</a>
+                    <a href="https://42slash.com" target="_blank">42/ Essays</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 42 Agency. All rights reserved.</p>
+                <p>
+                    <a href="https://42agency.com/privacy">Privacy</a>
+                    <span>&nbsp;·&nbsp;</span>
+                    <a href="https://42agency.com/terms">Terms</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/email-validation.js"></script>
+
+    <script>
+        // State
+        let calculatorResults = null;
+        let isUnlocked = false;
+        let allocationChart = null;
+
+        // Selection state
+        const selections = {
+            fundingRound: 'series-a',
+            primaryGoal: 'pipeline',
+            salesMotion: 'sales-led',
+            pipelineCoverage: 'low',
+            companySize: 'mid-market',
+            committeeSize: 'medium'
+        };
+
+        // Channel colors
+        const channelColors = {
+            'Google Search': '#4285F4',
+            'LinkedIn Ads': '#0A66C2',
+            'Content/SEO': '#10B981',
+            'ABM/Direct Mail': '#F59E0B',
+            'Retargeting': '#8B5CF6',
+            'Experimental': '#EF4444'
+        };
+
+        // Default budget by round
+        const defaultBudgets = {
+            'seed': 25000,
+            'series-a': 50000,
+            'series-b': 100000,
+            'series-c': 150000
+        };
+
+        function selectOption(group, value, element) {
+            selections[group] = value;
+
+            // Update UI
+            const container = document.getElementById(group);
+            container.querySelectorAll('.option-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            element.classList.add('selected');
+
+            // Update budget default when round changes
+            if (group === 'fundingRound') {
+                const slider = document.getElementById('budgetSlider');
+                slider.value = defaultBudgets[value];
+                updateBudgetDisplay();
+            }
+
+            // Save to localStorage
+            saveToLocalStorage();
+        }
+
+        function updateBudgetDisplay() {
+            const value = parseInt(document.getElementById('budgetSlider').value);
+            document.getElementById('budgetValue').textContent = '$' + value.toLocaleString();
+            saveToLocalStorage();
+        }
+
+        function formatCurrency(num) {
+            if (num >= 1000000) return '$' + (num / 1000000).toFixed(1) + 'M';
+            if (num >= 1000) return '$' + (num / 1000).toFixed(0) + 'K';
+            return '$' + num.toLocaleString();
+        }
+
+        function formatNumber(num) {
+            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(0) + 'K';
+            return num.toLocaleString();
+        }
+
+        function saveToLocalStorage() {
+            const data = {
+                ...selections,
+                budget: document.getElementById('budgetSlider').value
+            };
+            localStorage.setItem('post_raise_allocator', JSON.stringify(data));
+        }
+
+        function loadFromLocalStorage() {
+            const saved = localStorage.getItem('post_raise_allocator');
+            if (saved) {
+                const data = JSON.parse(saved);
+                Object.keys(data).forEach(key => {
+                    if (key === 'budget') {
+                        document.getElementById('budgetSlider').value = data[key];
+                        updateBudgetDisplay();
+                    } else if (selections.hasOwnProperty(key)) {
+                        selections[key] = data[key];
+                        const container = document.getElementById(key);
+                        if (container) {
+                            container.querySelectorAll('.option-card').forEach(card => {
+                                card.classList.remove('selected');
+                                if (card.dataset.value === data[key]) {
+                                    card.classList.add('selected');
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+        }
+
+        function calculateAllocation() {
+            const budget = parseInt(document.getElementById('budgetSlider').value);
+
+            // Base allocation by round
+            let baseAllocation = {
+                'seed': { googleSearch: 35, linkedin: 25, content: 20, abm: 5, retargeting: 5, experimental: 10 },
+                'series-a': { googleSearch: 30, linkedin: 25, content: 20, abm: 10, retargeting: 10, experimental: 5 },
+                'series-b': { googleSearch: 25, linkedin: 20, content: 15, abm: 25, retargeting: 10, experimental: 5 },
+                'series-c': { googleSearch: 20, linkedin: 20, content: 15, abm: 30, retargeting: 10, experimental: 5 }
+            };
+
+            let allocation = { ...baseAllocation[selections.fundingRound] };
+
+            // Adjust by goal
+            if (selections.primaryGoal === 'pipeline') {
+                allocation.googleSearch += 10;
+                allocation.linkedin += 5;
+                allocation.content -= 10;
+                allocation.experimental -= 5;
+            } else if (selections.primaryGoal === 'awareness') {
+                allocation.content += 15;
+                allocation.linkedin += 5;
+                allocation.googleSearch -= 15;
+                allocation.retargeting -= 5;
+            }
+            // 'both' stays balanced
+
+            // Adjust by sales motion
+            if (selections.salesMotion === 'plg') {
+                allocation.googleSearch += 10;
+                allocation.content += 5;
+                allocation.linkedin -= 10;
+                allocation.abm -= 5;
+            } else if (selections.salesMotion === 'sales-led') {
+                allocation.linkedin += 5;
+                allocation.abm += 5;
+                allocation.googleSearch -= 5;
+                allocation.content -= 5;
+            }
+            // 'hybrid' stays balanced
+
+            // Adjust by company size
+            if (selections.companySize === 'smb') {
+                allocation.googleSearch += 10;
+                allocation.abm -= 10;
+            } else if (selections.companySize === 'enterprise') {
+                allocation.abm += 15;
+                allocation.linkedin += 5;
+                allocation.googleSearch -= 15;
+                allocation.content -= 5;
+            }
+
+            // Adjust by buying committee
+            if (selections.committeeSize === 'large') {
+                allocation.abm += 5;
+                allocation.content += 5;
+                allocation.experimental -= 5;
+                allocation.retargeting -= 5;
+            }
+
+            // Adjust by pipeline coverage (urgency)
+            if (selections.pipelineCoverage === 'low') {
+                allocation.googleSearch += 5;
+                allocation.linkedin += 5;
+                allocation.content -= 5;
+                allocation.experimental -= 5;
+            } else if (selections.pipelineCoverage === 'great') {
+                allocation.content += 5;
+                allocation.experimental += 5;
+                allocation.googleSearch -= 5;
+                allocation.retargeting -= 5;
+            }
+
+            // Normalize to 100%
+            const total = Object.values(allocation).reduce((a, b) => a + b, 0);
+            Object.keys(allocation).forEach(key => {
+                allocation[key] = Math.max(0, Math.round((allocation[key] / total) * 100));
+            });
+
+            // Ensure it adds to 100
+            const newTotal = Object.values(allocation).reduce((a, b) => a + b, 0);
+            if (newTotal !== 100) {
+                allocation.googleSearch += (100 - newTotal);
+            }
+
+            // Build channel data
+            const channels = [
+                {
+                    name: 'Google Search',
+                    pct: allocation.googleSearch,
+                    amount: Math.round(budget * allocation.googleSearch / 100),
+                    why: 'High-intent bottom-funnel capture'
+                },
+                {
+                    name: 'LinkedIn Ads',
+                    pct: allocation.linkedin,
+                    amount: Math.round(budget * allocation.linkedin / 100),
+                    why: 'Precise ICP targeting & awareness'
+                },
+                {
+                    name: 'Content/SEO',
+                    pct: allocation.content,
+                    amount: Math.round(budget * allocation.content / 100),
+                    why: 'Long-term compounding asset'
+                },
+                {
+                    name: 'ABM/Direct Mail',
+                    pct: allocation.abm,
+                    amount: Math.round(budget * allocation.abm / 100),
+                    why: 'Enterprise account penetration'
+                },
+                {
+                    name: 'Retargeting',
+                    pct: allocation.retargeting,
+                    amount: Math.round(budget * allocation.retargeting / 100),
+                    why: 'Conversion lift on engaged visitors'
+                },
+                {
+                    name: 'Experimental',
+                    pct: allocation.experimental,
+                    amount: Math.round(budget * allocation.experimental / 100),
+                    why: 'Test new channels (CTV, podcasts, etc.)'
+                }
+            ].filter(c => c.pct > 0);
+
+            // Calculate expected metrics
+            const metrics = calculateExpectedMetrics(budget, channels);
+
+            // Store results
+            calculatorResults = {
+                budget,
+                channels,
+                metrics,
+                selections: { ...selections },
+                summary: generateSummaryText()
+            };
+
+            displayResults();
+
+            // Track event
+            if (window.dataLayer) {
+                window.dataLayer.push({
+                    event: 'post_raise_allocator_preview',
+                    budget: budget,
+                    funding_round: selections.fundingRound,
+                    primary_goal: selections.primaryGoal
+                });
+            }
+        }
+
+        function calculateExpectedMetrics(budget, channels) {
+            // Benchmarks (conservative B2B estimates)
+            const linkedinCPL = 150;
+            const googleCPL = 75;
+            const avgCPL = 100;
+            const leadToMQL = 0.4;
+            const mqlToSQL = 0.25;
+            const sqlToOpp = 0.5;
+            const avgACV = selections.companySize === 'enterprise' ? 100000 :
+                          selections.companySize === 'mid-market' ? 50000 : 25000;
+
+            // Estimated leads per month
+            const linkedinBudget = channels.find(c => c.name === 'LinkedIn Ads')?.amount || 0;
+            const googleBudget = channels.find(c => c.name === 'Google Search')?.amount || 0;
+            const otherBudget = budget - linkedinBudget - googleBudget;
+
+            const linkedinLeads = Math.round(linkedinBudget / linkedinCPL);
+            const googleLeads = Math.round(googleBudget / googleCPL);
+            const otherLeads = Math.round(otherBudget / avgCPL * 0.3); // Lower conversion on other
+
+            const totalLeads = linkedinLeads + googleLeads + otherLeads;
+            const mqls = Math.round(totalLeads * leadToMQL);
+            const sqls = Math.round(mqls * mqlToSQL);
+            const pipeline = sqls * avgACV;
+
+            return {
+                leadsPerMonth: { min: Math.round(totalLeads * 0.7), max: Math.round(totalLeads * 1.3) },
+                mqlsPerMonth: { min: Math.round(mqls * 0.7), max: Math.round(mqls * 1.3) },
+                expectedPipeline: { min: Math.round(pipeline * 0.7), max: Math.round(pipeline * 1.3) },
+                targetCPL: avgCPL,
+                targetCAC: Math.round(avgCPL / (leadToMQL * mqlToSQL * sqlToOpp))
+            };
+        }
+
+        function generateSummaryText() {
+            const roundLabels = { 'seed': 'Seed', 'series-a': 'Series A', 'series-b': 'Series B', 'series-c': 'Series C+' };
+            const goalLabels = { 'pipeline': 'Pipeline Focus', 'awareness': 'Awareness Focus', 'both': 'Balanced' };
+            const motionLabels = { 'plg': 'PLG', 'sales-led': 'Sales-Led', 'hybrid': 'Hybrid' };
+
+            return `${roundLabels[selections.fundingRound]} | ${goalLabels[selections.primaryGoal]} | ${motionLabels[selections.salesMotion]}`;
+        }
+
+        function displayResults() {
+            // Hide calculator, show results
+            document.getElementById('calculatorCard').style.display = 'none';
+            document.getElementById('resultsSection').classList.add('active');
+
+            // Ensure results are locked initially
+            document.getElementById('resultsWrapper').classList.add('locked');
+            document.getElementById('resultsWrapper').classList.remove('unlocked');
+
+            const { budget, channels, metrics, summary } = calculatorResults;
+
+            // Update header
+            document.getElementById('totalBudgetDisplay').textContent = formatCurrency(budget) + '/mo';
+            document.getElementById('allocatorSummary').textContent = summary;
+
+            // Render pie chart
+            renderPieChart(channels);
+
+            // Render allocation table
+            renderAllocationTable(channels);
+
+            // Render metrics
+            renderMetrics(metrics);
+
+            // Generate board summary
+            generateBoardSummary();
+        }
+
+        function renderPieChart(channels) {
+            const ctx = document.getElementById('allocationChart').getContext('2d');
+
+            if (allocationChart) {
+                allocationChart.destroy();
+            }
+
+            allocationChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: channels.map(c => c.name),
+                    datasets: [{
+                        data: channels.map(c => c.pct),
+                        backgroundColor: channels.map(c => channelColors[c.name]),
+                        borderColor: '#1a1a1a',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '50%',
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                font: { family: 'Inter', size: 12, weight: '600' },
+                                padding: 16,
+                                usePointStyle: true,
+                                pointStyle: 'circle'
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: '#1a1a1a',
+                            titleFont: { family: 'Inter', weight: 'bold' },
+                            bodyFont: { family: 'Inter' },
+                            padding: 12,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: (context) => {
+                                    const channel = channels[context.dataIndex];
+                                    return `${channel.pct}% - ${formatCurrency(channel.amount)}/mo`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderAllocationTable(channels) {
+            const tbody = document.getElementById('allocationTableBody');
+            tbody.innerHTML = channels.map(channel => `
+                <tr>
+                    <td>
+                        <div class="channel-name">
+                            <div class="channel-dot" style="background: ${channelColors[channel.name]}"></div>
+                            <span class="channel-label">${channel.name}</span>
+                        </div>
+                    </td>
+                    <td><span class="channel-pct">${channel.pct}%</span></td>
+                    <td><span class="channel-amount">${formatCurrency(channel.amount)}</span></td>
+                    <td><span class="channel-why">${channel.why}</span></td>
+                </tr>
+            `).join('');
+        }
+
+        function renderMetrics(metrics) {
+            const grid = document.getElementById('metricsGrid');
+            grid.innerHTML = `
+                <div class="metric-item">
+                    <div class="metric-label">Expected Leads/Month</div>
+                    <div class="metric-value">${metrics.leadsPerMonth.min}-${metrics.leadsPerMonth.max}</div>
+                    <div class="metric-note">Based on B2B benchmarks</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">Target CPL</div>
+                    <div class="metric-value">${formatCurrency(metrics.targetCPL)}</div>
+                    <div class="metric-note">Blended across channels</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">Pipeline Potential</div>
+                    <div class="metric-value">${formatCurrency(metrics.expectedPipeline.min)}-${formatCurrency(metrics.expectedPipeline.max)}</div>
+                    <div class="metric-note">6-month projection</div>
+                </div>
+            `;
+        }
+
+        function generateBoardSummary() {
+            const { budget, channels, metrics, selections } = calculatorResults;
+            const quarter = 'Q' + Math.ceil((new Date().getMonth() + 1) / 3);
+            const year = new Date().getFullYear();
+
+            const topChannels = channels.slice(0, 3).map(c => c.name).join(', ');
+            const experimentalChannel = channels.find(c => c.name === 'Experimental');
+
+            const summary = `${quarter} ${year} Marketing Investment Plan
+
+Total Monthly Budget: ${formatCurrency(budget)}
+
+Channel Allocation:
+${channels.map(c => `- ${c.name}: ${c.pct}% (${formatCurrency(c.amount)}/mo)`).join('\n')}
+
+Expected Outcomes (Based on B2B Benchmarks):
+- Target CPL: ${formatCurrency(metrics.targetCPL)}
+- Expected Leads: ${metrics.leadsPerMonth.min}-${metrics.leadsPerMonth.max}/month
+- MQLs: ${metrics.mqlsPerMonth.min}-${metrics.mqlsPerMonth.max}/month
+- 6-Month Pipeline Target: ${formatCurrency(metrics.expectedPipeline.min)}-${formatCurrency(metrics.expectedPipeline.max)}
+
+Primary Channels: ${topChannels}
+${experimentalChannel && experimentalChannel.pct > 0 ? `Experimental Bets: ${formatCurrency(experimentalChannel.amount)}/mo for channel testing` : ''}
+
+Success Metrics:
+- CPL Target: ${formatCurrency(metrics.targetCPL)}
+- Estimated CAC: ${formatCurrency(metrics.targetCAC)}
+
+Generated by intel.42agency.com/tools/post-raise-allocator`;
+
+            document.getElementById('boardSummary').textContent = summary;
+        }
+
+        function copyBoardSummary() {
+            const summary = document.getElementById('boardSummary').textContent;
+            navigator.clipboard.writeText(summary).then(() => {
+                showToast('Copied!', 'Board summary copied to clipboard.');
+            });
+        }
+
+        async function unlockResults() {
+            const email = document.getElementById('gateEmail').value.trim();
+            if (!email) {
+                alert('Please enter your email');
+                return;
+            }
+
+            if (!email.includes('@') || !email.includes('.')) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            document.getElementById('unlockBtnText').textContent = 'Unlocking...';
+            document.getElementById('unlockSpinner').style.display = 'block';
+            document.getElementById('unlockBtn').disabled = true;
+
+            try {
+                // Call API to record lead
+                const response = await fetch('/api/post-raise-allocator', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email,
+                        budget: calculatorResults.budget,
+                        fundingRound: selections.fundingRound,
+                        primaryGoal: selections.primaryGoal,
+                        salesMotion: selections.salesMotion,
+                        companySize: selections.companySize,
+                        channels: calculatorResults.channels
+                    })
+                });
+
+                if (!response.ok) {
+                    const data = await response.json();
+                    throw new Error(data.error || 'Failed to unlock');
+                }
+
+                // Unlock the results
+                isUnlocked = true;
+                document.getElementById('resultsWrapper').classList.remove('locked');
+                document.getElementById('resultsWrapper').classList.add('unlocked');
+
+                // Track unlock event
+                if (window.dataLayer) {
+                    window.dataLayer.push({
+                        event: 'post_raise_allocator_unlocked',
+                        budget: calculatorResults.budget,
+                        funding_round: selections.fundingRound
+                    });
+                }
+
+                showToast('Results Unlocked!', 'Check your email for a copy of your budget plan.');
+
+            } catch (error) {
+                // For local testing, unlock anyway
+                console.log('API error (expected locally):', error);
+                isUnlocked = true;
+                document.getElementById('resultsWrapper').classList.remove('locked');
+                document.getElementById('resultsWrapper').classList.add('unlocked');
+                showToast('Results Unlocked!', 'Local mode - API not available.');
+            } finally {
+                document.getElementById('unlockBtnText').textContent = 'Unlock Full Results';
+                document.getElementById('unlockSpinner').style.display = 'none';
+                document.getElementById('unlockBtn').disabled = false;
+            }
+        }
+
+        function showToast(title, message) {
+            const toast = document.getElementById('toast');
+            toast.querySelector('.title').textContent = title;
+            toast.querySelector('.message').textContent = message;
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 5000);
+        }
+
+        function resetCalculator() {
+            document.getElementById('calculatorCard').style.display = 'block';
+            document.getElementById('resultsSection').classList.remove('active');
+
+            // Reset locked state
+            document.getElementById('resultsWrapper').classList.add('locked');
+            document.getElementById('resultsWrapper').classList.remove('unlocked');
+            isUnlocked = false;
+
+            // Clear email
+            document.getElementById('gateEmail').value = '';
+
+            // Destroy chart
+            if (allocationChart) {
+                allocationChart.destroy();
+                allocationChart = null;
+            }
+
+            calculatorResults = null;
+        }
+
+        function exportToCSV() {
+            if (!calculatorResults) {
+                alert('Please complete the calculator first.');
+                return;
+            }
+
+            const { budget, channels, metrics, summary } = calculatorResults;
+
+            let csv = 'Post-Raise Budget Allocation\n\n';
+            csv += `Configuration,${summary}\n`;
+            csv += `Monthly Budget,${formatCurrency(budget)}\n\n`;
+
+            csv += 'Channel Allocation\n';
+            csv += 'Channel,% of Budget,Monthly Amount,Rationale\n';
+            channels.forEach(c => {
+                csv += `${c.name},${c.pct}%,${formatCurrency(c.amount)},"${c.why}"\n`;
+            });
+
+            csv += '\nExpected Outcomes\n';
+            csv += `Target CPL,${formatCurrency(metrics.targetCPL)}\n`;
+            csv += `Expected Leads/Month,${metrics.leadsPerMonth.min}-${metrics.leadsPerMonth.max}\n`;
+            csv += `Expected MQLs/Month,${metrics.mqlsPerMonth.min}-${metrics.mqlsPerMonth.max}\n`;
+            csv += `6-Month Pipeline Target,${formatCurrency(metrics.expectedPipeline.min)}-${formatCurrency(metrics.expectedPipeline.max)}\n`;
+            csv += `Estimated CAC,${formatCurrency(metrics.targetCAC)}\n`;
+
+            csv += '\n\nGenerated by intel.42agency.com/tools/post-raise-allocator\n';
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `post-raise-budget-${formatCurrency(budget).replace('$', '').replace(',', '')}.csv`;
+            link.click();
+
+            if (window.dataLayer) {
+                window.dataLayer.push({
+                    event: 'post_raise_allocator_exported',
+                    budget: budget
+                });
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadFromLocalStorage();
+            updateBudgetDisplay();
+        });
+    </script>
+
+    <!-- Vercel Analytics -->
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

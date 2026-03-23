@@ -1,0 +1,1834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agency vs In-House Calculator | True Cost Comparison | 42 Agency</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MM5BTNS');</script>
+
+    <!-- HubSpot Tracking -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/44888286.js"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+    <meta name="description" content="Compare the true cost of hiring in-house demand gen vs working with an agency. Calculator includes salary, benefits, ramp time, hiring costs, and more.">
+    <link rel="canonical" href="https://intel.42agency.com/tools/agency-vs-inhouse/">
+
+    <meta property="og:title" content="Agency vs In-House Calculator | 42 Agency">
+    <meta property="og:description" content="Should you hire in-house or work with an agency? Calculate the true Year 1 cost comparison.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://intel.42agency.com/og-share.png">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Agency vs In-House Calculator",
+        "applicationCategory": "BusinessApplication",
+        "description": "Free calculator to compare the true cost of hiring an in-house demand generation professional vs working with a marketing agency.",
+        "author": {
+            "@type": "Organization",
+            "name": "42 Agency",
+            "url": "https://42agency.com"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+    <style>
+        :root {
+            --accent: #DFFE68;
+            --accent-hover: #C8E85C;
+            --black: #1a1a1a;
+            --gray: #4a4a4a;
+            --muted: #6b6b6b;
+            --light-gray: #f5f5f5;
+            --green: #10B981;
+            --orange: #F59E0B;
+            --red: #EF4444;
+            --blue: #3B82F6;
+            --purple: #8B5CF6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--light-gray);
+            color: var(--black);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .header {
+            border-bottom: 2px solid var(--black);
+            padding: 0.75rem 1.5rem;
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+        .logo img { height: 28px; width: auto; }
+
+        .nav { display: flex; align-items: center; gap: 0.25rem; }
+
+        .nav a {
+            padding: 0.5rem 1rem;
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.15s;
+        }
+
+        .nav a:hover { color: var(--black); background: var(--light-gray); }
+        .nav a.active { color: var(--black); font-weight: 600; background: var(--accent); }
+
+        .nav-cta {
+            margin-left: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--black);
+            color: white !important;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .nav-cta:hover { background: #333 !important; }
+
+        .breadcrumbs { background: white; border-bottom: 2px solid var(--black); padding: 0.75rem 1.5rem; }
+        .breadcrumbs-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; }
+        .breadcrumbs a { color: #6b6b6b; text-decoration: none; }
+        .breadcrumbs a:hover { color: var(--black); }
+        .breadcrumbs span { color: #6b6b6b; }
+        .breadcrumbs .current { color: var(--black); font-weight: 600; }
+
+        @media (max-width: 768px) { .nav { display: none; } }
+
+        .main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .calculator-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 6px 6px 0px 0px var(--black);
+            margin-bottom: 2rem;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid { grid-template-columns: 1fr; }
+        }
+
+        .section-card {
+            background: var(--light-gray);
+            border: 2px solid var(--black);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--black);
+        }
+
+        .section-icon.inhouse { background: var(--blue); }
+        .section-icon.agency { background: var(--green); }
+        .section-icon svg { width: 20px; height: 20px; stroke: white; fill: none; }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .slider-container {
+            position: relative;
+        }
+
+        .slider-value {
+            position: absolute;
+            right: 0;
+            top: -1.75rem;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--black);
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            -webkit-appearance: none;
+            background: #e0e0e0;
+            border-radius: 4px;
+            outline: none;
+            margin-top: 0.5rem;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            background: var(--accent);
+            border: 2px solid var(--black);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 2px 2px 0px 0px var(--black);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            background: var(--accent);
+            border: 2px solid var(--black);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 2px 2px 0px 0px var(--black);
+        }
+
+        .option-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+            gap: 0.5rem;
+        }
+
+        .option-btn {
+            padding: 0.5rem 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s;
+            text-align: center;
+        }
+
+        .option-btn:hover {
+            border-color: var(--black);
+        }
+
+        .option-btn.active {
+            background: var(--accent);
+            border-color: var(--black);
+        }
+
+        .calculate-section {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid var(--black);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--black);
+            box-shadow: 4px 4px 0px 0px var(--black);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            box-shadow: 6px 6px 0px 0px var(--black);
+            transform: translate(-2px, -2px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--black);
+            box-shadow: 4px 4px 0px 0px var(--black);
+        }
+
+        .btn-secondary:hover {
+            background: var(--light-gray);
+        }
+
+        /* Results Section */
+        .results-section {
+            display: none;
+        }
+
+        .results-section.active {
+            display: block;
+        }
+
+        .results-wrapper {
+            position: relative;
+        }
+
+        .results-wrapper.locked .gated-section {
+            filter: blur(8px);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .results-wrapper.unlocked .gated-section {
+            filter: none;
+            pointer-events: auto;
+            user-select: auto;
+        }
+
+        .sticky-gate {
+            position: sticky;
+            top: 100px;
+            z-index: 40;
+            display: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .results-wrapper.locked .sticky-gate {
+            display: block;
+        }
+
+        .results-wrapper.unlocked .sticky-gate {
+            display: none;
+        }
+
+        .gate-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 6px 6px 0px 0px var(--black);
+            text-align: center;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .gate-card h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .gate-card p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .gate-card input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            margin-bottom: 1rem;
+        }
+
+        .gate-card input:focus {
+            outline: none;
+            border-color: var(--black);
+        }
+
+        .gate-card .btn {
+            width: 100%;
+        }
+
+        /* Preview Card (Ungated) */
+        .preview-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 6px 6px 0px 0px var(--black);
+            margin-bottom: 1.5rem;
+        }
+
+        .preview-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .preview-header h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .cost-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .cost-comparison { grid-template-columns: 1fr; }
+        }
+
+        .cost-box {
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid var(--black);
+        }
+
+        .cost-box.inhouse {
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .cost-box.agency {
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .cost-box.winner {
+            background: var(--accent);
+        }
+
+        .cost-box .label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .cost-box .value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--black);
+        }
+
+        .cost-box .subtext {
+            font-size: 0.75rem;
+            color: var(--muted);
+            margin-top: 0.25rem;
+        }
+
+        .winner-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            background: var(--green);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* Chart container */
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin: 1.5rem 0;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .comparison-table th {
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .comparison-table td {
+            font-size: 0.95rem;
+        }
+
+        .comparison-table .metric {
+            font-weight: 600;
+        }
+
+        .comparison-table .inhouse-col {
+            color: var(--blue);
+            font-weight: 700;
+        }
+
+        .comparison-table .agency-col {
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        /* Score Card */
+        .score-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 6px 6px 0px 0px var(--black);
+            margin-bottom: 1.5rem;
+        }
+
+        .score-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        /* Recommendation Box */
+        .recommendation-box {
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--black);
+            margin-top: 1.5rem;
+        }
+
+        .recommendation-box.agency {
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .recommendation-box.inhouse {
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .recommendation-box.neutral {
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .recommendation-box h4 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .recommendation-box p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Breakdown Details */
+        .breakdown-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .breakdown-grid { grid-template-columns: 1fr; }
+        }
+
+        .breakdown-card {
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 1.25rem;
+        }
+
+        .breakdown-card h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 0.85rem;
+        }
+
+        .breakdown-item:last-child {
+            border-bottom: none;
+            font-weight: 700;
+            padding-top: 0.75rem;
+            border-top: 2px solid var(--black);
+        }
+
+        .breakdown-item .label {
+            color: var(--gray);
+        }
+
+        .breakdown-item .value {
+            font-weight: 600;
+        }
+
+        /* Timeline Visual */
+        .timeline-section {
+            margin-top: 1.5rem;
+        }
+
+        .timeline-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-label {
+            width: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .timeline-bar-container {
+            flex: 1;
+            height: 32px;
+            background: #e0e0e0;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-bar {
+            height: 100%;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .timeline-bar.inhouse {
+            background: var(--blue);
+        }
+
+        .timeline-bar.agency {
+            background: var(--green);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            margin: 3rem auto;
+            padding: 2.5rem;
+            background: var(--accent);
+            border: 2px solid var(--black);
+            border-radius: 16px;
+            box-shadow: 6px 6px 0px 0px var(--black);
+            max-width: 700px;
+        }
+
+        .cta-section h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-section p {
+            color: var(--black);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section a {
+            display: inline-block;
+            background: var(--black);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        /* Related Resources */
+        .related-section {
+            margin-top: 2rem;
+        }
+
+        .related-section h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .related-grid { grid-template-columns: 1fr; }
+        }
+
+        .related-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 4px 4px 0px 0px var(--black);
+            transition: all 0.15s;
+        }
+
+        .related-card:hover {
+            box-shadow: 6px 6px 0px 0px var(--black);
+            transform: translate(-2px, -2px);
+        }
+
+        .related-card h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .related-card p {
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        /* Toast */
+        #toast {
+            display: none;
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--black);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        #toast .title { font-weight: 700; margin-bottom: 0.25rem; }
+        #toast .message { font-size: 0.85rem; color: #ccc; }
+
+        /* Loading spinner */
+        .loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--black);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--black);
+            color: white;
+            padding: 4rem 1.5rem 2rem;
+            border-top: 2px solid var(--black);
+        }
+
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr repeat(4, 1fr);
+            gap: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid #333;
+        }
+
+        .footer-brand img {
+            height: 24px;
+            filter: brightness(0) invert(1);
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.85rem;
+            color: #999;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            color: #999;
+            transition: color 0.15s;
+        }
+
+        .footer-social a:hover { color: var(--accent); }
+
+        .footer-col h4 {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .footer-col a {
+            display: block;
+            color: #999;
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 0.6rem;
+            transition: color 0.15s;
+        }
+
+        .footer-col a:hover { color: white; }
+        .footer-col .sublink { padding-left: 0.75rem; font-size: 0.8rem; color: #666; }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .footer-bottom a { color: #666; text-decoration: none; }
+        .footer-bottom a:hover { color: #999; }
+
+        @media (max-width: 900px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MM5BTNS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <header class="header">
+        <div class="header-inner">
+            <a href="/" class="logo">
+                <img src="../../42-logo.png" alt="42 Agency">
+            </a>
+            <nav class="nav">
+                <a href="/assess/">Assess</a>
+                <a href="/b2b-benchmarks/">Benchmarks</a>
+                <a href="/tools/" class="active">Tools</a>
+                <a href="/playbooks/">Playbooks</a>
+                <a href="https://www.42agency.com/contact-us" target="_blank" class="nav-cta">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <a href="/">Home</a><span>/</span><a href="/tools/">Tools</a><span>/</span><span class="current">Agency vs In-House Calculator</span>
+        </div>
+    </nav>
+
+    <main class="main">
+        <h1>Agency vs In-House Calculator</h1>
+        <p class="subtitle">Compare the true Year 1 cost of hiring in-house demand gen talent versus working with an agency. No hidden costs, no surprises.</p>
+
+        <!-- Calculator Inputs -->
+        <div class="calculator-card" id="calculatorCard">
+            <div class="calculator-grid">
+                <!-- In-House Section -->
+                <div class="section-card">
+                    <div class="section-header">
+                        <div class="section-icon inhouse">
+                            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <div class="section-title">In-House Hire</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Base Salary</label>
+                        <div class="slider-container">
+                            <span class="slider-value" id="salaryValue">$150,000</span>
+                            <input type="range" id="salary" min="80000" max="250000" step="5000" value="150000">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Benefits Multiplier</label>
+                        <div class="option-grid">
+                            <button class="option-btn" data-value="1.25" onclick="setOption('benefits', 1.25, this)">1.25x</button>
+                            <button class="option-btn active" data-value="1.30" onclick="setOption('benefits', 1.30, this)">1.30x</button>
+                            <button class="option-btn" data-value="1.35" onclick="setOption('benefits', 1.35, this)">1.35x</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Hiring Timeline (months)</label>
+                        <div class="option-grid">
+                            <button class="option-btn" data-value="1" onclick="setOption('hiringTime', 1, this)">1</button>
+                            <button class="option-btn active" data-value="2" onclick="setOption('hiringTime', 2, this)">2</button>
+                            <button class="option-btn" data-value="3" onclick="setOption('hiringTime', 3, this)">3</button>
+                            <button class="option-btn" data-value="4" onclick="setOption('hiringTime', 4, this)">4</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ramp to Productivity (months)</label>
+                        <div class="option-grid">
+                            <button class="option-btn" data-value="1" onclick="setOption('rampTime', 1, this)">1</button>
+                            <button class="option-btn" data-value="2" onclick="setOption('rampTime', 2, this)">2</button>
+                            <button class="option-btn active" data-value="3" onclick="setOption('rampTime', 3, this)">3</button>
+                            <button class="option-btn" data-value="6" onclick="setOption('rampTime', 6, this)">6</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tools & Software (monthly)</label>
+                        <div class="option-grid">
+                            <button class="option-btn" data-value="500" onclick="setOption('tools', 500, this)">$500</button>
+                            <button class="option-btn" data-value="1000" onclick="setOption('tools', 1000, this)">$1K</button>
+                            <button class="option-btn active" data-value="2000" onclick="setOption('tools', 2000, this)">$2K</button>
+                            <button class="option-btn" data-value="5000" onclick="setOption('tools', 5000, this)">$5K</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Agency Section -->
+                <div class="section-card">
+                    <div class="section-header">
+                        <div class="section-icon agency">
+                            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                        </div>
+                        <div class="section-title">Agency Partner</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Monthly Retainer</label>
+                        <div class="slider-container">
+                            <span class="slider-value" id="retainerValue">$25,000</span>
+                            <input type="range" id="retainer" min="10000" max="50000" step="1000" value="25000">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Contract Length (months)</label>
+                        <div class="option-grid">
+                            <button class="option-btn" data-value="3" onclick="setOption('contractLength', 3, this)">3</button>
+                            <button class="option-btn active" data-value="6" onclick="setOption('contractLength', 6, this)">6</button>
+                            <button class="option-btn" data-value="12" onclick="setOption('contractLength', 12, this)">12</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ramp Time</label>
+                        <div class="option-grid">
+                            <button class="option-btn active" data-value="0.5" onclick="setOption('agencyRamp', 0.5, this)">2 weeks</button>
+                            <button class="option-btn" data-value="1" onclick="setOption('agencyRamp', 1, this)">1 month</button>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding: 1rem; background: rgba(16, 185, 129, 0.1); border-radius: 8px;">
+                        <p style="font-size: 0.85rem; color: var(--gray); margin: 0;">
+                            <strong>Agency includes:</strong> Team of specialists, established processes, tools & tech stack, no recruiting costs.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="calculate-section">
+                <button class="btn btn-primary" onclick="calculateComparison()" id="calculateBtn">
+                    <span id="calculateBtnText">Calculate Comparison</span>
+                    <div class="loading-spinner" id="calculateSpinner" style="display: none;"></div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results-section" id="resultsSection">
+            <div class="results-wrapper locked" id="resultsWrapper">
+                <!-- Sticky Email Gate -->
+                <div class="sticky-gate">
+                    <div class="gate-card">
+                        <h3>Unlock Full Cost Analysis</h3>
+                        <p>Enter your email to see the detailed breakdown, timeline comparison, and personalized recommendation.</p>
+                        <input type="email" id="gateEmail" placeholder="you@company.com">
+                        <button class="btn btn-primary" onclick="unlockResults()" id="unlockBtn">
+                            <span id="unlockBtnText">Unlock Full Results</span>
+                            <div class="loading-spinner" id="unlockSpinner" style="display: none;"></div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Preview Section (always visible) -->
+                <div class="preview-card">
+                    <div class="preview-header">
+                        <h2>Year 1 Cost Comparison</h2>
+                        <p style="color: var(--muted);">Based on your inputs</p>
+                    </div>
+
+                    <div class="cost-comparison">
+                        <div class="cost-box inhouse" id="inhouseCostBox">
+                            <div class="label">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                </svg>
+                                In-House (Year 1)
+                            </div>
+                            <div class="value" id="inhouseTotalCost">$0</div>
+                            <div class="subtext" id="inhouseSubtext">Total loaded cost</div>
+                        </div>
+                        <div class="cost-box agency" id="agencyCostBox">
+                            <div class="label">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                </svg>
+                                Agency (Year 1)
+                            </div>
+                            <div class="value" id="agencyTotalCost">$0</div>
+                            <div class="subtext" id="agencySubtext">Total contract value</div>
+                        </div>
+                    </div>
+
+                    <!-- Chart Preview -->
+                    <div class="chart-container">
+                        <canvas id="comparisonChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- GATED SECTION -->
+                <div class="gated-section">
+
+                    <!-- Detailed Comparison Table -->
+                    <div class="score-card">
+                        <h3>
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                            </svg>
+                            Side-by-Side Comparison
+                        </h3>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th>In-House</th>
+                                    <th>Agency</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="metric">Year 1 Total Cost</td>
+                                    <td class="inhouse-col" id="tableInhouseTotal">$0</td>
+                                    <td class="agency-col" id="tableAgencyTotal">$0</td>
+                                </tr>
+                                <tr>
+                                    <td class="metric">Time to First Campaign</td>
+                                    <td class="inhouse-col" id="tableInhouseTime">0 months</td>
+                                    <td class="agency-col" id="tableAgencyTime">0 weeks</td>
+                                </tr>
+                                <tr>
+                                    <td class="metric">Effective Monthly Cost</td>
+                                    <td class="inhouse-col" id="tableInhouseMonthly">$0</td>
+                                    <td class="agency-col" id="tableAgencyMonthly">$0</td>
+                                </tr>
+                                <tr>
+                                    <td class="metric">Break-even Point</td>
+                                    <td class="inhouse-col" id="tableInhouseBreakeven">Month 0</td>
+                                    <td class="agency-col" id="tableAgencyBreakeven">-</td>
+                                </tr>
+                                <tr>
+                                    <td class="metric">Risk if it doesn't work</td>
+                                    <td class="inhouse-col" style="color: var(--red);">High (severance, restart)</td>
+                                    <td class="agency-col" style="color: var(--green);">Low (cancel contract)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Cost Breakdown -->
+                    <div class="score-card">
+                        <h3>
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            Detailed Cost Breakdown
+                        </h3>
+                        <div class="breakdown-grid">
+                            <div class="breakdown-card">
+                                <h4 style="color: var(--blue);">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="9" cy="7" r="4"></circle>
+                                    </svg>
+                                    In-House Breakdown
+                                </h4>
+                                <div class="breakdown-item">
+                                    <span class="label">Base Salary</span>
+                                    <span class="value" id="breakdownSalary">$0</span>
+                                </div>
+                                <div class="breakdown-item">
+                                    <span class="label">Benefits (x1.3)</span>
+                                    <span class="value" id="breakdownBenefits">$0</span>
+                                </div>
+                                <div class="breakdown-item">
+                                    <span class="label">Hiring Costs (20%)</span>
+                                    <span class="value" id="breakdownHiring">$0</span>
+                                </div>
+                                <div class="breakdown-item">
+                                    <span class="label">Lost Productivity</span>
+                                    <span class="value" id="breakdownLostProd">$0</span>
+                                </div>
+                                <div class="breakdown-item">
+                                    <span class="label">Tools & Software</span>
+                                    <span class="value" id="breakdownTools">$0</span>
+                                </div>
+                                <div class="breakdown-item">
+                                    <span class="label">Year 1 Total</span>
+                                    <span class="value" id="breakdownInhouseTotal">$0</span>
+                                </div>
+                            </div>
+                            <div class="breakdown-card">
+                                <h4 style="color: var(--green);">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                    </svg>
+                                    Agency Breakdown
+                                </h4>
+                                <div class="breakdown-item">
+                                    <span class="label">Monthly Retainer</span>
+                                    <span class="value" id="breakdownRetainer">$0</span>
+                                </div>
+                                <div class="breakdown-item">
+                                    <span class="label">Contract Length</span>
+                                    <span class="value" id="breakdownContract">0 months</span>
+                                </div>
+                                <div class="breakdown-item">
+                                    <span class="label">Contract Total</span>
+                                    <span class="value" id="breakdownAgencyContract">$0</span>
+                                </div>
+                                <div class="breakdown-item" id="breakdownRemainingRow" style="display: none;">
+                                    <span class="label">Remaining Year</span>
+                                    <span class="value" id="breakdownRemaining">Reassess</span>
+                                </div>
+                                <div class="breakdown-item">
+                                    <span class="label">Year 1 Total</span>
+                                    <span class="value" id="breakdownAgencyTotal">$0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Comparison -->
+                    <div class="score-card">
+                        <h3>
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            Time to First Campaign
+                        </h3>
+                        <div class="timeline-section">
+                            <div class="timeline-row">
+                                <div class="timeline-label">In-House</div>
+                                <div class="timeline-bar-container">
+                                    <div class="timeline-bar inhouse" id="inhouseTimeline" style="width: 50%;">
+                                        <span id="inhouseTimelineLabel">5 months</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timeline-row">
+                                <div class="timeline-label">Agency</div>
+                                <div class="timeline-bar-container">
+                                    <div class="timeline-bar agency" id="agencyTimeline" style="width: 10%;">
+                                        <span id="agencyTimelineLabel">2 weeks</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="font-size: 0.85rem; color: var(--muted); margin-top: 1rem;">
+                            Time saved with agency: <strong id="timeSaved">4.5 months</strong>
+                        </p>
+                    </div>
+
+                    <!-- Recommendation -->
+                    <div class="recommendation-box" id="recommendationBox">
+                        <h4 id="recommendationTitle">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            Recommendation
+                        </h4>
+                        <p id="recommendationText">Based on your inputs...</p>
+                    </div>
+
+                    <!-- Actions -->
+                    <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap;">
+                        <button onclick="resetCalculator()" class="btn btn-secondary">
+                            Start Over
+                        </button>
+                    </div>
+
+                    <!-- Related Resources -->
+                    <div class="related-section">
+                        <h3>Related Resources</h3>
+                        <div class="related-grid">
+                            <a href="https://42slash.com/p/the-sales-marketer" target="_blank" class="related-card">
+                                <h4>The Sales Marketer</h4>
+                                <p>Why demand gen roles keep getting harder to hire for.</p>
+                            </a>
+                            <a href="/b2b-benchmarks/" class="related-card">
+                                <h4>B2B Benchmarks</h4>
+                                <p>Industry benchmarks for LinkedIn, Google, and Meta ads.</p>
+                            </a>
+                            <a href="/tools/linkedin-budget-calculator/" class="related-card">
+                                <h4>LinkedIn Budget Calculator</h4>
+                                <p>Get real CPM/CPC estimates for your ICP.</p>
+                            </a>
+                        </div>
+                    </div>
+
+                </div><!-- end gated-section -->
+            </div><!-- end results-wrapper -->
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h3>Need Help Deciding?</h3>
+            <p>Talk to our team about your demand gen goals. We'll give you an honest assessment of whether in-house or agency is right for your situation.</p>
+            <a href="https://www.42agency.com/contact-us?utm_source=agency_calculator&utm_medium=intel">Schedule a Call</a>
+        </div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast">
+        <div class="title">Success!</div>
+        <div class="message">Your results have been unlocked.</div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="../../42-logo.png" alt="42 Agency">
+                    <p>B2B performance marketing for companies that sell to enterprises.</p>
+                    <div class="footer-social">
+                        <a href="https://linkedin.com/company/42agency" target="_blank">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                        <a href="https://x.com/42aboratory" target="_blank">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a href="https://www.youtube.com/@Get42Agency" target="_blank">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Assess</h4>
+                    <a href="/assessments/hubspot-health/">HubSpot Health Check</a>
+                    <a href="/assess/calculator/">Benchmark Calculator</a>
+                    <a href="/linkedin-audit/">LinkedIn Ads Audit</a>
+                    <a href="/google-ads-audit/">Google Ads Audit</a>
+                    <a href="/meta-audit/">Meta Ads Audit</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Benchmarks</h4>
+                    <a href="/b2b-benchmarks/">All B2B Benchmarks</a>
+                    <a href="/b2b-benchmarks/linkedin-ads-benchmarks/">LinkedIn Ads</a>
+                    <a href="/b2b-benchmarks/google-ads-benchmarks/">Google Ads</a>
+                    <a href="/b2b-benchmarks/meta-ads-benchmarks/">Meta Ads</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Tools</h4>
+                    <a href="/tools/linkedin-budget-calculator/">LinkedIn Budget Calculator</a>
+                    <a href="/tools/google-ads-budget-calculator/">Google Ads Budget Calculator</a>
+                    <a href="/tools/agency-vs-inhouse/">Agency vs In-House</a>
+                    <a href="/tools/company-sampler/">Company Sampler</a>
+                </div>
+                <div class="footer-col">
+                    <h4>42 Agency</h4>
+                    <a href="https://42agency.com" target="_blank">Website</a>
+                    <a href="https://www.42agency.com/contact-us" target="_blank">Contact Us</a>
+                    <a href="https://42agency.com/case-studies" target="_blank">Case Studies</a>
+                    <a href="https://42slash.com" target="_blank">42/ Essays</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 42 Agency. All rights reserved.</p>
+                <p>
+                    <a href="https://42agency.com/privacy">Privacy</a>
+                    <span>&nbsp;·&nbsp;</span>
+                    <a href="https://42agency.com/terms">Terms</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Calculator state
+        let state = {
+            salary: 150000,
+            benefits: 1.30,
+            hiringTime: 2,
+            rampTime: 3,
+            tools: 2000,
+            retainer: 25000,
+            contractLength: 6,
+            agencyRamp: 0.5
+        };
+
+        let calculatorResults = null;
+        let chartInstance = null;
+        let isUnlocked = false;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load from localStorage if available
+            const saved = localStorage.getItem('agency_calculator_state');
+            if (saved) {
+                try {
+                    state = JSON.parse(saved);
+                    updateUIFromState();
+                } catch (e) {}
+            }
+
+            // Set up slider listeners
+            document.getElementById('salary').addEventListener('input', function() {
+                state.salary = parseInt(this.value);
+                document.getElementById('salaryValue').textContent = formatCurrency(state.salary);
+                saveState();
+            });
+
+            document.getElementById('retainer').addEventListener('input', function() {
+                state.retainer = parseInt(this.value);
+                document.getElementById('retainerValue').textContent = formatCurrency(state.retainer);
+                saveState();
+            });
+        });
+
+        function updateUIFromState() {
+            document.getElementById('salary').value = state.salary;
+            document.getElementById('salaryValue').textContent = formatCurrency(state.salary);
+            document.getElementById('retainer').value = state.retainer;
+            document.getElementById('retainerValue').textContent = formatCurrency(state.retainer);
+
+            // Update option buttons
+            updateOptionButtons('benefits', state.benefits);
+            updateOptionButtons('hiringTime', state.hiringTime);
+            updateOptionButtons('rampTime', state.rampTime);
+            updateOptionButtons('tools', state.tools);
+            updateOptionButtons('contractLength', state.contractLength);
+            updateOptionButtons('agencyRamp', state.agencyRamp);
+        }
+
+        function updateOptionButtons(field, value) {
+            const buttons = document.querySelectorAll(`.option-btn[data-value]`);
+            buttons.forEach(btn => {
+                if (btn.onclick && btn.onclick.toString().includes(field)) {
+                    btn.classList.remove('active');
+                    if (parseFloat(btn.dataset.value) === value) {
+                        btn.classList.add('active');
+                    }
+                }
+            });
+        }
+
+        function setOption(field, value, element) {
+            state[field] = value;
+
+            // Update active state
+            const parent = element.parentElement;
+            parent.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+
+            saveState();
+        }
+
+        function saveState() {
+            localStorage.setItem('agency_calculator_state', JSON.stringify(state));
+        }
+
+        function formatCurrency(num) {
+            return '$' + num.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+        }
+
+        function formatNumber(num) {
+            return num.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+        }
+
+        function calculateComparison() {
+            // Calculate In-House costs
+            const baseSalary = state.salary;
+            const loadedSalary = baseSalary * state.benefits;
+            const monthlySalary = loadedSalary / 12;
+            const hiringCost = baseSalary * 0.20; // 20% recruiter fee
+
+            // Lost productivity during hiring + ramp
+            // During hiring: no output
+            // During ramp: 50% productivity
+            const lostProductivityMonths = state.hiringTime + (state.rampTime * 0.5);
+            const lostProductivity = lostProductivityMonths * monthlySalary;
+
+            const toolsCost = state.tools * 12;
+
+            const inhouseTotal = loadedSalary + hiringCost + lostProductivity + toolsCost;
+            const inhouseTimeToFirst = state.hiringTime + state.rampTime;
+            const inhouseEffectiveMonthly = inhouseTotal / 12;
+
+            // Calculate Agency costs
+            const agencyContractTotal = state.retainer * state.contractLength;
+            let agencyYear1Total = agencyContractTotal;
+
+            // If contract is less than 12 months, note the gap
+            const remainingMonths = 12 - state.contractLength;
+
+            const agencyTimeToFirst = state.agencyRamp;
+            const agencyEffectiveMonthly = state.retainer;
+
+            // Break-even calculation
+            // At what month does in-house cumulative cost become lower than agency cumulative?
+            // In-house has front-loaded costs (hiring, ramp)
+            // Month 1-hiringTime: Just hiring cost spread
+            // Month hiringTime to (hiringTime+rampTime): Salary starts, partial productivity
+            // Month (hiringTime+rampTime)+: Full productivity
+
+            let breakEvenMonth = 0;
+            let inhouseCumulative = hiringCost;
+            let agencyCumulative = 0;
+
+            for (let month = 1; month <= 36; month++) {
+                inhouseCumulative += monthlySalary + (state.tools);
+                agencyCumulative += state.retainer;
+
+                if (inhouseCumulative < agencyCumulative && breakEvenMonth === 0) {
+                    breakEvenMonth = month;
+                }
+            }
+
+            // Store results
+            calculatorResults = {
+                inhouse: {
+                    total: inhouseTotal,
+                    salary: baseSalary,
+                    loadedSalary: loadedSalary,
+                    benefits: loadedSalary - baseSalary,
+                    hiringCost: hiringCost,
+                    lostProductivity: lostProductivity,
+                    tools: toolsCost,
+                    timeToFirst: inhouseTimeToFirst,
+                    effectiveMonthly: inhouseEffectiveMonthly,
+                    breakEven: breakEvenMonth
+                },
+                agency: {
+                    total: agencyYear1Total,
+                    retainer: state.retainer,
+                    contractLength: state.contractLength,
+                    contractTotal: agencyContractTotal,
+                    remainingMonths: remainingMonths,
+                    timeToFirst: agencyTimeToFirst,
+                    effectiveMonthly: agencyEffectiveMonthly
+                },
+                savings: inhouseTotal - agencyYear1Total,
+                timeSaved: inhouseTimeToFirst - agencyTimeToFirst
+            };
+
+            // Display results
+            displayResults();
+
+            // Track event
+            if (window.dataLayer) {
+                window.dataLayer.push({
+                    event: 'agency_calculator_preview',
+                    inhouse_cost: inhouseTotal,
+                    agency_cost: agencyYear1Total,
+                    salary: baseSalary,
+                    retainer: state.retainer
+                });
+            }
+        }
+
+        function displayResults() {
+            const { inhouse, agency, savings, timeSaved } = calculatorResults;
+
+            // Show results section
+            document.getElementById('calculatorCard').style.display = 'none';
+            document.getElementById('resultsSection').classList.add('active');
+
+            // Update preview (ungated)
+            document.getElementById('inhouseTotalCost').textContent = formatCurrency(inhouse.total);
+            document.getElementById('agencyTotalCost').textContent = formatCurrency(agency.total);
+
+            // Add winner badge
+            const inhouseBox = document.getElementById('inhouseCostBox');
+            const agencyBox = document.getElementById('agencyCostBox');
+            inhouseBox.classList.remove('winner');
+            agencyBox.classList.remove('winner');
+
+            if (inhouse.total < agency.total) {
+                inhouseBox.classList.add('winner');
+                document.getElementById('inhouseSubtext').innerHTML = 'Total loaded cost <span class="winner-badge">Lower Cost</span>';
+            } else if (agency.total < inhouse.total) {
+                agencyBox.classList.add('winner');
+                document.getElementById('agencySubtext').innerHTML = 'Total contract value <span class="winner-badge">Lower Cost</span>';
+            }
+
+            // Render chart
+            renderComparisonChart();
+
+            // Update gated content
+            updateGatedContent();
+        }
+
+        function renderComparisonChart() {
+            const { inhouse, agency } = calculatorResults;
+
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+
+            const ctx = document.getElementById('comparisonChart').getContext('2d');
+            chartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Year 1 Total Cost'],
+                    datasets: [
+                        {
+                            label: 'In-House',
+                            data: [inhouse.total],
+                            backgroundColor: 'rgba(59, 130, 246, 0.8)',
+                            borderColor: '#1a1a1a',
+                            borderWidth: 2,
+                            borderRadius: 8
+                        },
+                        {
+                            label: 'Agency',
+                            data: [agency.total],
+                            backgroundColor: 'rgba(16, 185, 129, 0.8)',
+                            borderColor: '#1a1a1a',
+                            borderWidth: 2,
+                            borderRadius: 8
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                font: { family: 'Inter', weight: 'bold' },
+                                usePointStyle: true,
+                                padding: 20
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: '#1a1a1a',
+                            titleFont: { family: 'Inter', weight: 'bold' },
+                            bodyFont: { family: 'Inter' },
+                            padding: 12,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + formatCurrency(context.raw);
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#e5e5e5' },
+                            ticks: {
+                                font: { family: 'Inter', size: 11 },
+                                callback: function(value) {
+                                    return formatCurrency(value);
+                                }
+                            }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { font: { family: 'Inter', size: 11 } }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateGatedContent() {
+            const { inhouse, agency, savings, timeSaved } = calculatorResults;
+
+            // Table
+            document.getElementById('tableInhouseTotal').textContent = formatCurrency(inhouse.total);
+            document.getElementById('tableAgencyTotal').textContent = formatCurrency(agency.total);
+            document.getElementById('tableInhouseTime').textContent = inhouse.timeToFirst + ' months';
+            document.getElementById('tableAgencyTime').textContent = agency.timeToFirst < 1 ? Math.round(agency.timeToFirst * 4) + ' weeks' : agency.timeToFirst + ' month';
+            document.getElementById('tableInhouseMonthly').textContent = formatCurrency(inhouse.effectiveMonthly);
+            document.getElementById('tableAgencyMonthly').textContent = formatCurrency(agency.effectiveMonthly);
+            document.getElementById('tableInhouseBreakeven').textContent = inhouse.breakEven > 0 ? 'Month ' + inhouse.breakEven : 'Never (higher cost)';
+            document.getElementById('tableAgencyBreakeven').textContent = '-';
+
+            // Breakdown
+            document.getElementById('breakdownSalary').textContent = formatCurrency(inhouse.salary);
+            document.getElementById('breakdownBenefits').textContent = formatCurrency(inhouse.benefits);
+            document.getElementById('breakdownHiring').textContent = formatCurrency(inhouse.hiringCost);
+            document.getElementById('breakdownLostProd').textContent = formatCurrency(inhouse.lostProductivity);
+            document.getElementById('breakdownTools').textContent = formatCurrency(inhouse.tools);
+            document.getElementById('breakdownInhouseTotal').textContent = formatCurrency(inhouse.total);
+
+            document.getElementById('breakdownRetainer').textContent = formatCurrency(agency.retainer) + '/mo';
+            document.getElementById('breakdownContract').textContent = agency.contractLength + ' months';
+            document.getElementById('breakdownAgencyContract').textContent = formatCurrency(agency.contractTotal);
+
+            if (agency.remainingMonths > 0) {
+                document.getElementById('breakdownRemainingRow').style.display = 'flex';
+                document.getElementById('breakdownRemaining').textContent = 'Then reassess';
+            } else {
+                document.getElementById('breakdownRemainingRow').style.display = 'none';
+            }
+            document.getElementById('breakdownAgencyTotal').textContent = formatCurrency(agency.total);
+
+            // Timeline
+            const maxMonths = Math.max(inhouse.timeToFirst, 6);
+            const inhouseWidth = (inhouse.timeToFirst / maxMonths) * 100;
+            const agencyWidth = Math.max((agency.timeToFirst / maxMonths) * 100, 15);
+
+            document.getElementById('inhouseTimeline').style.width = inhouseWidth + '%';
+            document.getElementById('inhouseTimelineLabel').textContent = inhouse.timeToFirst + ' months';
+            document.getElementById('agencyTimeline').style.width = agencyWidth + '%';
+            document.getElementById('agencyTimelineLabel').textContent = agency.timeToFirst < 1 ? Math.round(agency.timeToFirst * 4) + ' weeks' : agency.timeToFirst + ' month';
+            document.getElementById('timeSaved').textContent = timeSaved.toFixed(1) + ' months';
+
+            // Recommendation
+            const recBox = document.getElementById('recommendationBox');
+            const recTitle = document.getElementById('recommendationTitle');
+            const recText = document.getElementById('recommendationText');
+
+            const costDiff = Math.abs(savings);
+            const costDiffPercent = (costDiff / Math.max(inhouse.total, agency.total)) * 100;
+
+            recBox.classList.remove('agency', 'inhouse', 'neutral');
+
+            if (costDiffPercent < 20) {
+                // Within 20% - neutral
+                recBox.classList.add('neutral');
+                recTitle.innerHTML = '<svg width="20" height="20" fill="none" stroke="#F59E0B" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/></svg> Similar Cost - Decide on Other Factors';
+                recText.textContent = `The Year 1 costs are within 20% of each other (${formatCurrency(costDiff)} difference). Consider: Do you need results fast? Agency. Do you want long-term control and institutional knowledge? In-house. Do you have bandwidth to manage a hire? Consider agency first.`;
+            } else if (agency.total < inhouse.total) {
+                // Agency cheaper
+                recBox.classList.add('agency');
+                recTitle.innerHTML = '<svg width="20" height="20" fill="none" stroke="var(--green)" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Agency Makes Sense';
+                recText.textContent = `An agency saves you ${formatCurrency(savings)} in Year 1 and gets you to your first campaign ${timeSaved.toFixed(1)} months faster. You also get immediate access to a full team of specialists without recruiting risk.`;
+            } else if (inhouse.total < agency.total && inhouse.timeToFirst <= 3) {
+                // In-house cheaper AND reasonable timeline
+                recBox.classList.add('inhouse');
+                recTitle.innerHTML = '<svg width="20" height="20" fill="none" stroke="var(--blue)" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> In-House Could Work';
+                recText.textContent = `In-house saves you ${formatCurrency(-savings)} in Year 1 and your timeline of ${inhouse.timeToFirst} months to first campaign is reasonable. If you can wait and have bandwidth to manage hiring, this could be the right choice for long-term capacity building.`;
+            } else {
+                // In-house cheaper but long timeline
+                recBox.classList.add('agency');
+                recTitle.innerHTML = '<svg width="20" height="20" fill="none" stroke="var(--green)" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Consider Agency for Speed';
+                recText.textContent = `While in-house is ${formatCurrency(-savings)} cheaper in Year 1, it takes ${inhouse.timeToFirst} months to first campaign vs ${agency.timeToFirst < 1 ? Math.round(agency.timeToFirst * 4) + ' weeks' : agency.timeToFirst + ' month'} with an agency. If you need results in the next 2-3 months, agency makes sense for speed.`;
+            }
+        }
+
+        async function unlockResults() {
+            const email = document.getElementById('gateEmail').value.trim();
+            if (!email) {
+                alert('Please enter your email');
+                return;
+            }
+
+            if (!email.includes('@') || !email.includes('.')) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            document.getElementById('unlockBtnText').textContent = 'Unlocking...';
+            document.getElementById('unlockSpinner').style.display = 'block';
+            document.getElementById('unlockBtn').disabled = true;
+
+            try {
+                // Call API to log to HubSpot
+                const response = await fetch('/api/agency-calculator', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        salary: state.salary,
+                        retainer: state.retainer,
+                        inhouseTotal: calculatorResults.inhouse.total,
+                        agencyTotal: calculatorResults.agency.total,
+                        recommendation: calculatorResults.inhouse.total < calculatorResults.agency.total ? 'inhouse' : 'agency'
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to unlock');
+                }
+
+                // Unlock the results
+                isUnlocked = true;
+                document.getElementById('resultsWrapper').classList.remove('locked');
+                document.getElementById('resultsWrapper').classList.add('unlocked');
+
+                // Track unlock event
+                if (window.dataLayer) {
+                    window.dataLayer.push({
+                        event: 'agency_calculator_unlocked',
+                        inhouse_cost: calculatorResults.inhouse.total,
+                        agency_cost: calculatorResults.agency.total
+                    });
+                }
+
+                // Show toast
+                showToast('Results Unlocked!', 'Check your email for a copy of your comparison.');
+
+            } catch (error) {
+                // For local testing, unlock anyway
+                console.log('API error (expected locally):', error);
+                isUnlocked = true;
+                document.getElementById('resultsWrapper').classList.remove('locked');
+                document.getElementById('resultsWrapper').classList.add('unlocked');
+                showToast('Results Unlocked!', 'Local mode - API not available.');
+            } finally {
+                document.getElementById('unlockBtnText').textContent = 'Unlock Full Results';
+                document.getElementById('unlockSpinner').style.display = 'none';
+                document.getElementById('unlockBtn').disabled = false;
+            }
+        }
+
+        function showToast(title, message) {
+            const toast = document.getElementById('toast');
+            toast.querySelector('.title').textContent = title;
+            toast.querySelector('.message').textContent = message;
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 5000);
+        }
+
+        function resetCalculator() {
+            document.getElementById('calculatorCard').style.display = 'block';
+            document.getElementById('resultsSection').classList.remove('active');
+
+            // Reset locked state
+            document.getElementById('resultsWrapper').classList.add('locked');
+            document.getElementById('resultsWrapper').classList.remove('unlocked');
+            isUnlocked = false;
+
+            // Clear email
+            document.getElementById('gateEmail').value = '';
+
+            // Destroy chart
+            if (chartInstance) {
+                chartInstance.destroy();
+                chartInstance = null;
+            }
+
+            calculatorResults = null;
+        }
+    </script>
+    <!-- Vercel Analytics -->
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

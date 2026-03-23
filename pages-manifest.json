@@ -23,12 +23,14 @@
     "tools": {
       "description": "AI-powered calculators and utilities",
       "pages": [
+        "/tools/agency-vs-inhouse/",
         "/tools/company-resolver/",
         "/tools/company-sampler/",
         "/tools/google-ads-budget-calculator/",
         "/tools/linkedin-budget-calculator/",
         "/tools/linkedin-inmail-calculator/",
-        "/tools/meta-budget-calculator/"
+        "/tools/meta-budget-calculator/",
+        "/tools/post-raise-allocator/"
       ]
     },
     "playbooks": {
@@ -36,6 +38,7 @@
       "pages": [
         "/playbooks/abm-enrichment/",
         "/playbooks/closed-lost-revival/",
+        "/playbooks/first-90-days/",
         "/playbooks/intent-signals/",
         "/playbooks/lead-reengagement/",
         "/playbooks/lead-scoring-framework/"
@@ -179,6 +182,7 @@
         "/mailgun-xr9sjy/",
         "/managed-abm/",
         "/mkt1/",
+        "/numeric/",
         "/parloa-a63daf/",
         "/part3-ca-intel/",
         "/plotly-200117/",

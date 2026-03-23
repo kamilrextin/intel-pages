@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numeric Competitive Intelligence | 42 Agency</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+        /* Header */
+        header {
+            border-bottom: 2px solid #1a1a1a;
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            background: #fff;
+            z-index: 50;
+        }
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { font-weight: 800; font-size: 18px; }
+        .logo span { color: #6b6b6b; font-weight: 500; }
+
+        /* Hero */
+        .hero {
+            background: #f5f5f5;
+            border-bottom: 2px solid #1a1a1a;
+            padding: 60px 0;
+        }
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+        .hero p {
+            font-size: 18px;
+            color: #4a4a4a;
+            max-width: 600px;
+        }
+        .meta {
+            display: flex;
+            gap: 24px;
+            margin-top: 24px;
+            font-size: 14px;
+            color: #6b6b6b;
+        }
+
+        /* Section */
+        section { padding: 48px 0; }
+        section h2 {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+        }
+        section h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            margin-top: 32px;
+        }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            border: 2px solid #1a1a1a;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: 4px 4px 0px 0px #1a1a1a;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .card p { color: #4a4a4a; font-size: 15px; }
+
+        /* Stats */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .stat {
+            background: #fff;
+            border: 2px solid #1a1a1a;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 3px 3px 0px 0px #1a1a1a;
+        }
+        .stat-value {
+            font-size: 32px;
+            font-weight: 800;
+            color: #1a1a1a;
+        }
+        .stat-label {
+            font-size: 13px;
+            color: #6b6b6b;
+            margin-top: 4px;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 2px solid #1a1a1a;
+            padding: 12px 16px;
+            text-align: left;
+        }
+        th {
+            background: #f5f5f5;
+            font-weight: 700;
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border: 2px solid #1a1a1a;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        .badge-green { background: #10B981; color: #fff; border-color: #10B981; }
+        .badge-orange { background: #F59E0B; color: #fff; border-color: #F59E0B; }
+        .badge-blue { background: #3B82F6; color: #fff; border-color: #3B82F6; }
+
+        /* CTA */
+        .cta-section {
+            background: #DFFE68;
+            border: 2px solid #1a1a1a;
+            border-radius: 16px;
+            padding: 40px;
+            margin: 48px 0;
+            box-shadow: 6px 6px 0px 0px #1a1a1a;
+            text-align: center;
+        }
+        .cta-section h3 {
+            font-size: 24px;
+            margin-top: 0;
+        }
+        .cta-btn {
+            display: inline-block;
+            background: #1a1a1a;
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 16px;
+        }
+        .cta-btn:hover { background: #333; }
+
+        /* Footer */
+        footer {
+            border-top: 2px solid #1a1a1a;
+            padding: 40px 0;
+            background: #1a1a1a;
+            color: #9a9a9a;
+        }
+        footer a { color: #DFFE68; text-decoration: none; }
+
+        /* Position Map */
+        .position-map {
+            background: #f5f5f5;
+            border: 2px solid #1a1a1a;
+            border-radius: 12px;
+            padding: 32px;
+            font-family: monospace;
+            font-size: 14px;
+            line-height: 1.8;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 28px; }
+            .stat-grid { grid-template-columns: repeat(2, 1fr); }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-inner">
+            <div class="logo">42 Agency <span>/ Intel</span></div>
+            <div style="font-size: 14px; color: #6b6b6b;">Prepared for Numeric</div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Numeric Competitive Intelligence</h1>
+            <p>Market positioning, competitor analysis, and AI visibility (AEO) insights for the accounting close management space.</p>
+            <div class="meta">
+                <span>March 2026</span>
+                <span>Category: Accounting Close / FP&A</span>
+                <span>Competitors: FloQast, BlackLine, Cube, Pigment, Abacum</span>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Executive Summary</h2>
+
+            <div class="stat-grid">
+                <div class="stat">
+                    <div class="stat-value">4.8</div>
+                    <div class="stat-label">G2 Rating (65 reviews)</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">9.7</div>
+                    <div class="stat-label">Ease of Use Score</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">#1</div>
+                    <div class="stat-label">Best ROI (G2 Award)</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">&lt;1mo</div>
+                    <div class="stat-label">Implementation Time</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h4>Key Findings</h4>
+                <p style="margin-bottom: 16px;">Numeric occupies a unique position in the market - more enterprise-capable than FloQast, more accessible than BlackLine, with AI-native architecture as the core differentiator.</p>
+                <span class="badge badge-green">Strong AI Positioning</span>
+                <span class="badge badge-blue">Growing G2 Presence</span>
+                <span class="badge badge-orange">AEO Opportunity</span>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: #f5f5f5; border-top: 2px solid #1a1a1a; border-bottom: 2px solid #1a1a1a;">
+        <div class="container">
+            <h2>Competitive Landscape</h2>
+
+            <h3>Direct Competitors (Accounting Close)</h3>
+            <table>
+                <tr>
+                    <th>Company</th>
+                    <th>G2 Rating</th>
+                    <th>Reviews</th>
+                    <th>Target</th>
+                    <th>Positioning</th>
+                </tr>
+                <tr>
+                    <td><strong>Numeric</strong></td>
+                    <td>4.8/5</td>
+                    <td>65</td>
+                    <td>Mid-market to Enterprise</td>
+                    <td>AI-Powered Close Automation</td>
+                </tr>
+                <tr>
+                    <td>FloQast</td>
+                    <td>4.6/5</td>
+                    <td>1,390</td>
+                    <td>Mid-market</td>
+                    <td>Spreadsheet-centric close</td>
+                </tr>
+                <tr>
+                    <td>BlackLine</td>
+                    <td>4.5/5</td>
+                    <td>1,037</td>
+                    <td>Enterprise</td>
+                    <td>Rules-based compliance</td>
+                </tr>
+            </table>
+
+            <h3>Adjacent Competitors (FP&A)</h3>
+            <p style="color: #6b6b6b; margin-bottom: 16px;">These serve FP&A teams (CFO buyer) vs accounting teams (Controller buyer) - adjacent, not direct competition.</p>
+            <table>
+                <tr>
+                    <th>Company</th>
+                    <th>G2 Rating</th>
+                    <th>Reviews</th>
+                    <th>Key Differentiator</th>
+                </tr>
+                <tr>
+                    <td>Cube</td>
+                    <td>4.5/5</td>
+                    <td>124</td>
+                    <td>Spreadsheet-native, Excel integration</td>
+                </tr>
+                <tr>
+                    <td>Pigment</td>
+                    <td>4.6/5</td>
+                    <td>94</td>
+                    <td>Agentic AI, enterprise planning</td>
+                </tr>
+                <tr>
+                    <td>Abacum</td>
+                    <td>4.8/5</td>
+                    <td>142</td>
+                    <td>AI-native FP&A, 700+ integrations</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Competitive Positioning Map</h2>
+            <div class="position-map">
+                        ENTERPRISE
+                            |
+              BlackLine     |     Pigment
+                  |         |        |
+                  |         |        |
+     ACCOUNTING   |         |        |   PLANNING
+        CLOSE  ---+---------+---------+--- FP&A
+                  |         |        |
+             Numeric        |    Cube, Abacum
+                  |         |    Mosaic, Drivetrain
+              FloQast       |
+                            |
+                        MID-MARKET
+            </div>
+            <p style="margin-top: 16px; color: #6b6b6b;"><strong>Key Insight:</strong> Numeric owns the space between FloQast (mid-market/spreadsheet) and BlackLine (enterprise/complex). FP&A tools are a different category entirely.</p>
+        </div>
+    </section>
+
+    <section style="background: #f5f5f5; border-top: 2px solid #1a1a1a; border-bottom: 2px solid #1a1a1a;">
+        <div class="container">
+            <h2>AI Visibility (AEO/GEO Analysis)</h2>
+            <p style="margin-bottom: 24px;">How Numeric appears in AI answer engines (ChatGPT, Perplexity, Gemini) for relevant queries.</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h4>"Best accounting close software 2026"</h4>
+                    <p><strong>Numeric visibility:</strong> Growing - mentioned in G2 citations</p>
+                    <p style="margin-top: 8px;"><strong>Dominant:</strong> FloQast (content volume), BlackLine (enterprise)</p>
+                    <span class="badge badge-orange" style="margin-top: 12px;">Opportunity</span>
+                </div>
+                <div class="card">
+                    <h4>"Best FP&A software mid-market"</h4>
+                    <p><strong>Numeric visibility:</strong> Not relevant (different category)</p>
+                    <p style="margin-top: 8px;"><strong>Dominant:</strong> Cube, Abacum, Mosaic</p>
+                    <span class="badge" style="margin-top: 12px;">Different Buyer</span>
+                </div>
+            </div>
+
+            <h3>Top Citation Sources in AI Engines</h3>
+            <table>
+                <tr>
+                    <th>Source</th>
+                    <th>Frequency</th>
+                    <th>Numeric Presence</th>
+                </tr>
+                <tr>
+                    <td>G2.com</td>
+                    <td>High</td>
+                    <td>Strong (4.8 rating, 65 reviews)</td>
+                </tr>
+                <tr>
+                    <td>Gartner</td>
+                    <td>High</td>
+                    <td>Limited</td>
+                </tr>
+                <tr>
+                    <td>Company Blogs</td>
+                    <td>Medium</td>
+                    <td>Growing content presence</td>
+                </tr>
+                <tr>
+                    <td>Reddit</td>
+                    <td>Low</td>
+                    <td>Organic mentions</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Ad Intelligence</h2>
+
+            <h3>LinkedIn Ad Activity (Estimated)</h3>
+            <table>
+                <tr>
+                    <th>Company</th>
+                    <th>Followers</th>
+                    <th>Activity Level</th>
+                    <th>Primary Messaging</th>
+                </tr>
+                <tr>
+                    <td><strong>Numeric</strong></td>
+                    <td>2,259</td>
+                    <td>Medium</td>
+                    <td>AI-powered automation, speed</td>
+                </tr>
+                <tr>
+                    <td>Pigment</td>
+                    <td>32,708</td>
+                    <td>High</td>
+                    <td>Agentic AI, cross-functional</td>
+                </tr>
+                <tr>
+                    <td>Cube</td>
+                    <td>6,169</td>
+                    <td>Medium</td>
+                    <td>Excel flexibility + modern platform</td>
+                </tr>
+                <tr>
+                    <td>FloQast</td>
+                    <td>15,000+</td>
+                    <td>High</td>
+                    <td>Ease of use, spreadsheet compatibility</td>
+                </tr>
+            </table>
+
+            <h3>Recommended Ad Angles for Numeric</h3>
+            <div class="card-grid">
+                <div class="card">
+                    <h4>"Cut close time by 33%"</h4>
+                    <p>Quantified outcome - resonates with CFOs/Controllers tracking efficiency.</p>
+                </div>
+                <div class="card">
+                    <h4>"Scale 3x without hiring"</h4>
+                    <p>Headcount efficiency - relevant for budget-conscious teams.</p>
+                </div>
+                <div class="card">
+                    <h4>"AI that understands accounting"</h4>
+                    <p>Differentiator vs competitors adding AI as a feature.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: #f5f5f5; border-top: 2px solid #1a1a1a;">
+        <div class="container">
+            <h2>Recommendations</h2>
+
+            <div class="card">
+                <h4>1. Own "AI-native" positioning</h4>
+                <p>Competitors are adding AI features; Numeric was built on AI from day one. Lean into "AI-native" vs "AI-added" messaging.</p>
+            </div>
+
+            <div class="card">
+                <h4>2. Create comparison content for AEO</h4>
+                <p>"Numeric vs FloQast" and "Numeric vs BlackLine" pages will get cited by AI engines. Currently a content gap.</p>
+            </div>
+
+            <div class="card">
+                <h4>3. Target FloQast graduation</h4>
+                <p>Companies outgrowing spreadsheet-based close are ideal prospects. Message: "When Excel integration isn't enough."</p>
+            </div>
+
+            <div class="card">
+                <h4>4. Increase G2 review volume</h4>
+                <p>65 reviews vs FloQast's 1,390. More reviews = more AI citations. Consider review solicitation campaign.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="cta-section">
+            <h3>Want the full analysis?</h3>
+            <p style="color: #4a4a4a; max-width: 500px; margin: 0 auto;">We help B2B SaaS teams turn competitive insights into pipeline. Let's talk about Numeric's paid strategy.</p>
+            <a href="https://www.42agency.com/contact-us?utm_source=intel&utm_medium=numeric&utm_campaign=ci" class="cta-btn">Get in Touch</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p><a href="https://www.42agency.com">42 Agency</a> &middot; B2B Paid Media for SaaS</p>
+            <p style="margin-top: 8px; font-size: 13px;">This report was prepared specifically for Numeric. Data as of March 2026.</p>
+        </div>
+    </footer>
+</body>
+</html>
