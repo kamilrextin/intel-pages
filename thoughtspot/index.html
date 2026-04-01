@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThoughtSpot Competitive Intelligence | Market Sentiment Analysis | 42 Agency Intel</title>
+    <meta name="description" content="Deep competitive intelligence on ThoughtSpot: market sentiment from Reddit, G2, Gartner, practitioner reviews, Agentic Analytics positioning, and embedded analytics landscape.">
+
+    <!-- OG Tags -->
+    <meta property="og:title" content="ThoughtSpot Competitive Intelligence | 42 Agency">
+    <meta property="og:description" content="Enterprise analytics competitive landscape: ThoughtSpot vs Tableau, Looker, Power BI, Domo. Real practitioner sentiment and positioning analysis.">
+    <meta property="og:image" content="https://intel.42agency.com/og-share.png">
+    <meta property="og:url" content="https://intel.42agency.com/thoughtspot/">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- GTM -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MM5BTNS');</script>
+
+    <!-- HubSpot -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/44888286.js"></script>
+
+    <style>
+        :root {
+            --accent: #DFFE68;
+            --accent-hover: #C8E85C;
+            --black: #1a1a1a;
+            --gray: #4a4a4a;
+            --muted: #6b6b6b;
+            --light-gray: #f5f5f5;
+            --green: #10B981;
+            --orange: #F59E0B;
+            --red: #EF4444;
+            --blue: #3B82F6;
+            --purple: #8B5CF6;
+            --thoughtspot: #0066FF;
+            --tableau: #E97627;
+            --powerbi: #F2C811;
+            --looker: #4285F4;
+            --domo: #00A4E4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            background-color: var(--light-gray);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            border-bottom: 2px solid var(--black);
+            padding: 0.75rem 1.5rem;
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo img { height: 28px; width: auto; }
+        .nav { display: flex; align-items: center; gap: 0.25rem; }
+        .nav a {
+            padding: 0.5rem 1rem;
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.15s;
+        }
+        .nav a:hover { color: var(--black); background: var(--light-gray); }
+        .nav a.active { color: var(--black); font-weight: 600; background: var(--accent); }
+        .nav-cta {
+            margin-left: 0.5rem;
+            padding: 0.5rem 1rem !important;
+            background: var(--black) !important;
+            color: white !important;
+            border-radius: 6px;
+            font-weight: 600 !important;
+        }
+        .nav-cta:hover { background: #333 !important; }
+        @media (max-width: 768px) { .nav { display: none; } }
+
+        .hero {
+            background: linear-gradient(135deg, #0066FF 0%, #0044AA 100%);
+            border-bottom: 2px solid var(--black);
+            padding: 3rem 2rem;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .summary {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            max-width: 800px;
+            line-height: 1.7;
+        }
+
+        .hero-meta {
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        /* Stats Row */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .stats-row {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 600px) {
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .stat-card {
+            background: #ffffff;
+            border: 2px solid var(--black);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            box-shadow: 3px 3px 0px 0px var(--black);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+        }
+
+        .stat-value.positive { color: var(--green); }
+        .stat-value.neutral { color: var(--orange); }
+        .stat-value.negative { color: var(--red); }
+        .stat-value.blue { color: var(--blue); }
+        .stat-value.purple { color: var(--purple); }
+
+        .stat-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0.25rem;
+        }
+
+        .stat-sublabel {
+            font-size: 0.65rem;
+            color: var(--muted);
+            margin-top: 0.15rem;
+        }
+
+        /* Cards */
+        .card {
+            background: #ffffff;
+            border: 2px solid var(--black);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 4px 4px 0px 0px var(--black);
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Executive Summary */
+        .exec-summary {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 4px 4px 0px 0px var(--black);
+            margin-bottom: 2rem;
+        }
+
+        .exec-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 900px) {
+            .exec-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .exec-item {
+            padding: 1.25rem;
+            border: 2px solid var(--light-gray);
+            border-radius: 0.75rem;
+            background: var(--light-gray);
+        }
+
+        .exec-item h4 {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .exec-item p {
+            font-size: 0.95rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Competitor Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .comparison-table th {
+            background: var(--black);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .comparison-table th:first-child {
+            border-radius: 0.5rem 0 0 0;
+        }
+
+        .comparison-table th:last-child {
+            border-radius: 0 0.5rem 0 0;
+        }
+
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        .comparison-table tr:hover td {
+            background: var(--light-gray);
+        }
+
+        .vendor-name {
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .vendor-badge {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .rating-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .rating-high { background: #D1FAE5; color: #065F46; }
+        .rating-mid { background: #FEF3C7; color: #92400E; }
+        .rating-low { background: #FEE2E2; color: #991B1B; }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.25rem;
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .tab-btn:hover {
+            background: var(--light-gray);
+        }
+
+        .tab-btn.active {
+            background: var(--accent);
+            box-shadow: 2px 2px 0px 0px var(--black);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Quotes Grid */
+        .quotes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .quote-card {
+            background: #ffffff;
+            border: 2px solid var(--black);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .quote-card.positive {
+            box-shadow: 4px 4px 0px 0px var(--green);
+        }
+
+        .quote-card.negative {
+            box-shadow: 4px 4px 0px 0px var(--red);
+        }
+
+        .quote-card.neutral {
+            box-shadow: 4px 4px 0px 0px var(--orange);
+        }
+
+        .quote-icon {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--accent);
+            border: 2px solid var(--black);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 800;
+        }
+
+        .quote-text {
+            font-size: 0.95rem;
+            font-style: italic;
+            color: var(--black);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .quote-source {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .quote-author {
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .quote-platform {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            background: var(--light-gray);
+            border-radius: 4px;
+            color: var(--muted);
+        }
+
+        .quote-link {
+            font-size: 0.75rem;
+            color: var(--blue);
+            text-decoration: none;
+        }
+
+        .quote-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Insights List */
+        .insights-list {
+            list-style: none;
+        }
+
+        .insights-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+        }
+
+        .insights-list li:last-child {
+            border-bottom: none;
+        }
+
+        .insight-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .insight-icon.positive { background: #D1FAE5; color: #065F46; }
+        .insight-icon.negative { background: #FEE2E2; color: #991B1B; }
+        .insight-icon.neutral { background: #FEF3C7; color: #92400E; }
+
+        /* Positioning Section */
+        .positioning-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .positioning-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .positioning-card {
+            background: white;
+            border: 2px solid var(--black);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 4px 4px 0px 0px var(--purple);
+        }
+
+        .positioning-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .positioning-card p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Chart Container */
+        .chart-container {
+            position: relative;
+            height: 350px;
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--accent);
+            border: 2px solid var(--black);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            box-shadow: 6px 6px 0px 0px var(--black);
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .cta-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.75rem;
+        }
+
+        .cta-text {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--black);
+            color: #ffffff;
+            font-weight: 700;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+
+        /* Agentic Analytics Section */
+        .agentic-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+            border: 2px solid var(--black);
+            border-radius: 1rem;
+            padding: 2rem;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .agentic-section h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .agentic-section p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .agentic-timeline {
+            margin-top: 1.5rem;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+            border-left: 2px solid var(--accent);
+        }
+
+        .timeline-date {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            min-width: 80px;
+        }
+
+        .timeline-event {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 2px solid var(--black);
+            background: var(--black);
+            padding: 4rem 1.5rem 2rem;
+            margin-top: 2rem;
+        }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr repeat(4, 1fr);
+            gap: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid #333;
+        }
+        .footer-brand img { height: 24px; filter: brightness(0) invert(1); margin-bottom: 1rem; }
+        .footer-brand p { font-size: 0.85rem; color: #999; line-height: 1.6; }
+        .footer-social { margin-top: 1rem; display: flex; gap: 1rem; }
+        .footer-social a { color: #999; text-decoration: none; display: flex; align-items: center; }
+        .footer-social a:hover { color: white; }
+        .footer-social svg { width: 20px; height: 20px; }
+        .footer-col h4 {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        .footer-col a {
+            display: block;
+            color: #999;
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 0.6rem;
+        }
+        .footer-col a:hover { color: white; }
+        .footer-col .sublink { padding-left: 0.75rem; font-size: 0.8rem; color: #666; }
+        .footer-bottom {
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #666;
+        }
+        .footer-bottom a { color: #666; text-decoration: none; }
+        .footer-bottom a:hover { color: #999; }
+        @media (max-width: 900px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } }
+
+        /* Highlight */
+        .highlight {
+            background: linear-gradient(120deg, var(--accent) 0%, var(--accent) 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 0.3em;
+            background-position: 0 88%;
+        }
+
+        /* Source Badge */
+        .source-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.25rem 0.6rem;
+            background: var(--light-gray);
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--muted);
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- GTM noscript -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MM5BTNS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <header class="header">
+        <div class="header-inner">
+            <a href="/" class="logo">
+                <img src="/42-logo.png" alt="42 Agency">
+            </a>
+            <nav class="nav">
+                <a href="/assess/">Assess</a>
+                <a href="/b2b-benchmarks/">Benchmarks</a>
+                <a href="https://copilot.42agency.com" target="_blank">AI Tools</a>
+                <a href="https://www.42agency.com/contact-us" target="_blank" class="nav-cta">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">Competitive Intelligence</span>
+            <h1>ThoughtSpot Market Sentiment Analysis</h1>
+            <p class="summary">
+                Deep analysis of ThoughtSpot's market position, practitioner sentiment, and competitive landscape.
+                Covering the "Agentic Analytics" positioning, embedded analytics opportunity, and pain points
+                practitioners cite about ThoughtSpot and key competitors (Tableau, Power BI, Looker, Domo).
+            </p>
+            <p class="hero-meta">
+                Based on analysis of Reddit, G2, TrustRadius, Gartner Peer Insights, LinkedIn, and industry blogs. March 2026.
+            </p>
+        </div>
+    </section>
+
+    <main class="main">
+        <!-- Key Stats -->
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-value blue">4.4</div>
+                <div class="stat-label">G2 Rating</div>
+                <div class="stat-sublabel">316 reviews</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value blue">8.1</div>
+                <div class="stat-label">TrustRadius</div>
+                <div class="stat-sublabel">202 reviews</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value blue">4.6</div>
+                <div class="stat-label">Gartner Peer</div>
+                <div class="stat-sublabel">401 reviews</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value positive">+0.35</div>
+                <div class="stat-label">Reddit Sentiment</div>
+                <div class="stat-sublabel">Mixed-positive</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value purple">1st</div>
+                <div class="stat-label">"Agentic Analytics"</div>
+                <div class="stat-sublabel">Category owner</div>
+            </div>
+        </div>
+
+        <!-- Executive Summary -->
+        <div class="exec-summary">
+            <h2 class="section-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                </svg>
+                Executive Summary
+            </h2>
+            <p style="color: var(--gray); line-height: 1.8; margin-bottom: 1rem;">
+                ThoughtSpot occupies a <span class="highlight">unique position</span> in the BI landscape as the only vendor aggressively
+                pursuing "Agentic Analytics" positioning. Their November 2024 launch of Spotter (autonomous AI analyst) and subsequent
+                releases (Spotter 3, SpotterViz, SpotterModel, SpotterCode) represent a significant bet on AI-native analytics that
+                competitors haven't matched. Market sentiment is <strong>mixed-positive</strong>: practitioners praise the natural
+                language search and ease of use but cite concerns about pricing, data modeling requirements, and embedding experience.
+            </p>
+            <div class="exec-grid">
+                <div class="exec-item">
+                    <h4>Key Strength</h4>
+                    <p><strong>Natural language search</strong> consistently praised across all review platforms. Users describe it as
+                    "best-in-class" for enabling non-technical users to self-serve analytics without SQL knowledge.</p>
+                </div>
+                <div class="exec-item">
+                    <h4>Key Weakness</h4>
+                    <p><strong>Data modeling burden</strong> is high. Multiple practitioners note that "the data preparation burden is high
+                    to enable any of the more sophisticated exploratory or self-serve analytics capabilities."</p>
+                </div>
+                <div class="exec-item">
+                    <h4>Positioning Opportunity</h4>
+                    <p>ThoughtSpot <strong>owns "Agentic Analytics"</strong> - no competitor has claimed this term. This creates a massive
+                    differentiation opportunity as enterprises prioritize AI-native tools in 2026.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Agentic Analytics Positioning -->
+        <div class="agentic-section">
+            <h3>"Agentic Analytics" - ThoughtSpot Owns the Category</h3>
+            <p>
+                ThoughtSpot has positioned itself as the pioneer of "Agentic Analytics" - AI systems that don't just answer questions
+                but autonomously analyze, decide, and act on data. This positioning is <strong>unchallenged by competitors</strong>.
+                Tableau, Power BI, Looker, and Domo have not claimed this terminology or launched comparable agentic capabilities.
+            </p>
+            <p>
+                The risk? Reddit practitioners are already questioning whether "Agentic Analytics" creates "verification debt" -
+                if an AI agent gives an executive an answer in 10 seconds, but it takes an analyst 2 hours to audit the query,
+                have we actually made progress?
+            </p>
+            <div class="agentic-timeline">
+                <div class="timeline-item">
+                    <span class="timeline-date">Nov 2024</span>
+                    <span class="timeline-event">Spotter launched - "autonomous agent for analytics"</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">Sep 2025</span>
+                    <span class="timeline-event">Spotter 3 - analyzes unstructured data (Slack, CRM notes, tickets)</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">Dec 2025</span>
+                    <span class="timeline-event">Four BI Agents launched: SpotterViz, SpotterModel, SpotterCode, Spotter 3</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">Feb 2026</span>
+                    <span class="timeline-event">Analyst Studio + SpotCache for agentic data prep</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">Mar 2026</span>
+                    <span class="timeline-event">Spotter Semantics - semantic layer built for AI agents</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Competitor Comparison -->
+        <div class="card" style="overflow-x: auto;">
+            <h2 class="card-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 20V10M12 20V4M6 20v-6"/>
+                </svg>
+                Competitive Landscape: Review Platform Ratings
+            </h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Vendor</th>
+                        <th>G2 Rating</th>
+                        <th>Gartner Peer</th>
+                        <th>Key Strength</th>
+                        <th>Key Weakness</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="vendor-name"><span class="vendor-badge" style="background: var(--thoughtspot)"></span>ThoughtSpot</span></td>
+                        <td><span class="rating-badge rating-high">4.4/5</span> (316)</td>
+                        <td><span class="rating-badge rating-high">4.6/5</span> (401)</td>
+                        <td>Natural language search, AI-first, speed</td>
+                        <td>Expensive, data modeling burden, embedding UX</td>
+                    </tr>
+                    <tr>
+                        <td><span class="vendor-name"><span class="vendor-badge" style="background: var(--tableau)"></span>Tableau</span></td>
+                        <td><span class="rating-badge rating-high">4.4/5</span> (4,157)</td>
+                        <td><span class="rating-badge rating-high">4.4/5</span></td>
+                        <td>Best visualizations, huge community</td>
+                        <td>Pricing after Salesforce acquisition, complexity</td>
+                    </tr>
+                    <tr>
+                        <td><span class="vendor-name"><span class="vendor-badge" style="background: var(--powerbi)"></span>Power BI</span></td>
+                        <td><span class="rating-badge rating-high">4.4/5</span> (3,726)</td>
+                        <td><span class="rating-badge rating-high">4.4/5</span></td>
+                        <td>Microsoft integration, cheapest enterprise option</td>
+                        <td>DAX is painful, not intuitive for non-tech users</td>
+                    </tr>
+                    <tr>
+                        <td><span class="vendor-name"><span class="vendor-badge" style="background: var(--looker)"></span>Looker</span></td>
+                        <td><span class="rating-badge rating-high">4.5/5</span> (282)</td>
+                        <td><span class="rating-badge rating-high">4.5/5</span></td>
+                        <td>Semantic layer, data governance</td>
+                        <td>LookML learning curve, expensive, slow after Google</td>
+                    </tr>
+                    <tr>
+                        <td><span class="vendor-name"><span class="vendor-badge" style="background: var(--domo)"></span>Domo</span></td>
+                        <td><span class="rating-badge rating-high">4.5/5</span> (488)</td>
+                        <td><span class="rating-badge rating-high">4.5/5</span></td>
+                        <td>All-in-one platform, ETL + viz</td>
+                        <td>Expensive, "training wheels" limitations</td>
+                    </tr>
+                    <tr>
+                        <td><span class="vendor-name"><span class="vendor-badge" style="background: #6366F1"></span>Sisense</span></td>
+                        <td><span class="rating-badge rating-mid">4.2/5</span> (1,017)</td>
+                        <td><span class="rating-badge rating-mid">4.1/5</span></td>
+                        <td>Embedded analytics, developer-friendly</td>
+                        <td>Acquisition uncertainty, fewer reviews</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Charts -->
+        <div class="charts-grid">
+            <div class="card">
+                <h2 class="card-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 20V10M12 20V4M6 20v-6"/>
+                    </svg>
+                    G2 Review Volume by Vendor
+                </h2>
+                <div class="chart-container">
+                    <canvas id="reviewVolumeChart"></canvas>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                    ThoughtSpot Review Themes
+                </h2>
+                <div class="chart-container">
+                    <canvas id="themesChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabbed Deep Dives -->
+        <h2 class="section-title" style="margin-top: 2rem;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+            </svg>
+            What Practitioners Say
+        </h2>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('thoughtspot')">ThoughtSpot</button>
+            <button class="tab-btn" onclick="showTab('tableau')">Tableau</button>
+            <button class="tab-btn" onclick="showTab('powerbi')">Power BI</button>
+            <button class="tab-btn" onclick="showTab('looker')">Looker</button>
+            <button class="tab-btn" onclick="showTab('domo')">Domo</button>
+        </div>
+
+        <!-- ThoughtSpot Tab -->
+        <div id="thoughtspot" class="tab-content active">
+            <div class="card">
+                <h3 class="card-title" style="color: var(--green);">What Practitioners Praise</h3>
+                <ul class="insights-list">
+                    <li>
+                        <span class="insight-icon positive">+</span>
+                        <div><strong>Natural language search:</strong> "ThoughtSpot is super interesting... stakeholders are extremely interested in data, and willing to use ThoughtSpot to answer their own questions."
+                        <br><span class="source-badge">Reddit</span><a href="https://www.reddit.com/r/BusinessIntelligence/comments/1rc0arr/has_anyone_actually_rolled_out_talk_to_your_data/" target="_blank" class="quote-link">r/BusinessIntelligence</a></div>
+                    </li>
+                    <li>
+                        <span class="insight-icon positive">+</span>
+                        <div><strong>Ease of use:</strong> "The learning curve was not steep. I quickly started creating Answers, Liveboards and custom formulas."
+                        <br><span class="source-badge">Gartner</span><a href="https://www.gartner.com/reviews/product/thoughtspot-analytics" target="_blank" class="quote-link">Gartner Peer Insights</a></div>
+                    </li>
+                    <li>
+                        <span class="insight-icon positive">+</span>
+                        <div><strong>Speed:</strong> "It is much faster and easier to use than other BI platforms and tools I've used in the past. That is key for our use cases."
+                        <br><span class="source-badge">Gartner</span><a href="https://www.gartner.com/reviews/market/analytics-business-intelligence-platforms/vendor/thoughtspot/likes-dislikes" target="_blank" class="quote-link">Gartner Likes</a></div>
+                    </li>
+                    <li>
+                        <span class="insight-icon positive">+</span>
+                        <div><strong>AI capabilities:</strong> "Sage/Spotter is tech that's best in class, drill down on visuals was also really important."
+                        <br><span class="source-badge">Gartner</span><a href="https://www.gartner.com/reviews/market/analytics-business-intelligence-platforms/vendor/thoughtspot/likes-dislikes" target="_blank" class="quote-link">Gartner Likes</a></div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title" style="color: var(--red);">What Practitioners Criticize</h3>
+                <ul class="insights-list">
+                    <li>
+                        <span class="insight-icon negative">-</span>
+                        <div><strong>Data modeling burden:</strong> "The data preparation burden is high to enable any of the more sophisticated exploratory or self-serve analytics capabilities that ThoughtSpot might provide."
+                        <br><span class="source-badge">Gartner</span><a href="https://www.gartner.com/reviews/product/thoughtspot-analytics" target="_blank" class="quote-link">Gartner Peer Insights</a></div>
+                    </li>
+                    <li>
+                        <span class="insight-icon negative">-</span>
+                        <div><strong>Pricing:</strong> "Product is very expensive" and "the price of Looker, Tableau and ThoughtSpot makes them a non-starter, especially if we want to embed dashboards."
+                        <br><span class="source-badge">Reddit</span><a href="https://www.reddit.com/r/BusinessIntelligence/comments/1enz06g/what_drives_you_nuts_about_looker_tableau_or/" target="_blank" class="quote-link">r/BusinessIntelligence</a></div>
+                    </li>
+                    <li>
+                        <span class="insight-icon negative">-</span>
+                        <div><strong>Spotter stability:</strong> "I haven't had a single conversation with it where it hasn't crashed. If that keeps up, it's a nonstarter."
+                        <br><span class="source-badge">Reddit</span><a href="https://www.reddit.com/r/BusinessIntelligence/comments/1rc0arr/has_anyone_actually_rolled_out_talk_to_your_data/" target="_blank" class="quote-link">r/BusinessIntelligence</a></div>
+                    </li>
+                    <li>
+                        <span class="insight-icon negative">-</span>
+                        <div><strong>Embedding experience:</strong> "Embedding experience is subpar and is a second rate experience as you can't do everything that you can do through the UI."
+                        <br><span class="source-badge">Gartner</span><a href="https://www.gartner.com/reviews/market/analytics-business-intelligence-platforms/vendor/thoughtspot/likes-dislikes" target="_blank" class="quote-link">Gartner Likes/Dislikes</a></div>
+                    </li>
+                    <li>
+                        <span class="insight-icon negative">-</span>
+                        <div><strong>Visualization limitations:</strong> "Visualization and dashboard customisation are limited as compared with different BI tools."
+                        <br><span class="source-badge">TrustRadius</span><a href="https://www.trustradius.com/reviews/thoughtspot-2025-08-28-02-33-42" target="_blank" class="quote-link">TrustRadius Review</a></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Tableau Tab -->
+        <div id="tableau" class="tab-content">
+            <div class="card">
+                <h3 class="card-title" style="color: var(--red);">Pain Points to Exploit</h3>
+                <ul class="insights-list">
+                    <li>
+                        <span class="insight-icon negative">-</span>
+                        <div><strong>Pricing after Salesforce:</strong> "Tableau's Pricing Problem: Why It's Pushing Away Future Power Users... at $70 per month, billed annually, it's simply not accessible for solo builders, startups, or small businesses."
+                        <br><span class="source-badge">Reddit</span><a href="https://www.reddit.com/r/tableau/comments/1il84zv/tableaus_pricing_problem_why_its_pushing_away/" target="_blank" class="quote-link">r/tableau</a></div>
+                    </li>
+                    <li>
+                        <span class="insight-icon negative">-</span>
+                        <div><strong>Salesforce neglect:</strong> "PowerBI seems to be more and more popular because it is often packaged with other Microsoft products. Shame really, but Salesforce does seem to run the product to the ground."
+                        <br><span class="source-badge">Reddit</span><a href="https://www.reddit.com/r/BusinessIntelligence/comments/1nohhpg/looker_vs_tableau_vs_powerbi_which_one_should_i/" target="_blank" class="quote-link">r/BusinessIntelligence</a></div>
+                    </li>
+                    <li>
+                        <span class="insight-icon negative">-</span>
+                        <div><strong>Migration away:</strong> "The company I'm working for decided not to renew our current tableau server plan to cut the cost."
+                        <br><span class="source-badge">Reddit</span><a href="https://www.reddit.com/r/BusinessIntelligence/comments/1psxtxv/shifting_from_tableau_to_either_looker_or_powerbi/" target="_blank" class="quote-link">r/BusinessIntelligence</a></div>
+                    </li>
+                    <li>
+                        <span class="insight-icon neutral">!</span>
+                        <div><strong>Still best for viz:</strong> "Tableau is THE best tool for extracting insights from data" - but practitioners are price-sensitive
+                        <br><span class="source-badge">Reddit</span><a href="https://www.reddit.com/r/tableau/comments/1il84zv/tableaus_pricing_problem_why_its_pushing_away/" target="_blank" class="quote-link">r/tableau</a></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Power BI Tab -->
+        <div id="powerbi" class="tab-content">
+            <div class="card">
+                <h3 class="card-title" style="color: var(--red);">Pain Points to Exploit</h3>
+                <ul class="insights-list">
+                    <li>
+                        <span class="insight-icon negative">-</span>
+                        <div><strong>DAX frustration:</strong> "DAX is dogshit language, seriously. The absolutely worst language I have ever touched."
+                        <br><span class="source-badge">Reddit</span><a href="https://www.reddit.com/r/PowerBI/comments/1ks1963/dax_is_dogshit_language_seriously/" target="_blank" class="quote-link">r/PowerBI</a></div>
+                    </li>
+                    <li>
+                        <span class="insight-icon negative">-</span>
+                        <div><strong>Learning curve:</strong> "Your DAX is going to be infinitely more complex... Even with lots of intuition, you still have no fucking clue what's going on."
+                        <br><span class="source-badge">Reddit</span><a href="https://www.reddit.com/r/PowerBI/comments/t1n8ce/sorry_to_say_it_but_dax_is_absolutely_terrible/" target="_blank" class="quote-link">r/PowerBI</a></div>
+                    </li>
+                    <li>
+                        <span class="insight-icon negative">-</span>
+                        <div><strong>Non-intuitive:</strong> "DAX is not evaluated sequentially which makes it far less human-readable."
+                        <br><span class="source-badge">Reddit</span><a href="https://www.reddit.com/r/PowerBI/comments/1kse6sx/dax_is_not_as_dogshit_as_it_seems_at_first/" target="_blank" class="quote-link">r/PowerBI</a></div>
+                    </li>
+                    <li>
+                        <span class="insight-icon positive">+</span>
+                        <div><strong>Cheapest option:</strong> "Power BI is the most common. And by far the cheapest for corporate!" - winning on price
+                        <br><span class="source-badge">Reddit</span><a href="https://www.reddit.com/r/BusinessIntelligence/comments/1nohhpg/looker_vs_tableau_vs_powerbi_which_one_should_i/" target="_blank" class="quote-link">r/BusinessIntelligence</a></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Looker Tab -->
+        <div id="looker" class="tab-content">
+            <div class="card">
+                <h3 class="card-title" style="color: var(--red);">Pain Points to Exploit</h3>
+                <ul class="insights-list">
+                    <li>
+                        <span class="insight-icon negative">-</span>
+                        <div><strong>LookML complexity:</strong> "Learn Power BI, only learn Looker if you're gonna work with Looker, it's just so much different from the rest of them, there's no point learning Looker's pseudo language unless you really have to."
+                        <br><span class="source-badge">Reddit</span><a href="https://www.reddit.com/r/BusinessIntelligence/comments/1nohhpg/looker_vs_tableau_vs_powerbi_which_one_should_i/" target="_blank" class="quote-link">r/BusinessIntelligence</a></div>
+                    </li>
+                    <li>
+                        <span class="insight-icon negative">-</span>
+                        <div><strong>Expensive + complex:</strong> "I'd avoid Looker, as a current admin of both that and Tableau. Looker is way more expensive and much more complicated to use (LookML is its own language)."
+                        <br><span class="source-badge">Reddit</span><a href="https://www.reddit.com/r/BusinessIntelligence/comments/1psxtxv/shifting_from_tableau_to_either_looker_or_powerbi/" target="_blank" class="quote-link">r/BusinessIntelligence</a></div>
+                    </li>
+                    <li>
+                        <span class="insight-icon negative">-</span>
+                        <div><strong>Google neglect:</strong> Confusion between Looker vs Looker Studio, concerns about Google's commitment to the product
+                        <br><span class="source-badge">Reddit</span><a href="https://www.reddit.com/r/BusinessIntelligence/comments/ymhb63/is_looker_studio_not_the_same_as_looker/" target="_blank" class="quote-link">r/BusinessIntelligence</a></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Domo Tab -->
+        <div id="domo" class="tab-content">
+            <div class="card">
+                <h3 class="card-title" style="color: var(--red);">Pain Points to Exploit</h3>
+                <ul class="insights-list">
+                    <li>
+                        <span class="insight-icon negative">-</span>
+                        <div><strong>"Training wheels" concerns:</strong> "I'm afraid of a 'training wheels' tool that is constrained in terms of real actual power."
+                        <br><span class="source-badge">Reddit</span><a href="https://www.reddit.com/r/BusinessIntelligence/comments/m8i8jb/honest_thoughts_on_domo/" target="_blank" class="quote-link">r/BusinessIntelligence</a></div>
+                    </li>
+                    <li>
+                        <span class="insight-icon negative">-</span>
+                        <div><strong>No data modeling:</strong> "The most important thing is no data modeling... we can't do left join because we need their full historical dates."
+                        <br><span class="source-badge">Reddit</span><a href="https://www.reddit.com/r/BusinessIntelligence/comments/13dtco7/company_switched_to_visualization_tool_that_cant/" target="_blank" class="quote-link">r/BusinessIntelligence</a></div>
+                    </li>
+                    <li>
+                        <span class="insight-icon negative">-</span>
+                        <div><strong>Expensive:</strong> "I'm aware it's also expensive" - cited repeatedly as a concern
+                        <br><span class="source-badge">Reddit</span><a href="https://www.reddit.com/r/BusinessIntelligence/comments/m8i8jb/honest_thoughts_on_domo/" target="_blank" class="quote-link">r/BusinessIntelligence</a></div>
+                    </li>
+                    <li>
+                        <span class="insight-icon positive">+</span>
+                        <div><strong>All-in-one appeal:</strong> "Dashboards have been a lot smoother lately with tools I've tried and Domo in particular makes connecting different data sources pretty easy."
+                        <br><span class="source-badge">Reddit</span><a href="https://www.reddit.com/r/BusinessIntelligence/comments/1ou2snl/what_newer_or_lesserknown_bi_tools_have_actually/" target="_blank" class="quote-link">r/BusinessIntelligence</a></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Embedded Analytics Section -->
+        <h2 class="section-title" style="margin-top: 2rem;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+            Embedded Analytics Landscape
+        </h2>
+
+        <div class="card">
+            <p style="color: var(--gray); line-height: 1.8; margin-bottom: 1.5rem;">
+                ThoughtSpot Everywhere (their embedded analytics product) represents <strong>25% of ARR with 100% growth</strong>.
+                This is a critical battleground. Key competitors in embedded analytics include Sisense, Luzmo, Looker, and Tableau.
+            </p>
+
+            <h4 style="margin-bottom: 1rem;">Practitioner Pain Points in Embedded Analytics:</h4>
+            <ul class="insights-list">
+                <li>
+                    <span class="insight-icon negative">-</span>
+                    <div><strong>Pricing is prohibitive:</strong> "The price of Looker, Tableau and ThoughtSpot makes them a non-starter, especially if we want to embed dashboards and reports in our application for end users. We went with self-hosted Apache Superset."
+                    <br><span class="source-badge">Reddit</span><a href="https://www.reddit.com/r/BusinessIntelligence/comments/1enz06g/what_drives_you_nuts_about_looker_tableau_or/" target="_blank" class="quote-link">r/BusinessIntelligence</a></div>
+                </li>
+                <li>
+                    <span class="insight-icon negative">-</span>
+                    <div><strong>Multi-tenancy complexity:</strong> "My other requirement is this needs to handle multi tenancy. Every table in the Postgres data source has a tenant id."
+                    <br><span class="source-badge">Reddit</span><a href="https://www.reddit.com/r/BusinessIntelligence/comments/1j1nyt4/embedded_analyticstoo_many_options_looking_for/" target="_blank" class="quote-link">r/BusinessIntelligence</a></div>
+                </li>
+                <li>
+                    <span class="insight-icon neutral">!</span>
+                    <div><strong>Rising alternatives:</strong> Sigma Computing, Luzmo, Holistics, and Metabase are gaining traction as embedded-first alternatives with more transparent pricing
+                    <br><span class="source-badge">Holistics</span><a href="https://www.holistics.io/bi-tools/embedded-analytics/" target="_blank" class="quote-link">Embedded BI Comparison</a></div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Positioning Recommendations -->
+        <h2 class="section-title" style="margin-top: 2rem;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            Strategic Positioning Opportunities
+        </h2>
+
+        <div class="positioning-grid">
+            <div class="positioning-card">
+                <h4><span style="color: var(--green);">+</span> Own "Agentic Analytics"</h4>
+                <p>ThoughtSpot is the <strong>only vendor</strong> aggressively claiming this positioning. Double down.
+                Every competitor still talks about dashboards - ThoughtSpot talks about agents that act autonomously.
+                This is a powerful differentiator for AI-forward enterprises.</p>
+            </div>
+            <div class="positioning-card">
+                <h4><span style="color: var(--green);">+</span> Counter "Dashboard Fatigue"</h4>
+                <p>Reddit sentiment shows massive frustration with dashboard overload. Position against: "80% of dashboards
+                are never opened after the first week." Spotter's conversational approach is the antidote.</p>
+            </div>
+            <div class="positioning-card">
+                <h4><span style="color: var(--orange);">!</span> Address Data Prep Burden</h4>
+                <p>The #1 criticism is data modeling requirements. The new Analyst Studio + SpotCache messaging should
+                directly counter this: "AI-ready data in minutes, not months."</p>
+            </div>
+            <div class="positioning-card">
+                <h4><span style="color: var(--orange);">!</span> Embedded Pricing Transparency</h4>
+                <p>Practitioners cite pricing as a blocker. Consider more transparent embedded analytics pricing
+                vs "Contact Us" - competitors like Holistics publish pricing and it builds trust.</p>
+            </div>
+            <div class="positioning-card">
+                <h4><span style="color: var(--green);">+</span> Attack DAX/LookML Pain</h4>
+                <p>Power BI and Looker users hate learning proprietary languages. ThoughtSpot's natural language
+                advantage is massive here: "No DAX. No LookML. Just ask."</p>
+            </div>
+            <div class="positioning-card">
+                <h4><span style="color: var(--green);">+</span> Tableau Migration Messaging</h4>
+                <p>Post-Salesforce acquisition, Tableau customers are price-sensitive and looking for alternatives.
+                Target Tableau-to-ThoughtSpot migration with AI as the upgrade path.</p>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h3 class="cta-title">Want This Level of Intel for Your Pipeline?</h3>
+            <p class="cta-text">42 Agency builds competitive intelligence, market positioning, and demand gen strategies
+            for B2B tech companies with $500K+ paid media budgets.</p>
+            <a href="https://www.42agency.com/contact-us" target="_blank" class="cta-button">Talk to Our Team</a>
+        </div>
+
+        <!-- Source Coverage -->
+        <div class="card" style="margin-top: 2rem;">
+            <h3 class="card-title">Sources Analyzed</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                <span class="source-badge">Reddit r/BusinessIntelligence</span>
+                <span class="source-badge">Reddit r/dataengineering</span>
+                <span class="source-badge">Reddit r/PowerBI</span>
+                <span class="source-badge">Reddit r/tableau</span>
+                <span class="source-badge">G2 Reviews</span>
+                <span class="source-badge">TrustRadius</span>
+                <span class="source-badge">Gartner Peer Insights</span>
+                <span class="source-badge">Capterra</span>
+                <span class="source-badge">LinkedIn Posts</span>
+                <span class="source-badge">Holistics Blog</span>
+                <span class="source-badge">Luzmo Blog</span>
+                <span class="source-badge">ThoughtSpot Press Releases</span>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--muted);">
+                Analysis conducted March 2026. All quotes are from verified sources linked above.
+            </p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="/42-logo.png" alt="42 Agency">
+                    <p>B2B performance marketing for companies that sell to enterprises. We've managed $50M+ in ad spend across 200+ accounts.</p>
+                    <div class="footer-social">
+                        <a href="https://linkedin.com/company/42agency" target="_blank" aria-label="LinkedIn">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                        <a href="https://x.com/42aboratory" target="_blank" aria-label="X/Twitter">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a href="https://www.youtube.com/@Get42Agency" target="_blank" aria-label="YouTube">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Assess</h4>
+                    <a href="/assessments/hubspot-health/">HubSpot Health Check</a>
+                    <a href="/assess/calculator/">Benchmark Calculator</a>
+                    <a href="/linkedin-audit/">LinkedIn Ads Audit</a>
+                    <a href="/google-ads-audit/">Google Ads Audit</a>
+                    <a href="/meta-audit/">Meta Ads Audit</a>
+                    <a href="/hubspot-audit/">HubSpot Audit</a>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Benchmarks</h4>
+                    <a href="/b2b-benchmarks/">All B2B Benchmarks</a>
+                    <a href="/b2b-benchmarks/linkedin-ads-benchmarks/">LinkedIn Ads</a>
+                    <a href="/b2b-benchmarks/google-ads-benchmarks/">Google Ads</a>
+                    <a href="/b2b-benchmarks/meta-ads-benchmarks/">Meta Ads</a>
+                    <a href="/b2b-benchmarks/linkedin-inmail-benchmarks/">InMail Benchmarks</a>
+                    <a href="/b2b-benchmarks/legal-tech-linkedin-ads/" class="sublink">Legal Tech</a>
+                    <a href="/b2b-benchmarks/healthcare-tech-linkedin-ads/" class="sublink">Healthcare Tech</a>
+                    <a href="/b2b-benchmarks/fintech-linkedin-ads/" class="sublink">FinTech</a>
+                </div>
+
+                <div class="footer-col">
+                    <h4>AI Tools</h4>
+                    <a href="https://copilot.42agency.com" target="_blank">LinkedIn Ads Copilot</a>
+                    <a href="https://copilot.42agency.com/linkedin-ads-targeting" target="_blank">Targeting Guide</a>
+                    <a href="https://copilot.42agency.com/linkedin-ads-targeting/audience-sizing" target="_blank">Audience Sizing</a>
+                    <h4 style="margin-top: 1.5rem;">Resources</h4>
+                    <a href="/playbooks/">B2B Playbooks</a>
+                    <a href="/zenabm/">ABM Toolkit</a>
+                    <a href="/mops-funnel/">MOPS Funnel Workbook</a>
+                </div>
+
+                <div class="footer-col">
+                    <h4>42 Agency</h4>
+                    <a href="https://42agency.com" target="_blank">Website</a>
+                    <a href="https://www.42agency.com/contact-us" target="_blank">Contact Us</a>
+                    <a href="https://42agency.com/case-studies" target="_blank">Case Studies</a>
+                    <a href="https://42slash.com" target="_blank">42/ Essays</a>
+                    <a href="https://42agency.com/careers" target="_blank">Careers</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 42 Agency. All rights reserved.</p>
+                <p>
+                    <a href="https://42agency.com/privacy" target="_blank">Privacy</a>
+                    &nbsp;&middot;&nbsp;
+                    <a href="https://42agency.com/terms" target="_blank">Terms</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab functionality
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Charts
+        const colors = {
+            thoughtspot: '#0066FF',
+            tableau: '#E97627',
+            powerbi: '#F2C811',
+            looker: '#4285F4',
+            domo: '#00A4E4',
+            sisense: '#6366F1',
+            dark: '#1a1a1a',
+            green: '#10B981',
+            orange: '#F59E0B',
+            red: '#EF4444'
+        };
+
+        // Review Volume Chart
+        const reviewCtx = document.getElementById('reviewVolumeChart').getContext('2d');
+        new Chart(reviewCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Tableau', 'Power BI', 'Sisense', 'Domo', 'Looker', 'ThoughtSpot'],
+                datasets: [{
+                    label: 'G2 Reviews',
+                    data: [4157, 3726, 1017, 488, 282, 316],
+                    backgroundColor: [
+                        colors.tableau,
+                        colors.powerbi,
+                        colors.sisense,
+                        colors.domo,
+                        colors.looker,
+                        colors.thoughtspot
+                    ],
+                    borderColor: colors.dark,
+                    borderWidth: 2,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: colors.dark,
+                        titleFont: { family: 'Inter', weight: '700' },
+                        bodyFont: { family: 'Inter' },
+                        padding: 12,
+                        cornerRadius: 8
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { color: '#e5e5e5' },
+                        ticks: { font: { family: 'Inter', weight: '500' } }
+                    },
+                    y: {
+                        grid: { display: false },
+                        ticks: { font: { family: 'Inter', weight: '600' } }
+                    }
+                }
+            }
+        });
+
+        // Themes Chart
+        const themesCtx = document.getElementById('themesChart').getContext('2d');
+        new Chart(themesCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Natural Language Search', 'Speed/Performance', 'Ease of Use', 'AI Capabilities', 'Data Modeling Burden', 'Pricing Concerns', 'Embedding UX'],
+                datasets: [{
+                    data: [28, 22, 18, 15, 8, 5, 4],
+                    backgroundColor: [
+                        colors.green,
+                        colors.green,
+                        colors.green,
+                        colors.green,
+                        colors.red,
+                        colors.red,
+                        colors.orange
+                    ],
+                    borderColor: colors.dark,
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            font: { family: 'Inter', size: 11 },
+                            padding: 12,
+                            usePointStyle: true,
+                            pointStyle: 'circle'
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: colors.dark,
+                        titleFont: { family: 'Inter', weight: '700' },
+                        bodyFont: { family: 'Inter' },
+                        padding: 12,
+                        cornerRadius: 8,
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ': ' + context.raw + '% of mentions';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+    <!-- Vercel Analytics -->
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
