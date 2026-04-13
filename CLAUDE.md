@@ -131,6 +131,39 @@ node scripts/validate-pages.js --category benchmarks
 | `agents` | Claude Code agent pages |
 | `test` | Non-critical test pages |
 
+### Domain Validation (For Intel Pages with Account Lists)
+
+**IMPORTANT:** Before deploying intel pages that contain company domains (e.g., SDR intel pages with target accounts), run domain validation to catch hallucinated/fake domains.
+
+```bash
+cd ~/intel-pages
+
+# Validate all domains in an intel page
+node scripts/validate-domains.js envera/index.html
+
+# Or validate specific domains
+node scripts/validate-domains.js --domains keystonepacific.com,actionpm.com
+```
+
+**What it checks:**
+1. **DNS resolution** - Catches NXDOMAIN (domain doesn't exist)
+2. **HTTP response** - Catches dead sites, major errors
+
+**Exit codes:**
+- `0` = All domains valid (or just warnings like 403 from bot protection)
+- `1` = Invalid domains found (NXDOMAIN) - **do not deploy**
+
+**Common issues the script catches:**
+- Hallucinated government domains (e.g., `azusa.ca.gov` instead of `azusaca.gov`)
+- Made-up company URLs (e.g., `quinceorc.org` instead of `quinceorchardpark.com`)
+- Typos in domain names
+
+**Workflow:**
+1. Generate intel page with account list
+2. Run `node scripts/validate-domains.js [page-path]`
+3. Fix or remove any invalid domains
+4. Deploy with `vercel --prod`
+
 ---
 
 ## Site Architecture
