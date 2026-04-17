@@ -409,19 +409,27 @@
             </div>
         </div>
 
+        <!-- 42's UTM Philosophy Card -->
+        <div style="background: #DFFE68; border: 2px solid #1a1a1a; border-radius: 16px; padding: 2rem; margin: 2rem 0; box-shadow: 4px 4px 0px 0px #1a1a1a;">
+            <h3 style="font-weight: 800; font-size: 1.25rem; margin-bottom: 0.75rem;">42's UTM Philosophy</h3>
+            <p style="margin-bottom: 0;"><strong>Consistency beats complexity.</strong> We've seen 50-field UTM taxonomies that nobody follows. A simple, enforced 5-field structure beats a complex one that's ignored. Document it, template it, enforce it.</p>
+            <p style="margin-top: 1rem; font-style: italic; color: #4a4a4a; margin-bottom: 0;"><em>— From cleaning up UTM messes at 100+ B2B companies</em></p>
+        </div>
+
         <div class="content-section">
-            <h2>The 42 Agency UTM Standard</h2>
-            <p>Our UTM taxonomy uses <strong>5 parameters</strong> with strict naming conventions:</p>
+            <h2>The 42 UTM Structure</h2>
+            <p>We use exactly <strong>5 parameters</strong>. No more, no less. Here's what each one does:</p>
             <table>
-                <tr><th>Parameter</th><th>Purpose</th><th>Example</th></tr>
-                <tr><td><strong>utm_source</strong></td><td>WHERE traffic originates (platform/publisher)</td><td>linkedin, google, meta</td></tr>
-                <tr><td><strong>utm_medium</strong></td><td>HOW traffic arrives (channel type)</td><td>paid_social, cpc, email</td></tr>
-                <tr><td><strong>utm_campaign</strong></td><td>WHAT initiative this belongs to</td><td>q2_product_launch_enterprise</td></tr>
-                <tr><td><strong>utm_content</strong></td><td>WHICH ad/creative variant</td><td>video_testimonial_v2</td></tr>
-                <tr><td><strong>utm_term</strong></td><td>Keyword or targeting (paid search/social)</td><td>b2b_marketing_software</td></tr>
+                <tr><th>Parameter</th><th>Purpose</th><th>Format</th></tr>
+                <tr><td><strong>utm_source</strong></td><td>Platform where the traffic originates</td><td>linkedin, google, facebook, email</td></tr>
+                <tr><td><strong>utm_medium</strong></td><td>Channel type / how traffic arrives</td><td>cpc, social, email, partner</td></tr>
+                <tr><td><strong>utm_campaign</strong></td><td>Campaign name with date prefix</td><td>YYYY-MM_campaign-name</td></tr>
+                <tr><td><strong>utm_content</strong></td><td>Ad creative or link identifier</td><td>cta-button, video-ad-v2</td></tr>
+                <tr><td><strong>utm_term</strong></td><td>Keyword (paid search only)</td><td>b2b-marketing-software</td></tr>
             </table>
-            <div class="callout">
-                <strong>Key Rule:</strong> Source = platform name. Medium = channel type. Never combine them (e.g., don't use "linkedin_ads" as source).
+            <div class="callout" style="background: #1a1a1a; color: white; border-left: 4px solid #DFFE68;">
+                <strong style="color: #DFFE68;">Non-Negotiable Rules:</strong><br>
+                Lowercase only. No spaces. Use hyphens. These are non-negotiable.
             </div>
         </div>
 
@@ -509,13 +517,25 @@
                 </div>
 
                 <div class="content-section">
-                    <h2>Common Mistakes to Avoid</h2>
-                    <p>These errors break attribution and waste months of data:</p>
+                    <h2>Common Mistakes We Fix</h2>
+                    <p>These are the UTM issues we see in almost every B2B audit. They break attribution and waste months of data:</p>
+
+                    <!-- 42's Top Issues Callout -->
+                    <div style="background: #DFFE68; border: 2px solid #1a1a1a; border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; box-shadow: 3px 3px 0px 0px #1a1a1a;">
+                        <h4 style="font-weight: 800; margin-bottom: 0.75rem;">The 4 Issues We Fix Most Often:</h4>
+                        <ul style="margin: 0; padding-left: 1.25rem;">
+                            <li style="margin-bottom: 0.5rem;"><strong>Inconsistent capitalization</strong> — LinkedIn vs linkedin vs LINKEDIN creates 3 separate sources in your reports</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>Spaces in UTMs</strong> — Breaks tracking entirely or creates URL encoding nightmares</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>Missing UTMs on email links</strong> — The biggest gap we see. Every email link needs UTMs, not just ads</li>
+                            <li style="margin-bottom: 0;"><strong>utm_source = company name</strong> — Wrong. Your company name goes in utm_campaign, not utm_source</li>
+                        </ul>
+                    </div>
+
                     <table>
                         <tr><th>Mistake</th><th>Why It Breaks Things</th><th>Fix</th></tr>
                         <tr><td><strong>Inconsistent casing</strong></td><td>LinkedIn vs linkedin = 2 sources</td><td>Always lowercase</td></tr>
                         <tr><td><strong>Missing utm_medium</strong></td><td>Traffic groups incorrectly in GA4</td><td>Always include medium</td></tr>
-                        <tr><td><strong>Spaces in values</strong></td><td>URL breaks or encodes incorrectly</td><td>Use underscores only</td></tr>
+                        <tr><td><strong>Spaces in values</strong></td><td>URL breaks or encodes incorrectly</td><td>Use hyphens, never spaces</td></tr>
                         <tr><td><strong>Changing convention mid-year</strong></td><td>Historical comparison impossible</td><td>Document and stick to standard</td></tr>
                         <tr><td><strong>Not passing to CRM</strong></td><td>Lose attribution at SQL stage</td><td>Configure hidden form fields</td></tr>
                         <tr><td><strong>Using redirects without UTM preservation</strong></td><td>UTMs stripped on redirect</td><td>Append UTMs after redirect</td></tr>
@@ -545,14 +565,21 @@
                 </div>
 
                 <div class="content-section">
-                    <h2>UTM Builder Tool Recommendation</h2>
+                    <h2>42's Enforcement Strategy</h2>
+
+                    <!-- 42's Key Enforcement Callout -->
+                    <div style="background: #DFFE68; border: 2px solid #1a1a1a; border-radius: 12px; padding: 1.5rem; margin: 0 0 1.5rem 0; box-shadow: 3px 3px 0px 0px #1a1a1a;">
+                        <p style="font-weight: 700; font-size: 1.1rem; margin: 0;"><strong>Create a UTM builder spreadsheet. Make it the only way to generate links. No exceptions.</strong></p>
+                    </div>
+
                     <p>Avoid manual UTM creation. Use a controlled spreadsheet or tool to enforce standards:</p>
-                    <h3>Option 1: Google Sheets Template</h3>
+                    <h3>Option 1: Google Sheets Template (Our Recommendation)</h3>
                     <ul>
                         <li>Create dropdowns for utm_source and utm_medium (controlled vocabulary)</li>
                         <li>Use formulas to auto-generate campaign names from components</li>
                         <li>Concatenate final URL in a column for copy/paste</li>
                         <li>Share with marketing team - single source of truth</li>
+                        <li><strong>Lock the sheet structure</strong> - only admins can add new sources/mediums</li>
                     </ul>
                     <h3>Option 2: UTM.io or Similar Tools</h3>
                     <ul>
@@ -592,6 +619,13 @@
                     <p class="note">Plus get the PDF version emailed to you</p>
                 </div>
             </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div style="background: #DFFE68; border: 2px solid #1a1a1a; border-radius: 16px; padding: 2.5rem; margin: 2rem 0; box-shadow: 6px 6px 0px 0px #1a1a1a; text-align: center;">
+            <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.75rem; letter-spacing: -0.02em;">Need Help Fixing Your UTM Mess?</h2>
+            <p style="color: #4a4a4a; margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto;">We've cleaned up UTM taxonomies for 100+ B2B companies. Let's audit your current setup and build a system that actually gets followed.</p>
+            <a href="https://www.42agency.com/contact-us" target="_blank" style="display: inline-block; padding: 0.875rem 2rem; background: #1a1a1a; color: white; text-decoration: none; font-weight: 700; border-radius: 8px; font-size: 1rem; transition: background 0.2s;">Talk to 42 Agency</a>
         </div>
 
         <section>

@@ -433,6 +433,42 @@
             </div>
         </div>
 
+        <!-- 42's Tracking Philosophy -->
+        <div style="background: #DFFE68; border: 2px solid #1a1a1a; border-radius: 16px; padding: 2rem; margin: 2rem 0; box-shadow: 4px 4px 0px 0px #1a1a1a;">
+            <h3 style="font-weight: 800; margin-bottom: 0.75rem;">42's Tracking Philosophy</h3>
+            <p style="margin-bottom: 1rem;"><strong>Track fewer things, track them correctly.</strong> We've audited hundreds of ad accounts where teams track 15 conversion events but none connect to CRM. Track form submissions, demo requests, and closed-won. That's it. Everything else is noise.</p>
+            <p style="margin: 0; font-style: italic; color: #4a4a4a;"><em>-- From auditing 200+ B2B ad accounts</em></p>
+        </div>
+
+        <!-- The 42 Conversion Hierarchy -->
+        <div class="content-section">
+            <h2>The 42 Conversion Hierarchy</h2>
+            <p>Not all conversions are created equal. Here's how we think about conversion priority based on what actually drives revenue.</p>
+
+            <table>
+                <tr><th>Priority</th><th>Conversion Type</th><th>What to Do</th></tr>
+                <tr>
+                    <td><span style="display: inline-block; padding: 0.25rem 0.5rem; background: #10B981; color: white; border-radius: 4px; font-weight: 700; font-size: 0.75rem;">PRIMARY</span></td>
+                    <td>Demo request, Sales call booked</td>
+                    <td><strong>Optimize for this.</strong> This is where your budget should go.</td>
+                </tr>
+                <tr>
+                    <td><span style="display: inline-block; padding: 0.25rem 0.5rem; background: #F59E0B; color: white; border-radius: 4px; font-weight: 700; font-size: 0.75rem;">SECONDARY</span></td>
+                    <td>Form submission, Content download</td>
+                    <td><strong>Report on it.</strong> Track for understanding, but don't optimize for it.</td>
+                </tr>
+                <tr>
+                    <td><span style="display: inline-block; padding: 0.25rem 0.5rem; background: #6b7280; color: white; border-radius: 4px; font-weight: 700; font-size: 0.75rem;">TERTIARY</span></td>
+                    <td>Page view, Time on site, Scroll depth</td>
+                    <td><strong>Ignore for optimization.</strong> Vanity metrics that don't move pipeline.</td>
+                </tr>
+            </table>
+
+            <div class="callout callout-warning">
+                <strong>Warning:</strong> Never optimize Google Ads for page views. You'll get great CPMs and zero pipeline. We've seen it happen dozens of times.
+            </div>
+        </div>
+
         <div class="content-section">
             <h2>Conversion Value Assignment</h2>
             <p>Assigning accurate values to conversions enables ROAS-based bidding and prevents platforms from optimizing for low-quality leads.</p>
@@ -454,6 +490,48 @@
 
             <div class="callout callout-warning">
                 <strong>Warning:</strong> Without conversion values, platforms optimize for volume. You'll get more newsletter signups (cheap) and fewer demo requests (expensive but valuable). This is why B2B campaigns often fail.
+            </div>
+        </div>
+
+        <!-- Server-Side or Die -->
+        <div style="background: #DFFE68; border: 2px solid #1a1a1a; border-radius: 16px; padding: 2rem; margin: 2rem 0; box-shadow: 4px 4px 0px 0px #1a1a1a;">
+            <h3 style="font-weight: 800; margin-bottom: 0.75rem;">Server-Side or Die</h3>
+            <p style="margin-bottom: 1rem;"><strong>Browser tracking is dying.</strong> If you're not running server-side (Meta CAPI, Google Enhanced Conversions), you're losing 30-40% of conversion data. Ad blockers, Safari ITP, and privacy browsers are eating your attribution. Server-side tracking is no longer optional.</p>
+            <p style="margin: 0; font-style: italic; color: #4a4a4a;"><em>-- This is non-negotiable for 2026</em></p>
+        </div>
+
+        <!-- CRM is the Source of Truth -->
+        <div style="background: white; border: 2px solid #1a1a1a; border-radius: 16px; padding: 2rem; margin: 2rem 0; box-shadow: 4px 4px 0px 0px #1a1a1a;">
+            <h3 style="font-weight: 800; margin-bottom: 0.75rem;">CRM is the Source of Truth</h3>
+            <p style="margin-bottom: 1rem;">Your ad platform says 50 conversions. Your CRM says 30. <strong>Trust the CRM.</strong> Build attribution from CRM data, not platform data. Ad platforms are incentivized to over-report. Your CRM is where revenue actually lives.</p>
+            <p style="margin: 0; font-style: italic; color: #4a4a4a;"><em>-- This is why we always start with CRM data when auditing paid media</em></p>
+        </div>
+
+        <!-- The Minimum Viable Setup -->
+        <div class="content-section">
+            <h2>The Minimum Viable Setup</h2>
+            <p>Before you add complexity, make sure this foundation works. Every B2B company should have these three things nailed before adding anything else.</p>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0;">
+                <div style="background: #f5f5f5; border: 2px solid #1a1a1a; border-radius: 12px; padding: 1.25rem; text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">1</div>
+                    <div style="font-weight: 700; margin-bottom: 0.25rem;">Google Tag Manager</div>
+                    <div style="font-size: 0.85rem; color: #6b6b6b;">Central control for all tags</div>
+                </div>
+                <div style="background: #f5f5f5; border: 2px solid #1a1a1a; border-radius: 12px; padding: 1.25rem; text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">2</div>
+                    <div style="font-weight: 700; margin-bottom: 0.25rem;">Enhanced Conversions</div>
+                    <div style="font-size: 0.85rem; color: #6b6b6b;">Server-side with email hashing</div>
+                </div>
+                <div style="background: #f5f5f5; border: 2px solid #1a1a1a; border-radius: 12px; padding: 1.25rem; text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">3</div>
+                    <div style="font-weight: 700; margin-bottom: 0.25rem;">CRM Integration</div>
+                    <div style="font-size: 0.85rem; color: #6b6b6b;">Click IDs stored in HubSpot/Salesforce</div>
+                </div>
+            </div>
+
+            <div class="callout">
+                <strong>42's Rule:</strong> Don't add complexity until this works. No fancy multi-touch attribution models. No CDP. No data warehouse. GTM + enhanced conversions + CRM integration. Get this right first.
             </div>
         </div>
 
@@ -974,6 +1052,13 @@ window.addEventListener(<span class="code-string">'message'</span>, <span class=
                     <p class="note">Plus get the PDF version emailed to you</p>
                 </div>
             </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div style="background: #DFFE68; border: 2px solid #1a1a1a; border-radius: 16px; padding: 2.5rem; margin: 3rem 0; box-shadow: 6px 6px 0px 0px #1a1a1a; text-align: center;">
+            <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.75rem; letter-spacing: -0.02em;">Need Help Getting This Right?</h2>
+            <p style="color: #4a4a4a; margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto;">We've set up conversion tracking for 200+ B2B companies. Let's make sure your tracking actually connects to pipeline.</p>
+            <a href="https://www.42agency.com/contact-us" target="_blank" style="display: inline-block; padding: 0.875rem 2rem; background: #1a1a1a; color: white; text-decoration: none; font-weight: 700; border-radius: 8px; font-size: 1rem; transition: background 0.15s;">Talk to 42 Agency</a>
         </div>
 
         <section>

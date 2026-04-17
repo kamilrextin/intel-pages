@@ -110,156 +110,145 @@
     </div>
   </section>
 
-  <!-- Core Concept -->
+  <!-- 42's POV Opening -->
   <section class="py-16 px-6">
     <div class="max-w-4xl mx-auto">
       <div class="bg-[#DFFE68] border-2 border-gray-900 rounded-2xl p-8 shadow-[6px_6px_0px_0px_#1a1a1a] mb-12">
-        <h2 class="text-xl font-extrabold tracking-tight mb-4">The Core Principle</h2>
-        <p class="text-lg">Most lead scoring fails because it over-indexes on engagement (clicks, downloads) while ignoring fit. A marketing intern who downloads every whitepaper shouldn't outscore a VP who visited your pricing page once.</p>
-        <p class="text-lg mt-4"><strong>The 42 Model splits scoring 50/50:</strong> 50 points for ICP fit, 50 points for engagement. Both matter equally.</p>
+        <h3 class="text-xl font-extrabold tracking-tight mb-4">The 42 Lead Scoring Model</h3>
+        <p class="text-lg"><strong>Most lead scoring is broken.</strong> Teams score downloads and webinar attendance, then wonder why MQLs don't convert. Real lead scoring starts with ICP fit, not engagement. We've rebuilt lead scoring for 50+ companies using this framework.</p>
       </div>
 
-      <!-- Visual Model -->
-      <div class="grid md:grid-cols-2 gap-8 mb-12">
-        <div class="bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[4px_4px_0px_0px_#10B981]">
-          <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
-            <span class="w-8 h-8 bg-green-100 border-2 border-green-500 rounded-lg flex items-center justify-center text-green-600 font-bold">1</span>
-            ICP Fit Score (50 points)
-          </h3>
-          <p class="text-gray-600 mb-4">Who they are. Firmographic attributes that indicate ideal customer match.</p>
-          <ul class="space-y-2 text-sm">
-            <li class="flex justify-between border-b border-gray-100 pb-2"><span>Company size</span><span class="font-medium">0-15 pts</span></li>
-            <li class="flex justify-between border-b border-gray-100 pb-2"><span>Industry vertical</span><span class="font-medium">0-10 pts</span></li>
-            <li class="flex justify-between border-b border-gray-100 pb-2"><span>Job title/seniority</span><span class="font-medium">0-10 pts</span></li>
-            <li class="flex justify-between border-b border-gray-100 pb-2"><span>Geography</span><span class="font-medium">0-5 pts</span></li>
-            <li class="flex justify-between"><span>Tech stack match</span><span class="font-medium">0-10 pts</span></li>
-          </ul>
+      <!-- The 42 Two-Axis Model -->
+      <div class="bg-white border-2 border-gray-900 rounded-2xl p-8 shadow-[4px_4px_0px_0px_#1a1a1a] mb-12">
+        <h2 class="text-2xl font-extrabold tracking-tight mb-6">The 42 Two-Axis Model</h2>
+        <p class="text-lg text-gray-600 mb-6">Lead scoring is a two-dimensional problem. Most companies only solve for one.</p>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-gray-100 border-2 border-gray-900 rounded-xl p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="w-10 h-10 bg-[#10B981] text-white rounded-lg flex items-center justify-center font-bold text-lg">X</span>
+              <h3 class="font-bold text-lg">Fit Score (0-100)</h3>
+            </div>
+            <p class="text-gray-600 mb-4">Does this person match your ICP?</p>
+            <ul class="space-y-2 text-sm text-gray-700">
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gray-900 rounded-full"></span>Company size (employee count, revenue)</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gray-900 rounded-full"></span>Industry vertical</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gray-900 rounded-full"></span>Tech stack (integrations, existing tools)</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gray-900 rounded-full"></span>Job title / seniority level</li>
+            </ul>
+          </div>
+
+          <div class="bg-gray-100 border-2 border-gray-900 rounded-xl p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="w-10 h-10 bg-[#3B82F6] text-white rounded-lg flex items-center justify-center font-bold text-lg">Y</span>
+              <h3 class="font-bold text-lg">Engagement Score (0-100)</h3>
+            </div>
+            <p class="text-gray-600 mb-4">Are they showing buying signals?</p>
+            <ul class="space-y-2 text-sm text-gray-700">
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gray-900 rounded-full"></span>High-intent page visits (pricing, demo, features)</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gray-900 rounded-full"></span>Multiple sessions / return visits</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gray-900 rounded-full"></span>Demo or sales requests</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gray-900 rounded-full"></span>Content engagement depth</li>
+            </ul>
+          </div>
         </div>
 
-        <div class="bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[4px_4px_0px_0px_#3B82F6]">
-          <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
-            <span class="w-8 h-8 bg-blue-100 border-2 border-blue-500 rounded-lg flex items-center justify-center text-blue-600 font-bold">2</span>
-            Engagement Score (50 points)
-          </h3>
-          <p class="text-gray-600 mb-4">What they do. Behavioral signals indicating purchase intent.</p>
-          <ul class="space-y-2 text-sm">
-            <li class="flex justify-between border-b border-gray-100 pb-2"><span>Demo request</span><span class="font-medium text-green-600">+25 pts</span></li>
-            <li class="flex justify-between border-b border-gray-100 pb-2"><span>Pricing page visit</span><span class="font-medium text-green-600">+15 pts</span></li>
-            <li class="flex justify-between border-b border-gray-100 pb-2"><span>Case study download</span><span class="font-medium">+10 pts</span></li>
-            <li class="flex justify-between border-b border-gray-100 pb-2"><span>Webinar attendance</span><span class="font-medium">+8 pts</span></li>
-            <li class="flex justify-between border-b border-gray-100 pb-2"><span>Multiple blog visits</span><span class="font-medium">+5 pts</span></li>
-            <li class="flex justify-between"><span>Email engagement</span><span class="font-medium">+1-3 pts</span></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Score Decay -->
-  <section class="py-16 px-6 bg-gray-100 border-y-2 border-gray-900">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-2xl font-extrabold tracking-tight mb-8">Step 3: Implement Score Decay</h2>
-      <p class="text-lg mb-8">Engagement signals decay over time. A pricing page visit from 6 months ago doesn't indicate current intent. Apply time-based degradation to engagement scores only (ICP fit doesn't change).</p>
-
-      <div class="bg-white border-2 border-gray-900 rounded-xl overflow-hidden shadow-[4px_4px_0px_0px_#1a1a1a]">
-        <table class="w-full">
-          <thead class="bg-gray-900 text-white">
-            <tr>
-              <th class="px-6 py-4 text-left font-bold">Time Since Action</th>
-              <th class="px-6 py-4 text-center font-bold">Score Retention</th>
-              <th class="px-6 py-4 text-left font-bold">Example</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y-2 divide-gray-200">
-            <tr>
-              <td class="px-6 py-4 font-medium">0-30 days</td>
-              <td class="px-6 py-4 text-center"><span class="px-3 py-1 bg-green-100 border-2 border-green-500 rounded-full text-xs font-bold text-green-700">100%</span></td>
-              <td class="px-6 py-4 text-gray-600">Demo request worth full +25 pts</td>
-            </tr>
-            <tr>
-              <td class="px-6 py-4 font-medium">31-60 days</td>
-              <td class="px-6 py-4 text-center"><span class="px-3 py-1 bg-yellow-100 border-2 border-yellow-500 rounded-full text-xs font-bold text-yellow-700">75%</span></td>
-              <td class="px-6 py-4 text-gray-600">Demo request worth +19 pts</td>
-            </tr>
-            <tr>
-              <td class="px-6 py-4 font-medium">61-90 days</td>
-              <td class="px-6 py-4 text-center"><span class="px-3 py-1 bg-orange-100 border-2 border-orange-500 rounded-full text-xs font-bold text-orange-700">50%</span></td>
-              <td class="px-6 py-4 text-gray-600">Demo request worth +13 pts</td>
-            </tr>
-            <tr>
-              <td class="px-6 py-4 font-medium">90+ days</td>
-              <td class="px-6 py-4 text-center"><span class="px-3 py-1 bg-red-100 border-2 border-red-500 rounded-full text-xs font-bold text-red-700">25%</span></td>
-              <td class="px-6 py-4 text-gray-600">Demo request worth +6 pts</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <p class="text-sm text-gray-500 mt-4">Run decay calculations weekly via workflow automation. Reset decay clock when new high-intent action occurs.</p>
-    </div>
-  </section>
-
-  <!-- MQL Threshold -->
-  <section class="py-16 px-6">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-2xl font-extrabold tracking-tight mb-8">Step 4: Set MQL Threshold</h2>
-
-      <div class="bg-white border-2 border-gray-900 rounded-xl p-8 shadow-[4px_4px_0px_0px_#1a1a1a] mb-8">
-        <h3 class="font-bold text-lg mb-4">The 42 MQL Formula</h3>
-        <div class="bg-gray-100 rounded-lg p-4 font-mono text-sm mb-4">
-          MQL = (ICP_Fit_Score >= 25) AND (Total_Score >= 60)
-        </div>
-        <p class="text-gray-600">Requiring minimum ICP fit (25/50) prevents high-engagement but poor-fit leads from qualifying. A marketing intern who downloads everything shouldn't become an MQL.</p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[3px_3px_0px_0px_#1a1a1a]">
-          <h4 class="font-bold mb-2">Too Few MQLs?</h4>
-          <p class="text-sm text-gray-600">Lower threshold to 50 points, or improve top-of-funnel to increase engagement opportunities.</p>
-        </div>
-        <div class="bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[3px_3px_0px_0px_#1a1a1a]">
-          <h4 class="font-bold mb-2">Too Many MQLs?</h4>
-          <p class="text-sm text-gray-600">Raise threshold to 70+ points, or increase minimum ICP fit requirement to 30.</p>
-        </div>
-        <div class="bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[3px_3px_0px_0px_#1a1a1a]">
-          <h4 class="font-bold mb-2">Low Conversion?</h4>
-          <p class="text-sm text-gray-600">Increase weight on ICP fit criteria. Quality issues usually stem from fit, not engagement.</p>
+        <div class="bg-gray-900 text-white rounded-xl p-6 text-center">
+          <p class="text-lg font-bold"><span class="text-[#DFFE68]">Fit score is gating.</span> Engagement score is timing.</p>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Calibration -->
-  <section class="py-16 px-6 bg-gray-100 border-y-2 border-gray-900">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-2xl font-extrabold tracking-tight mb-8">Step 5: Calibrate Against Historical Data</h2>
+      <!-- 42's MQL Definition -->
+      <div class="bg-white border-2 border-gray-900 rounded-2xl p-8 shadow-[4px_4px_0px_0px_#F59E0B] mb-12">
+        <h2 class="text-2xl font-extrabold tracking-tight mb-6">42's MQL Definition</h2>
+        <p class="text-gray-600 mb-6">Forget complex matrices. Here's the only formula you need:</p>
 
-      <p class="text-lg mb-8">Don't launch on assumptions. Apply your model retroactively to validate it predicts actual outcomes.</p>
+        <div class="space-y-4 mb-8">
+          <div class="bg-green-50 border-2 border-green-500 rounded-xl p-4 flex items-center gap-4">
+            <span class="w-12 h-12 bg-green-500 text-white rounded-lg flex items-center justify-center font-bold text-xl shrink-0">MQL</span>
+            <div>
+              <p class="font-bold text-green-700">Fit Score >= 60 AND Engagement Score >= 40</p>
+              <p class="text-sm text-green-600">High-fit lead showing meaningful buying signals</p>
+            </div>
+          </div>
 
-      <div class="bg-white border-2 border-gray-900 rounded-xl p-8 shadow-[4px_4px_0px_0px_#1a1a1a]">
-        <h3 class="font-bold text-lg mb-4">Calibration Process</h3>
-        <ol class="space-y-4">
-          <li class="flex gap-4">
-            <span class="w-8 h-8 bg-gray-900 text-white rounded-lg flex items-center justify-center font-bold shrink-0">1</span>
-            <span>Export 6-12 months of leads with conversion outcomes (MQL → Opp → Won/Lost)</span>
-          </li>
-          <li class="flex gap-4">
-            <span class="w-8 h-8 bg-gray-900 text-white rounded-lg flex items-center justify-center font-bold shrink-0">2</span>
-            <span>Apply your scoring formula in a spreadsheet to calculate scores at time of MQL</span>
-          </li>
-          <li class="flex gap-4">
-            <span class="w-8 h-8 bg-gray-900 text-white rounded-lg flex items-center justify-center font-bold shrink-0">3</span>
-            <span>Compare average scores: Closed-Won vs Closed-Lost vs No Decision</span>
-          </li>
-          <li class="flex gap-4">
-            <span class="w-8 h-8 bg-gray-900 text-white rounded-lg flex items-center justify-center font-bold shrink-0">4</span>
-            <span>Adjust weights until model correctly ranks 80%+ of wins above losses</span>
-          </li>
-          <li class="flex gap-4">
-            <span class="w-8 h-8 bg-gray-900 text-white rounded-lg flex items-center justify-center font-bold shrink-0">5</span>
-            <span>Re-calibrate quarterly as ICP and buying patterns evolve</span>
-          </li>
-        </ol>
+          <div class="bg-red-50 border-2 border-red-500 rounded-xl p-4 flex items-center gap-4">
+            <span class="w-12 h-12 bg-red-500 text-white rounded-lg flex items-center justify-center font-bold text-lg shrink-0">NEVER</span>
+            <div>
+              <p class="font-bold text-red-700">Fit Score < 40 = Never MQL</p>
+              <p class="text-sm text-red-600">Regardless of engagement. No exceptions.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gray-100 border-2 border-gray-900 rounded-xl p-6">
+          <p class="text-lg font-bold text-gray-900 mb-2">"A director at a 10-person company downloading 50 whitepapers is not an MQL."</p>
+          <p class="text-gray-600">Stop wasting sales time on leads that will never close. Fit score is gating. Period.</p>
+        </div>
+      </div>
+
+      <!-- Score Decay Section -->
+      <div class="bg-white border-2 border-gray-900 rounded-2xl p-8 shadow-[4px_4px_0px_0px_#3B82F6] mb-12">
+        <h2 class="text-2xl font-extrabold tracking-tight mb-6">Score Decay</h2>
+        <p class="text-lg text-gray-600 mb-6">Old engagement doesn't mean current intent. Here's how we handle it:</p>
+
+        <div class="bg-gray-100 border-2 border-gray-900 rounded-xl p-6 mb-6">
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h3 class="font-bold text-lg mb-3 text-blue-600">Engagement Scores</h3>
+              <p class="text-gray-700 mb-2">Decay <span class="font-bold">10% per week</span> of inactivity.</p>
+              <p class="text-sm text-gray-500">A demo request from 8 weeks ago is worth 20% of its original value.</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg mb-3 text-green-600">Fit Scores</h3>
+              <p class="text-gray-700 mb-2">Never decay. Only <span class="font-bold">update when data changes</span>.</p>
+              <p class="text-sm text-gray-500">Company size doesn't change because they haven't visited your site.</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-gray-600 text-sm">Run decay calculations weekly via workflow automation. Reset decay clock when new high-intent action occurs.</p>
+      </div>
+
+      <!-- Implementation Section -->
+      <div class="bg-white border-2 border-gray-900 rounded-2xl p-8 shadow-[4px_4px_0px_0px_#10B981]">
+        <h2 class="text-2xl font-extrabold tracking-tight mb-6">Implementation: Start Simple</h2>
+        <p class="text-lg text-gray-600 mb-8">We've seen teams spend 6 months building elaborate scoring models that never launch. Don't be that team.</p>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+          <div class="bg-gray-100 border-2 border-gray-900 rounded-xl p-6">
+            <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+              <span class="w-8 h-8 bg-green-500 text-white rounded-lg flex items-center justify-center font-bold">5</span>
+              Fit Attributes
+            </h3>
+            <ol class="space-y-2 text-sm text-gray-700">
+              <li class="flex items-start gap-2"><span class="font-bold text-gray-900">1.</span> Company employee count</li>
+              <li class="flex items-start gap-2"><span class="font-bold text-gray-900">2.</span> Industry / vertical</li>
+              <li class="flex items-start gap-2"><span class="font-bold text-gray-900">3.</span> Job title / seniority</li>
+              <li class="flex items-start gap-2"><span class="font-bold text-gray-900">4.</span> Geography (if relevant)</li>
+              <li class="flex items-start gap-2"><span class="font-bold text-gray-900">5.</span> Tech stack or tool usage</li>
+            </ol>
+          </div>
+
+          <div class="bg-gray-100 border-2 border-gray-900 rounded-xl p-6">
+            <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+              <span class="w-8 h-8 bg-blue-500 text-white rounded-lg flex items-center justify-center font-bold">5</span>
+              Engagement Triggers
+            </h3>
+            <ol class="space-y-2 text-sm text-gray-700">
+              <li class="flex items-start gap-2"><span class="font-bold text-gray-900">1.</span> Demo / sales request</li>
+              <li class="flex items-start gap-2"><span class="font-bold text-gray-900">2.</span> Pricing page visit</li>
+              <li class="flex items-start gap-2"><span class="font-bold text-gray-900">3.</span> Multiple sessions (3+)</li>
+              <li class="flex items-start gap-2"><span class="font-bold text-gray-900">4.</span> Case study / ROI content</li>
+              <li class="flex items-start gap-2"><span class="font-bold text-gray-900">5.</span> Product feature pages</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="bg-[#DFFE68] border-2 border-gray-900 rounded-xl p-6 text-center">
+          <p class="font-bold text-lg text-gray-900">Don't over-engineer. Calibrate monthly.</p>
+          <p class="text-gray-700 mt-2">Review MQL-to-Opp conversion rates. Adjust thresholds. Iterate.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -292,11 +281,16 @@
   <section class="py-16 px-6">
     <div class="max-w-4xl mx-auto">
       <div class="bg-[#DFFE68] border-2 border-gray-900 rounded-2xl p-8 md:p-12 shadow-[6px_6px_0px_0px_#1a1a1a] text-center">
-        <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight mb-4">Get the Template</h2>
-        <p class="text-lg mb-8">Download the full 42 Lead Scoring spreadsheet with formulas, decay logic, and calibration worksheet.</p>
-        <a href="/playbooks/lead-scoring-framework/" class="inline-block bg-gray-900 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-800 transition-colors">
-          Download Framework →
-        </a>
+        <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight mb-4">Need Help Implementing?</h2>
+        <p class="text-lg mb-8">We've rebuilt lead scoring for 50+ B2B companies. Let us audit your current model or build one from scratch.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="https://www.42agency.com/contact-us" class="inline-block bg-gray-900 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-800 transition-colors">
+            Talk to 42 Agency
+          </a>
+          <a href="/playbooks/lead-scoring-framework/" class="inline-block bg-white text-gray-900 px-8 py-4 rounded-lg font-bold text-lg border-2 border-gray-900 hover:bg-gray-100 transition-colors">
+            Download Template
+          </a>
+        </div>
       </div>
     </div>
   </section>

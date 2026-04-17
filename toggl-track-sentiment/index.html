@@ -854,6 +854,19 @@
     </section>
 
     <main class="main">
+        <!-- 42's Take - Verdict Card -->
+        <div style="background: #DFFE68; border: 2px solid #1a1a1a; border-radius: 16px; padding: 2rem; margin-bottom: 2rem; box-shadow: 4px 4px 0px 0px #1a1a1a;">
+            <h3 style="font-weight: 800; margin-top: 0; font-size: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                </svg>
+                42's Time Tracking Take
+            </h3>
+            <p style="font-size: 1.25rem; margin-bottom: 1rem; line-height: 1.5;"><strong>Toggl Track is the best pure time tracker. But most teams don't need pure time tracking.</strong> If you're an agency billing hourly, Toggl is great. If you're doing project-based work, the tracking is overhead without value. The real question: are you tracking time for billing or for productivity?</p>
+            <p style="margin-bottom: 1rem; color: #4a4a4a;">The sentiment data confirms what we see with our agency clients: Toggl wins on UX, but the integration story is weak. Most agencies end up with Toggl + QuickBooks + a project management tool, when a single platform would be more efficient.</p>
+            <p style="margin-top: 1rem; font-style: italic; color: #6b6b6b;">-- From running an agency that tracks every billable hour</p>
+        </div>
+
         <!-- Executive Summary -->
         <section class="exec-summary">
             <h2 class="section-title">Executive Summary</h2>
@@ -968,6 +981,42 @@
                         Profitability Reports
                     </h4>
                     <p>Toggl Track's profitability reports show client/project margins. Harvest offers project budgets. ClickUp lacks financial reporting.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 42's Workflow Card -->
+        <section class="card" style="margin-bottom: 2rem; background: #f5f5f5;">
+            <h2 class="card-title" style="color: #1a1a1a;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                </svg>
+                42's Actual Workflow: What We Use and Why
+            </h2>
+            <div style="padding: 1rem 0;">
+                <p style="font-size: 1rem; color: #4a4a4a; margin-bottom: 1rem;">At 42 Agency, we track every billable hour across client work. Here's our stack:</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                    <div style="background: white; border: 2px solid #1a1a1a; border-radius: 8px; padding: 1rem;">
+                        <h4 style="font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="background: #10B981; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">PRIMARY</span>
+                            ClickUp Time Tracking
+                        </h4>
+                        <p style="font-size: 0.85rem; color: #6b6b6b;">Yes, ClickUp. Despite its flaws. Why? Time is tracked directly on tasks, which we're already in. No context switching. The reporting isn't great, but the data lives where the work lives.</p>
+                    </div>
+                    <div style="background: white; border: 2px solid #1a1a1a; border-radius: 8px; padding: 1rem;">
+                        <h4 style="font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="background: #F59E0B; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">BILLING</span>
+                            QuickBooks Time (via Sync)
+                        </h4>
+                        <p style="font-size: 0.85rem; color: #6b6b6b;">For client invoicing, we sync ClickUp time to QuickBooks. Not elegant, but it keeps finance happy. If we were starting fresh, we'd seriously consider Harvest for the all-in-one billing.</p>
+                    </div>
+                    <div style="background: white; border: 2px solid #1a1a1a; border-radius: 8px; padding: 1rem;">
+                        <h4 style="font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="background: #3B82F6; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">INSIGHT</span>
+                            The Key Learning
+                        </h4>
+                        <p style="font-size: 0.85rem; color: #6b6b6b;">We tried Toggl. Team adoption died within 2 weeks. The extra click to switch apps was enough friction to kill compliance. Now time tracking lives in ClickUp - not perfect, but it gets done.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1424,6 +1473,66 @@
             </div>
         </section>
 
+        <!-- 42's Decision Framework -->
+        <section class="card" style="margin-top: 2rem; box-shadow: 4px 4px 0px 0px #10B981;">
+            <h2 class="card-title" style="color: #10B981;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                42's Decision Framework: Which Tool for Which Use Case
+            </h2>
+            <div style="margin-top: 1rem;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                    <div style="border-left: 4px solid #10B981; padding-left: 1rem;">
+                        <h4 style="font-weight: 700; color: #1a1a1a; margin-bottom: 0.5rem;">Hourly Billing Agency</h4>
+                        <p style="font-size: 0.9rem; color: #4a4a4a; margin-bottom: 0.5rem;"><strong>Pick: Harvest</strong></p>
+                        <p style="font-size: 0.85rem; color: #6b6b6b;">Time tracking + invoicing in one place. Yes, the UI is dated. Yes, it costs more. But you'll actually use it because the workflow is complete. Toggl is prettier but you'll still need QuickBooks.</p>
+                    </div>
+                    <div style="border-left: 4px solid #3B82F6; padding-left: 1rem;">
+                        <h4 style="font-weight: 700; color: #1a1a1a; margin-bottom: 0.5rem;">Fixed-Price / Retainer Agency</h4>
+                        <p style="font-size: 0.9rem; color: #4a4a4a; margin-bottom: 0.5rem;"><strong>Pick: Your PM Tool's Native Tracking</strong></p>
+                        <p style="font-size: 0.85rem; color: #6b6b6b;">If you're not billing by the hour, use whatever's built into ClickUp, Monday, or Asana. The insights aren't as good, but you'll get better compliance. Separate time trackers die in fixed-price shops.</p>
+                    </div>
+                    <div style="border-left: 4px solid #F59E0B; padding-left: 1rem;">
+                        <h4 style="font-weight: 700; color: #1a1a1a; margin-bottom: 0.5rem;">Freelancer / Solopreneur</h4>
+                        <p style="font-size: 0.9rem; color: #4a4a4a; margin-bottom: 0.5rem;"><strong>Pick: Toggl or Clockify</strong></p>
+                        <p style="font-size: 0.85rem; color: #6b6b6b;">When it's just you, the UX matters most. Toggl is the gold standard for quick start/stop. Clockify if you want free invoicing. You don't need team features - keep it simple.</p>
+                    </div>
+                    <div style="border-left: 4px solid #8B5CF6; padding-left: 1rem;">
+                        <h4 style="font-weight: 700; color: #1a1a1a; margin-bottom: 0.5rem;">Enterprise with Compliance Needs</h4>
+                        <p style="font-size: 0.9rem; color: #4a4a4a; margin-bottom: 0.5rem;"><strong>Pick: Timely (if budget allows)</strong></p>
+                        <p style="font-size: 0.85rem; color: #6b6b6b;">AI-powered automatic tracking means you capture everything, even when people forget. Yes it's expensive. Yes it sometimes misclassifies. But for auditable timesheets, passive tracking wins.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 42's Common Mistakes -->
+        <section class="card" style="margin-top: 2rem; box-shadow: 4px 4px 0px 0px #EF4444;">
+            <h2 class="card-title" style="color: #EF4444;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2">
+                    <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                </svg>
+                Common Mistakes We See Agencies Make
+            </h2>
+            <div style="margin-top: 1rem;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                    <div style="background: #FEE2E2; border: 1px solid #FCA5A5; border-radius: 8px; padding: 1rem;">
+                        <h4 style="font-weight: 700; color: #B91C1C; margin-bottom: 0.5rem;">Adding Time Tracking "For Insights"</h4>
+                        <p style="font-size: 0.85rem; color: #6b6b6b;">You implement time tracking to "understand where time goes" but never build dashboards or review the data. 6 months later, tracking compliance is at 30% and no one looks at reports. <strong>If you're not billing for it, you won't track it.</strong></p>
+                    </div>
+                    <div style="background: #FEE2E2; border: 1px solid #FCA5A5; border-radius: 8px; padding: 1rem;">
+                        <h4 style="font-weight: 700; color: #B91C1C; margin-bottom: 0.5rem;">Picking Based on Features, Not Workflow</h4>
+                        <p style="font-size: 0.85rem; color: #6b6b6b;">Toggl has better reports! Timely has AI! Harvest has invoicing! None of that matters if your team won't use it. <strong>Pick the tool that fits where your team already works.</strong> An imperfect tool that gets used beats a perfect tool that doesn't.</p>
+                    </div>
+                    <div style="background: #FEE2E2; border: 1px solid #FCA5A5; border-radius: 8px; padding: 1rem;">
+                        <h4 style="font-weight: 700; color: #B91C1C; margin-bottom: 0.5rem;">Underestimating Integration Overhead</h4>
+                        <p style="font-size: 0.85rem; color: #6b6b6b;">Toggl --> Zapier --> QuickBooks --> Manual cleanup. Every integration is a failure point. <strong>The sentiment data shows this:</strong> Toggl's UX is great but the integration story is weak. That's why agencies switch to Harvest - all-in-one is simpler.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Key Quotes -->
         <h2 class="section-title" style="margin-top: 2rem;">Standout Practitioner Quotes</h2>
         <p class="section-subtitle">Direct quotes from verified users across platforms</p>
@@ -1551,6 +1660,35 @@
             </div>
         </section>
 
+        <!-- What the Sentiment Misses -->
+        <section class="card" style="margin-top: 2rem; border-left: 4px solid #DFFE68;">
+            <h2 class="card-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                </svg>
+                What the Sentiment Misses: 42's Unfiltered Take
+            </h2>
+            <div style="margin-top: 1rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                <div>
+                    <h4 style="font-weight: 700; margin-bottom: 0.5rem; color: #1a1a1a;">The Integration Story is the Real Weakness</h4>
+                    <p style="font-size: 0.9rem; color: #4a4a4a;">Reviews praise Toggl's UX. But UX doesn't pay bills. The friction of "track in Toggl, invoice in QuickBooks, manage in ClickUp" kills most implementations. Harvest survives on worse UX because the workflow is complete.</p>
+                </div>
+                <div>
+                    <h4 style="font-weight: 700; margin-bottom: 0.5rem; color: #1a1a1a;">ClickUp Time Tracking Is Better Than People Say</h4>
+                    <p style="font-size: 0.9rem; color: #4a4a4a;">Yes, ClickUp is slow. Yes, the time tracking is "clunky." But if your team lives in ClickUp, that clunky native tracking gets 3x more adoption than a slick external tool. Context switching is the real enemy.</p>
+                </div>
+                <div>
+                    <h4 style="font-weight: 700; margin-bottom: 0.5rem; color: #1a1a1a;">AI Tracking Sounds Better Than It Is</h4>
+                    <p style="font-size: 0.9rem; color: #4a4a4a;">Timely's AI tracking is magical when it works. But "sometimes misclassifies" undersells the problem. When AI assigns 2 hours to the wrong client, you're doing manual corrections anyway. The promise outpaces the reality.</p>
+                </div>
+                <div>
+                    <h4 style="font-weight: 700; margin-bottom: 0.5rem; color: #1a1a1a;">Free Tier Lock-In Is Real</h4>
+                    <p style="font-size: 0.9rem; color: #4a4a4a;">Clockify's "unlimited free users" gets agencies started. But once you have 2 years of data, you're locked in. Then the paid features you "don't need" become requirements. Budget for paid from day one.</p>
+                </div>
+            </div>
+        </section>
+
         <!-- CTA Section -->
         <section class="cta-section">
             <h3 class="cta-title">Need Help Choosing the Right Tool Stack?</h3>
@@ -1614,6 +1752,7 @@
                     <a href="https://www.42agency.com/contact-us" target="_blank">Contact Us</a>
                     <a href="https://42agency.com/case-studies" target="_blank">Case Studies</a>
                     <a href="https://42slash.com" target="_blank">42/ Essays</a>
+                    <a href="https://42slash.com/subscribe" target="_blank" style="color: var(--accent);">Subscribe to Newsletter</a>
                     <a href="https://42agency.com/careers" target="_blank">Careers</a>
                 </div>
             </div>
