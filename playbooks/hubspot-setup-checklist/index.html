@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HubSpot Setup Checklist | 4-Week Implementation Guide | 42 Agency</title>
+    <meta name="description" content="Complete HubSpot implementation checklist. Week-by-week setup guide covering technical configuration, CRM setup, automation, and reporting. Avoid common mistakes.">
+    <link rel="canonical" href="https://intel.42agency.com/playbooks/hubspot-setup-checklist/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MM5BTNS');</script>
+
+    <!-- HubSpot Tracking -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/44888286.js"></script>
+
+    <!-- FAQPage Schema for GEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How long does it take to set up HubSpot properly?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A proper HubSpot implementation takes 4-6 weeks for mid-market B2B companies. Week 1 covers technical setup (domain, tracking, forms). Week 2 handles CRM configuration (properties, pipelines, lifecycle stages). Week 3 focuses on automation (lead scoring, workflows, sequences). Week 4 builds reporting (dashboards, attribution). Rushing the implementation leads to data quality issues and rework. Companies that skip proper setup spend 3-6 months cleaning up technical debt."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the most common HubSpot setup mistakes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The 5 most common HubSpot setup mistakes are: (1) Not connecting your email sending domain, causing emails to go to spam. (2) Skipping lifecycle stage automation, leading to manual stage updates and inconsistent data. (3) Creating too many custom properties without naming conventions, making reporting impossible. (4) Not setting up UTM parameter tracking from day one, losing attribution data forever. (5) Building workflows before defining your lead scoring model, creating automation that fires on the wrong triggers."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What integrations should I set up with HubSpot first?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The must-have HubSpot integrations for B2B companies are: (1) Salesforce or your CRM of record - sync bidirectionally with clear field mapping. (2) Sales engagement platform (Outreach, Salesloft, or Apollo) - avoid duplicate sequences. (3) Data enrichment (Clearbit, ZoomInfo, or Apollo) - enrich leads on form fill. (4) Calendar scheduling (Calendly or HubSpot meetings) - reduce booking friction. (5) Slack - alert sales on high-intent actions. Set up the CRM sync first as it impacts all downstream data."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I set up HubSpot tracking properly?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "HubSpot tracking setup requires 4 steps: (1) Install the HubSpot tracking code on all website pages, including subdomains. (2) Connect your email sending domain and authenticate with DKIM and SPF records. (3) Set up UTM parameter capture by creating hidden fields on forms that auto-populate from URL parameters. (4) Enable cross-domain tracking if you use multiple domains. Verify tracking is working by checking the Sources report and confirming form submissions show original source data."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What HubSpot properties should I create for B2B?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Essential B2B HubSpot properties include: Contact level - Lead Source (dropdown), Lead Score (number), MQL Date, SQL Date, ICP Fit Score. Company level - Industry (dropdown), Employee Count (number), Annual Revenue (number), Target Account (checkbox), Account Tier (A/B/C). Deal level - Close Reason (dropdown), Champion Contact (lookup), Competitor Mentioned (multi-checkbox). Use naming conventions like 'custom_' prefix and avoid free-text fields that can't be reported on."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- HowTo Schema for GEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "HubSpot Setup Checklist: 4-Week Implementation Guide",
+      "description": "A comprehensive week-by-week guide to implementing HubSpot for B2B companies. Covers technical setup, CRM configuration, marketing automation, and reporting dashboards.",
+      "image": "https://intel.42agency.com/images/hubspot-setup-checklist.png",
+      "totalTime": "P4W",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "USD",
+        "value": "0"
+      },
+      "tool": [
+        {
+          "@type": "HowToTool",
+          "name": "HubSpot Marketing Hub Professional or Enterprise"
+        },
+        {
+          "@type": "HowToTool",
+          "name": "HubSpot Sales Hub Professional or Enterprise"
+        },
+        {
+          "@type": "HowToTool",
+          "name": "Access to DNS settings for domain verification"
+        }
+      ],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Week 1: Technical Foundation",
+          "text": "Set up the technical infrastructure for HubSpot including domain connection, tracking code installation, and form configuration. Connect your email sending domain with DKIM and SPF authentication. Install tracking code on all website pages and subdomains. Create your first forms with proper UTM parameter capture.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Add CNAME records for your email sending domain and verify in HubSpot settings"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Install HubSpot tracking code in the <head> of all pages or via GTM"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Create hidden form fields to capture utm_source, utm_medium, utm_campaign, utm_content"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Week 2: CRM Configuration",
+          "text": "Configure your CRM foundation including custom properties, deal pipelines, and lifecycle stages. Define your lifecycle stage criteria and create automation to move contacts through stages. Set up deal pipelines that match your actual sales process.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Create custom contact, company, and deal properties with consistent naming conventions"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Define lifecycle stage transitions (Lead > MQL > SQL > Opportunity > Customer)"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Build deal pipeline stages that reflect real buyer journey milestones"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Week 3: Marketing Automation",
+          "text": "Build your marketing automation engine including lead scoring, nurture workflows, and sales sequences. Create a scoring model based on ICP fit and engagement signals. Set up workflows to automate lifecycle stage transitions and internal notifications.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Build lead scoring model with 50 points for ICP fit and 50 points for engagement"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Create MQL workflow that triggers when score threshold is met"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Set up Slack notifications for high-intent actions (pricing page, demo request)"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Week 4: Reporting & Attribution",
+          "text": "Configure reporting dashboards and attribution models to measure marketing performance. Build pipeline dashboards, campaign attribution reports, and funnel conversion tracking. Connect HubSpot to your Salesforce or CRM for closed-loop reporting.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Create pipeline dashboard showing MQL to SQL to Opportunity to Closed-Won"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Build campaign attribution report using multi-touch attribution model"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Set up revenue attribution to tie marketing touches to closed revenue"
+            }
+          ]
+        }
+      ],
+      "author": {
+        "@type": "Organization",
+        "name": "42 Agency",
+        "url": "https://www.42agency.com"
+      }
+    }
+    </script>
+
+    <style>
+        :root { --accent: #DFFE68; --accent-dark: #C8E85C; --black: #1a1a1a; --gray: #4a4a4a; --muted: #6b6b6b; --light-gray: #f5f5f5; --green: #10B981; --orange: #F59E0B; --blue: #3B82F6; --red: #EF4444; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--light-gray); color: var(--black); line-height: 1.7; }
+
+        /* Header */
+        .header { border-bottom: 2px solid var(--black); padding: 0.75rem 1.5rem; background: white; position: sticky; top: 0; z-index: 50; }
+        .header-inner { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 28px; }
+        .nav { display: flex; align-items: center; gap: 0.25rem; }
+        .nav a { padding: 0.5rem 1rem; color: var(--gray); text-decoration: none; font-size: 0.9rem; font-weight: 500; border-radius: 6px; transition: all 0.15s; }
+        .nav a:hover { color: var(--black); background: var(--light-gray); }
+        .nav a.active { background: var(--accent); color: var(--black); font-weight: 600; }
+        .nav-cta { background: var(--black); color: white !important; font-weight: 600; }
+        .nav-cta:hover { background: #333 !important; }
+        @media (max-width: 768px) { .nav { display: none; } }
+
+        /* Breadcrumbs */
+        .breadcrumbs { background: white; border-bottom: 2px solid var(--black); padding: 0.75rem 1.5rem; }
+        .breadcrumbs-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; }
+        .breadcrumbs a { color: var(--gray); text-decoration: none; }
+        .breadcrumbs a:hover { color: var(--black); }
+        .breadcrumbs .current { color: var(--black); font-weight: 600; }
+
+        .main { max-width: 800px; margin: 0 auto; padding: 3rem 2rem; }
+
+        /* Hero */
+        .hero { text-align: center; margin-bottom: 3rem; }
+        .hero-badge { display: inline-block; background: var(--orange); color: white; padding: 0.4rem 1rem; font-size: 0.75rem; font-weight: 700; border-radius: 20px; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 1rem; line-height: 1.1; }
+        .subtitle { color: var(--gray); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        /* Stats Row */
+        .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 2rem 0 3rem; }
+        .stat-item { text-align: center; padding: 1rem; background: white; border: 2px solid var(--black); border-radius: 12px; box-shadow: 3px 3px 0 var(--black); }
+        .stat-value { font-size: 1.5rem; font-weight: 800; color: var(--green); }
+        .stat-label { font-size: 0.7rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* Content Sections */
+        .content-section { background: white; border: 2px solid var(--black); border-radius: 16px; padding: 2rem; box-shadow: 4px 4px 0 var(--black); margin-bottom: 2rem; }
+        .content-section h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 3px solid var(--accent); display: flex; align-items: center; gap: 0.75rem; }
+        .week-badge { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: var(--accent); border: 2px solid var(--black); border-radius: 50%; font-size: 0.85rem; font-weight: 800; flex-shrink: 0; }
+        .content-section h3 { font-size: 1.1rem; font-weight: 700; margin: 1.5rem 0 0.75rem; color: var(--black); }
+        .content-section p { margin-bottom: 1rem; color: #333; }
+        .content-section ul, .content-section ol { margin: 1rem 0 1rem 1.5rem; color: #333; }
+        .content-section li { margin-bottom: 0.5rem; }
+        .content-section table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+        .content-section th, .content-section td { padding: 0.6rem 0.75rem; text-align: left; border: 1px solid #ddd; }
+        .content-section th { background: var(--light-gray); font-weight: 700; }
+        .content-section tr:nth-child(even) { background: #fafafa; }
+
+        .callout { background: var(--accent); border-left: 4px solid var(--black); padding: 1rem 1.25rem; margin: 1.25rem 0; border-radius: 0 8px 8px 0; }
+        .callout strong { display: block; margin-bottom: 0.25rem; }
+
+        .callout-warning { background: #FEF3C7; border-left-color: var(--orange); }
+        .callout-danger { background: #FEE2E2; border-left-color: var(--red); }
+        .callout-info { background: #DBEAFE; border-left-color: var(--blue); }
+
+        /* Checklist */
+        .checklist { list-style: none; margin: 1rem 0; padding: 0; }
+        .checklist li { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.5rem 0; border-bottom: 1px solid #eee; }
+        .checklist li:last-child { border-bottom: none; }
+        .check-icon { width: 20px; height: 20px; background: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+        .check-icon svg { width: 12px; height: 12px; color: white; }
+
+        /* Integration Cards */
+        .integration-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0; }
+        .integration-card { background: var(--light-gray); border: 2px solid var(--black); border-radius: 12px; padding: 1rem; }
+        .integration-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.25rem; }
+        .integration-card p { font-size: 0.85rem; color: var(--gray); margin: 0; }
+        .integration-priority { display: inline-block; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 4px; margin-bottom: 0.5rem; }
+        .priority-critical { background: var(--red); color: white; }
+        .priority-high { background: var(--orange); color: white; }
+        .priority-medium { background: var(--blue); color: white; }
+
+        /* Gated Content */
+        .gated-wrapper { position: relative; }
+        .gated-content { filter: blur(5px); pointer-events: none; user-select: none; }
+        .gated-content.unlocked { filter: none; pointer-events: auto; user-select: auto; }
+
+        .gate-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.95) 15%, rgba(255,255,255,1) 30%); display: flex; align-items: flex-start; justify-content: center; padding-top: 4rem; }
+        .gate-overlay.hidden { display: none; }
+
+        .gate-card { background: var(--accent); border: 2px solid var(--black); border-radius: 16px; padding: 2.5rem; box-shadow: 6px 6px 0 var(--black); text-align: center; max-width: 450px; margin: 0 1rem; }
+        .gate-card h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .gate-card p { color: var(--gray); margin-bottom: 1.5rem; }
+        .email-form { display: flex; flex-direction: column; gap: 0.75rem; }
+        .email-form input { padding: 0.875rem; border: 2px solid var(--black); border-radius: 8px; font-size: 1rem; text-align: center; }
+        .email-form input:focus { outline: none; box-shadow: 0 0 0 3px rgba(223, 254, 104, 0.5); }
+        .email-form button { padding: 0.875rem 1.5rem; background: var(--black); color: white; border: none; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: background 0.15s; }
+        .email-form button:hover { background: #333; }
+        .email-form button:disabled { background: #666; cursor: not-allowed; }
+        .gate-card .note { font-size: 0.8rem; color: #666; margin-top: 1rem; }
+
+        /* Download Banner */
+        .download-banner { display: none; background: var(--accent); border: 2px solid var(--black); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; text-align: center; box-shadow: 4px 4px 0 var(--black); }
+        .download-banner.visible { display: block; }
+        .download-banner p { margin-bottom: 1rem; font-weight: 600; }
+        .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--black); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; transition: background 0.15s; }
+        .download-btn:hover { background: #333; }
+
+        /* CTA Section */
+        .cta-section { background: var(--accent); border: 2px solid var(--black); border-radius: 16px; padding: 2.5rem; box-shadow: 6px 6px 0 var(--black); text-align: center; margin-top: 3rem; }
+        .cta-section h2 { font-size: 1.75rem; font-weight: 800; margin-bottom: 0.75rem; }
+        .cta-section p { color: var(--gray); margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .cta-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: var(--black); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 1rem; transition: all 0.15s; }
+        .cta-btn:hover { background: #333; transform: translateY(-2px); }
+
+        /* Related */
+        .related-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2rem; }
+        .related-link { display: block; padding: 1rem; background: white; border: 2px solid var(--black); border-radius: 8px; text-decoration: none; color: var(--black); font-weight: 600; box-shadow: 3px 3px 0 var(--black); transition: all 0.15s; }
+        .related-link:hover { background: var(--accent); transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--black); }
+
+        /* Footer */
+        .footer { background: var(--black); color: white; padding: 3rem 2rem 2rem; margin-top: 3rem; }
+        .footer-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+        .footer img { height: 24px; filter: brightness(0) invert(1); margin-bottom: 1rem; }
+        .footer p { font-size: 0.85rem; color: #666; }
+
+        @media (max-width: 768px) {
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .integration-grid { grid-template-columns: 1fr; }
+            .related-links { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+            .stat-value { font-size: 1.25rem; }
+        }
+
+        @media (max-width: 480px) {
+            .stats-row { grid-template-columns: 1fr; }
+            .main { padding: 2rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- GTM noscript -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MM5BTNS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <header class="header">
+        <div class="header-inner">
+            <a href="/" class="logo"><img src="/42-logo.png" alt="42 Agency"></a>
+            <nav class="nav">
+                <a href="/assess/">Assess</a>
+                <a href="/b2b-benchmarks/">Benchmarks</a>
+                <a href="/tools/">Tools</a>
+                <a href="/playbooks/" class="active">Playbooks</a>
+                <a href="https://www.42agency.com/contact-us" target="_blank" class="nav-cta">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <a href="/">Home</a><span>/</span><a href="/playbooks/">Playbooks</a><span>/</span><span class="current">HubSpot Setup Checklist</span>
+        </div>
+    </nav>
+
+    <main class="main">
+        <section class="hero">
+            <span class="hero-badge">HubSpot Implementation</span>
+            <h1>HubSpot Setup Checklist</h1>
+            <p class="subtitle">The complete 4-week implementation guide. Set up HubSpot right the first time and avoid the mistakes that cause 6 months of cleanup.</p>
+        </section>
+
+        <div class="stats-row">
+            <div class="stat-item">
+                <div class="stat-value">4 Weeks</div>
+                <div class="stat-label">Full Implementation</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">47</div>
+                <div class="stat-label">Setup Tasks</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">12</div>
+                <div class="stat-label">Must-Have Integrations</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">8</div>
+                <div class="stat-label">Common Mistakes</div>
+            </div>
+        </div>
+
+        <!-- Download Banner (shows after unlock) -->
+        <div class="download-banner" id="downloadBanner">
+            <p>You've unlocked the full checklist. Download the PDF version:</p>
+            <a href="/playbooks/hubspot-setup-checklist/hubspot-setup-checklist-playbook.pdf" download class="download-btn">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                Download PDF Checklist
+            </a>
+        </div>
+
+        <!-- UNGATED: Introduction + Week 1 (30%) -->
+        <div class="content-section">
+            <h2>Why Proper Setup Matters</h2>
+            <p>Most HubSpot implementations fail not because of the tool, but because of the setup. Companies rush through configuration, skip foundational steps, and end up with:</p>
+            <ul>
+                <li><strong>Dirty data</strong> that makes reporting impossible</li>
+                <li><strong>Broken attribution</strong> that can't show marketing ROI</li>
+                <li><strong>Workflows firing on wrong triggers</strong> because lifecycle stages weren't defined</li>
+                <li><strong>Emails going to spam</strong> because domain authentication was skipped</li>
+            </ul>
+            <div class="callout">
+                <strong>The Hidden Cost:</strong> Companies that skip proper setup spend 3-6 months cleaning up technical debt. That's 3-6 months of unreliable data, frustrated sales teams, and marketing that can't prove its value.
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2><span class="week-badge">1</span> Week 1: Technical Foundation</h2>
+            <p>Before building anything, you need rock-solid technical infrastructure. This week is about domains, tracking, and forms.</p>
+
+            <h3>Domain & Email Authentication</h3>
+            <ul class="checklist">
+                <li>
+                    <span class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+                    <span><strong>Connect email sending domain</strong> - Add CNAME records for your sending domain (e.g., em.yourcompany.com)</span>
+                </li>
+                <li>
+                    <span class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+                    <span><strong>Set up DKIM authentication</strong> - Required for email deliverability. HubSpot provides the records.</span>
+                </li>
+                <li>
+                    <span class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+                    <span><strong>Add SPF record</strong> - Include HubSpot in your SPF to authorize sending</span>
+                </li>
+                <li>
+                    <span class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+                    <span><strong>Connect tracking domain</strong> - Use your subdomain for tracking links (e.g., go.yourcompany.com)</span>
+                </li>
+            </ul>
+
+            <div class="callout callout-warning">
+                <strong>Do Not Skip This:</strong> Without domain authentication, your emails will go to spam. Period. This is the #1 mistake new HubSpot users make.
+            </div>
+
+            <h3>Tracking Code Installation</h3>
+            <ul class="checklist">
+                <li>
+                    <span class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+                    <span><strong>Install on main website</strong> - Add tracking code to &lt;head&gt; of all pages</span>
+                </li>
+                <li>
+                    <span class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+                    <span><strong>Install on subdomains</strong> - Blog, docs, app subdomains need tracking too</span>
+                </li>
+                <li>
+                    <span class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+                    <span><strong>Enable cross-domain tracking</strong> - If you use multiple root domains</span>
+                </li>
+                <li>
+                    <span class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+                    <span><strong>Verify in Sources report</strong> - Check that page views are recording</span>
+                </li>
+            </ul>
+
+            <h3>Form Configuration</h3>
+            <table>
+                <tr><th>Field Type</th><th>Purpose</th><th>Required?</th></tr>
+                <tr><td>Email</td><td>Primary identifier</td><td>Always</td></tr>
+                <tr><td>First Name</td><td>Personalization</td><td>Usually</td></tr>
+                <tr><td>Company</td><td>Account matching</td><td>For high-value forms</td></tr>
+                <tr><td>Hidden: utm_source</td><td>Attribution</td><td>Always</td></tr>
+                <tr><td>Hidden: utm_medium</td><td>Attribution</td><td>Always</td></tr>
+                <tr><td>Hidden: utm_campaign</td><td>Attribution</td><td>Always</td></tr>
+                <tr><td>Hidden: utm_content</td><td>Attribution</td><td>Always</td></tr>
+            </table>
+        </div>
+
+        <!-- GATED: Weeks 2-4 + Integrations + Mistakes (70%) -->
+        <div class="gated-wrapper">
+            <div class="gated-content" id="gatedContent">
+
+                <div class="content-section">
+                    <h2><span class="week-badge">2</span> Week 2: CRM Configuration</h2>
+                    <p>With tracking in place, build out your CRM foundation. This week defines how data is structured and how leads move through your funnel.</p>
+
+                    <h3>Custom Properties</h3>
+                    <p>Create properties with consistent naming conventions. Use prefixes like <code>custom_</code> to distinguish from default fields.</p>
+
+                    <table>
+                        <tr><th>Object</th><th>Property</th><th>Type</th><th>Purpose</th></tr>
+                        <tr><td>Contact</td><td>lead_source_detail</td><td>Dropdown</td><td>Granular source tracking</td></tr>
+                        <tr><td>Contact</td><td>lead_score</td><td>Number</td><td>Scoring model output</td></tr>
+                        <tr><td>Contact</td><td>icp_fit_score</td><td>Number</td><td>Firmographic match</td></tr>
+                        <tr><td>Contact</td><td>mql_date</td><td>Date</td><td>When they became MQL</td></tr>
+                        <tr><td>Contact</td><td>sql_date</td><td>Date</td><td>When sales accepted</td></tr>
+                        <tr><td>Company</td><td>target_account</td><td>Checkbox</td><td>ABM flag</td></tr>
+                        <tr><td>Company</td><td>account_tier</td><td>Dropdown</td><td>A/B/C tiering</td></tr>
+                        <tr><td>Company</td><td>icp_industry</td><td>Dropdown</td><td>Standardized industry</td></tr>
+                        <tr><td>Deal</td><td>close_reason</td><td>Dropdown</td><td>Win/loss reason</td></tr>
+                        <tr><td>Deal</td><td>competitor_mentioned</td><td>Multi-checkbox</td><td>Competitive intel</td></tr>
+                    </table>
+
+                    <h3>Lifecycle Stage Definitions</h3>
+                    <p>Define clear criteria for each lifecycle stage. Document these and share with sales.</p>
+
+                    <table>
+                        <tr><th>Stage</th><th>Definition</th><th>Trigger</th></tr>
+                        <tr><td><strong>Subscriber</strong></td><td>Opted in to content only</td><td>Newsletter signup</td></tr>
+                        <tr><td><strong>Lead</strong></td><td>Known contact, some engagement</td><td>Any form fill (non-demo)</td></tr>
+                        <tr><td><strong>MQL</strong></td><td>Meets score threshold</td><td>Lead score >= 60</td></tr>
+                        <tr><td><strong>SQL</strong></td><td>Sales accepted, in active pursuit</td><td>Sales marks as accepted</td></tr>
+                        <tr><td><strong>Opportunity</strong></td><td>Deal created, in pipeline</td><td>Deal associated</td></tr>
+                        <tr><td><strong>Customer</strong></td><td>Closed-won deal</td><td>Deal closed-won</td></tr>
+                    </table>
+
+                    <h3>Deal Pipeline Setup</h3>
+                    <p>Create pipeline stages that reflect actual buyer journey milestones, not internal process steps.</p>
+                    <ul>
+                        <li><strong>Discovery</strong> - Initial qualification conversation</li>
+                        <li><strong>Demo Completed</strong> - Product demonstrated</li>
+                        <li><strong>Proposal Sent</strong> - Pricing/proposal delivered</li>
+                        <li><strong>Negotiation</strong> - Terms being discussed</li>
+                        <li><strong>Closed Won</strong> - Deal signed</li>
+                        <li><strong>Closed Lost</strong> - Deal lost (capture reason)</li>
+                    </ul>
+
+                    <div class="callout callout-info">
+                        <strong>Pro Tip:</strong> Start with fewer pipeline stages (5-6) and add complexity later. Too many stages early on leads to inconsistent usage.
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2><span class="week-badge">3</span> Week 3: Marketing Automation</h2>
+                    <p>Now that your CRM is configured, build the automation that makes it work. Focus on lead scoring, lifecycle automation, and notifications.</p>
+
+                    <h3>Lead Scoring Model</h3>
+                    <p>Build a two-axis scoring model: 50 points for ICP fit, 50 points for engagement.</p>
+
+                    <table>
+                        <tr><th colspan="3" style="background: var(--green); color: white;">ICP Fit Score (50 points max)</th></tr>
+                        <tr><th>Attribute</th><th>Ideal Match</th><th>Points</th></tr>
+                        <tr><td>Company Size</td><td>200-2000 employees</td><td>+15</td></tr>
+                        <tr><td>Industry</td><td>Target industry</td><td>+15</td></tr>
+                        <tr><td>Job Title</td><td>VP+ decision maker</td><td>+10</td></tr>
+                        <tr><td>Geography</td><td>Primary market</td><td>+5</td></tr>
+                        <tr><td>Tech Stack</td><td>Complementary tools</td><td>+5</td></tr>
+                    </table>
+
+                    <table style="margin-top: 1.5rem;">
+                        <tr><th colspan="3" style="background: var(--blue); color: white;">Engagement Score (50 points max)</th></tr>
+                        <tr><th>Action</th><th>Intent Level</th><th>Points</th></tr>
+                        <tr><td>Demo Request</td><td>High</td><td>+25</td></tr>
+                        <tr><td>Pricing Page Visit</td><td>High</td><td>+15</td></tr>
+                        <tr><td>Case Study Download</td><td>High</td><td>+10</td></tr>
+                        <tr><td>Webinar Attendance</td><td>Medium</td><td>+8</td></tr>
+                        <tr><td>Blog (3+ articles)</td><td>Low</td><td>+3</td></tr>
+                        <tr><td>Email Click</td><td>Low</td><td>+2</td></tr>
+                    </table>
+
+                    <h3>Essential Workflows</h3>
+                    <ul class="checklist">
+                        <li>
+                            <span class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+                            <span><strong>MQL Qualification</strong> - When lead score hits threshold, update lifecycle to MQL, notify sales</span>
+                        </li>
+                        <li>
+                            <span class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+                            <span><strong>Lead Assignment</strong> - Route new MQLs to correct rep based on territory/round-robin</span>
+                        </li>
+                        <li>
+                            <span class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+                            <span><strong>High-Intent Alert</strong> - Slack notification when target account visits pricing page</span>
+                        </li>
+                        <li>
+                            <span class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+                            <span><strong>Lead Nurture</strong> - Drip sequence for leads not yet MQL-ready</span>
+                        </li>
+                        <li>
+                            <span class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+                            <span><strong>Score Decay</strong> - Reduce engagement score by 25% every 30 days of inactivity</span>
+                        </li>
+                    </ul>
+
+                    <h3>Sales Sequences (Sales Hub)</h3>
+                    <p>If using Sales Hub, set up these core sequences:</p>
+                    <ul>
+                        <li><strong>Inbound Demo Follow-up</strong> - Post-demo nurture for deals not progressing</li>
+                        <li><strong>MQL Outreach</strong> - Initial sales touches for new MQLs</li>
+                        <li><strong>Re-engagement</strong> - Touch sequence for stalled opportunities</li>
+                    </ul>
+                </div>
+
+                <div class="content-section">
+                    <h2><span class="week-badge">4</span> Week 4: Reporting & Attribution</h2>
+                    <p>The payoff week. Build dashboards that prove marketing impact and give visibility into the full funnel.</p>
+
+                    <h3>Essential Dashboards</h3>
+
+                    <h4 style="margin-top: 1.5rem; font-weight: 700;">1. Marketing Performance Dashboard</h4>
+                    <table>
+                        <tr><th>Report</th><th>Purpose</th><th>Filters</th></tr>
+                        <tr><td>MQLs by Source</td><td>Which channels drive qualified leads</td><td>This month, by Original Source</td></tr>
+                        <tr><td>MQL to SQL Rate</td><td>Sales acceptance rate</td><td>Rolling 90 days</td></tr>
+                        <tr><td>Lead Velocity</td><td>Are we generating more leads over time</td><td>Week over week trend</td></tr>
+                        <tr><td>Content Performance</td><td>Which content drives conversions</td><td>By landing page, form fills</td></tr>
+                    </table>
+
+                    <h4 style="margin-top: 1.5rem; font-weight: 700;">2. Pipeline Dashboard</h4>
+                    <table>
+                        <tr><th>Report</th><th>Purpose</th><th>Filters</th></tr>
+                        <tr><td>Pipeline by Stage</td><td>Current pipeline health</td><td>Open deals, by stage</td></tr>
+                        <tr><td>Pipeline Created</td><td>New pipeline this period</td><td>Create date this month</td></tr>
+                        <tr><td>Marketing-Sourced Pipeline</td><td>Prove marketing contribution</td><td>Original source = marketing</td></tr>
+                        <tr><td>Stage Conversion Rates</td><td>Funnel efficiency</td><td>By stage transition</td></tr>
+                    </table>
+
+                    <h4 style="margin-top: 1.5rem; font-weight: 700;">3. Attribution Report</h4>
+                    <ul>
+                        <li>Set up multi-touch attribution model (linear or time-decay)</li>
+                        <li>Create revenue attribution report connecting deals to marketing touches</li>
+                        <li>Build campaign influence report showing which campaigns touched won deals</li>
+                    </ul>
+
+                    <div class="callout">
+                        <strong>Attribution Setup:</strong> Use HubSpot's built-in attribution reports (Marketing Hub Enterprise) or build custom reports using deal associations and marketing touch data. At minimum, track first-touch and last-touch attribution.
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Critical Integrations Checklist</h2>
+                    <p>These are the must-have integrations for B2B HubSpot implementations. Prioritize based on your stack.</p>
+
+                    <div class="integration-grid">
+                        <div class="integration-card">
+                            <span class="integration-priority priority-critical">Critical</span>
+                            <h4>Salesforce CRM</h4>
+                            <p>If Salesforce is your system of record, sync bidirectionally with clear field mapping and ownership rules.</p>
+                        </div>
+                        <div class="integration-card">
+                            <span class="integration-priority priority-critical">Critical</span>
+                            <h4>Sales Engagement (Outreach/Salesloft)</h4>
+                            <p>Avoid duplicate sequences. Sync contact activity and sequence enrollment status.</p>
+                        </div>
+                        <div class="integration-card">
+                            <span class="integration-priority priority-high">High Priority</span>
+                            <h4>Data Enrichment (Clearbit/ZoomInfo)</h4>
+                            <p>Enrich contacts on form fill. Auto-populate firmographic data for scoring.</p>
+                        </div>
+                        <div class="integration-card">
+                            <span class="integration-priority priority-high">High Priority</span>
+                            <h4>Slack</h4>
+                            <p>Real-time alerts for high-intent actions. Deal stage notifications for sales.</p>
+                        </div>
+                        <div class="integration-card">
+                            <span class="integration-priority priority-high">High Priority</span>
+                            <h4>Calendar (Calendly/HubSpot Meetings)</h4>
+                            <p>Reduce booking friction. Sync meeting data to contact timeline.</p>
+                        </div>
+                        <div class="integration-card">
+                            <span class="integration-priority priority-medium">Medium Priority</span>
+                            <h4>Webinar Platform (Zoom/ON24)</h4>
+                            <p>Sync registration and attendance for lead scoring and follow-up.</p>
+                        </div>
+                        <div class="integration-card">
+                            <span class="integration-priority priority-medium">Medium Priority</span>
+                            <h4>Intent Data (Bombora/6sense)</h4>
+                            <p>Surface accounts showing research intent. Enrich with intent topics.</p>
+                        </div>
+                        <div class="integration-card">
+                            <span class="integration-priority priority-medium">Medium Priority</span>
+                            <h4>LinkedIn Ads</h4>
+                            <p>Sync audiences for retargeting. Import lead gen forms.</p>
+                        </div>
+                    </div>
+
+                    <div class="callout callout-warning">
+                        <strong>Integration Order Matters:</strong> Set up your CRM sync (Salesforce) first. Everything else depends on clean CRM data and clear ownership rules.
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>8 Common Setup Mistakes to Avoid</h2>
+                    <p>These are the mistakes we see most often. Avoid them and you'll be ahead of 80% of HubSpot implementations.</p>
+
+                    <table>
+                        <tr><th>#</th><th>Mistake</th><th>Consequence</th><th>Prevention</th></tr>
+                        <tr>
+                            <td><strong>1</strong></td>
+                            <td>Skipping email domain authentication</td>
+                            <td>Emails go to spam, deliverability tanks</td>
+                            <td>Do Week 1 domain setup completely before sending any emails</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2</strong></td>
+                            <td>No UTM parameter capture on forms</td>
+                            <td>Lost attribution data forever</td>
+                            <td>Add hidden UTM fields to every form from day one</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3</strong></td>
+                            <td>Creating properties without naming conventions</td>
+                            <td>Duplicate fields, reporting chaos</td>
+                            <td>Document naming convention before creating any custom properties</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4</strong></td>
+                            <td>Building workflows before defining lifecycle stages</td>
+                            <td>Automation fires on wrong triggers</td>
+                            <td>Define and document all stage criteria before building automation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>5</strong></td>
+                            <td>Manual lifecycle stage updates</td>
+                            <td>Inconsistent data, unreliable reporting</td>
+                            <td>Automate all stage transitions with workflows</td>
+                        </tr>
+                        <tr>
+                            <td><strong>6</strong></td>
+                            <td>Not setting up Salesforce sync rules</td>
+                            <td>Duplicate records, field conflicts, data loss</td>
+                            <td>Map every field explicitly. Define ownership rules. Test with small batch first.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>7</strong></td>
+                            <td>Scoring without historical calibration</td>
+                            <td>MQL threshold produces too many or too few leads</td>
+                            <td>Backtest scoring model against 6-12 months of historical data</td>
+                        </tr>
+                        <tr>
+                            <td><strong>8</strong></td>
+                            <td>No score decay</td>
+                            <td>Stale leads clog pipeline with high but outdated scores</td>
+                            <td>Implement 30-day decay workflow from the start</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="content-section">
+                    <h2>Post-Setup Validation Checklist</h2>
+                    <p>Before going live, validate these items are working correctly.</p>
+
+                    <h3>Week 1 Validation</h3>
+                    <ul class="checklist">
+                        <li>
+                            <span class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+                            <span>Send test email and verify it lands in inbox (not spam)</span>
+                        </li>
+                        <li>
+                            <span class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+                            <span>Submit form with UTM parameters and verify they populate on contact record</span>
+                        </li>
+                        <li>
+                            <span class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+                            <span>Check Sources report shows traffic from all tracked domains</span>
+                        </li>
+                    </ul>
+
+                    <h3>Week 2 Validation</h3>
+                    <ul class="checklist">
+                        <li>
+                            <span class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+                            <span>Create test contact and verify all custom properties are visible and editable</span>
+                        </li>
+                        <li>
+                            <span class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+                            <span>Create test deal and move through pipeline stages</span>
+                        </li>
+                        <li>
+                            <span class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+                            <span>Verify contact-company-deal associations work correctly</span>
+                        </li>
+                    </ul>
+
+                    <h3>Week 3 Validation</h3>
+                    <ul class="checklist">
+                        <li>
+                            <span class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+                            <span>Trigger MQL workflow and verify lifecycle stage updates</span>
+                        </li>
+                        <li>
+                            <span class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+                            <span>Test lead assignment routing to correct rep</span>
+                        </li>
+                        <li>
+                            <span class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+                            <span>Verify Slack notifications fire for high-intent actions</span>
+                        </li>
+                    </ul>
+
+                    <h3>Week 4 Validation</h3>
+                    <ul class="checklist">
+                        <li>
+                            <span class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+                            <span>All dashboard reports show data (no empty charts)</span>
+                        </li>
+                        <li>
+                            <span class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+                            <span>Attribution report connects marketing touches to deals</span>
+                        </li>
+                        <li>
+                            <span class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+                            <span>Schedule weekly report delivery to stakeholders</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Gate Overlay -->
+            <div class="gate-overlay" id="gateOverlay">
+                <div class="gate-card">
+                    <h3>Unlock the Full Checklist</h3>
+                    <p>Get Week 2-4 setup guides, integration priorities, common mistakes, and validation checklists.</p>
+                    <form class="email-form" id="unlockForm" onsubmit="handleUnlock(event)">
+                        <input type="email" name="email" placeholder="you@company.com" required>
+                        <button type="submit">Unlock Full Checklist</button>
+                    </form>
+                    <p class="note">Plus get the PDF checklist emailed to you</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2>Need Help With HubSpot Setup?</h2>
+            <p>Our team has implemented HubSpot for 100+ B2B companies. We can get you set up right the first time.</p>
+            <a href="https://www.42agency.com/contact-us" target="_blank" class="cta-btn">
+                Talk to Our Team
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+        </div>
+
+        <section style="margin-top: 3rem;">
+            <h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1rem;">Related Resources</h2>
+            <div class="related-links">
+                <a href="/assessments/hubspot-health/" class="related-link">HubSpot Health Check</a>
+                <a href="/playbooks/lead-scoring-framework/" class="related-link">Lead Scoring Framework</a>
+                <a href="/hubspot-audit/" class="related-link">HubSpot Audit Template</a>
+                <a href="/hubspot-salesforce/sync-errors/" class="related-link">HubSpot-Salesforce Sync Guide</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <img src="/42-logo.png" alt="42 Agency">
+            <p>&copy; 2026 42 Agency. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/email-validation.js"></script>
+    <script>
+        // Check if already unlocked
+        if (localStorage.getItem('playbook_unlocked_hubspot-setup-checklist')) {
+            document.getElementById('gatedContent').classList.add('unlocked');
+            document.getElementById('gateOverlay').classList.add('hidden');
+            document.getElementById('downloadBanner').classList.add('visible');
+        }
+
+        async function handleUnlock(e) {
+            e.preventDefault();
+            const email = e.target.email.value;
+            const button = e.target.querySelector('button');
+            button.disabled = true;
+            button.textContent = 'Unlocking...';
+
+            try {
+                const response = await fetch('/api/playbook-download', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        playbook: 'hubspot-setup-checklist'
+                    })
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    // Track event in GTM
+                    if (window.dataLayer) {
+                        window.dataLayer.push({
+                            event: 'playbook_unlocked',
+                            playbook: 'hubspot-setup-checklist'
+                        });
+                    }
+
+                    // Track in HubSpot
+                    if (window._hsq) {
+                        window._hsq.push(['identify', { email: email }]);
+                        window._hsq.push(['trackEvent', { id: 'playbook_unlocked_hubspot-setup-checklist' }]);
+                    }
+
+                    // Save unlock state
+                    localStorage.setItem('playbook_unlocked_hubspot-setup-checklist', 'true');
+
+                    // Reveal content
+                    document.getElementById('gatedContent').classList.add('unlocked');
+                    document.getElementById('gateOverlay').classList.add('hidden');
+                    document.getElementById('downloadBanner').classList.add('visible');
+
+                    // Scroll to content
+                    document.getElementById('gatedContent').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    throw new Error(data.error || 'Failed to unlock');
+                }
+            } catch (error) {
+                console.error('Unlock error:', error);
+                button.textContent = 'Try Again';
+                button.disabled = false;
+            }
+        }
+    </script>
+
+    <!-- Vercel Analytics -->
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

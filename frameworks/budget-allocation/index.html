@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B2B Marketing Budget Allocation Framework | Channel Mix Guide | 42 Agency</title>
+  <meta name="description" content="B2B marketing budget allocation framework by funding stage. Seed: 60/40 paid vs organic, Series A: 50/50, Series B+: 40/60. Plus the 70/20/10 rule for proven, experimental, and moonshot investments.">
+  <link rel="canonical" href="https://intel.42agency.com/frameworks/budget-allocation/">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    :root {
+      --accent: #DFFE68;
+      --accent-hover: #C8E85C;
+      --black: #1a1a1a;
+      --gray: #4a4a4a;
+      --muted: #6b6b6b;
+      --light-gray: #f5f5f5;
+      --orange: #F59E0B;
+      --blue: #3B82F6;
+      --green: #10B981;
+    }
+    .header { border-bottom: 2px solid var(--black); padding: 0.75rem 1.5rem; background: white; position: sticky; top: 0; z-index: 50; }
+    .header-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .logo img { height: 28px; width: auto; }
+    .nav { display: flex; align-items: center; gap: 0.25rem; }
+    .nav a { padding: 0.5rem 1rem; color: var(--gray); text-decoration: none; font-size: 0.9rem; font-weight: 500; border-radius: 6px; transition: all 0.15s; }
+    .nav a:hover { color: var(--black); background: var(--light-gray); }
+    .nav-cta { margin-left: 0.5rem; padding: 0.5rem 1rem; background: var(--black); color: white !important; border-radius: 6px; font-weight: 600; }
+    @media (max-width: 768px) { .nav { display: none; } }
+
+    .breadcrumbs { background: white; border-bottom: 2px solid var(--black); padding: 0.75rem 1.5rem; }
+    .breadcrumbs-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--black); }
+    .breadcrumbs .current { color: var(--black); font-weight: 600; }
+
+    .footer { border-top: 2px solid var(--black); background: var(--black); padding: 4rem 1.5rem 2rem; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr repeat(4, 1fr); gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid #333; }
+    .footer-brand img { height: 24px; filter: brightness(0) invert(1); margin-bottom: 1rem; }
+    .footer-brand p { font-size: 0.85rem; color: #999; line-height: 1.6; }
+    .footer-col h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1rem; color: var(--accent); }
+    .footer-col a { display: block; color: #999; text-decoration: none; font-size: 0.85rem; margin-bottom: 0.6rem; }
+    .footer-col a:hover { color: white; }
+    .footer-col .sublink { padding-left: 0.75rem; font-size: 0.8rem; color: #666; }
+    .footer-bottom { padding-top: 2rem; display: flex; justify-content: space-between; font-size: 0.8rem; color: #666; }
+    .footer-bottom a { color: #666; text-decoration: none; }
+    .footer-bottom a:hover { color: white; }
+    @media (max-width: 900px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; } }
+
+    /* Content Card */
+    .content-card {
+      background: white;
+      border: 2px solid var(--black);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 4px 4px 0px 0px var(--black);
+      margin-bottom: 2rem;
+    }
+    .content-card h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 3px solid var(--accent);
+    }
+    .content-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem;
+    }
+    .content-card p {
+      color: var(--gray);
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+    .content-card ul, .content-card ol {
+      margin: 1rem 0 1rem 1.5rem;
+      color: var(--gray);
+    }
+    .content-card li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+    .content-card table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+    .content-card th, .content-card td {
+      padding: 0.75rem;
+      text-align: left;
+      border: 2px solid var(--black);
+    }
+    .content-card th {
+      background: var(--light-gray);
+      font-weight: 700;
+    }
+    .content-card tr:nth-child(even) td {
+      background: #fafafa;
+    }
+
+    .callout {
+      background: var(--accent);
+      border: 2px solid var(--black);
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin: 1.5rem 0;
+    }
+    .callout strong {
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    /* Gated Content */
+    .gated-wrapper { position: relative; }
+    .gated-content { filter: blur(5px); pointer-events: none; user-select: none; transition: filter 0.3s; }
+    .gated-content.unlocked { filter: none; pointer-events: auto; user-select: auto; }
+
+    .gate-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 10%, rgba(255,255,255,1) 25%);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 3rem;
+    }
+    .gate-overlay.hidden { display: none; }
+
+    .gate-card {
+      background: var(--accent);
+      border: 2px solid var(--black);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 6px 6px 0px 0px var(--black);
+      text-align: center;
+      max-width: 450px;
+      margin: 0 1rem;
+    }
+    .gate-card h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .gate-card p { color: var(--gray); margin-bottom: 1.5rem; }
+    .email-form { display: flex; flex-direction: column; gap: 0.75rem; }
+    .email-form input {
+      padding: 0.875rem;
+      border: 2px solid var(--black);
+      border-radius: 8px;
+      font-size: 1rem;
+      text-align: center;
+    }
+    .email-form button {
+      padding: 0.875rem 1.5rem;
+      background: var(--black);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .email-form button:hover { background: #333; }
+    .gate-card .note { font-size: 0.8rem; color: #666; margin-top: 1rem; }
+
+    /* Calculator Styles */
+    .calculator-card {
+      background: white;
+      border: 2px solid var(--black);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 4px 4px 0px 0px var(--black);
+      margin-bottom: 2rem;
+    }
+    .calculator-input {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .calculator-input label {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .calculator-input select, .calculator-input input {
+      padding: 0.75rem;
+      border: 2px solid var(--black);
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    .calculator-btn {
+      width: 100%;
+      padding: 1rem;
+      background: var(--accent);
+      border: 2px solid var(--black);
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 4px 4px 0px 0px var(--black);
+      transition: all 0.15s;
+    }
+    .calculator-btn:hover {
+      background: var(--accent-hover);
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px 0px var(--black);
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .result-item {
+      background: var(--light-gray);
+      border: 2px solid var(--black);
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .result-value {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--black);
+    }
+    .result-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-top: 0.25rem;
+    }
+
+    /* Visual Bar Chart */
+    .bar-chart {
+      display: flex;
+      gap: 0.5rem;
+      height: 200px;
+      align-items: flex-end;
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background: var(--light-gray);
+      border: 2px solid var(--black);
+      border-radius: 12px;
+    }
+    .bar-group {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .bar {
+      width: 100%;
+      border-radius: 6px 6px 0 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 0.5rem;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: white;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      transition: height 0.5s ease;
+    }
+    .bar.paid { background: var(--blue); }
+    .bar.organic { background: var(--green); }
+    .bar-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--gray);
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .result-grid { grid-template-columns: 1fr; }
+      .bar-chart { height: 150px; }
+    }
+  </style>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MM5BTNS');</script>
+
+  <!-- HubSpot Tracking -->
+  <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/44888286.js"></script>
+
+  <!-- FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How should B2B startups allocate their marketing budget between paid and organic?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Budget allocation depends on funding stage. Seed-stage companies (under $5M ARR) should allocate 60% to paid channels and 40% to organic/content for fast market validation. Series A companies ($5-20M ARR) shift to 50/50 as organic channels mature. Series B+ companies ($20M+ ARR) often invert to 40% paid and 60% organic as brand and SEO compound. The goal is to build organic engines that reduce CAC over time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the 70/20/10 rule for marketing budget allocation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The 70/20/10 rule divides your marketing budget into three buckets: 70% goes to proven channels with predictable ROI (your core paid media, established content programs). 20% goes to experimental channels you're testing for scale (new platforms, emerging tactics). 10% goes to moonshot bets with high risk but potential for outsized returns (innovative campaigns, new market tests). This framework ensures stability while maintaining innovation capacity."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I allocate budget between awareness and pipeline campaigns?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Allocation between awareness and pipeline depends on your sales cycle length and market maturity. For long sales cycles (6+ months), allocate 40% to awareness and 60% to pipeline/demand gen. For short cycles (under 3 months), flip to 30% awareness and 70% pipeline. Early-stage companies in new categories need more awareness (50/50), while mature markets can focus heavier on demand capture (25/75)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I reallocate marketing budget between channels?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Trigger quarterly budget reallocation when: (1) A channel's CAC increases 25%+ without improvement in lead quality, (2) A test channel shows 3+ months of consistent positive ROI, (3) Market conditions shift (competitor moves, platform changes), (4) Sales feedback indicates quality issues with specific sources. Monthly monitoring, quarterly adjustments. Avoid reactive weekly changes that don't allow for statistical significance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What percentage of revenue should B2B companies spend on marketing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "B2B SaaS companies typically spend 15-25% of revenue on sales and marketing combined, with marketing taking 40-50% of that (6-12% of revenue). High-growth companies targeting 100%+ YoY growth often spend 20-30% of revenue on marketing alone. Efficiency matters more than raw spend: benchmark your CAC payback period (target under 18 months) and LTV:CAC ratio (target 3:1 or higher) rather than percentage alone."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- HowTo Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Allocate Your B2B Marketing Budget",
+    "description": "A stage-based framework for allocating B2B marketing budget across paid and organic channels, with the 70/20/10 rule for balancing proven, experimental, and moonshot investments.",
+    "author": {
+      "@type": "Organization",
+      "name": "42 Agency",
+      "url": "https://www.42agency.com"
+    },
+    "totalTime": "PT2H",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Determine Your Stage-Based Split",
+        "text": "Identify your company's funding stage and corresponding paid vs organic ratio. Seed stage (under $5M ARR): 60% paid, 40% organic for speed. Series A ($5-20M ARR): 50% paid, 50% organic as organic matures. Series B+ ($20M+ ARR): 40% paid, 60% organic to leverage compounding organic channels."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Apply the 70/20/10 Rule",
+        "text": "Within your total budget, allocate 70% to proven channels with predictable ROI (established paid campaigns, mature content programs). Allocate 20% to experimental channels you're actively testing (new platforms, emerging tactics). Reserve 10% for moonshot bets with high-risk, high-reward potential."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Split by Marketing Objective",
+        "text": "Divide budget between awareness and pipeline generation based on sales cycle. Long sales cycles (6+ months): 40% awareness, 60% pipeline. Short sales cycles (under 3 months): 30% awareness, 70% pipeline. New category or early stage: 50% awareness, 50% pipeline."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Allocate Across Channels",
+        "text": "Distribute budget across your channel mix based on historical performance and strategic priorities. Typical B2B allocations: LinkedIn Ads (25-35% of paid), Google Search (20-30% of paid), Content/SEO (30-40% of organic), Events (15-25% of total). Adjust based on your ICP's channel preferences."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 5,
+        "name": "Set Quarterly Reallocation Triggers",
+        "text": "Define clear criteria for quarterly budget adjustments: CAC increases 25%+ on a channel without quality improvement, experimental channel shows 3+ months of positive ROI ready for scale, market conditions shift significantly, or sales feedback indicates source quality issues. Review monthly, reallocate quarterly."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 6,
+        "name": "Monitor and Optimize",
+        "text": "Track key efficiency metrics: CAC by channel, CAC payback period (target under 18 months), LTV:CAC ratio (target 3:1+), pipeline velocity by source. Compare performance against benchmarks and adjust allocation to maximize pipeline ROI rather than just minimizing costs."
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body class="bg-gray-100">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MM5BTNS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="/" class="logo">
+        <img src="/42-logo.png" alt="42 Agency">
+      </a>
+      <nav class="nav">
+        <a href="/assess/">Assess</a>
+        <a href="/b2b-benchmarks/">Benchmarks</a>
+        <a href="/tools/">Tools</a>
+        <a href="/playbooks/">Playbooks</a>
+        <a href="https://www.42agency.com/contact-us" target="_blank" class="nav-cta">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/frameworks/">Frameworks</a>
+      <span>/</span>
+      <span class="current">Budget Allocation</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="bg-white border-b-2 border-gray-900 py-16 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <span class="inline-block px-4 py-1.5 bg-blue-500 text-white border-2 border-gray-900 rounded-full text-xs font-bold mb-6 shadow-[2px_2px_0px_0px_#1a1a1a]">BUDGET FRAMEWORK</span>
+      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">B2B Marketing Budget Allocation Framework</h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">Stage-based allocation for paid vs organic, the 70/20/10 rule, and quarterly reallocation triggers. Stop guessing, start optimizing.</p>
+    </div>
+  </section>
+
+  <!-- Stats Row -->
+  <section class="py-8 px-6 bg-gray-100">
+    <div class="max-w-4xl mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="bg-white border-2 border-gray-900 rounded-xl p-4 text-center shadow-[3px_3px_0px_0px_#1a1a1a]">
+          <div class="text-2xl font-extrabold text-green-500">60/40</div>
+          <div class="text-xs text-gray-500 uppercase mt-1">Seed Stage Split</div>
+        </div>
+        <div class="bg-white border-2 border-gray-900 rounded-xl p-4 text-center shadow-[3px_3px_0px_0px_#1a1a1a]">
+          <div class="text-2xl font-extrabold text-blue-500">50/50</div>
+          <div class="text-xs text-gray-500 uppercase mt-1">Series A Split</div>
+        </div>
+        <div class="bg-white border-2 border-gray-900 rounded-xl p-4 text-center shadow-[3px_3px_0px_0px_#1a1a1a]">
+          <div class="text-2xl font-extrabold text-purple-500">40/60</div>
+          <div class="text-xs text-gray-500 uppercase mt-1">Series B+ Split</div>
+        </div>
+        <div class="bg-white border-2 border-gray-900 rounded-xl p-4 text-center shadow-[3px_3px_0px_0px_#1a1a1a]">
+          <div class="text-2xl font-extrabold text-orange-500">70/20/10</div>
+          <div class="text-xs text-gray-500 uppercase mt-1">Risk Allocation</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="py-12 px-6">
+    <div class="max-w-4xl mx-auto">
+
+      <!-- UNGATED: First 30% -->
+
+      <!-- Section 1: Introduction -->
+      <div class="content-card">
+        <h2>Why Budget Allocation Matters More Than Budget Size</h2>
+        <p>A $500K marketing budget allocated poorly will underperform a $200K budget allocated strategically. Yet most B2B companies make allocation decisions based on inertia ("we've always spent 40% on events") or gut feel rather than data-driven frameworks.</p>
+        <p><strong>The cost of poor allocation:</strong></p>
+        <ul>
+          <li>Over-investment in declining channels (wasted CAC)</li>
+          <li>Under-investment in emerging opportunities (missed pipeline)</li>
+          <li>No budget for experimentation (innovation stagnation)</li>
+          <li>Inability to scale what's working (growth ceiling)</li>
+        </ul>
+        <div class="callout">
+          <strong>The Fix:</strong> Systematic allocation frameworks that evolve with your company stage, market conditions, and performance data. This guide provides the models.
+        </div>
+      </div>
+
+      <!-- Section 2: Stage-Based Allocation -->
+      <div class="content-card">
+        <h2>Stage-Based Allocation: Paid vs Organic</h2>
+        <p>Your funding stage determines the optimal balance between paid channels (fast, scalable, expensive) and organic channels (slow, compounding, efficient). Here's how allocation should shift as you grow:</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Stage</th>
+              <th>ARR Range</th>
+              <th>Paid</th>
+              <th>Organic</th>
+              <th>Rationale</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Seed</strong></td>
+              <td>$0-5M</td>
+              <td class="text-blue-600 font-bold">60%</td>
+              <td class="text-green-600 font-bold">40%</td>
+              <td>Speed to market validation; no time for organic to compound</td>
+            </tr>
+            <tr>
+              <td><strong>Series A</strong></td>
+              <td>$5-20M</td>
+              <td class="text-blue-600 font-bold">50%</td>
+              <td class="text-green-600 font-bold">50%</td>
+              <td>Organic content maturing; balanced growth engines</td>
+            </tr>
+            <tr>
+              <td><strong>Series B+</strong></td>
+              <td>$20M+</td>
+              <td class="text-blue-600 font-bold">40%</td>
+              <td class="text-green-600 font-bold">60%</td>
+              <td>Organic compounding; brand reduces paid dependency</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Visual Bar Chart -->
+        <div class="bar-chart" id="stageChart">
+          <div class="bar-group">
+            <div class="bar paid" style="height: 60%;">60%</div>
+            <div class="bar organic" style="height: 40%;">40%</div>
+            <div class="bar-label">Seed</div>
+          </div>
+          <div class="bar-group">
+            <div class="bar paid" style="height: 50%;">50%</div>
+            <div class="bar organic" style="height: 50%;">50%</div>
+            <div class="bar-label">Series A</div>
+          </div>
+          <div class="bar-group">
+            <div class="bar paid" style="height: 40%;">40%</div>
+            <div class="bar organic" style="height: 60%;">60%</div>
+            <div class="bar-label">Series B+</div>
+          </div>
+        </div>
+
+        <p><strong>Why organic increases over time:</strong> Content, SEO, and brand investments compound. Year 1 content still generates leads in Year 3. Paid stops the moment you stop spending. Mature companies leverage this compounding to reduce CAC.</p>
+      </div>
+
+      <!-- Interactive Calculator -->
+      <div class="calculator-card">
+        <h2 class="text-xl font-extrabold tracking-tight mb-4 pb-3 border-b-2 border-gray-900">Budget Allocation Calculator</h2>
+        <p class="text-gray-600 mb-6">Enter your details to get a customized budget allocation recommendation.</p>
+
+        <div class="calculator-input">
+          <div>
+            <label for="stage">Company Stage</label>
+            <select id="stage">
+              <option value="seed">Seed (Under $5M ARR)</option>
+              <option value="seriesA">Series A ($5-20M ARR)</option>
+              <option value="seriesB">Series B+ ($20M+ ARR)</option>
+            </select>
+          </div>
+          <div>
+            <label for="budget">Annual Marketing Budget ($)</label>
+            <input type="number" id="budget" placeholder="e.g., 500000" value="500000">
+          </div>
+          <div>
+            <label for="cycle">Sales Cycle Length</label>
+            <select id="cycle">
+              <option value="short">Short (Under 3 months)</option>
+              <option value="medium">Medium (3-6 months)</option>
+              <option value="long">Long (6+ months)</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="calculator-btn" onclick="calculateAllocation()">Calculate Allocation</button>
+
+        <div id="calculatorResults" style="display: none;">
+          <div class="result-grid">
+            <div class="result-item" style="border-color: #3B82F6;">
+              <div class="result-value" id="paidResult">$300,000</div>
+              <div class="result-label">Paid Channels</div>
+            </div>
+            <div class="result-item" style="border-color: #10B981;">
+              <div class="result-value" id="organicResult">$200,000</div>
+              <div class="result-label">Organic Channels</div>
+            </div>
+            <div class="result-item" style="border-color: #F59E0B;">
+              <div class="result-value" id="experimentResult">$100,000</div>
+              <div class="result-label">Experimental (20%)</div>
+            </div>
+          </div>
+          <div class="mt-6 p-4 bg-gray-100 border-2 border-gray-900 rounded-xl">
+            <h4 class="font-bold mb-2">Recommended Channel Breakdown:</h4>
+            <div id="channelBreakdown" class="text-sm text-gray-600"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GATED: Remaining 70% -->
+      <div class="gated-wrapper">
+        <div class="gated-content" id="gatedContent">
+
+          <!-- Section 3: The 70/20/10 Rule -->
+          <div class="content-card">
+            <h2>The 70/20/10 Rule for Budget Risk</h2>
+            <p>Within your total budget, apply this risk distribution to balance stability with innovation:</p>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Bucket</th>
+                  <th>% of Budget</th>
+                  <th>Characteristics</th>
+                  <th>Examples</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Proven</strong></td>
+                  <td class="font-bold">70%</td>
+                  <td>Predictable ROI, established playbooks</td>
+                  <td>Core Google Search, established LinkedIn audiences, mature blog</td>
+                </tr>
+                <tr>
+                  <td><strong>Experimental</strong></td>
+                  <td class="font-bold">20%</td>
+                  <td>Testing for scale, emerging potential</td>
+                  <td>New paid platforms, podcast ads, video content series</td>
+                </tr>
+                <tr>
+                  <td><strong>Moonshot</strong></td>
+                  <td class="font-bold">10%</td>
+                  <td>High risk, potential breakthrough</td>
+                  <td>New market entry, bold creative tests, unconventional tactics</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="callout">
+              <strong>The Innovation Trap:</strong> Companies that allocate 100% to "proven" channels eventually see those channels saturate. The 20% experimental budget is your pipeline of future proven channels.
+            </div>
+
+            <h3>Graduation Criteria</h3>
+            <p>Move channels between buckets based on performance:</p>
+            <ul>
+              <li><strong>Experimental to Proven:</strong> 3+ consecutive months of positive ROI at test budget</li>
+              <li><strong>Moonshot to Experimental:</strong> Promising signals, ready for structured testing</li>
+              <li><strong>Proven to Deprecated:</strong> CAC increases 50%+ with no recovery path</li>
+            </ul>
+          </div>
+
+          <!-- Section 4: Channel Allocation by Goal -->
+          <div class="content-card">
+            <h2>Channel Allocation by Marketing Objective</h2>
+            <p>Your awareness vs pipeline split should reflect your sales cycle and market maturity:</p>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Scenario</th>
+                  <th>Awareness</th>
+                  <th>Pipeline</th>
+                  <th>When to Use</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>New Category / Early Market</td>
+                  <td class="font-bold">50%</td>
+                  <td class="font-bold">50%</td>
+                  <td>Buyers don't know they have the problem yet</td>
+                </tr>
+                <tr>
+                  <td>Long Sales Cycle (6+ months)</td>
+                  <td class="font-bold">40%</td>
+                  <td class="font-bold">60%</td>
+                  <td>Multiple touches needed before conversion</td>
+                </tr>
+                <tr>
+                  <td>Medium Sales Cycle (3-6 months)</td>
+                  <td class="font-bold">35%</td>
+                  <td class="font-bold">65%</td>
+                  <td>Balanced consideration and conversion</td>
+                </tr>
+                <tr>
+                  <td>Short Sales Cycle (Under 3 months)</td>
+                  <td class="font-bold">30%</td>
+                  <td class="font-bold">70%</td>
+                  <td>Quick decisions, capture existing demand</td>
+                </tr>
+                <tr>
+                  <td>Mature Market / Category Leader</td>
+                  <td class="font-bold">25%</td>
+                  <td class="font-bold">75%</td>
+                  <td>Strong brand, focus on demand capture</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3>Awareness Budget Channels</h3>
+            <ul>
+              <li>LinkedIn brand campaigns (thought leadership ads)</li>
+              <li>Display/programmatic (broad reach)</li>
+              <li>Podcast sponsorships</li>
+              <li>Industry events and sponsorships</li>
+              <li>Ungated content distribution</li>
+            </ul>
+
+            <h3>Pipeline Budget Channels</h3>
+            <ul>
+              <li>Google Search (high-intent keywords)</li>
+              <li>LinkedIn lead gen (demo/trial offers)</li>
+              <li>Retargeting campaigns</li>
+              <li>ABM platform spend</li>
+              <li>Gated content promotion</li>
+            </ul>
+          </div>
+
+          <!-- Section 5: Typical Channel Mix -->
+          <div class="content-card">
+            <h2>Typical B2B Channel Mix Allocations</h2>
+            <p>Based on 200+ B2B clients, here's how top performers allocate across specific channels:</p>
+
+            <h3>Paid Media Distribution</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Channel</th>
+                  <th>% of Paid Budget</th>
+                  <th>Best For</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>LinkedIn Ads</td>
+                  <td>25-35%</td>
+                  <td>B2B targeting, ABM, professional audiences</td>
+                </tr>
+                <tr>
+                  <td>Google Search</td>
+                  <td>20-30%</td>
+                  <td>High-intent capture, bottom-funnel</td>
+                </tr>
+                <tr>
+                  <td>Google Display/YouTube</td>
+                  <td>10-15%</td>
+                  <td>Retargeting, brand awareness</td>
+                </tr>
+                <tr>
+                  <td>Meta (Facebook/Instagram)</td>
+                  <td>10-20%</td>
+                  <td>Retargeting, broad awareness (lower cost)</td>
+                </tr>
+                <tr>
+                  <td>Programmatic/Display</td>
+                  <td>5-15%</td>
+                  <td>ABM display, broad reach</td>
+                </tr>
+                <tr>
+                  <td>Other (Reddit, TikTok, etc.)</td>
+                  <td>5-10%</td>
+                  <td>Experimental, specific audiences</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3>Organic/Content Distribution</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Channel</th>
+                  <th>% of Organic Budget</th>
+                  <th>Best For</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Content/SEO</td>
+                  <td>30-40%</td>
+                  <td>Long-term traffic, thought leadership</td>
+                </tr>
+                <tr>
+                  <td>Events (hosting + sponsoring)</td>
+                  <td>20-30%</td>
+                  <td>High-value relationship building</td>
+                </tr>
+                <tr>
+                  <td>Email/Nurture Programs</td>
+                  <td>10-15%</td>
+                  <td>Database activation, retention</td>
+                </tr>
+                <tr>
+                  <td>Social (organic)</td>
+                  <td>10-15%</td>
+                  <td>Brand building, community</td>
+                </tr>
+                <tr>
+                  <td>PR/Analyst Relations</td>
+                  <td>5-10%</td>
+                  <td>Credibility, enterprise sales support</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Section 6: Quarterly Reallocation Triggers -->
+          <div class="content-card">
+            <h2>Quarterly Reallocation Triggers</h2>
+            <p>Don't reallocate reactively based on weekly fluctuations. Instead, establish clear triggers for quarterly budget reviews:</p>
+
+            <h3>Triggers to Reduce Channel Budget</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Trigger</th>
+                  <th>Threshold</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>CAC Increase</td>
+                  <td>25%+ sustained 8+ weeks</td>
+                  <td>Reduce by 20%, reallocate to experimental</td>
+                </tr>
+                <tr>
+                  <td>Lead Quality Decline</td>
+                  <td>MQL-to-SQL rate drops 30%+</td>
+                  <td>Pause, audit targeting, restart smaller</td>
+                </tr>
+                <tr>
+                  <td>Platform Saturation</td>
+                  <td>CPM increases 40%+ with same audience</td>
+                  <td>Expand targeting or shift budget</td>
+                </tr>
+                <tr>
+                  <td>Sales Feedback</td>
+                  <td>Consistent "bad fit" on source</td>
+                  <td>Investigate, adjust or reduce</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3>Triggers to Increase Channel Budget</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Trigger</th>
+                  <th>Threshold</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Experimental Success</td>
+                  <td>3+ months positive ROI</td>
+                  <td>Graduate to proven, 2-3x budget</td>
+                </tr>
+                <tr>
+                  <td>Below-Target CAC</td>
+                  <td>CAC 20%+ below target</td>
+                  <td>Test scale with 25% budget increase</td>
+                </tr>
+                <tr>
+                  <td>High Lead Quality</td>
+                  <td>MQL-to-SQL rate 50%+ above average</td>
+                  <td>Prioritize budget to this source</td>
+                </tr>
+                <tr>
+                  <td>New Market Opportunity</td>
+                  <td>Untapped segment identified</td>
+                  <td>Allocate from moonshot budget</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="callout">
+              <strong>The Patience Rule:</strong> Allow 8-12 weeks for statistical significance before making reallocation decisions. Weekly noise is not signal. Monthly trends might be. Quarterly trends definitely are.
+            </div>
+          </div>
+
+          <!-- Section 7: Budget Efficiency Benchmarks -->
+          <div class="content-card">
+            <h2>Budget Efficiency Benchmarks</h2>
+            <p>Track these metrics to ensure your allocation is driving efficient growth:</p>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Metric</th>
+                  <th>Poor</th>
+                  <th>Average</th>
+                  <th>Good</th>
+                  <th>Excellent</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>CAC Payback Period</td>
+                  <td>24+ months</td>
+                  <td>18-24 months</td>
+                  <td>12-18 months</td>
+                  <td>Under 12 months</td>
+                </tr>
+                <tr>
+                  <td>LTV:CAC Ratio</td>
+                  <td>Under 2:1</td>
+                  <td>2-3:1</td>
+                  <td>3-5:1</td>
+                  <td>5:1+</td>
+                </tr>
+                <tr>
+                  <td>Marketing % of Revenue</td>
+                  <td>25%+</td>
+                  <td>15-25%</td>
+                  <td>10-15%</td>
+                  <td>Under 10%</td>
+                </tr>
+                <tr>
+                  <td>Pipeline from Marketing</td>
+                  <td>Under 30%</td>
+                  <td>30-50%</td>
+                  <td>50-70%</td>
+                  <td>70%+</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <p><strong>Context matters:</strong> Early-stage companies investing in growth should expect higher marketing % of revenue. The goal is to drive that ratio down over time as organic channels compound and brand reduces paid dependency.</p>
+          </div>
+
+          <!-- Section 8: Annual Planning Checklist -->
+          <div class="content-card">
+            <h2>Annual Budget Planning Checklist</h2>
+            <p>Use this checklist when building next year's marketing budget:</p>
+
+            <h3>Pre-Planning (4-6 weeks before)</h3>
+            <ul>
+              <li>Pull 12-month CAC by channel report</li>
+              <li>Calculate pipeline contribution by source</li>
+              <li>Review experimental channel test results</li>
+              <li>Gather sales feedback on lead quality by source</li>
+              <li>Benchmark against industry standards</li>
+            </ul>
+
+            <h3>Allocation Decisions</h3>
+            <ul>
+              <li>Determine stage-appropriate paid/organic split</li>
+              <li>Apply 70/20/10 risk distribution</li>
+              <li>Set awareness vs pipeline ratio</li>
+              <li>Allocate across specific channels</li>
+              <li>Define experimental channel test plan</li>
+            </ul>
+
+            <h3>Governance Setup</h3>
+            <ul>
+              <li>Document quarterly reallocation triggers</li>
+              <li>Set channel-level CAC targets</li>
+              <li>Define graduation criteria for experimental</li>
+              <li>Schedule quarterly budget reviews</li>
+              <li>Align with sales on lead quality feedback loop</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Gate Overlay -->
+        <div class="gate-overlay" id="gateOverlay">
+          <div class="gate-card">
+            <h3>Unlock the Full Framework</h3>
+            <p>Get the complete budget allocation guide including the 70/20/10 rule, channel mix recommendations, and quarterly reallocation triggers.</p>
+            <form class="email-form" id="gateForm" onsubmit="unlockContent(event)">
+              <input type="email" id="gateEmail" placeholder="Enter your work email" required>
+              <button type="submit">Unlock Framework</button>
+            </form>
+            <p class="note">No spam. Unsubscribe anytime.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="bg-[#DFFE68] border-2 border-gray-900 rounded-2xl p-8 shadow-[6px_6px_0px_0px_#1a1a1a] text-center mt-8">
+        <h2 class="text-2xl font-extrabold tracking-tight mb-4">Need Help With Your Budget Allocation?</h2>
+        <p class="text-gray-700 mb-6 max-w-lg mx-auto">Our team has optimized $50M+ in B2B marketing spend across 200+ accounts. Let's build a data-driven allocation strategy for your growth stage.</p>
+        <a href="https://www.42agency.com/contact-us" class="inline-block px-8 py-4 bg-gray-900 text-white font-bold rounded-lg hover:bg-gray-800 transition-colors">Talk to 42 Agency</a>
+      </div>
+
+      <!-- Related Frameworks -->
+      <div class="mt-8">
+        <h3 class="text-lg font-bold mb-4">Related Frameworks</h3>
+        <div class="grid md:grid-cols-2 gap-4">
+          <a href="/frameworks/icp-definition/" class="block bg-white border-2 border-gray-900 rounded-xl p-4 shadow-[3px_3px_0px_0px_#1a1a1a] hover:shadow-[5px_5px_0px_0px_#1a1a1a] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all">
+            <span class="text-xs font-bold text-blue-600 uppercase">Framework</span>
+            <h4 class="font-bold mt-1">ICP Definition Framework</h4>
+            <p class="text-sm text-gray-600 mt-1">Define your Ideal Customer Profile with firmographic, technographic, and behavioral criteria.</p>
+          </a>
+          <a href="/playbooks/lead-scoring-framework/" class="block bg-white border-2 border-gray-900 rounded-xl p-4 shadow-[3px_3px_0px_0px_#1a1a1a] hover:shadow-[5px_5px_0px_0px_#1a1a1a] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all">
+            <span class="text-xs font-bold text-green-600 uppercase">Playbook</span>
+            <h4 class="font-bold mt-1">Lead Scoring Framework</h4>
+            <p class="text-sm text-gray-600 mt-1">Build a two-axis scoring model that balances ICP fit with engagement signals.</p>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="/42-logo.png" alt="42 Agency">
+          <p>B2B performance marketing for companies that sell to enterprises. We've managed $50M+ in ad spend across 200+ accounts.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Assess</h4>
+          <a href="/assessments/hubspot-health/">HubSpot Health Check</a>
+          <a href="/assess/calculator/">Benchmark Calculator</a>
+          <a href="/linkedin-audit/">LinkedIn Ads Audit</a>
+          <a href="/google-ads-audit/">Google Ads Audit</a>
+          <a href="/meta-audit/">Meta Ads Audit</a>
+          <a href="/hubspot-audit/">HubSpot Audit</a>
+        </div>
+        <div class="footer-col">
+          <h4>Benchmarks</h4>
+          <a href="/b2b-benchmarks/">All B2B Benchmarks</a>
+          <a href="/b2b-benchmarks/linkedin-ads-benchmarks/">LinkedIn Ads</a>
+          <a href="/b2b-benchmarks/google-ads-benchmarks/">Google Ads</a>
+          <a href="/b2b-benchmarks/linkedin-inmail-benchmarks/">InMail Benchmarks</a>
+          <a href="/b2b-benchmarks/legal-tech-linkedin-ads/" class="sublink">Legal Tech</a>
+          <a href="/b2b-benchmarks/healthcare-tech-linkedin-ads/" class="sublink">Healthcare Tech</a>
+          <a href="/b2b-benchmarks/fintech-linkedin-ads/" class="sublink">FinTech</a>
+        </div>
+        <div class="footer-col">
+          <h4>Tools</h4>
+          <a href="/tools/">All Tools</a>
+          <a href="/tools/linkedin-budget-calculator/">LinkedIn Budget Calculator</a>
+          <a href="/tools/linkedin-inmail-calculator/">InMail ROI Calculator</a>
+          <a href="/tools/meta-budget-calculator/">Meta Budget Calculator</a>
+          <h4 style="margin-top: 1.5rem;">Playbooks</h4>
+          <a href="/playbooks/">All Playbooks</a>
+          <a href="/playbooks/lead-scoring-framework/">Lead Scoring</a>
+          <a href="/playbooks/intent-signals/">Intent Signals</a>
+        </div>
+        <div class="footer-col">
+          <h4>42 Agency</h4>
+          <a href="https://42agency.com" target="_blank">Website</a>
+          <a href="https://www.42agency.com/contact-us" target="_blank">Contact Us</a>
+          <a href="https://42agency.com/case-studies" target="_blank">Case Studies</a>
+          <a href="https://42slash.com" target="_blank">42/ Essays</a>
+          <a href="https://42slash.com/subscribe" target="_blank" style="color: #DFFE68;">Subscribe to Newsletter</a>
+          <a href="https://42agency.com/careers" target="_blank">Careers</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>2026 42 Agency. All rights reserved.</p>
+        <p><a href="https://42agency.com/privacy" target="_blank">Privacy</a> · <a href="https://42agency.com/terms" target="_blank">Terms</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Vercel Analytics -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+
+  <script>
+    // Check localStorage on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      if (localStorage.getItem('budget_allocation_unlocked')) {
+        document.getElementById('gatedContent').classList.add('unlocked');
+        document.getElementById('gateOverlay').classList.add('hidden');
+      }
+    });
+
+    // Calculator function
+    function calculateAllocation() {
+      const stage = document.getElementById('stage').value;
+      const budget = parseInt(document.getElementById('budget').value) || 500000;
+      const cycle = document.getElementById('cycle').value;
+
+      // Stage-based splits
+      const splits = {
+        seed: { paid: 0.6, organic: 0.4 },
+        seriesA: { paid: 0.5, organic: 0.5 },
+        seriesB: { paid: 0.4, organic: 0.6 }
+      };
+
+      const split = splits[stage];
+      const paidBudget = Math.round(budget * split.paid);
+      const organicBudget = Math.round(budget * split.organic);
+      const experimentalBudget = Math.round(budget * 0.2); // 20% of total
+
+      // Format currency
+      const formatCurrency = (num) => '$' + num.toLocaleString();
+
+      document.getElementById('paidResult').textContent = formatCurrency(paidBudget);
+      document.getElementById('organicResult').textContent = formatCurrency(organicBudget);
+      document.getElementById('experimentResult').textContent = formatCurrency(experimentalBudget);
+
+      // Channel breakdown
+      const channelBreakdown = `
+        <div class="grid grid-cols-2 gap-4 mt-2">
+          <div>
+            <strong>Paid Channels:</strong><br>
+            - LinkedIn Ads: ${formatCurrency(Math.round(paidBudget * 0.30))}<br>
+            - Google Search: ${formatCurrency(Math.round(paidBudget * 0.25))}<br>
+            - Google Display: ${formatCurrency(Math.round(paidBudget * 0.15))}<br>
+            - Meta Ads: ${formatCurrency(Math.round(paidBudget * 0.15))}<br>
+            - Other: ${formatCurrency(Math.round(paidBudget * 0.15))}
+          </div>
+          <div>
+            <strong>Organic Channels:</strong><br>
+            - Content/SEO: ${formatCurrency(Math.round(organicBudget * 0.35))}<br>
+            - Events: ${formatCurrency(Math.round(organicBudget * 0.25))}<br>
+            - Email/Nurture: ${formatCurrency(Math.round(organicBudget * 0.15))}<br>
+            - Social: ${formatCurrency(Math.round(organicBudget * 0.15))}<br>
+            - PR: ${formatCurrency(Math.round(organicBudget * 0.10))}
+          </div>
+        </div>
+      `;
+      document.getElementById('channelBreakdown').innerHTML = channelBreakdown;
+
+      document.getElementById('calculatorResults').style.display = 'block';
+
+      // Track event
+      if (typeof dataLayer !== 'undefined') {
+        dataLayer.push({
+          'event': 'calculator_used',
+          'calculator_type': 'budget_allocation',
+          'company_stage': stage,
+          'budget_amount': budget
+        });
+      }
+    }
+
+    // Unlock gated content
+    async function unlockContent(event) {
+      event.preventDefault();
+      const email = document.getElementById('gateEmail').value;
+
+      if (!email) return;
+
+      // Basic email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address');
+        return;
+      }
+
+      // Check for disposable emails
+      const disposableDomains = ['mailinator.com', 'tempmail.com', 'throwaway.com', '10minutemail.com'];
+      const domain = email.split('@')[1].toLowerCase();
+      if (disposableDomains.includes(domain)) {
+        alert('Please use your work email');
+        return;
+      }
+
+      // Unlock content
+      document.getElementById('gatedContent').classList.add('unlocked');
+      document.getElementById('gateOverlay').classList.add('hidden');
+      localStorage.setItem('budget_allocation_unlocked', 'true');
+
+      // Track event
+      if (typeof dataLayer !== 'undefined') {
+        dataLayer.push({
+          'event': 'framework_unlocked',
+          'framework_name': 'budget_allocation',
+          'email': email
+        });
+      }
+
+      // Send to HubSpot (via API or collected forms)
+      try {
+        const portalId = '44888286';
+        const formGuid = 'budget-allocation-framework';
+
+        // Using HubSpot tracking if available
+        if (typeof _hsq !== 'undefined') {
+          _hsq.push(['identify', { email: email }]);
+          _hsq.push(['trackEvent', { id: 'Framework Unlocked - Budget Allocation' }]);
+        }
+      } catch (e) {
+        console.log('HubSpot tracking error:', e);
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTM Taxonomy for B2B Marketing | Attribution Standards | 42 Agency</title>
+    <meta name="description" content="Build a consistent UTM naming convention for accurate B2B attribution. Platform-specific templates for LinkedIn, Google, Meta, and email campaigns with the 42 Agency UTM standard.">
+    <link rel="canonical" href="https://intel.42agency.com/playbooks/utm-taxonomy/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MM5BTNS');</script>
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/44888286.js"></script>
+
+    <!-- FAQ Schema for GEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What are UTM parameters and why do they matter for B2B marketing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "UTM (Urchin Tracking Module) parameters are tags added to URLs that track traffic sources in analytics platforms. For B2B marketing with long sales cycles, consistent UTMs are critical for multi-touch attribution. Without them, you cannot accurately attribute pipeline and revenue to specific campaigns, channels, or content pieces across the 6-18 month B2B buying journey."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should UTM parameters use underscores or hyphens?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use underscores (_) for multi-word values within a single parameter (e.g., utm_campaign=q1_product_launch). Use hyphens (-) only if required by your analytics platform. The 42 Agency standard uses lowercase with underscores throughout for consistency. Never mix conventions within the same parameter value."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between utm_source and utm_medium?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "utm_source identifies WHERE the traffic comes from (the platform or publisher, e.g., linkedin, google, newsletter). utm_medium identifies HOW the traffic arrives (the marketing channel type, e.g., paid_social, cpc, email). Common mistake: putting 'linkedin_ads' in source when it should be source=linkedin, medium=paid_social."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I track LinkedIn Ads with UTM parameters?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For LinkedIn Ads, use utm_source=linkedin and utm_medium=paid_social. For campaigns, use a consistent naming pattern like utm_campaign={campaign_name}_{objective}_{quarter}. LinkedIn supports dynamic macros for utm_content and utm_term: use {creative_name} for content and {ad_id} for term. Enable auto-tagging in Campaign Manager but add manual UTMs for CRM pass-through."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What UTM mistakes break B2B attribution?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The five most common UTM mistakes that break B2B attribution: (1) Inconsistent casing (LinkedIn vs linkedin creates duplicate sources), (2) Missing utm_medium so all traffic groups incorrectly, (3) Using spaces in values (breaks URLs and creates encoding issues), (4) Changing naming conventions mid-campaign (makes historical comparison impossible), (5) Not passing UTMs to CRM (loses attribution data at SQL/opportunity stage)."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- HowTo Schema for GEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Implementing a B2B UTM Taxonomy",
+      "description": "A step-by-step guide to implementing consistent UTM tracking across all B2B marketing channels for accurate multi-touch attribution.",
+      "image": "https://intel.42agency.com/images/utm-taxonomy.png",
+      "totalTime": "P1W",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "USD",
+        "value": "0"
+      },
+      "tool": [
+        {
+          "@type": "HowToTool",
+          "name": "Google Analytics or similar analytics platform"
+        },
+        {
+          "@type": "HowToTool",
+          "name": "CRM (HubSpot, Salesforce)"
+        },
+        {
+          "@type": "HowToTool",
+          "name": "Spreadsheet for UTM builder"
+        }
+      ],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Define Your Source Taxonomy",
+          "text": "Create a controlled list of utm_source values representing traffic origins. Standard sources: google, linkedin, meta, bing, email, referral, direct. Never use variations like 'LinkedIn' or 'LINKEDIN' - always lowercase. Document in a shared spreadsheet accessible to all team members.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Audit existing UTM data to identify current inconsistencies"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Decide on one canonical value per platform and document it"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Standardize Medium Values",
+          "text": "Define utm_medium values that match your channel reporting structure. Recommended mediums: cpc (paid search), paid_social (paid social ads), organic_social (unpaid social posts), email (email campaigns), referral (partner links), display (banner ads), video (video ads). Align with Google Analytics default channel groupings where possible.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Map each medium to your reporting dashboard categories"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Ensure paid vs organic distinction is clear in medium values"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Create Campaign Naming Convention",
+          "text": "Structure utm_campaign for easy filtering and analysis. Recommended format: {initiative}_{audience}_{objective}_{quarter}. Example: product_launch_enterprise_awareness_q2_2026. Use underscores between elements, keep total length under 100 characters.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Include enough detail to identify campaign without accessing ad platform"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Avoid including dates in formats that will sort incorrectly (use q1_2026 not jan_2026)"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Configure Platform-Specific Templates",
+          "text": "Create UTM templates for each ad platform using their dynamic macros. LinkedIn: use {campaign_name} and {creative_name}. Google: use {campaignid} and {adgroupid}. Meta: use {{campaign.name}} and {{ad.name}}. Store templates in your UTM builder spreadsheet.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Test dynamic macros in each platform to verify they populate correctly"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Document which macros are available per platform for team reference"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "Implement CRM Pass-Through",
+          "text": "Configure your website forms and CRM to capture and store UTM parameters on lead records. In HubSpot, use hidden form fields mapped to UTM properties. In Salesforce, create custom fields for each UTM parameter. Ensure UTMs persist through the entire funnel to opportunity and closed-won records.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Test form submissions to verify UTM data appears on contact records"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Build attribution reports that pull from CRM UTM fields, not just analytics"
+            }
+          ]
+        }
+      ],
+      "author": {
+        "@type": "Organization",
+        "name": "42 Agency",
+        "url": "https://www.42agency.com"
+      }
+    }
+    </script>
+
+    <!-- Dataset Schema for UTM Taxonomy Structure -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Dataset",
+      "name": "42 Agency B2B UTM Taxonomy Standard",
+      "description": "A comprehensive UTM parameter naming convention for B2B marketing attribution, including source, medium, campaign, content, and term standards across all major advertising platforms.",
+      "url": "https://intel.42agency.com/playbooks/utm-taxonomy/",
+      "creator": {
+        "@type": "Organization",
+        "name": "42 Agency",
+        "url": "https://www.42agency.com"
+      },
+      "datePublished": "2026-04-16",
+      "dateModified": "2026-04-16",
+      "license": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "keywords": ["UTM parameters", "B2B attribution", "marketing analytics", "campaign tracking", "multi-touch attribution"],
+      "variableMeasured": [
+        {
+          "@type": "PropertyValue",
+          "name": "utm_source",
+          "description": "Traffic origin platform (e.g., google, linkedin, meta, email)"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "utm_medium",
+          "description": "Marketing channel type (e.g., cpc, paid_social, email, organic_social)"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "utm_campaign",
+          "description": "Campaign identifier following {initiative}_{audience}_{objective}_{quarter} format"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "utm_content",
+          "description": "Ad creative or content variant identifier"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "utm_term",
+          "description": "Keyword or targeting parameter for paid search and social"
+        }
+      ],
+      "distribution": {
+        "@type": "DataDownload",
+        "encodingFormat": "text/html",
+        "contentUrl": "https://intel.42agency.com/playbooks/utm-taxonomy/"
+      }
+    }
+    </script>
+
+    <style>
+        :root { --accent: #DFFE68; --black: #1a1a1a; --gray: #4a4a4a; --light-gray: #f5f5f5; --green: #10B981; --blue: #3B82F6; --orange: #F59E0B; --purple: #8B5CF6; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--light-gray); color: var(--black); line-height: 1.7; }
+        .header { border-bottom: 2px solid var(--black); padding: 0.75rem 1.5rem; background: white; position: sticky; top: 0; z-index: 50; }
+        .header-inner { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 28px; }
+        .nav { display: flex; align-items: center; gap: 0.25rem; }
+        .nav a { padding: 0.5rem 1rem; color: var(--gray); text-decoration: none; font-size: 0.9rem; font-weight: 500; border-radius: 6px; }
+        .nav a:hover { color: var(--black); background: var(--light-gray); }
+        .nav a.active { background: var(--accent); color: var(--black); font-weight: 600; }
+        .nav-cta { background: var(--black); color: white !important; font-weight: 600; }
+        @media (max-width: 768px) { .nav { display: none; } }
+        .breadcrumbs { background: white; border-bottom: 2px solid var(--black); padding: 0.75rem 1.5rem; }
+        .breadcrumbs-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; }
+        .breadcrumbs a { color: var(--gray); text-decoration: none; }
+        .breadcrumbs .current { color: var(--black); font-weight: 600; }
+
+        .main { max-width: 800px; margin: 0 auto; padding: 3rem 2rem; }
+
+        /* Hero */
+        .hero { text-align: center; margin-bottom: 3rem; }
+        .hero-badge { display: inline-block; background: var(--purple); color: white; padding: 0.4rem 1rem; font-size: 0.75rem; font-weight: 700; border-radius: 20px; margin-bottom: 1rem; text-transform: uppercase; }
+        h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 1rem; }
+        .subtitle { color: var(--gray); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        /* Stats */
+        .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0 3rem; }
+        .stat-item { text-align: center; padding: 1rem; background: white; border: 2px solid var(--black); border-radius: 12px; box-shadow: 3px 3px 0 var(--black); }
+        .stat-value { font-size: 1.75rem; font-weight: 800; color: var(--purple); }
+        .stat-label { font-size: 0.75rem; color: var(--gray); text-transform: uppercase; }
+
+        /* Content Sections */
+        .content-section { background: white; border: 2px solid var(--black); border-radius: 16px; padding: 2rem; box-shadow: 4px 4px 0 var(--black); margin-bottom: 2rem; }
+        .content-section h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 3px solid var(--accent); }
+        .content-section h3 { font-size: 1.1rem; font-weight: 700; margin: 1.5rem 0 0.75rem; }
+        .content-section p { margin-bottom: 1rem; color: #333; }
+        .content-section ul, .content-section ol { margin: 1rem 0 1rem 1.5rem; color: #333; }
+        .content-section li { margin-bottom: 0.5rem; }
+        .content-section table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+        .content-section th, .content-section td { padding: 0.6rem 0.75rem; text-align: left; border: 1px solid #ddd; }
+        .content-section th { background: #f5f5f5; font-weight: 700; }
+        .content-section tr:nth-child(even) { background: #fafafa; }
+
+        .callout { background: var(--accent); border-left: 4px solid var(--black); padding: 1rem 1.25rem; margin: 1.25rem 0; border-radius: 0 8px 8px 0; }
+        .callout strong { display: block; margin-bottom: 0.25rem; }
+
+        .callout-warning { background: #FEF3C7; border-left: 4px solid var(--orange); padding: 1rem 1.25rem; margin: 1.25rem 0; border-radius: 0 8px 8px 0; }
+        .callout-warning strong { display: block; margin-bottom: 0.25rem; color: #92400E; }
+
+        .code-block { background: #1a1a1a; color: #10B981; padding: 1rem; border-radius: 8px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.85rem; overflow-x: auto; margin: 1rem 0; }
+        .code-block code { color: #10B981; }
+        .code-block .comment { color: #6b7280; }
+
+        /* Gated Content */
+        .gated-wrapper { position: relative; }
+        .gated-content { filter: blur(5px); pointer-events: none; user-select: none; }
+        .gated-content.unlocked { filter: none; pointer-events: auto; user-select: auto; }
+
+        .gate-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.95) 15%, rgba(255,255,255,1) 30%); display: flex; align-items: flex-start; justify-content: center; padding-top: 4rem; }
+        .gate-overlay.hidden { display: none; }
+
+        .gate-card { background: var(--accent); border: 2px solid var(--black); border-radius: 16px; padding: 2.5rem; box-shadow: 6px 6px 0 var(--black); text-align: center; max-width: 450px; margin: 0 1rem; }
+        .gate-card h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .gate-card p { color: var(--gray); margin-bottom: 1.5rem; }
+        .email-form { display: flex; flex-direction: column; gap: 0.75rem; }
+        .email-form input { padding: 0.875rem; border: 2px solid var(--black); border-radius: 8px; font-size: 1rem; text-align: center; }
+        .email-form button { padding: 0.875rem 1.5rem; background: var(--black); color: white; border: none; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; }
+        .email-form button:hover { background: #333; }
+        .gate-card .note { font-size: 0.8rem; color: #666; margin-top: 1rem; }
+
+        /* Download Banner */
+        .download-banner { display: none; background: var(--accent); border: 2px solid var(--black); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; text-align: center; box-shadow: 4px 4px 0 var(--black); }
+        .download-banner.visible { display: block; }
+        .download-banner p { margin-bottom: 1rem; font-weight: 600; }
+        .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--black); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; }
+        .download-btn:hover { background: #333; }
+
+        /* Related */
+        .related-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2rem; }
+        .related-link { display: block; padding: 1rem; background: white; border: 2px solid var(--black); border-radius: 8px; text-decoration: none; color: var(--black); font-weight: 600; box-shadow: 3px 3px 0 var(--black); }
+        .related-link:hover { background: var(--accent); }
+
+        /* Footer */
+        .footer { background: var(--black); color: white; padding: 4rem 2rem 2rem; border-top: 2px solid var(--black); }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr repeat(4, 1fr); gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid #333; }
+        .footer-brand img { height: 24px; filter: brightness(0) invert(1); margin-bottom: 1rem; }
+        .footer-brand p { font-size: 0.85rem; color: #999; line-height: 1.6; }
+        .footer-social { display: flex; gap: 1rem; margin-top: 1rem; }
+        .footer-social a { color: #999; text-decoration: none; font-size: 0.85rem; }
+        .footer-social a:hover { color: white; }
+        .footer-col h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1rem; color: var(--accent); }
+        .footer-col a { display: block; color: #999; text-decoration: none; font-size: 0.85rem; margin-bottom: 0.6rem; }
+        .footer-col a:hover { color: white; }
+        .footer-col .sublink { padding-left: 0.75rem; font-size: 0.8rem; color: #666; }
+        .footer-bottom { padding-top: 2rem; display: flex; justify-content: space-between; font-size: 0.8rem; color: #666; }
+        .footer-bottom a { color: #666; text-decoration: none; }
+        .footer-bottom a:hover { color: #999; }
+
+        @media (max-width: 900px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) {
+            .stats-row { grid-template-columns: 1fr; }
+            .related-links { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+        }
+        @media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MM5BTNS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <header class="header">
+        <div class="header-inner">
+            <a href="/" class="logo"><img src="/42-logo.png" alt="42 Agency"></a>
+            <nav class="nav">
+                <a href="/assess/">Assess</a>
+                <a href="/b2b-benchmarks/">Benchmarks</a>
+                <a href="/tools/">Tools</a>
+                <a href="/playbooks/" class="active">Playbooks</a>
+                <a href="https://www.42agency.com/contact-us" target="_blank" class="nav-cta">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <a href="/">Home</a><span>/</span><a href="/playbooks/">Playbooks</a><span>/</span><span class="current">UTM Taxonomy</span>
+        </div>
+    </nav>
+
+    <main class="main">
+        <section class="hero">
+            <span class="hero-badge">Attribution Framework</span>
+            <h1>UTM Taxonomy for B2B Marketing</h1>
+            <p class="subtitle">Build a consistent UTM naming convention that survives the 6-18 month B2B sales cycle. Stop losing attribution data to inconsistent tracking.</p>
+        </section>
+
+        <div class="stats-row">
+            <div class="stat-item">
+                <div class="stat-value">5</div>
+                <div class="stat-label">UTM Parameters</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">4</div>
+                <div class="stat-label">Platform Templates</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">100%</div>
+                <div class="stat-label">CRM Pass-Through</div>
+            </div>
+        </div>
+
+        <!-- Download Banner (shows after unlock) -->
+        <div class="download-banner" id="downloadBanner">
+            <p>You've unlocked the full taxonomy. Download the PDF version:</p>
+            <a href="/playbooks/utm-taxonomy/utm-taxonomy-playbook.pdf" download class="download-btn">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                Download PDF
+            </a>
+        </div>
+
+        <!-- UNGATED: Section 1-2 (30%) -->
+        <div class="content-section">
+            <h2>Why UTM Consistency Matters for B2B</h2>
+            <p>In B2B marketing, the path from first touch to closed-won spans 6-18 months and involves multiple stakeholders. Without consistent UTM tracking, you lose the ability to answer critical questions:</p>
+            <ul>
+                <li><strong>Which channels drive pipeline?</strong> Not just leads, but actual qualified opportunities.</li>
+                <li><strong>What content influences buyers?</strong> Which campaigns touch accounts before they close?</li>
+                <li><strong>Where should budget go?</strong> Channel ROI requires accurate attribution from ad click to revenue.</li>
+            </ul>
+            <div class="callout-warning">
+                <strong>The Hidden Cost of Inconsistency:</strong> One client had "LinkedIn", "linkedin", "LI", and "linkedin_ads" as separate sources in their CRM. Their LinkedIn attribution was split across 4 buckets, making true channel performance invisible.
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>The 42 Agency UTM Standard</h2>
+            <p>Our UTM taxonomy uses <strong>5 parameters</strong> with strict naming conventions:</p>
+            <table>
+                <tr><th>Parameter</th><th>Purpose</th><th>Example</th></tr>
+                <tr><td><strong>utm_source</strong></td><td>WHERE traffic originates (platform/publisher)</td><td>linkedin, google, meta</td></tr>
+                <tr><td><strong>utm_medium</strong></td><td>HOW traffic arrives (channel type)</td><td>paid_social, cpc, email</td></tr>
+                <tr><td><strong>utm_campaign</strong></td><td>WHAT initiative this belongs to</td><td>q2_product_launch_enterprise</td></tr>
+                <tr><td><strong>utm_content</strong></td><td>WHICH ad/creative variant</td><td>video_testimonial_v2</td></tr>
+                <tr><td><strong>utm_term</strong></td><td>Keyword or targeting (paid search/social)</td><td>b2b_marketing_software</td></tr>
+            </table>
+            <div class="callout">
+                <strong>Key Rule:</strong> Source = platform name. Medium = channel type. Never combine them (e.g., don't use "linkedin_ads" as source).
+            </div>
+        </div>
+
+        <!-- GATED: Remaining sections (70%) -->
+        <div class="gated-wrapper">
+            <div class="gated-content" id="gatedContent">
+
+                <div class="content-section">
+                    <h2>Naming Conventions: The Rules</h2>
+                    <p>Consistency is more important than perfection. Follow these rules across your entire organization:</p>
+                    <h3>1. Always Lowercase</h3>
+                    <p>UTM values are case-sensitive in most analytics platforms. "LinkedIn" and "linkedin" become two separate sources.</p>
+                    <div class="code-block">
+                        <code><span class="comment">// Wrong</span><br>utm_source=LinkedIn<br><br><span class="comment">// Correct</span><br>utm_source=linkedin</code>
+                    </div>
+
+                    <h3>2. Underscores for Multi-Word Values</h3>
+                    <p>Use underscores (_) to separate words within a single parameter value. Never use spaces (they break URLs) or hyphens (reserve for other purposes).</p>
+                    <div class="code-block">
+                        <code><span class="comment">// Wrong</span><br>utm_campaign=Q2 Product Launch<br>utm_campaign=q2-product-launch<br><br><span class="comment">// Correct</span><br>utm_campaign=q2_product_launch</code>
+                    </div>
+
+                    <h3>3. Controlled Vocabulary</h3>
+                    <p>Limit utm_source and utm_medium to pre-approved values. No ad-hoc additions.</p>
+                    <table>
+                        <tr><th>Approved Sources</th><th>Approved Mediums</th></tr>
+                        <tr><td>google</td><td>cpc (paid search)</td></tr>
+                        <tr><td>linkedin</td><td>paid_social</td></tr>
+                        <tr><td>meta</td><td>organic_social</td></tr>
+                        <tr><td>bing</td><td>email</td></tr>
+                        <tr><td>twitter</td><td>display</td></tr>
+                        <tr><td>email</td><td>video</td></tr>
+                        <tr><td>newsletter</td><td>referral</td></tr>
+                        <tr><td>partner</td><td>affiliate</td></tr>
+                    </table>
+                </div>
+
+                <div class="content-section">
+                    <h2>Campaign Naming Structure</h2>
+                    <p>utm_campaign should follow a consistent format that enables filtering and grouping in reports:</p>
+                    <div class="code-block">
+                        <code>{initiative}_{audience}_{objective}_{quarter}</code>
+                    </div>
+                    <h3>Component Definitions</h3>
+                    <table>
+                        <tr><th>Component</th><th>Description</th><th>Examples</th></tr>
+                        <tr><td><strong>Initiative</strong></td><td>Product, event, or marketing program</td><td>product_launch, webinar, ebook</td></tr>
+                        <tr><td><strong>Audience</strong></td><td>Target segment or persona</td><td>enterprise, smb, cfo, devops</td></tr>
+                        <tr><td><strong>Objective</strong></td><td>Campaign goal</td><td>awareness, consideration, conversion</td></tr>
+                        <tr><td><strong>Quarter</strong></td><td>Time period (for budget tracking)</td><td>q1_2026, q2_2026</td></tr>
+                    </table>
+                    <h3>Real Examples</h3>
+                    <div class="code-block">
+                        <code>utm_campaign=platform_v3_enterprise_awareness_q2_2026<br>utm_campaign=case_study_fintech_consideration_q1_2026<br>utm_campaign=demo_request_smb_conversion_q3_2026<br>utm_campaign=webinar_security_devops_awareness_q2_2026</code>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Platform-Specific Templates</h2>
+                    <p>Each ad platform has unique dynamic macros. Use these templates for consistent tracking:</p>
+
+                    <h3>LinkedIn Ads</h3>
+                    <div class="code-block">
+                        <code>?utm_source=linkedin<br>&utm_medium=paid_social<br>&utm_campaign={campaign_name}<br>&utm_content={creative_name}<br>&utm_term={ad_id}</code>
+                    </div>
+                    <p><strong>Note:</strong> LinkedIn's macros populate when the ad serves. {campaign_name} pulls from your campaign settings.</p>
+
+                    <h3>Google Ads</h3>
+                    <div class="code-block">
+                        <code>?utm_source=google<br>&utm_medium=cpc<br>&utm_campaign={campaignid}<br>&utm_content={adgroupid}<br>&utm_term={keyword}</code>
+                    </div>
+                    <p><strong>Note:</strong> Enable auto-tagging for GCLID, but add manual UTMs for CRM attribution pass-through.</p>
+
+                    <h3>Meta (Facebook/Instagram) Ads</h3>
+                    <div class="code-block">
+                        <code>?utm_source=meta<br>&utm_medium=paid_social<br>&utm_campaign={{campaign.name}}<br>&utm_content={{ad.name}}<br>&utm_term={{adset.name}}</code>
+                    </div>
+                    <p><strong>Note:</strong> Meta uses double curly braces for dynamic parameters.</p>
+
+                    <h3>Email Campaigns</h3>
+                    <div class="code-block">
+                        <code>?utm_source=email<br>&utm_medium=email<br>&utm_campaign=newsletter_q2_2026<br>&utm_content=cta_button_primary<br>&utm_term=product_announcement</code>
+                    </div>
+                    <p><strong>Note:</strong> For email, utm_source and utm_medium can both be "email" since you control the full URL. Use utm_content to A/B test CTA placement.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>Common Mistakes to Avoid</h2>
+                    <p>These errors break attribution and waste months of data:</p>
+                    <table>
+                        <tr><th>Mistake</th><th>Why It Breaks Things</th><th>Fix</th></tr>
+                        <tr><td><strong>Inconsistent casing</strong></td><td>LinkedIn vs linkedin = 2 sources</td><td>Always lowercase</td></tr>
+                        <tr><td><strong>Missing utm_medium</strong></td><td>Traffic groups incorrectly in GA4</td><td>Always include medium</td></tr>
+                        <tr><td><strong>Spaces in values</strong></td><td>URL breaks or encodes incorrectly</td><td>Use underscores only</td></tr>
+                        <tr><td><strong>Changing convention mid-year</strong></td><td>Historical comparison impossible</td><td>Document and stick to standard</td></tr>
+                        <tr><td><strong>Not passing to CRM</strong></td><td>Lose attribution at SQL stage</td><td>Configure hidden form fields</td></tr>
+                        <tr><td><strong>Using redirects without UTM preservation</strong></td><td>UTMs stripped on redirect</td><td>Append UTMs after redirect</td></tr>
+                        <tr><td><strong>Combining source and medium</strong></td><td>"linkedin_ads" conflates platform + channel</td><td>source=linkedin, medium=paid_social</td></tr>
+                    </table>
+                </div>
+
+                <div class="content-section">
+                    <h2>CRM Pass-Through Setup</h2>
+                    <p>UTMs are useless if they don't make it to your CRM. Configure this once, validate weekly.</p>
+
+                    <h3>HubSpot Configuration</h3>
+                    <ol>
+                        <li>Create 5 contact properties: <code>utm_source_original</code>, <code>utm_medium_original</code>, <code>utm_campaign_original</code>, <code>utm_content_original</code>, <code>utm_term_original</code></li>
+                        <li>Add hidden fields to all forms mapped to these properties</li>
+                        <li>Use JavaScript to populate hidden fields from URL parameters on page load</li>
+                        <li>Set properties to "set if empty" to preserve first-touch attribution</li>
+                    </ol>
+
+                    <h3>JavaScript for Hidden Fields</h3>
+                    <div class="code-block">
+                        <code><span class="comment">// Add to all pages with forms</span><br>const params = new URLSearchParams(window.location.search);<br>const utmFields = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];<br><br>utmFields.forEach(field => {<br>  const value = params.get(field);<br>  if (value) {<br>    sessionStorage.setItem(field, value);<br>  }<br>});</code>
+                    </div>
+                    <div class="callout">
+                        <strong>Pro Tip:</strong> Use sessionStorage to persist UTMs across page navigation. Users may land on a blog post, browse 5 pages, then fill out a form - you need those original UTMs preserved.
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>UTM Builder Tool Recommendation</h2>
+                    <p>Avoid manual UTM creation. Use a controlled spreadsheet or tool to enforce standards:</p>
+                    <h3>Option 1: Google Sheets Template</h3>
+                    <ul>
+                        <li>Create dropdowns for utm_source and utm_medium (controlled vocabulary)</li>
+                        <li>Use formulas to auto-generate campaign names from components</li>
+                        <li>Concatenate final URL in a column for copy/paste</li>
+                        <li>Share with marketing team - single source of truth</li>
+                    </ul>
+                    <h3>Option 2: UTM.io or Similar Tools</h3>
+                    <ul>
+                        <li>Team access with preset conventions</li>
+                        <li>Validation rules to prevent inconsistencies</li>
+                        <li>Link shortening integration</li>
+                        <li>Usage tracking (who created which links)</li>
+                    </ul>
+                    <div class="callout-warning">
+                        <strong>Warning:</strong> Free URL builders without team controls lead to drift. One person uses "linkedin_ads" while another uses "linkedin" and you're back to fragmented data.
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Validation Checklist</h2>
+                    <p>Run this checklist monthly to catch drift before it corrupts your data:</p>
+                    <ul>
+                        <li>Pull unique utm_source values from GA4 - look for duplicates/variations</li>
+                        <li>Pull unique utm_medium values - ensure only approved values appear</li>
+                        <li>Spot-check 10 recent CRM leads - do they have UTM properties populated?</li>
+                        <li>Test one link from each active campaign - does it resolve correctly?</li>
+                        <li>Review any new campaigns launched this month - do they follow convention?</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Gate Overlay -->
+            <div class="gate-overlay" id="gateOverlay">
+                <div class="gate-card">
+                    <h3>Unlock the Full Taxonomy</h3>
+                    <p>Get platform-specific templates, CRM setup guides, and validation checklists.</p>
+                    <form class="email-form" id="unlockForm" onsubmit="handleUnlock(event)">
+                        <input type="email" name="email" placeholder="you@company.com" required>
+                        <button type="submit">Unlock Full Playbook</button>
+                    </form>
+                    <p class="note">Plus get the PDF version emailed to you</p>
+                </div>
+            </div>
+        </div>
+
+        <section>
+            <h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1rem;">Related Resources</h2>
+            <div class="related-links">
+                <a href="/playbooks/intent-signals/" class="related-link">Intent Signals Playbook</a>
+                <a href="/assessments/hubspot-health/" class="related-link">HubSpot Health Check</a>
+                <a href="/assess/calculator/" class="related-link">Benchmark Calculator</a>
+                <a href="/b2b-benchmarks/" class="related-link">B2B Benchmarks</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <!-- Column 1: Brand -->
+                <div class="footer-brand">
+                    <img src="/42-logo.png" alt="42 Agency">
+                    <p>B2B performance marketing for companies that sell to enterprises.</p>
+                    <div class="footer-social">
+                        <a href="https://linkedin.com/company/42agency" target="_blank">LinkedIn</a>
+                        <a href="https://x.com/42aboratory" target="_blank">X</a>
+                        <a href="https://www.youtube.com/@Get42Agency" target="_blank">YouTube</a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Assess -->
+                <div class="footer-col">
+                    <h4>Assess</h4>
+                    <a href="/assessments/hubspot-health/">HubSpot Health Check</a>
+                    <a href="/assess/calculator/">Benchmark Calculator</a>
+                    <a href="/linkedin-audit/">LinkedIn Ads Audit</a>
+                    <a href="/google-ads-audit/">Google Ads Audit</a>
+                    <a href="/meta-audit/">Meta Ads Audit</a>
+                    <a href="/hubspot-audit/">HubSpot Audit</a>
+                </div>
+
+                <!-- Column 3: Benchmarks -->
+                <div class="footer-col">
+                    <h4>Benchmarks</h4>
+                    <a href="/b2b-benchmarks/">All B2B Benchmarks</a>
+                    <a href="/b2b-benchmarks/linkedin-ads-benchmarks/">LinkedIn Ads</a>
+                    <a href="/b2b-benchmarks/google-ads-benchmarks/">Google Ads</a>
+                    <a href="/b2b-benchmarks/linkedin-inmail-benchmarks/">InMail Benchmarks</a>
+                    <a href="/b2b-benchmarks/legal-tech-linkedin-ads/" class="sublink">Legal Tech</a>
+                    <a href="/b2b-benchmarks/healthcare-tech-linkedin-ads/" class="sublink">Healthcare Tech</a>
+                    <a href="/b2b-benchmarks/fintech-linkedin-ads/" class="sublink">FinTech</a>
+                </div>
+
+                <!-- Column 4: AI Tools + Resources -->
+                <div class="footer-col">
+                    <h4>AI Tools</h4>
+                    <a href="https://copilot.42agency.com" target="_blank">LinkedIn Ads Copilot</a>
+                    <a href="https://copilot.42agency.com/linkedin-ads-targeting" target="_blank">Targeting Guide</a>
+                    <h4 style="margin-top: 1.5rem;">Resources</h4>
+                    <a href="/zenabm/">ABM Toolkit</a>
+                    <a href="/mops-funnel/">MOPS Funnel Workbook</a>
+                    <a href="/exitfive/">Claude Code 101</a>
+                </div>
+
+                <!-- Column 5: 42 Agency -->
+                <div class="footer-col">
+                    <h4>42 Agency</h4>
+                    <a href="https://42agency.com" target="_blank">Website</a>
+                    <a href="https://www.42agency.com/contact-us" target="_blank">Contact Us</a>
+                    <a href="https://42agency.com/case-studies" target="_blank">Case Studies</a>
+                    <a href="https://42slash.com" target="_blank">42/ Essays</a>
+                    <a href="https://42agency.com/careers" target="_blank">Careers</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 42 Agency. All rights reserved.</p>
+                <p><a href="https://42agency.com/privacy">Privacy</a> &middot; <a href="https://42agency.com/terms">Terms</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/email-validation.js"></script>
+    <script>
+        // Check if already unlocked
+        if (localStorage.getItem('playbook_unlocked_utm-taxonomy')) {
+            document.getElementById('gatedContent').classList.add('unlocked');
+            document.getElementById('gateOverlay').classList.add('hidden');
+            document.getElementById('downloadBanner').classList.add('visible');
+        }
+
+        async function handleUnlock(e) {
+            e.preventDefault();
+            const email = e.target.email.value;
+            const button = e.target.querySelector('button');
+            button.disabled = true;
+            button.textContent = 'Unlocking...';
+
+            try {
+                const response = await fetch('/api/playbook-download', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        playbook: 'utm-taxonomy'
+                    })
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    // Track event
+                    if (window.dataLayer) window.dataLayer.push({ event: 'playbook_unlocked', playbook: 'utm-taxonomy' });
+
+                    // Save unlock state
+                    localStorage.setItem('playbook_unlocked_utm-taxonomy', 'true');
+
+                    // Reveal content
+                    document.getElementById('gatedContent').classList.add('unlocked');
+                    document.getElementById('gateOverlay').classList.add('hidden');
+                    document.getElementById('downloadBanner').classList.add('visible');
+
+                    // Scroll to content
+                    document.getElementById('gatedContent').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    throw new Error('Failed');
+                }
+            } catch (error) {
+                button.textContent = 'Try Again';
+                button.disabled = false;
+            }
+        }
+    </script>
+    <!-- Vercel Analytics -->
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

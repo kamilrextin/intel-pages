@@ -13,6 +13,170 @@
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MM5BTNS');</script>
     <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/44888286.js"></script>
 
+    <!-- FAQ Schema for GEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is lead scoring in B2B?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Lead scoring is a methodology for ranking leads based on their likelihood to convert to customers. In B2B, effective scoring combines two dimensions: ICP fit (firmographic match to your ideal customer) and engagement (behavioral signals indicating purchase intent). The 42 Lead Scoring Model uses a 100-point scale split evenly between these dimensions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I build a lead scoring model?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Build a lead scoring model in 5 steps: (1) Define ICP fit criteria based on your closed-won customer profile (company size, industry, job title, geography, tech stack), (2) Map engagement signals weighted by purchase intent (demo request +25, pricing page +15, etc.), (3) Implement score decay so stale leads don't clog the pipeline, (4) Set an MQL threshold that produces 15-25 qualified leads per rep per week, (5) Calibrate against 6-12 months of historical data to ensure the model predicts actual conversions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a good MQL score threshold?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A good MQL threshold produces 15-25 leads per sales rep per week with at least 20% lead-to-opportunity conversion. Using a 100-point model, most B2B companies set MQL threshold at 60-70 points. Always require a minimum ICP fit score (e.g., 25 out of 50) to prevent high-engagement but poor-fit leads from qualifying."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is lead score decay?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Lead score decay reduces engagement scores over time to reflect diminishing intent. A pricing page visit from 6 months ago doesn't indicate current buying intent. Standard decay schedule: 0-30 days = 100% value retained, 31-60 days = 75%, 61-90 days = 50%, 90+ days = 25%. Only engagement scores decay—ICP fit scores remain constant since firmographics don't change."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should lead scoring be based on fit or engagement?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Both equally. Most failed lead scoring models over-index on engagement (clicks, downloads) while ignoring fit. A marketing intern who downloads every whitepaper shouldn't outscore a VP who visited pricing once. The 42 Lead Scoring Model splits 50/50: 50 points for ICP fit, 50 points for engagement, with a minimum fit threshold required for MQL qualification."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- HowTo Schema for GEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "The 42 Lead Scoring Framework",
+      "description": "A two-axis B2B lead scoring model that balances ICP fit (firmographics) with engagement signals (behavior) for accurate sales prioritization.",
+      "image": "https://intel.42agency.com/images/lead-scoring-framework.png",
+      "totalTime": "P2W",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "USD",
+        "value": "0"
+      },
+      "tool": [
+        {
+          "@type": "HowToTool",
+          "name": "HubSpot or Salesforce CRM"
+        },
+        {
+          "@type": "HowToTool",
+          "name": "Marketing automation platform"
+        }
+      ],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Define ICP Fit Criteria (50 points max)",
+          "text": "Score firmographic attributes that indicate ideal customer fit. Allocate points across: Company size (0-15 points based on employee count brackets), Industry vertical (0-10 points for target industries), Job title/seniority (0-10 points for decision-maker levels), Geography (0-5 points for serviceable regions), Technology stack (0-10 points for complementary tools).",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Map your closed-won deals from the last 12 months to identify common firmographic patterns"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Weight criteria by correlation to close rate, not assumptions"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Map Engagement Signals (50 points max)",
+          "text": "Assign point values to behavioral signals indicating purchase intent. High-intent actions: Demo request (+25), Pricing page visit (+15), Case study download (+10). Medium-intent: Webinar attendance (+8), Multiple blog visits (+5), Email click (+3). Low-intent: Single page view (+1), Email open (+1).",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Focus 70% of engagement points on bottom-funnel actions"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Cap repeat actions to prevent score inflation from single-topic interest"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Implement Score Decay",
+          "text": "Apply time-based degradation to prevent stale leads from clogging the pipeline. Decay schedule: 0-30 days = 100% value retained, 31-60 days = 75% value, 61-90 days = 50% value, 90+ days = 25% value. Reset decay clock when new high-intent action occurs.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Run decay calculations weekly via workflow automation"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Exclude ICP fit score from decay—only engagement scores should degrade"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Set MQL Threshold",
+          "text": "Define the score threshold that triggers MQL status and sales handoff. Start with combined score of 60+ points (out of 100 possible). Require minimum ICP fit score of 25 to prevent high-engagement but poor-fit leads from qualifying.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "MQL threshold should produce 15-25 MQLs per week for adequate sales capacity"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "If volume is too high, raise threshold; if too low, lower it or improve top-of-funnel"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "Calibrate Against Historical Data",
+          "text": "Apply the scoring model retroactively to 6-12 months of leads to validate thresholds. Compare scores of closed-won vs closed-lost opportunities. Adjust weights until model correctly ranks 80%+ of historical wins above losses.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Export lead data with outcomes and apply scoring formula in spreadsheet first"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Re-calibrate quarterly as ICP and buying patterns evolve"
+            }
+          ]
+        }
+      ],
+      "author": {
+        "@type": "Organization",
+        "name": "42 Agency",
+        "url": "https://www.42agency.com"
+      }
+    }
+    </script>
+
     <style>
         :root { --accent: #DFFE68; --black: #1a1a1a; --gray: #4a4a4a; --light-gray: #f5f5f5; --green: #10B981; --blue: #3B82F6; }
         * { margin: 0; padding: 0; box-sizing: border-box; }

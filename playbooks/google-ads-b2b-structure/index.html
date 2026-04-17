@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Ads Structure for B2B (Non-Brand) | Campaign Architecture | 42 Agency</title>
+    <meta name="description" content="Build a high-performing Google Ads account structure for B2B lead generation. Campaign hierarchy, keyword strategy, bidding tactics, and ad copy frameworks that drive qualified pipeline.">
+    <link rel="canonical" href="https://intel.42agency.com/playbooks/google-ads-b2b-structure/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MM5BTNS');</script>
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/44888286.js"></script>
+
+    <!-- FAQ Schema for GEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How should I structure Google Ads campaigns for B2B?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Structure B2B Google Ads accounts using an intent-based hierarchy: High-Intent campaigns (demo/pricing/comparison keywords), Mid-Intent campaigns (solution-aware keywords), and Low-Intent campaigns (problem-aware keywords). Within each intent tier, segment by product line or use case. This allows budget allocation toward keywords most likely to convert to qualified pipeline, not just leads."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What bidding strategy works best for B2B Google Ads?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For B2B lead generation, start with Maximize Conversions to build conversion data (minimum 30 conversions in 30 days). Once you have sufficient data, switch to Target CPA (tCPA). Set your target CPA at 80% of your actual target to account for Google's learning period. Import offline conversion data from your CRM to optimize toward qualified leads and pipeline, not just form fills."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I use SKAGs for B2B Google Ads?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "SKAGs (Single Keyword Ad Groups) are outdated for B2B. Google's smart bidding works better with more data per ad group. Instead, use themed ad groups with 5-15 tightly related keywords. This provides enough volume for machine learning while maintaining message match. Exception: Use SKAGs for your highest-value branded competitor terms where precise ad copy control is critical."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I build negative keyword lists for B2B?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B2B negative keyword strategy has three layers: (1) Account-level negatives for universally irrelevant terms (jobs, careers, salary, free, download, tutorial, reddit, quora), (2) Campaign-level negatives for cross-campaign conflicts (prevent your pricing campaign from showing for competitor terms), (3) Ad group-level negatives for keyword isolation within themed groups. Review Search Terms Report weekly and add negatives proactively."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What match types should I use for B2B Google Ads?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For B2B in 2024+, use Phrase Match as your primary match type with strategic Exact Match for high-value terms. Broad Match can work with smart bidding and strong negative keyword lists, but only for campaigns with sufficient conversion volume. Avoid pure Broad Match for niche B2B audiences where search volume is low - you'll burn budget on irrelevant queries."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- HowTo Schema for GEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Structure Google Ads for B2B Lead Generation",
+      "description": "A step-by-step guide to building a Google Ads account structure optimized for B2B pipeline generation, not just lead volume.",
+      "image": "https://intel.42agency.com/images/google-ads-b2b-structure.png",
+      "totalTime": "P1W",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "USD",
+        "value": "0"
+      },
+      "tool": [
+        {
+          "@type": "HowToTool",
+          "name": "Google Ads account"
+        },
+        {
+          "@type": "HowToTool",
+          "name": "Google Keyword Planner"
+        },
+        {
+          "@type": "HowToTool",
+          "name": "CRM with offline conversion tracking"
+        }
+      ],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Segment campaigns by intent tier",
+          "text": "Create three campaign tiers based on buyer intent: High-Intent (demo, pricing, comparison, alternative keywords), Mid-Intent (solution-category keywords like 'CRM software'), Low-Intent (problem-aware keywords like 'how to improve sales'). Allocate 60% budget to high-intent, 30% to mid-intent, 10% to low-intent.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Map your buyer journey stages to keyword intent levels"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "High-intent keywords have lower volume but higher conversion rates"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Create themed ad groups with 5-15 keywords each",
+          "text": "Within each campaign, create ad groups around tightly related keyword themes. Each ad group should have keywords that can share the same ad copy naturally. Example: 'CRM for startups' ad group contains 'startup crm', 'crm for early stage companies', 'small business crm software'.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Avoid SKAGs - they fragment data and hurt smart bidding"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Keep keyword themes tight enough for 90%+ ad relevance"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Build a three-tier negative keyword strategy",
+          "text": "Implement negative keywords at account, campaign, and ad group levels. Account-level: block jobs, careers, free, tutorial. Campaign-level: prevent cannibalization between campaigns. Ad group-level: isolate keyword themes within campaigns.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Create shared negative keyword lists for efficiency"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Review Search Terms Report weekly to find new negatives"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Configure bidding for lead quality, not volume",
+          "text": "Start with Maximize Conversions until you have 30+ conversions in 30 days. Then switch to Target CPA at 80% of your actual target. Import offline conversion data from your CRM (MQL, SQL, Opportunity, Closed-Won) to optimize toward pipeline value, not form fills.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Set up Google Ads offline conversion import with your CRM"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Use conversion value rules to weight leads by quality"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "Write B2B-specific ad copy that qualifies visitors",
+          "text": "Include qualifying language in ads to filter out poor-fit clicks. Mention enterprise-specific features, price points, or customer types. Use headlines that speak to business outcomes (ROI, efficiency, compliance) not consumer benefits.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Include pricing qualifiers to filter budget-constrained prospects"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Use social proof from recognizable enterprise logos"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 6,
+          "name": "Align landing pages with keyword intent",
+          "text": "Each ad group should link to a landing page that matches keyword intent. High-intent keywords go to demo/pricing pages. Mid-intent goes to solution pages. Low-intent goes to educational content with lead capture. Message match between ad copy and landing page headline improves Quality Score and conversion rate.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Use dynamic keyword insertion in landing page headlines"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "A/B test landing pages within each intent tier"
+            }
+          ]
+        }
+      ],
+      "author": {
+        "@type": "Organization",
+        "name": "42 Agency",
+        "url": "https://www.42agency.com"
+      }
+    }
+    </script>
+
+    <style>
+        :root { --accent: #DFFE68; --black: #1a1a1a; --gray: #4a4a4a; --muted: #6b6b6b; --light-gray: #f5f5f5; --green: #10B981; --blue: #3B82F6; --orange: #F59E0B; --red: #EF4444; --google: #4285F4; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--light-gray); color: var(--black); line-height: 1.7; }
+
+        /* Header */
+        .header { border-bottom: 2px solid var(--black); padding: 0.75rem 1.5rem; background: white; position: sticky; top: 0; z-index: 50; }
+        .header-inner { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 28px; }
+        .nav { display: flex; align-items: center; gap: 0.25rem; }
+        .nav a { padding: 0.5rem 1rem; color: var(--gray); text-decoration: none; font-size: 0.9rem; font-weight: 500; border-radius: 6px; transition: all 0.15s; }
+        .nav a:hover { color: var(--black); background: var(--light-gray); }
+        .nav a.active { background: var(--accent); color: var(--black); font-weight: 600; }
+        .nav-cta { background: var(--black); color: white !important; font-weight: 600; }
+        @media (max-width: 768px) { .nav { display: none; } }
+
+        /* Breadcrumbs */
+        .breadcrumbs { background: white; border-bottom: 2px solid var(--black); padding: 0.75rem 1.5rem; }
+        .breadcrumbs-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; }
+        .breadcrumbs a { color: var(--gray); text-decoration: none; }
+        .breadcrumbs a:hover { color: var(--black); }
+        .breadcrumbs .current { color: var(--black); font-weight: 600; }
+
+        .main { max-width: 800px; margin: 0 auto; padding: 3rem 2rem; }
+
+        /* Hero */
+        .hero { text-align: center; margin-bottom: 3rem; }
+        .hero-badge { display: inline-block; background: var(--google); color: white; padding: 0.4rem 1rem; font-size: 0.75rem; font-weight: 700; border-radius: 20px; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 1rem; line-height: 1.1; }
+        .subtitle { color: var(--gray); font-size: 1.1rem; max-width: 620px; margin: 0 auto; }
+
+        /* Stats */
+        .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0 3rem; }
+        .stat-item { text-align: center; padding: 1.25rem 1rem; background: white; border: 2px solid var(--black); border-radius: 12px; box-shadow: 3px 3px 0 var(--black); }
+        .stat-value { font-size: 1.75rem; font-weight: 800; color: var(--google); }
+        .stat-label { font-size: 0.75rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.3px; margin-top: 0.25rem; }
+
+        /* Content Sections */
+        .content-section { background: white; border: 2px solid var(--black); border-radius: 16px; padding: 2rem; box-shadow: 4px 4px 0 var(--black); margin-bottom: 2rem; }
+        .content-section h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 3px solid var(--accent); }
+        .content-section h3 { font-size: 1.1rem; font-weight: 700; margin: 1.5rem 0 0.75rem; color: var(--black); }
+        .content-section h4 { font-size: 0.95rem; font-weight: 700; margin: 1.25rem 0 0.5rem; color: var(--gray); }
+        .content-section p { margin-bottom: 1rem; color: #333; }
+        .content-section ul, .content-section ol { margin: 1rem 0 1rem 1.5rem; color: #333; }
+        .content-section li { margin-bottom: 0.5rem; }
+        .content-section table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+        .content-section th, .content-section td { padding: 0.6rem 0.75rem; text-align: left; border: 1px solid #ddd; }
+        .content-section th { background: #f5f5f5; font-weight: 700; }
+        .content-section tr:nth-child(even) { background: #fafafa; }
+        .content-section code { background: #f0f0f0; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85rem; font-family: 'SF Mono', Monaco, monospace; }
+
+        /* Callouts */
+        .callout { background: var(--accent); border-left: 4px solid var(--black); padding: 1rem 1.25rem; margin: 1.25rem 0; border-radius: 0 8px 8px 0; }
+        .callout strong { display: block; margin-bottom: 0.25rem; }
+        .callout.warning { background: #FEF3C7; border-left-color: var(--orange); }
+        .callout.tip { background: #DBEAFE; border-left-color: var(--blue); }
+        .callout.danger { background: #FEE2E2; border-left-color: var(--red); }
+
+        /* Framework Box */
+        .framework-box { background: var(--light-gray); border: 2px solid var(--black); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; }
+        .framework-box h4 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: var(--black); }
+
+        /* Visual Hierarchy */
+        .hierarchy-visual { display: flex; flex-direction: column; gap: 0.5rem; margin: 1.5rem 0; }
+        .hierarchy-level { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; background: white; border: 2px solid var(--black); border-radius: 8px; }
+        .hierarchy-level.account { background: var(--black); color: white; }
+        .hierarchy-level.campaign { margin-left: 1.5rem; }
+        .hierarchy-level.adgroup { margin-left: 3rem; }
+        .hierarchy-level.keyword { margin-left: 4.5rem; font-size: 0.9rem; }
+        .hierarchy-icon { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+
+        /* Intent Tiers */
+        .intent-tier { border: 2px solid var(--black); border-radius: 12px; padding: 1.25rem; margin-bottom: 1rem; }
+        .intent-tier.high { background: #DCFCE7; border-color: var(--green); }
+        .intent-tier.mid { background: #FEF3C7; border-color: var(--orange); }
+        .intent-tier.low { background: #DBEAFE; border-color: var(--blue); }
+        .intent-tier h4 { margin: 0 0 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .intent-tier .badge { font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 4px; text-transform: uppercase; }
+        .intent-tier.high .badge { background: var(--green); color: white; }
+        .intent-tier.mid .badge { background: var(--orange); color: white; }
+        .intent-tier.low .badge { background: var(--blue); color: white; }
+
+        /* Checklist */
+        .checklist { list-style: none; margin-left: 0 !important; padding: 0; }
+        .checklist li { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.5rem 0; border-bottom: 1px solid #eee; }
+        .checklist li:last-child { border-bottom: none; }
+        .checklist-icon { width: 20px; height: 20px; background: var(--accent); border: 2px solid var(--black); border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+
+        /* Gated Content */
+        .gated-wrapper { position: relative; }
+        .gated-content { filter: blur(5px); pointer-events: none; user-select: none; }
+        .gated-content.unlocked { filter: none; pointer-events: auto; user-select: auto; }
+
+        .gate-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.95) 15%, rgba(255,255,255,1) 30%); display: flex; align-items: flex-start; justify-content: center; padding-top: 4rem; }
+        .gate-overlay.hidden { display: none; }
+
+        .gate-card { background: var(--accent); border: 2px solid var(--black); border-radius: 16px; padding: 2.5rem; box-shadow: 6px 6px 0 var(--black); text-align: center; max-width: 450px; margin: 0 1rem; }
+        .gate-card h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .gate-card p { color: var(--gray); margin-bottom: 1.5rem; }
+        .email-form { display: flex; flex-direction: column; gap: 0.75rem; }
+        .email-form input { padding: 0.875rem; border: 2px solid var(--black); border-radius: 8px; font-size: 1rem; text-align: center; }
+        .email-form button { padding: 0.875rem 1.5rem; background: var(--black); color: white; border: none; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: background 0.15s; }
+        .email-form button:hover { background: #333; }
+        .gate-card .note { font-size: 0.8rem; color: #666; margin-top: 1rem; }
+
+        /* Download Banner */
+        .download-banner { display: none; background: var(--accent); border: 2px solid var(--black); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; text-align: center; box-shadow: 4px 4px 0 var(--black); }
+        .download-banner.visible { display: block; }
+        .download-banner p { margin-bottom: 1rem; font-weight: 600; }
+        .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--black); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; transition: background 0.15s; }
+        .download-btn:hover { background: #333; }
+
+        /* Related */
+        .related-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2rem; }
+        .related-link { display: block; padding: 1rem; background: white; border: 2px solid var(--black); border-radius: 8px; text-decoration: none; color: var(--black); font-weight: 600; box-shadow: 3px 3px 0 var(--black); transition: all 0.15s; }
+        .related-link:hover { background: var(--accent); transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--black); }
+
+        /* Footer */
+        .footer { border-top: 2px solid var(--black); background: var(--black); padding: 4rem 1.5rem 2rem; margin-top: 3rem; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr repeat(4, 1fr); gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid #333; }
+        .footer-brand img { height: 24px; filter: brightness(0) invert(1); margin-bottom: 1rem; }
+        .footer-brand p { font-size: 0.85rem; color: #999; line-height: 1.6; }
+        .footer-social { display: flex; gap: 1rem; margin-top: 1rem; }
+        .footer-social a { color: #999; text-decoration: none; font-size: 0.85rem; }
+        .footer-social a:hover { color: white; }
+        .footer-col h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1rem; color: var(--accent); }
+        .footer-col a { display: block; color: #999; text-decoration: none; font-size: 0.85rem; margin-bottom: 0.6rem; }
+        .footer-col a:hover { color: white; }
+        .footer-col .sublink { padding-left: 0.75rem; font-size: 0.8rem; color: #666; }
+        .footer-bottom { padding-top: 2rem; display: flex; justify-content: space-between; font-size: 0.8rem; color: #666; }
+        .footer-bottom a { color: #666; text-decoration: none; }
+        .footer-bottom a:hover { color: #999; }
+
+        @media (max-width: 900px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) {
+            .stats-row { grid-template-columns: 1fr; }
+            .related-links { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+            .hierarchy-level.campaign { margin-left: 0.75rem; }
+            .hierarchy-level.adgroup { margin-left: 1.5rem; }
+            .hierarchy-level.keyword { margin-left: 2.25rem; }
+        }
+        @media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MM5BTNS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <header class="header">
+        <div class="header-inner">
+            <a href="/" class="logo"><img src="/42-logo.png" alt="42 Agency"></a>
+            <nav class="nav">
+                <a href="/assess/">Assess</a>
+                <a href="/b2b-benchmarks/">Benchmarks</a>
+                <a href="/tools/">Tools</a>
+                <a href="/playbooks/" class="active">Playbooks</a>
+                <a href="https://www.42agency.com/contact-us" target="_blank" class="nav-cta">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <a href="/">Home</a><span>/</span><a href="/playbooks/">Playbooks</a><span>/</span><span class="current">Google Ads B2B Structure</span>
+        </div>
+    </nav>
+
+    <main class="main">
+        <section class="hero">
+            <span class="hero-badge">Paid Search</span>
+            <h1>Google Ads Structure for B2B (Non-Brand)</h1>
+            <p class="subtitle">Build a Google Ads account architecture optimized for B2B pipeline generation. Intent-based campaign hierarchy, smart bidding for lead quality, and ad copy that qualifies.</p>
+        </section>
+
+        <div class="stats-row">
+            <div class="stat-item">
+                <div class="stat-value">3 Tiers</div>
+                <div class="stat-label">Intent-Based Campaigns</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">60/30/10</div>
+                <div class="stat-label">Budget Allocation</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">+47%</div>
+                <div class="stat-label">Avg Pipeline Lift</div>
+            </div>
+        </div>
+
+        <!-- Download Banner (shows after unlock) -->
+        <div class="download-banner" id="downloadBanner">
+            <p>You've unlocked the full playbook. Download the PDF version:</p>
+            <a href="/playbooks/google-ads-b2b-structure/google-ads-b2b-structure-playbook.pdf" download class="download-btn">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                Download PDF
+            </a>
+        </div>
+
+        <!-- UNGATED: Sections 1-3 (~30%) -->
+        <div class="content-section">
+            <h2>Why B2B Google Ads Structure Differs from B2C</h2>
+            <p>Most Google Ads advice is written for ecommerce and B2C. Apply those playbooks to B2B and you'll optimize for the wrong metrics:</p>
+            <table>
+                <tr><th>Dimension</th><th>B2C Approach</th><th>B2B Reality</th></tr>
+                <tr><td><strong>Conversion Goal</strong></td><td>Purchase (revenue in 1 session)</td><td>Lead capture (pipeline in 90+ days)</td></tr>
+                <tr><td><strong>Decision Maker</strong></td><td>Individual consumer</td><td>Buying committee (3-7 people)</td></tr>
+                <tr><td><strong>Search Volume</strong></td><td>High volume, transactional</td><td>Low volume, high intent variance</td></tr>
+                <tr><td><strong>Conversion Value</strong></td><td>Fixed (product price)</td><td>Variable (depends on lead quality)</td></tr>
+                <tr><td><strong>Bidding Strategy</strong></td><td>Maximize revenue/ROAS</td><td>Optimize for qualified pipeline</td></tr>
+            </table>
+            <div class="callout">
+                <strong>The Core Problem:</strong> B2C optimizes for immediate revenue. B2B must optimize for <em>future</em> revenue from leads that won't close for months. This changes everything about how you structure campaigns, measure success, and train bidding algorithms.
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Campaign Types for B2B (When to Use Each)</h2>
+            <p>Not all Google Ads campaign types are created equal for B2B lead generation.</p>
+
+            <h3>Search Campaigns (Primary)</h3>
+            <p>Search is the foundation of B2B Google Ads. Buyers actively searching for solutions signal high intent. Structure search campaigns by intent tier (covered in next section).</p>
+            <ul>
+                <li><strong>Use for:</strong> Capturing demand from buyers actively researching solutions</li>
+                <li><strong>Budget allocation:</strong> 70-80% of non-brand spend</li>
+            </ul>
+
+            <h3>Display Campaigns (Retargeting Only)</h3>
+            <p>Display prospecting has terrible ROI for B2B. CPMs are high, audiences are broad, and intent is zero. Use display <em>only</em> for retargeting high-intent site visitors.</p>
+            <ul>
+                <li><strong>Use for:</strong> Retargeting pricing page visitors, demo page abandoners</li>
+                <li><strong>Avoid:</strong> Prospecting, in-market audiences, affinity audiences</li>
+            </ul>
+
+            <h3>YouTube Campaigns (Brand + Retargeting)</h3>
+            <p>YouTube can work for B2B brand awareness with highly targeted audiences. Avoid lead gen objectives - YouTube users aren't ready to convert.</p>
+            <ul>
+                <li><strong>Use for:</strong> Brand awareness to custom audiences (customer match, website visitors)</li>
+                <li><strong>Avoid:</strong> Lead gen campaigns, broad targeting</li>
+            </ul>
+
+            <h3>Performance Max (Use with Caution)</h3>
+            <div class="callout warning">
+                <strong>Warning:</strong> PMAX is a black box that optimizes for conversion volume, not quality. For B2B, this means it will find the cheapest leads - usually the worst fit. Only use PMAX if you have robust offline conversion tracking and can feed back lead quality signals.
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>The Intent-Tiered Account Structure</h2>
+            <p>The foundation of B2B Google Ads success is structuring campaigns by buyer intent, not by product or keyword category.</p>
+
+            <div class="intent-tier high">
+                <h4><span class="badge">60% Budget</span> High-Intent Campaigns</h4>
+                <p>Keywords indicating active buying behavior. These searchers are comparing solutions and ready to talk to sales.</p>
+                <p><strong>Keywords:</strong> [product] demo, [product] pricing, [product] vs [competitor], best [solution] software, [product] alternatives, enterprise [solution]</p>
+            </div>
+
+            <div class="intent-tier mid">
+                <h4><span class="badge">30% Budget</span> Mid-Intent Campaigns</h4>
+                <p>Keywords indicating solution awareness. Searchers know they need a category of product but haven't decided on a vendor.</p>
+                <p><strong>Keywords:</strong> [solution] software, [solution] platform, [solution] tools, [solution] for [industry], how to choose [solution]</p>
+            </div>
+
+            <div class="intent-tier low">
+                <h4><span class="badge">10% Budget</span> Low-Intent Campaigns</h4>
+                <p>Keywords indicating problem awareness. Searchers are researching a problem but haven't connected it to your solution yet. Lower priority - only run if you have budget and strong content.</p>
+                <p><strong>Keywords:</strong> how to [solve problem], [problem] best practices, [problem] examples, why is [problem] happening</p>
+            </div>
+
+            <h3>Visual Hierarchy</h3>
+            <div class="hierarchy-visual">
+                <div class="hierarchy-level account"><span class="hierarchy-icon">A</span> Account: Company Name - Google Ads</div>
+                <div class="hierarchy-level campaign"><span class="hierarchy-icon">C</span> Campaign: Search | High Intent | Product A</div>
+                <div class="hierarchy-level adgroup"><span class="hierarchy-icon">AG</span> Ad Group: Demo Requests</div>
+                <div class="hierarchy-level keyword">Keywords: product a demo, schedule demo product a, product a free trial</div>
+                <div class="hierarchy-level adgroup"><span class="hierarchy-icon">AG</span> Ad Group: Pricing</div>
+                <div class="hierarchy-level keyword">Keywords: product a pricing, product a cost, how much does product a cost</div>
+                <div class="hierarchy-level adgroup"><span class="hierarchy-icon">AG</span> Ad Group: Competitor Comparisons</div>
+                <div class="hierarchy-level keyword">Keywords: product a vs competitor b, competitor b alternative, product a alternative</div>
+            </div>
+        </div>
+
+        <!-- GATED: Remaining sections (~70%) -->
+        <div class="gated-wrapper">
+            <div class="gated-content" id="gatedContent">
+
+                <div class="content-section">
+                    <h2>Campaign Naming Conventions</h2>
+                    <p>Consistent naming is critical for reporting, filtering, and automation. Use this structure:</p>
+                    <div class="framework-box">
+                        <h4>Campaign Name Format</h4>
+                        <code>[Network] | [Intent Tier] | [Product/Use Case] | [Geo] | [Match Type]</code>
+                        <p style="margin-top: 1rem; margin-bottom: 0;"><strong>Examples:</strong></p>
+                        <ul style="margin-top: 0.5rem;">
+                            <li><code>Search | High Intent | CRM Platform | US | Phrase</code></li>
+                            <li><code>Search | Mid Intent | Sales Automation | EMEA | Exact</code></li>
+                            <li><code>Display | Retargeting | Pricing Visitors | Global</code></li>
+                        </ul>
+                    </div>
+                    <h3>Ad Group Naming</h3>
+                    <code>[Theme] - [Specific Topic]</code>
+                    <p style="margin-top: 0.5rem;"><strong>Examples:</strong> <code>Demo Requests - General</code>, <code>Competitor - Salesforce</code>, <code>Pricing - Enterprise</code></p>
+
+                    <div class="callout tip">
+                        <strong>Pro Tip:</strong> Include match type in campaign names when running separate campaigns for different match types. This lets you compare performance in reports without digging into ad group settings.
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Ad Group Structure: SKAGs Are Dead</h2>
+                    <p>Single Keyword Ad Groups (SKAGs) were popular when manual bidding ruled. With smart bidding, SKAGs hurt performance:</p>
+                    <ul>
+                        <li><strong>Fragmented data:</strong> Each ad group has too few conversions for algorithms to learn</li>
+                        <li><strong>Increased management:</strong> Hundreds of ad groups to maintain</li>
+                        <li><strong>Redundant ads:</strong> Same ad copy across dozens of ad groups</li>
+                    </ul>
+
+                    <h3>The Better Approach: Themed Ad Groups</h3>
+                    <p>Group 5-15 semantically related keywords per ad group. Keywords should share:</p>
+                    <ol>
+                        <li><strong>Same user intent</strong> - all searching for the same thing</li>
+                        <li><strong>Same landing page</strong> - all should go to the same destination</li>
+                        <li><strong>Same ad copy</strong> - headlines should apply to all keywords naturally</li>
+                    </ol>
+
+                    <table>
+                        <tr><th>Ad Group</th><th>Keywords Included</th></tr>
+                        <tr><td><strong>CRM for Startups</strong></td><td>startup crm, crm for startups, early stage company crm, small business crm software, crm for growing companies</td></tr>
+                        <tr><td><strong>Salesforce Alternative</strong></td><td>salesforce alternative, salesforce replacement, cheaper than salesforce, salesforce competitor, switch from salesforce</td></tr>
+                        <tr><td><strong>CRM Pricing</strong></td><td>crm pricing, crm cost, how much does crm cost, crm price comparison, affordable crm</td></tr>
+                    </table>
+
+                    <div class="callout">
+                        <strong>Exception:</strong> Use single-keyword ad groups for your 5-10 highest-value competitor terms where you need precise ad copy control (e.g., direct "vs [Competitor]" headlines).
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Keyword Match Type Strategy</h2>
+                    <p>Match type strategy has evolved significantly. Here's what works for B2B in 2024+:</p>
+
+                    <h3>Primary: Phrase Match</h3>
+                    <p>Phrase match provides the best balance of reach and control. It captures relevant variations while maintaining core intent.</p>
+                    <ul>
+                        <li>Use for: 60-70% of keywords</li>
+                        <li>Best for: Solution-category terms, competitor terms, product features</li>
+                    </ul>
+
+                    <h3>Secondary: Exact Match</h3>
+                    <p>Use exact match for your highest-value, highest-converting keywords where you want maximum control.</p>
+                    <ul>
+                        <li>Use for: 20-30% of keywords</li>
+                        <li>Best for: Brand + intent terms, proven high-converters, competitor names</li>
+                    </ul>
+
+                    <h3>Tactical: Broad Match (With Guardrails)</h3>
+                    <p>Broad match can work with smart bidding and strong negatives, but only for campaigns with 50+ conversions/month.</p>
+                    <ul>
+                        <li>Use for: 10-20% of keywords in high-volume campaigns</li>
+                        <li>Requires: Smart bidding, robust negative lists, weekly search term review</li>
+                    </ul>
+
+                    <div class="callout danger">
+                        <strong>Avoid:</strong> Pure broad match in low-volume B2B niches. Without enough conversion data, algorithms will spend budget on irrelevant queries. Better to stick with phrase/exact and accept lower volume.
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Three-Tier Negative Keyword Strategy</h2>
+                    <p>Negative keywords are the most underutilized lever in B2B Google Ads. Structure them in three layers:</p>
+
+                    <h3>Tier 1: Account-Level Negatives</h3>
+                    <p>Block universally irrelevant terms across all campaigns. Create a shared negative keyword list.</p>
+                    <div class="framework-box">
+                        <h4>Standard B2B Account Negatives</h4>
+                        <ul class="checklist">
+                            <li><span class="checklist-icon"></span> Jobs, careers, salary, hiring, resume</li>
+                            <li><span class="checklist-icon"></span> Free, download, template, pdf, tutorial</li>
+                            <li><span class="checklist-icon"></span> Reddit, quora, forum, review site names</li>
+                            <li><span class="checklist-icon"></span> DIY, homemade, personal, hobby</li>
+                            <li><span class="checklist-icon"></span> Student, school, university, course</li>
+                            <li><span class="checklist-icon"></span> Cheap, budget, discount (unless relevant)</li>
+                        </ul>
+                    </div>
+
+                    <h3>Tier 2: Campaign-Level Negatives</h3>
+                    <p>Prevent cannibalization between campaigns. If you have separate high-intent and mid-intent campaigns, add cross-negatives.</p>
+                    <ul>
+                        <li>High-Intent campaign: negative for broad category terms (captured by mid-intent)</li>
+                        <li>Mid-Intent campaign: negative for demo, pricing, vs, alternative (captured by high-intent)</li>
+                        <li>Competitor campaigns: negative for your own brand (captured by brand campaign)</li>
+                    </ul>
+
+                    <h3>Tier 3: Ad Group-Level Negatives</h3>
+                    <p>Isolate keyword themes within campaigns. If you have "CRM pricing" and "CRM demo" ad groups in the same campaign, add cross-negatives so each query goes to the right ad group.</p>
+
+                    <div class="callout tip">
+                        <strong>Weekly Ritual:</strong> Review Search Terms Report every week. For every 10 search terms, you should be adding 2-3 negatives. If you're not, you're not looking hard enough.
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Bidding Strategies for B2B Lead Gen</h2>
+                    <p>Bidding for B2B is fundamentally different because conversion value isn't known at click time.</p>
+
+                    <h3>Phase 1: Build Conversion Data (Maximize Conversions)</h3>
+                    <p>Start new campaigns on Maximize Conversions to gather initial data. Goal: 30+ conversions in 30 days.</p>
+                    <ul>
+                        <li>Accept that CPL will be volatile initially</li>
+                        <li>Focus on getting enough conversions for algorithms to learn</li>
+                        <li>Don't optimize too aggressively - let campaigns breathe</li>
+                    </ul>
+
+                    <h3>Phase 2: Target Efficiency (Target CPA)</h3>
+                    <p>Once you have 30+ conversions, switch to Target CPA. Set tCPA at 80% of your actual target - Google will spend up to 2x target learning, so build in buffer.</p>
+
+                    <h3>Phase 3: Optimize for Quality (Offline Conversion Import)</h3>
+                    <p>The game-changer for B2B: import offline conversion data from your CRM.</p>
+                    <table>
+                        <tr><th>Conversion</th><th>Import Delay</th><th>Suggested Value</th></tr>
+                        <tr><td>MQL (Marketing Qualified)</td><td>1-3 days</td><td>$10</td></tr>
+                        <tr><td>SQL (Sales Qualified)</td><td>7-14 days</td><td>$50</td></tr>
+                        <tr><td>Opportunity Created</td><td>14-30 days</td><td>$200</td></tr>
+                        <tr><td>Closed-Won</td><td>30-90+ days</td><td>Actual deal value</td></tr>
+                    </table>
+
+                    <div class="callout">
+                        <strong>Critical:</strong> Set Google Ads to optimize for SQL or Opportunity, not MQL. MQLs are too early in the funnel - you'll train algorithms to find form-fillers, not buyers.
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Quality Score Optimization for B2B</h2>
+                    <p>Quality Score affects your CPCs and ad rank. Focus on these three components:</p>
+
+                    <h3>1. Expected CTR</h3>
+                    <ul>
+                        <li>Write compelling headlines that include the keyword</li>
+                        <li>Use all available ad extensions (sitelinks, callouts, structured snippets)</li>
+                        <li>Test 3-5 headline variations per ad group</li>
+                    </ul>
+
+                    <h3>2. Ad Relevance</h3>
+                    <ul>
+                        <li>Include primary keyword in Headline 1</li>
+                        <li>Keep ad groups tightly themed (5-15 related keywords)</li>
+                        <li>Write ad copy that directly addresses search intent</li>
+                    </ul>
+
+                    <h3>3. Landing Page Experience</h3>
+                    <ul>
+                        <li>Match landing page headline to ad copy</li>
+                        <li>Page load speed under 3 seconds (especially mobile)</li>
+                        <li>Clear, above-fold CTA that matches the ad promise</li>
+                        <li>Mobile-responsive design</li>
+                    </ul>
+
+                    <div class="callout tip">
+                        <strong>Quick Win:</strong> Use Dynamic Keyword Insertion (DKI) in your landing page headline to automatically match the search query. This improves relevance score and conversion rate.
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>B2B-Specific Ad Copy Best Practices</h2>
+                    <p>B2B ad copy should qualify visitors, not just attract clicks. Higher CPCs from qualified traffic beat cheap clicks from tire-kickers.</p>
+
+                    <h3>Qualification Techniques</h3>
+                    <ul>
+                        <li><strong>Include pricing signals:</strong> "Plans from $500/mo" filters out budget shoppers</li>
+                        <li><strong>Specify company size:</strong> "For Teams of 50+" or "Enterprise-Grade"</li>
+                        <li><strong>Name industries:</strong> "Built for SaaS Companies" or "Healthcare Compliance"</li>
+                        <li><strong>Require commitment:</strong> "Schedule a Strategy Call" vs "Learn More"</li>
+                    </ul>
+
+                    <h3>Headline Frameworks</h3>
+                    <table>
+                        <tr><th>Framework</th><th>Example</th></tr>
+                        <tr><td><strong>Outcome + Qualifier</strong></td><td>Reduce Churn 40% | For B2B SaaS</td></tr>
+                        <tr><td><strong>Pain Point + Solution</strong></td><td>Stop Losing Deals | AI Sales Intelligence</td></tr>
+                        <tr><td><strong>Social Proof + CTA</strong></td><td>500+ Enterprise Clients | Get Demo</td></tr>
+                        <tr><td><strong>Vs Competitor</strong></td><td>Simpler Than Salesforce | See Why</td></tr>
+                    </table>
+
+                    <h3>Description Best Practices</h3>
+                    <ul>
+                        <li>Lead with the primary benefit, not features</li>
+                        <li>Include a specific metric or result if possible</li>
+                        <li>End with a clear CTA that matches the landing page</li>
+                        <li>Use callout extensions for feature lists, not descriptions</li>
+                    </ul>
+                </div>
+
+                <div class="content-section">
+                    <h2>Landing Page Alignment by Intent</h2>
+                    <p>Sending all traffic to your homepage is leaving conversions on the table. Match landing pages to search intent:</p>
+
+                    <table>
+                        <tr><th>Intent Tier</th><th>Keyword Example</th><th>Landing Page</th></tr>
+                        <tr><td><strong>High Intent</strong></td><td>[product] demo</td><td>Demo request page - form above fold, minimal friction</td></tr>
+                        <tr><td><strong>High Intent</strong></td><td>[product] pricing</td><td>Pricing page - transparent pricing, package comparison</td></tr>
+                        <tr><td><strong>High Intent</strong></td><td>[product] vs [competitor]</td><td>Comparison page - feature matrix, switching benefits</td></tr>
+                        <tr><td><strong>Mid Intent</strong></td><td>[category] software</td><td>Solution page - problem/solution narrative, multiple CTAs</td></tr>
+                        <tr><td><strong>Mid Intent</strong></td><td>best [category] tools</td><td>Buying guide - position yourself as leader, soft gate</td></tr>
+                        <tr><td><strong>Low Intent</strong></td><td>how to [solve problem]</td><td>Blog/resource - educational content, newsletter CTA</td></tr>
+                    </table>
+
+                    <div class="callout">
+                        <strong>Message Match Rule:</strong> The landing page headline should echo the ad headline. If someone searches "CRM pricing," your ad says "Transparent CRM Pricing," and your landing page should headline "Simple, Transparent Pricing."
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Common B2B Google Ads Mistakes</h2>
+                    <p>Avoid these pitfalls that waste budget and tank performance:</p>
+
+                    <ul class="checklist">
+                        <li><span class="checklist-icon" style="background: var(--red);">X</span> <strong>Optimizing for MQLs:</strong> Leads are cheap. Pipeline is valuable. Import offline conversions and optimize for SQL or Opportunity.</li>
+                        <li><span class="checklist-icon" style="background: var(--red);">X</span> <strong>Running PMAX without offline data:</strong> Google will find the cheapest leads, not the best. Feed back quality signals or stick to Search.</li>
+                        <li><span class="checklist-icon" style="background: var(--red);">X</span> <strong>Display prospecting:</strong> CPMs are high, intent is zero. Display is for retargeting only in B2B.</li>
+                        <li><span class="checklist-icon" style="background: var(--red);">X</span> <strong>Broad match without guardrails:</strong> Low-volume B2B niches don't have enough data for broad match to work. Stick with phrase/exact.</li>
+                        <li><span class="checklist-icon" style="background: var(--red);">X</span> <strong>Sending traffic to homepage:</strong> Create intent-matched landing pages. Demo keywords go to demo pages.</li>
+                        <li><span class="checklist-icon" style="background: var(--red);">X</span> <strong>Ignoring negative keywords:</strong> Review Search Terms weekly. Every 10 queries should yield 2-3 negatives.</li>
+                        <li><span class="checklist-icon" style="background: var(--red);">X</span> <strong>Over-segmentation (SKAGs):</strong> Smart bidding needs data. Keep 5-15 keywords per ad group.</li>
+                        <li><span class="checklist-icon" style="background: var(--red);">X</span> <strong>Chasing cheap clicks:</strong> Qualifying ad copy costs more per click but delivers better leads. That's the point.</li>
+                    </ul>
+                </div>
+
+                <div class="content-section">
+                    <h2>Implementation Checklist</h2>
+                    <p>Use this checklist to build or audit your B2B Google Ads structure:</p>
+
+                    <h3>Account Setup</h3>
+                    <ul class="checklist">
+                        <li><span class="checklist-icon"></span> Conversion tracking installed (primary + micro-conversions)</li>
+                        <li><span class="checklist-icon"></span> Google Ads linked to CRM for offline conversion import</li>
+                        <li><span class="checklist-icon"></span> Google Analytics 4 connected</li>
+                        <li><span class="checklist-icon"></span> Auto-tagging enabled</li>
+                    </ul>
+
+                    <h3>Campaign Structure</h3>
+                    <ul class="checklist">
+                        <li><span class="checklist-icon"></span> Campaigns segmented by intent tier (High/Mid/Low)</li>
+                        <li><span class="checklist-icon"></span> Consistent naming convention applied</li>
+                        <li><span class="checklist-icon"></span> Budget allocated 60/30/10 by intent</li>
+                        <li><span class="checklist-icon"></span> Separate campaigns by product line if applicable</li>
+                    </ul>
+
+                    <h3>Ad Groups & Keywords</h3>
+                    <ul class="checklist">
+                        <li><span class="checklist-icon"></span> Themed ad groups with 5-15 keywords each</li>
+                        <li><span class="checklist-icon"></span> Phrase match as primary, exact for high-value terms</li>
+                        <li><span class="checklist-icon"></span> Account-level negative keyword list created</li>
+                        <li><span class="checklist-icon"></span> Campaign-level cross-negatives to prevent cannibalization</li>
+                    </ul>
+
+                    <h3>Ads & Landing Pages</h3>
+                    <ul class="checklist">
+                        <li><span class="checklist-icon"></span> 3+ responsive search ads per ad group</li>
+                        <li><span class="checklist-icon"></span> Qualifying language in ad copy</li>
+                        <li><span class="checklist-icon"></span> All extensions configured (sitelinks, callouts, etc.)</li>
+                        <li><span class="checklist-icon"></span> Landing pages matched to keyword intent</li>
+                    </ul>
+
+                    <h3>Optimization Cadence</h3>
+                    <ul class="checklist">
+                        <li><span class="checklist-icon"></span> Weekly: Search terms review, add negatives</li>
+                        <li><span class="checklist-icon"></span> Bi-weekly: Bid adjustments, budget reallocation</li>
+                        <li><span class="checklist-icon"></span> Monthly: Ad copy testing, landing page optimization</li>
+                        <li><span class="checklist-icon"></span> Quarterly: Full account audit, strategy review</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Gate Overlay -->
+            <div class="gate-overlay" id="gateOverlay">
+                <div class="gate-card">
+                    <h3>Unlock the Full Playbook</h3>
+                    <p>Get keyword templates, negative lists, bidding frameworks, and the complete implementation checklist.</p>
+                    <form class="email-form" id="unlockForm" onsubmit="handleUnlock(event)">
+                        <input type="email" name="email" placeholder="you@company.com" required>
+                        <button type="submit">Unlock Full Playbook</button>
+                    </form>
+                    <p class="note">Plus get the PDF version emailed to you</p>
+                </div>
+            </div>
+        </div>
+
+        <section style="margin-top: 3rem;">
+            <h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1rem;">Related Resources</h2>
+            <div class="related-links">
+                <a href="/tools/google-ads-budget-calculator/" class="related-link">Google Ads Budget Calculator</a>
+                <a href="/b2b-benchmarks/google-ads-benchmarks/" class="related-link">Google Ads Benchmarks</a>
+                <a href="/google-ads-audit/" class="related-link">Google Ads Audit Template</a>
+                <a href="/playbooks/lead-scoring-framework/" class="related-link">Lead Scoring Framework</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <!-- Column 1: Brand -->
+                <div class="footer-brand">
+                    <img src="/42-logo.png" alt="42 Agency">
+                    <p>B2B performance marketing for companies that sell to enterprises.</p>
+                    <div class="footer-social">
+                        <a href="https://linkedin.com/company/42agency" target="_blank">LinkedIn</a>
+                        <a href="https://x.com/42aboratory" target="_blank">X</a>
+                        <a href="https://www.youtube.com/@Get42Agency" target="_blank">YouTube</a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Assess -->
+                <div class="footer-col">
+                    <h4>Assess</h4>
+                    <a href="/assessments/hubspot-health/">HubSpot Health Check</a>
+                    <a href="/assess/calculator/">Benchmark Calculator</a>
+                    <a href="/linkedin-audit/">LinkedIn Ads Audit</a>
+                    <a href="/google-ads-audit/">Google Ads Audit</a>
+                    <a href="/meta-audit/">Meta Ads Audit</a>
+                    <a href="/hubspot-audit/">HubSpot Audit</a>
+                </div>
+
+                <!-- Column 3: Benchmarks -->
+                <div class="footer-col">
+                    <h4>Benchmarks</h4>
+                    <a href="/b2b-benchmarks/">All B2B Benchmarks</a>
+                    <a href="/b2b-benchmarks/linkedin-ads-benchmarks/">LinkedIn Ads</a>
+                    <a href="/b2b-benchmarks/google-ads-benchmarks/">Google Ads</a>
+                    <a href="/b2b-benchmarks/linkedin-inmail-benchmarks/">InMail Benchmarks</a>
+                    <a href="/b2b-benchmarks/legal-tech-linkedin-ads/" class="sublink">Legal Tech</a>
+                    <a href="/b2b-benchmarks/healthcare-tech-linkedin-ads/" class="sublink">Healthcare Tech</a>
+                    <a href="/b2b-benchmarks/fintech-linkedin-ads/" class="sublink">FinTech</a>
+                </div>
+
+                <!-- Column 4: AI Tools + Resources -->
+                <div class="footer-col">
+                    <h4>AI Tools</h4>
+                    <a href="https://copilot.42agency.com" target="_blank">LinkedIn Ads Copilot</a>
+                    <a href="https://copilot.42agency.com/linkedin-ads-targeting" target="_blank">Targeting Guide</a>
+                    <h4 style="margin-top: 1.5rem;">Resources</h4>
+                    <a href="/zenabm/">ABM Toolkit</a>
+                    <a href="/mops-funnel/">MOPS Funnel Workbook</a>
+                    <a href="/exitfive/">Claude Code 101</a>
+                </div>
+
+                <!-- Column 5: 42 Agency -->
+                <div class="footer-col">
+                    <h4>42 Agency</h4>
+                    <a href="https://42agency.com" target="_blank">Website</a>
+                    <a href="https://www.42agency.com/contact-us" target="_blank">Contact Us</a>
+                    <a href="https://42agency.com/case-studies" target="_blank">Case Studies</a>
+                    <a href="https://42slash.com" target="_blank">42/ Essays</a>
+                    <a href="https://42agency.com/careers" target="_blank">Careers</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 42 Agency. All rights reserved.</p>
+                <p><a href="https://42agency.com/privacy">Privacy</a> · <a href="https://42agency.com/terms">Terms</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/email-validation.js"></script>
+    <script>
+        // Check if already unlocked
+        if (localStorage.getItem('playbook_unlocked_google-ads-b2b-structure')) {
+            document.getElementById('gatedContent').classList.add('unlocked');
+            document.getElementById('gateOverlay').classList.add('hidden');
+            document.getElementById('downloadBanner').classList.add('visible');
+        }
+
+        async function handleUnlock(e) {
+            e.preventDefault();
+            const email = e.target.email.value;
+            const button = e.target.querySelector('button');
+            button.disabled = true;
+            button.textContent = 'Unlocking...';
+
+            try {
+                const response = await fetch('/api/playbook-download', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        playbook: 'google-ads-b2b-structure'
+                    })
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    // Track event
+                    if (window.dataLayer) window.dataLayer.push({ event: 'playbook_unlocked', playbook: 'google-ads-b2b-structure' });
+
+                    // Save unlock state
+                    localStorage.setItem('playbook_unlocked_google-ads-b2b-structure', 'true');
+
+                    // Reveal content
+                    document.getElementById('gatedContent').classList.add('unlocked');
+                    document.getElementById('gateOverlay').classList.add('hidden');
+                    document.getElementById('downloadBanner').classList.add('visible');
+
+                    // Scroll to content
+                    document.getElementById('gatedContent').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    throw new Error('Failed');
+                }
+            } catch (error) {
+                button.textContent = 'Try Again';
+                button.disabled = false;
+            }
+        }
+    </script>
+    <!-- Vercel Analytics -->
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

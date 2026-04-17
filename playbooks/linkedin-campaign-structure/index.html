@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Ads Campaign Structure for B2B | Campaign Hierarchy Guide | 42 Agency</title>
+    <meta name="description" content="Master LinkedIn Ads campaign structure for B2B. Campaign hierarchy, naming conventions, audience segmentation, budget allocation, and retargeting frameworks.">
+    <link rel="canonical" href="https://intel.42agency.com/playbooks/linkedin-campaign-structure/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MM5BTNS');</script>
+    <!-- HubSpot Tracking -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/44888286.js"></script>
+
+    <!-- FAQPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the best LinkedIn Ads campaign structure for B2B?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The optimal B2B LinkedIn Ads structure uses a three-tier hierarchy: Campaign Groups for objectives (Awareness, Consideration, Conversion), Campaigns for audience segments (by persona, industry, or funnel stage), and Ads for creative variations. This structure enables precise budget control, clear performance attribution, and efficient A/B testing while maintaining organizational clarity."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How should I name my LinkedIn ad campaigns?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use a consistent naming convention with pipe-separated segments: [Objective]|[Audience]|[Geography]|[Ad Format]|[Date]. Example: CONV|CFO-FinServ|NA|SingleImage|2026Q2. This enables quick filtering, easy reporting in Campaign Manager, and seamless integration with analytics tools. Always include the target persona, industry vertical, and campaign launch date."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I segment audiences in LinkedIn Ads?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Segment LinkedIn audiences across three dimensions: By Persona (job function + seniority), By Funnel Stage (cold prospects, website visitors, engaged leads, customers), and By Industry (vertical-specific messaging). Create separate campaigns for each major segment to optimize messaging, bidding, and budget allocation. Minimum viable audience size is 50,000 for Sponsored Content, 15,000 for Message Ads."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What percentage of budget should go to retargeting on LinkedIn?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Allocate 20-30% of LinkedIn budget to retargeting campaigns. Structure retargeting in tiers: Hot (website visitors who viewed pricing/demo pages) at 40% of retargeting budget, Warm (all website visitors, video viewers 75%+) at 35%, and Nurture (email list, past converters) at 25%. Retargeting typically delivers 3-5x higher conversion rates than cold prospecting."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I use Lead Gen Forms or Website Conversions on LinkedIn?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use Lead Gen Forms for: high-friction offers (demos, consultations), ABM campaigns, when you need phone numbers, or when landing pages underperform. Use Website Conversions for: gated content with robust landing pages, multi-step qualification, pixel-based retargeting, or when CRM integration is challenging. Lead Gen Forms average 2-5x higher conversion rates but may yield lower quality leads. Test both and optimize based on SQL rate, not just CPL."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- HowTo Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Structure LinkedIn Ads Campaigns for B2B",
+      "description": "A comprehensive framework for organizing LinkedIn advertising campaigns to maximize B2B lead generation and pipeline impact.",
+      "image": "https://intel.42agency.com/images/linkedin-campaign-structure.png",
+      "totalTime": "P1D",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "USD",
+        "value": "0"
+      },
+      "tool": [
+        {
+          "@type": "HowToTool",
+          "name": "LinkedIn Campaign Manager"
+        },
+        {
+          "@type": "HowToTool",
+          "name": "LinkedIn Insight Tag"
+        },
+        {
+          "@type": "HowToTool",
+          "name": "CRM (HubSpot, Salesforce)"
+        }
+      ],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Define Campaign Group Structure by Objective",
+          "text": "Create Campaign Groups aligned to marketing objectives: AWARENESS (brand visibility, thought leadership), CONSIDERATION (content engagement, video views), CONVERSION (lead gen, demo requests). Each group should have its own budget allocation and KPIs.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Allocate 60-70% budget to Conversion, 20-30% to Consideration, 10-20% to Awareness"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Name groups with objective prefix: AWR_, CON_, CVR_"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Build Campaign-Level Audience Segmentation",
+          "text": "Create separate campaigns for each distinct audience segment. Segment by Persona (Decision Makers vs Influencers vs End Users), by Industry (if messaging differs), and by Funnel Stage (Cold vs Retargeting).",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Ensure each campaign targets minimum 50,000 members for Sponsored Content"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Use audience exclusions to prevent overlap between campaigns"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Implement Naming Conventions",
+          "text": "Apply consistent naming across all campaigns: [Objective]|[Persona]|[Industry]|[Geo]|[Format]|[Quarter]. Example: CVR|VP-Mktg|SaaS|NA|Carousel|2026Q2. Document conventions in a shared reference.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Use abbreviations consistently: AWR (Awareness), CON (Consideration), CVR (Conversion)"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Include date/quarter to track campaign age and enable historical analysis"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Set Up Retargeting Campaign Layers",
+          "text": "Structure retargeting in three tiers: HOT (pricing/demo page visitors, 7-30 day window), WARM (all website visitors, video completers, 30-90 days), NURTURE (email subscribers, past converters, 90-180 days).",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Use exclusion audiences to prevent showing retargeting ads to current customers"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Allocate 40% of retargeting budget to HOT tier for highest conversion probability"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "Configure A/B Testing Structure",
+          "text": "Create parallel campaigns or ads within campaigns for systematic testing. Test one variable at a time: creative, copy, audience, or offer. Run tests for minimum 7 days or 1,000 impressions before concluding.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Use Campaign Manager A/B test feature for automated traffic splitting"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Document all test hypotheses and results in a testing log"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 6,
+          "name": "Allocate Budget Across Campaign Structure",
+          "text": "Distribute budget based on funnel stage and historical performance. Start with: Prospecting 70%, Retargeting 30%. Within prospecting: Primary persona 60%, Secondary personas 40%. Review and rebalance weekly based on CPL and conversion rates.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Set daily budgets at campaign level for precise control"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Use Campaign Group budgets only when you want LinkedIn to auto-optimize across campaigns"
+            }
+          ]
+        }
+      ],
+      "author": {
+        "@type": "Organization",
+        "name": "42 Agency",
+        "url": "https://www.42agency.com"
+      }
+    }
+    </script>
+
+    <style>
+        :root { --accent: #DFFE68; --accent-hover: #C8E85C; --black: #1a1a1a; --gray: #4a4a4a; --muted: #6b6b6b; --light-gray: #f5f5f5; --green: #10B981; --blue: #3B82F6; --orange: #F59E0B; --linkedin: #0A66C2; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--light-gray); color: var(--black); line-height: 1.7; }
+
+        /* Header */
+        .header { border-bottom: 2px solid var(--black); padding: 0.75rem 1.5rem; background: white; position: sticky; top: 0; z-index: 50; }
+        .header-inner { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 28px; }
+        .nav { display: flex; align-items: center; gap: 0.25rem; }
+        .nav a { padding: 0.5rem 1rem; color: var(--gray); text-decoration: none; font-size: 0.9rem; font-weight: 500; border-radius: 6px; transition: all 0.15s; }
+        .nav a:hover { color: var(--black); background: var(--light-gray); }
+        .nav a.active { background: var(--accent); color: var(--black); font-weight: 600; }
+        .nav-cta { background: var(--black); color: white !important; font-weight: 600; }
+        @media (max-width: 768px) { .nav { display: none; } }
+
+        /* Breadcrumbs */
+        .breadcrumbs { background: white; border-bottom: 2px solid var(--black); padding: 0.75rem 1.5rem; }
+        .breadcrumbs-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; }
+        .breadcrumbs a { color: var(--gray); text-decoration: none; }
+        .breadcrumbs a:hover { color: var(--black); }
+        .breadcrumbs .current { color: var(--black); font-weight: 600; }
+
+        .main { max-width: 800px; margin: 0 auto; padding: 3rem 2rem; }
+
+        /* Hero */
+        .hero { text-align: center; margin-bottom: 3rem; }
+        .hero-badge { display: inline-block; background: var(--linkedin); color: white; padding: 0.4rem 1rem; font-size: 0.75rem; font-weight: 700; border-radius: 20px; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 1rem; }
+        .subtitle { color: var(--gray); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        /* Stats */
+        .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 2rem 0 3rem; }
+        .stat-item { text-align: center; padding: 1rem; background: white; border: 2px solid var(--black); border-radius: 12px; box-shadow: 3px 3px 0 var(--black); }
+        .stat-value { font-size: 1.5rem; font-weight: 800; color: var(--linkedin); }
+        .stat-label { font-size: 0.7rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.5px; }
+        @media (max-width: 768px) { .stats-row { grid-template-columns: repeat(2, 1fr); } }
+
+        /* Content Sections */
+        .content-section { background: white; border: 2px solid var(--black); border-radius: 16px; padding: 2rem; box-shadow: 4px 4px 0 var(--black); margin-bottom: 2rem; }
+        .content-section h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 3px solid var(--accent); }
+        .content-section h3 { font-size: 1.1rem; font-weight: 700; margin: 1.5rem 0 0.75rem; color: var(--black); }
+        .content-section h4 { font-size: 0.95rem; font-weight: 700; margin: 1.25rem 0 0.5rem; color: var(--gray); }
+        .content-section p { margin-bottom: 1rem; color: #333; }
+        .content-section ul, .content-section ol { margin: 1rem 0 1rem 1.5rem; color: #333; }
+        .content-section li { margin-bottom: 0.5rem; }
+        .content-section table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+        .content-section th, .content-section td { padding: 0.6rem 0.75rem; text-align: left; border: 1px solid #ddd; }
+        .content-section th { background: var(--light-gray); font-weight: 700; }
+        .content-section tr:nth-child(even) { background: #fafafa; }
+        .content-section code { background: var(--light-gray); padding: 0.2rem 0.4rem; border-radius: 4px; font-family: 'Monaco', 'Consolas', monospace; font-size: 0.85rem; }
+
+        .callout { background: var(--accent); border-left: 4px solid var(--black); padding: 1rem 1.25rem; margin: 1.25rem 0; border-radius: 0 8px 8px 0; }
+        .callout strong { display: block; margin-bottom: 0.25rem; }
+
+        .callout-blue { background: rgba(59, 130, 246, 0.1); border-left: 4px solid var(--blue); }
+        .callout-orange { background: rgba(245, 158, 11, 0.1); border-left: 4px solid var(--orange); }
+        .callout-green { background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--green); }
+
+        /* Diagram */
+        .diagram { background: var(--light-gray); border: 2px solid var(--black); border-radius: 12px; padding: 2rem; margin: 1.5rem 0; }
+        .diagram-title { font-weight: 700; font-size: 0.9rem; text-align: center; margin-bottom: 1.5rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .hierarchy-visual { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+        .hierarchy-level { display: flex; flex-direction: column; align-items: center; width: 100%; }
+        .hierarchy-box { background: white; border: 2px solid var(--black); border-radius: 8px; padding: 0.75rem 1.5rem; font-weight: 700; text-align: center; box-shadow: 3px 3px 0 var(--black); }
+        .hierarchy-box.level-1 { background: var(--linkedin); color: white; min-width: 200px; }
+        .hierarchy-box.level-2 { background: var(--accent); min-width: 180px; }
+        .hierarchy-box.level-3 { background: white; min-width: 160px; }
+        .hierarchy-connector { width: 2px; height: 20px; background: var(--black); }
+        .hierarchy-branch { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+        .hierarchy-branch-connector { display: flex; align-items: flex-start; justify-content: center; }
+        .hierarchy-branch-line { width: 100px; height: 2px; background: var(--black); margin-top: 10px; }
+        .hierarchy-label { font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem; }
+
+        /* Naming Convention Example */
+        .naming-example { background: var(--black); color: white; border-radius: 8px; padding: 1rem 1.5rem; margin: 1rem 0; font-family: 'Monaco', 'Consolas', monospace; font-size: 0.9rem; overflow-x: auto; }
+        .naming-part { color: var(--accent); }
+        .naming-separator { color: #666; }
+
+        /* Checklist */
+        .checklist { list-style: none; margin-left: 0 !important; }
+        .checklist li { position: relative; padding-left: 2rem; margin-bottom: 0.75rem; }
+        .checklist li::before { content: ""; position: absolute; left: 0; top: 0.4rem; width: 18px; height: 18px; border: 2px solid var(--black); border-radius: 4px; background: white; }
+        .checklist li.checked::before { background: var(--green); }
+        .checklist li.checked::after { content: ""; position: absolute; left: 4px; top: 6px; width: 10px; height: 6px; border-left: 2px solid white; border-bottom: 2px solid white; transform: rotate(-45deg); }
+
+        /* Gated Content */
+        .gated-wrapper { position: relative; }
+        .gated-content { filter: blur(5px); pointer-events: none; user-select: none; }
+        .gated-content.unlocked { filter: none; pointer-events: auto; user-select: auto; }
+
+        .gate-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.95) 15%, rgba(255,255,255,1) 30%); display: flex; align-items: flex-start; justify-content: center; padding-top: 4rem; }
+        .gate-overlay.hidden { display: none; }
+
+        .gate-card { background: var(--accent); border: 2px solid var(--black); border-radius: 16px; padding: 2.5rem; box-shadow: 6px 6px 0 var(--black); text-align: center; max-width: 450px; margin: 0 1rem; }
+        .gate-card h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .gate-card p { color: var(--gray); margin-bottom: 1.5rem; }
+        .email-form { display: flex; flex-direction: column; gap: 0.75rem; }
+        .email-form input { padding: 0.875rem; border: 2px solid var(--black); border-radius: 8px; font-size: 1rem; text-align: center; }
+        .email-form button { padding: 0.875rem 1.5rem; background: var(--black); color: white; border: none; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: background 0.2s; }
+        .email-form button:hover { background: #333; }
+        .gate-card .note { font-size: 0.8rem; color: #666; margin-top: 1rem; }
+
+        /* Download Banner */
+        .download-banner { display: none; background: var(--accent); border: 2px solid var(--black); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; text-align: center; box-shadow: 4px 4px 0 var(--black); }
+        .download-banner.visible { display: block; }
+        .download-banner p { margin-bottom: 1rem; font-weight: 600; }
+        .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--black); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; transition: background 0.2s; }
+        .download-btn:hover { background: #333; }
+
+        /* Related */
+        .related-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2rem; }
+        .related-link { display: block; padding: 1rem; background: white; border: 2px solid var(--black); border-radius: 8px; text-decoration: none; color: var(--black); font-weight: 600; box-shadow: 3px 3px 0 var(--black); transition: all 0.2s; }
+        .related-link:hover { background: var(--accent); transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--black); }
+        @media (max-width: 768px) { .related-links { grid-template-columns: 1fr; } }
+
+        /* Footer */
+        .footer { background: var(--black); padding: 4rem 1.5rem 2rem; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr repeat(4, 1fr); gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid #333; }
+        .footer-brand img { height: 24px; filter: brightness(0) invert(1); margin-bottom: 1rem; }
+        .footer-brand p { font-size: 0.85rem; color: #999; line-height: 1.6; }
+        .footer-social { display: flex; gap: 1rem; margin-top: 1rem; }
+        .footer-social a { color: #999; text-decoration: none; font-size: 0.85rem; }
+        .footer-social a:hover { color: white; }
+        .footer-col h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1rem; color: var(--accent); }
+        .footer-col a { display: block; color: #999; text-decoration: none; font-size: 0.85rem; margin-bottom: 0.6rem; }
+        .footer-col a:hover { color: white; }
+        .footer-col .sublink { padding-left: 0.75rem; font-size: 0.8rem; color: #666; }
+        .footer-bottom { padding-top: 2rem; display: flex; justify-content: space-between; font-size: 0.8rem; color: #666; }
+        .footer-bottom a { color: #666; text-decoration: none; }
+        .footer-bottom a:hover { color: #999; }
+        @media (max-width: 900px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; } }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .content-section { padding: 1.5rem; }
+            .hierarchy-branch { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <!-- GTM noscript -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MM5BTNS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="/" class="logo"><img src="/42-logo.png" alt="42 Agency"></a>
+            <nav class="nav">
+                <a href="/assess/">Assess</a>
+                <a href="/b2b-benchmarks/">Benchmarks</a>
+                <a href="/tools/">Tools</a>
+                <a href="/playbooks/" class="active">Playbooks</a>
+                <a href="https://www.42agency.com/contact-us" target="_blank" class="nav-cta">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <a href="/">Home</a><span>/</span><a href="/playbooks/">Playbooks</a><span>/</span><span class="current">LinkedIn Campaign Structure</span>
+        </div>
+    </nav>
+
+    <main class="main">
+        <!-- Hero -->
+        <section class="hero">
+            <span class="hero-badge">LinkedIn Ads</span>
+            <h1>LinkedIn Ads Campaign Structure for B2B</h1>
+            <p class="subtitle">Build a scalable, measurable LinkedIn Ads account structure. Campaign hierarchy, naming conventions, audience segmentation, and budget allocation frameworks.</p>
+        </section>
+
+        <!-- Stats -->
+        <div class="stats-row">
+            <div class="stat-item">
+                <div class="stat-value">3 Tiers</div>
+                <div class="stat-label">Campaign Hierarchy</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">70/30</div>
+                <div class="stat-label">Prospect vs Retarget</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">50K+</div>
+                <div class="stat-label">Min Audience Size</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">3-5x</div>
+                <div class="stat-label">Retargeting Lift</div>
+            </div>
+        </div>
+
+        <!-- Download Banner (shows after unlock) -->
+        <div class="download-banner" id="downloadBanner">
+            <p>Full playbook unlocked. Download the PDF version:</p>
+            <a href="/playbooks/linkedin-campaign-structure/linkedin-campaign-structure-playbook.pdf" download class="download-btn">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                Download PDF
+            </a>
+        </div>
+
+        <!-- UNGATED: Section 1-3 (~30%) -->
+
+        <!-- Section 1: Campaign Hierarchy -->
+        <div class="content-section">
+            <h2>Campaign Hierarchy: The Foundation</h2>
+            <p>LinkedIn Campaign Manager uses a three-tier hierarchy. Understanding how to organize each level determines whether your account scales cleanly or becomes an unmanageable mess.</p>
+
+            <div class="diagram">
+                <div class="diagram-title">LinkedIn Campaign Manager Hierarchy</div>
+                <div class="hierarchy-visual">
+                    <div class="hierarchy-level">
+                        <div class="hierarchy-box level-1">Campaign Group</div>
+                        <div class="hierarchy-label">Budget control, objective grouping</div>
+                    </div>
+                    <div class="hierarchy-connector"></div>
+                    <div class="hierarchy-branch">
+                        <div class="hierarchy-level">
+                            <div class="hierarchy-box level-2">Campaign</div>
+                            <div class="hierarchy-label">Audience, bidding, schedule</div>
+                        </div>
+                        <div class="hierarchy-level">
+                            <div class="hierarchy-box level-2">Campaign</div>
+                            <div class="hierarchy-label">Audience, bidding, schedule</div>
+                        </div>
+                        <div class="hierarchy-level">
+                            <div class="hierarchy-box level-2">Campaign</div>
+                            <div class="hierarchy-label">Audience, bidding, schedule</div>
+                        </div>
+                    </div>
+                    <div class="hierarchy-connector"></div>
+                    <div class="hierarchy-branch">
+                        <div class="hierarchy-level">
+                            <div class="hierarchy-box level-3">Ad 1</div>
+                        </div>
+                        <div class="hierarchy-level">
+                            <div class="hierarchy-box level-3">Ad 2</div>
+                        </div>
+                        <div class="hierarchy-level">
+                            <div class="hierarchy-box level-3">Ad 3</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Campaign Groups: Organize by Objective</h3>
+            <p>Campaign Groups are your top-level containers. Use them to group campaigns by marketing objective:</p>
+            <table>
+                <tr><th>Campaign Group</th><th>Objective</th><th>Budget %</th><th>Primary KPI</th></tr>
+                <tr><td><strong>CVR_LeadGen</strong></td><td>Lead Generation</td><td>50-60%</td><td>CPL, Lead Volume</td></tr>
+                <tr><td><strong>CVR_WebConv</strong></td><td>Website Conversions</td><td>10-20%</td><td>CPA, Conversion Rate</td></tr>
+                <tr><td><strong>CON_Engagement</strong></td><td>Content Engagement</td><td>15-20%</td><td>Engagement Rate, CTR</td></tr>
+                <tr><td><strong>AWR_Brand</strong></td><td>Brand Awareness</td><td>10-15%</td><td>Reach, Frequency</td></tr>
+            </table>
+
+            <div class="callout">
+                <strong>Pro Tip:</strong> Set budgets at the Campaign Group level only when you want LinkedIn to auto-optimize spend across campaigns within the group. For tighter control, set budgets at the Campaign level.
+            </div>
+        </div>
+
+        <!-- Section 2: Naming Conventions -->
+        <div class="content-section">
+            <h2>Naming Conventions That Scale</h2>
+            <p>A consistent naming convention is non-negotiable for accounts with more than 10 campaigns. Without it, reporting becomes guesswork and optimization becomes impossible.</p>
+
+            <h3>The 42 Naming Framework</h3>
+            <p>Use pipe-separated segments in this order:</p>
+
+            <div class="naming-example">
+                <span class="naming-part">[Objective]</span><span class="naming-separator">|</span><span class="naming-part">[Persona]</span><span class="naming-separator">|</span><span class="naming-part">[Industry]</span><span class="naming-separator">|</span><span class="naming-part">[Geo]</span><span class="naming-separator">|</span><span class="naming-part">[Format]</span><span class="naming-separator">|</span><span class="naming-part">[Quarter]</span>
+            </div>
+
+            <h4>Example Campaign Names:</h4>
+            <div class="naming-example">
+                CVR|VP-Mktg|SaaS|NA|SingleImage|2026Q2<br>
+                CVR|CFO|FinServ|EMEA|Carousel|2026Q2<br>
+                CON|AllDecMakers|Tech|Global|Video|2026Q2<br>
+                RTG|WebVisitors|All|NA|SingleImage|2026Q2
+            </div>
+
+            <h3>Segment Abbreviations</h3>
+            <table>
+                <tr><th>Segment</th><th>Abbreviations</th></tr>
+                <tr><td><strong>Objective</strong></td><td>CVR (Conversion), CON (Consideration), AWR (Awareness), RTG (Retargeting)</td></tr>
+                <tr><td><strong>Persona</strong></td><td>VP-Mktg, CMO, CFO, CTO, Dir-Ops, Mgr-IT, etc.</td></tr>
+                <tr><td><strong>Industry</strong></td><td>SaaS, FinServ, Healthcare, Manufacturing, Tech, All</td></tr>
+                <tr><td><strong>Geography</strong></td><td>NA, EMEA, APAC, LATAM, Global, US, UK, etc.</td></tr>
+                <tr><td><strong>Format</strong></td><td>SingleImage, Carousel, Video, Document, Message, Text</td></tr>
+            </table>
+
+            <div class="callout callout-blue">
+                <strong>Why Pipes?</strong> Pipes (|) are uncommon in campaign names, making them perfect delimiters for Excel/Sheets text-to-columns splitting. Avoid hyphens or underscores for segment separation.
+            </div>
+        </div>
+
+        <!-- Section 3: Audience Segmentation Overview -->
+        <div class="content-section">
+            <h2>Audience Segmentation Strategy</h2>
+            <p>The most common LinkedIn Ads mistake: cramming too many personas into one campaign. This destroys your ability to optimize messaging, bidding, and budget by audience segment.</p>
+
+            <h3>The Three Segmentation Dimensions</h3>
+            <table>
+                <tr><th>Dimension</th><th>Segmentation Approach</th><th>When to Use</th></tr>
+                <tr><td><strong>By Persona</strong></td><td>Separate campaigns for each job function + seniority combo</td><td>Always. This is baseline segmentation.</td></tr>
+                <tr><td><strong>By Funnel Stage</strong></td><td>Cold prospecting vs website retargeting vs customer nurture</td><td>Always. Different intent = different messaging.</td></tr>
+                <tr><td><strong>By Industry</strong></td><td>Vertical-specific campaigns when messaging differs</td><td>When you have industry-specific value props or case studies.</td></tr>
+            </table>
+
+            <div class="callout callout-orange">
+                <strong>Minimum Audience Size:</strong> LinkedIn requires 300 members to run a campaign, but recommends 50,000+ for Sponsored Content and 15,000+ for Message Ads. Below these thresholds, you will struggle to get meaningful delivery and data.
+            </div>
+        </div>
+
+        <!-- GATED: Remaining sections (~70%) -->
+        <div class="gated-wrapper">
+            <div class="gated-content" id="gatedContent">
+
+                <!-- Section 4: Detailed Persona Segmentation -->
+                <div class="content-section">
+                    <h2>Persona Segmentation Deep Dive</h2>
+                    <p>Build campaigns around job function + seniority combinations. This enables persona-specific messaging and bid optimization.</p>
+
+                    <h3>Example Persona Matrix</h3>
+                    <table>
+                        <tr><th>Seniority</th><th>Marketing</th><th>Sales</th><th>IT/Tech</th><th>Finance</th></tr>
+                        <tr><td><strong>C-Level</strong></td><td>CMO</td><td>CRO</td><td>CTO/CIO</td><td>CFO</td></tr>
+                        <tr><td><strong>VP</strong></td><td>VP Marketing</td><td>VP Sales</td><td>VP Engineering</td><td>VP Finance</td></tr>
+                        <tr><td><strong>Director</strong></td><td>Dir Demand Gen</td><td>Dir Sales Ops</td><td>Dir IT</td><td>Dir FP&A</td></tr>
+                        <tr><td><strong>Manager</strong></td><td>Marketing Mgr</td><td>Sales Mgr</td><td>IT Manager</td><td>Accounting Mgr</td></tr>
+                    </table>
+
+                    <h3>Persona Campaign Structure</h3>
+                    <p>For a typical B2B SaaS company targeting marketing leaders:</p>
+                    <ul>
+                        <li><strong>Primary Campaign:</strong> VP/Dir Marketing - Your core ICP, highest budget allocation</li>
+                        <li><strong>Secondary Campaign:</strong> CMO - Decision makers, typically lower volume but high value</li>
+                        <li><strong>Influencer Campaign:</strong> Marketing Managers - May not sign checks but influence decisions</li>
+                        <li><strong>Adjacent Campaign:</strong> Sales Leaders - If your product bridges marketing + sales</li>
+                    </ul>
+
+                    <div class="callout">
+                        <strong>Exclusion Strategy:</strong> Use Member Traits exclusions to prevent overlap. Exclude existing customers, current opportunities, and employees from all prospecting campaigns.
+                    </div>
+                </div>
+
+                <!-- Section 5: Funnel Stage Segmentation -->
+                <div class="content-section">
+                    <h2>Funnel Stage Segmentation</h2>
+                    <p>Separate campaigns by where prospects are in the buying journey. Cold prospects need awareness; warm leads need conversion offers.</p>
+
+                    <h3>The Four Funnel Stages</h3>
+                    <table>
+                        <tr><th>Stage</th><th>Audience Definition</th><th>Campaign Focus</th><th>Offer Type</th></tr>
+                        <tr><td><strong>Cold</strong></td><td>Net-new prospects matching ICP</td><td>Education, thought leadership</td><td>Guides, reports, webinars</td></tr>
+                        <tr><td><strong>Warm</strong></td><td>Website visitors, content engagers</td><td>Solution positioning</td><td>Case studies, product tours</td></tr>
+                        <tr><td><strong>Hot</strong></td><td>High-intent page visitors, form abandoners</td><td>Conversion push</td><td>Demo, trial, consultation</td></tr>
+                        <tr><td><strong>Customer</strong></td><td>Existing customers</td><td>Expansion, advocacy</td><td>Upsell, events, referral</td></tr>
+                    </table>
+
+                    <h3>Audience Building for Each Stage</h3>
+                    <h4>Cold Audiences (Prospecting)</h4>
+                    <ul>
+                        <li>LinkedIn targeting: Job function + Seniority + Company size + Industry</li>
+                        <li>Exclude: Website visitors (all), Customer list, Current opportunities</li>
+                    </ul>
+
+                    <h4>Warm Audiences (Retargeting Tier 2)</h4>
+                    <ul>
+                        <li>Website visitors: All pages, 30-90 day window</li>
+                        <li>Video viewers: 50%+ completion</li>
+                        <li>Lead Gen Form openers (non-submitters)</li>
+                        <li>Exclude: Hot audiences, customers</li>
+                    </ul>
+
+                    <h4>Hot Audiences (Retargeting Tier 1)</h4>
+                    <ul>
+                        <li>Pricing page visitors: 7-30 day window</li>
+                        <li>Demo/contact page visitors: 7-30 day window</li>
+                        <li>Video viewers: 75%+ completion</li>
+                        <li>Lead Gen Form submitters (unconverted)</li>
+                    </ul>
+                </div>
+
+                <!-- Section 6: Industry Segmentation -->
+                <div class="content-section">
+                    <h2>Industry Segmentation</h2>
+                    <p>Create industry-specific campaigns when you have vertical-specific messaging, case studies, or compliance considerations.</p>
+
+                    <h3>When to Segment by Industry</h3>
+                    <ul class="checklist">
+                        <li class="checked">You have industry-specific case studies or social proof</li>
+                        <li class="checked">Your value proposition differs significantly by vertical</li>
+                        <li class="checked">Industry has unique compliance/regulatory considerations</li>
+                        <li class="checked">CPCs vary significantly between industries</li>
+                        <li>You just want to test general messaging first</li>
+                    </ul>
+
+                    <h3>Example Industry Structure</h3>
+                    <p>For a B2B fintech company:</p>
+                    <table>
+                        <tr><th>Campaign</th><th>Industry Targeting</th><th>Messaging Angle</th></tr>
+                        <tr><td>CVR|CFO|Banking|NA</td><td>Banking, Investment Banking</td><td>Regulatory compliance, risk reduction</td></tr>
+                        <tr><td>CVR|CFO|Insurance|NA</td><td>Insurance</td><td>Claims processing, fraud detection</td></tr>
+                        <tr><td>CVR|CFO|FinServ|NA</td><td>Financial Services (broad)</td><td>General efficiency, cost savings</td></tr>
+                    </table>
+                </div>
+
+                <!-- Section 7: Budget Allocation -->
+                <div class="content-section">
+                    <h2>Budget Allocation Framework</h2>
+                    <p>How you distribute budget across campaigns determines overall account performance. Start with these frameworks and adjust based on performance data.</p>
+
+                    <h3>Budget Split by Funnel Stage</h3>
+                    <table>
+                        <tr><th>Stage</th><th>% of Budget</th><th>Rationale</th></tr>
+                        <tr><td><strong>Prospecting (Cold)</strong></td><td>65-75%</td><td>Primary pipeline source, highest volume</td></tr>
+                        <tr><td><strong>Retargeting (Warm/Hot)</strong></td><td>20-30%</td><td>Higher conversion rates, lower CPL</td></tr>
+                        <tr><td><strong>Customer Nurture</strong></td><td>5-10%</td><td>Expansion, retention, advocacy</td></tr>
+                    </table>
+
+                    <h3>Within Prospecting: Persona Allocation</h3>
+                    <table>
+                        <tr><th>Persona Tier</th><th>% of Prospecting Budget</th><th>Example</th></tr>
+                        <tr><td><strong>Primary ICP</strong></td><td>50-60%</td><td>VP Marketing at 200-2000 employee SaaS</td></tr>
+                        <tr><td><strong>Secondary ICP</strong></td><td>25-35%</td><td>CMO at 200-2000 employee SaaS</td></tr>
+                        <tr><td><strong>Test/Expansion</strong></td><td>10-20%</td><td>New personas, industries, geos</td></tr>
+                    </table>
+
+                    <h3>Within Retargeting: Tier Allocation</h3>
+                    <table>
+                        <tr><th>Retargeting Tier</th><th>% of Retargeting Budget</th><th>Expected CPL</th></tr>
+                        <tr><td><strong>Hot (High-intent pages)</strong></td><td>40%</td><td>2-3x lower than prospecting</td></tr>
+                        <tr><td><strong>Warm (All visitors)</strong></td><td>35%</td><td>1.5-2x lower than prospecting</td></tr>
+                        <tr><td><strong>Nurture (Email list)</strong></td><td>25%</td><td>Varies by list quality</td></tr>
+                    </table>
+
+                    <div class="callout callout-green">
+                        <strong>Budget Optimization Cadence:</strong> Review campaign-level spend weekly. Shift budget from underperforming campaigns (high CPL, low volume) to winners. Rebalance Campaign Group allocations monthly.
+                    </div>
+                </div>
+
+                <!-- Section 8: Objective Selection -->
+                <div class="content-section">
+                    <h2>Objective Selection Guide</h2>
+                    <p>LinkedIn offers multiple campaign objectives. Choosing wrong means LinkedIn optimizes for the wrong outcome.</p>
+
+                    <h3>B2B Objective Decision Tree</h3>
+                    <table>
+                        <tr><th>Your Goal</th><th>LinkedIn Objective</th><th>Billing</th><th>Best For</th></tr>
+                        <tr><td>Capture leads in LinkedIn</td><td><strong>Lead Generation</strong></td><td>Per impression or per send</td><td>Demo requests, gated content, high-friction offers</td></tr>
+                        <tr><td>Drive conversions on website</td><td><strong>Website Conversions</strong></td><td>Per click or impression</td><td>Self-serve signups, landing page forms</td></tr>
+                        <tr><td>Drive website traffic</td><td><strong>Website Visits</strong></td><td>Per click</td><td>Blog content, ungated resources</td></tr>
+                        <tr><td>Build awareness</td><td><strong>Brand Awareness</strong></td><td>Per impression</td><td>New market entry, brand lift campaigns</td></tr>
+                        <tr><td>Engage with content</td><td><strong>Engagement</strong></td><td>Per engagement</td><td>Thought leadership, community building</td></tr>
+                        <tr><td>Get video views</td><td><strong>Video Views</strong></td><td>Per view (2+ seconds)</td><td>Product demos, brand videos</td></tr>
+                    </table>
+
+                    <h3>Lead Gen Forms vs Website Conversions</h3>
+                    <p>The most common B2B decision: should you use LinkedIn's native Lead Gen Forms or drive to your website?</p>
+
+                    <h4>Use Lead Gen Forms When:</h4>
+                    <ul>
+                        <li>Offer is high-friction (demo, consultation, pricing request)</li>
+                        <li>You need phone numbers (pre-filled from LinkedIn)</li>
+                        <li>Running ABM campaigns with small audiences</li>
+                        <li>Your landing pages underperform (CVR below 5%)</li>
+                        <li>You want to minimize drop-off from mobile users</li>
+                    </ul>
+
+                    <h4>Use Website Conversions When:</h4>
+                    <ul>
+                        <li>You have high-converting landing pages (CVR above 10%)</li>
+                        <li>Multi-step qualification is needed</li>
+                        <li>You want pixel-based retargeting audiences</li>
+                        <li>CRM integration with Lead Gen Forms is problematic</li>
+                        <li>You need custom form fields beyond LinkedIn's options</li>
+                    </ul>
+
+                    <div class="callout callout-orange">
+                        <strong>Lead Quality Warning:</strong> Lead Gen Forms typically generate 2-5x more leads but often at lower quality. Always compare SQL rate and opportunity conversion, not just CPL.
+                    </div>
+                </div>
+
+                <!-- Section 9: Ad Format Strategy -->
+                <div class="content-section">
+                    <h2>Ad Format Strategy</h2>
+                    <p>Different formats perform differently by objective, audience, and funnel stage. Use this guide to select the right format.</p>
+
+                    <h3>Format Performance by Objective</h3>
+                    <table>
+                        <tr><th>Format</th><th>Best For</th><th>Avg CTR</th><th>Notes</th></tr>
+                        <tr><td><strong>Single Image</strong></td><td>Lead gen, conversions</td><td>0.4-0.6%</td><td>Workhorse format, test first</td></tr>
+                        <tr><td><strong>Carousel</strong></td><td>Multi-feature products, storytelling</td><td>0.3-0.5%</td><td>Higher engagement, lower CTR</td></tr>
+                        <tr><td><strong>Video</strong></td><td>Brand awareness, product demos</td><td>0.3-0.5%</td><td>Builds retargeting audiences</td></tr>
+                        <tr><td><strong>Document</strong></td><td>Thought leadership, guides</td><td>0.5-0.8%</td><td>High engagement, native feel</td></tr>
+                        <tr><td><strong>Message Ads</strong></td><td>Event invites, high-value offers</td><td>3-5% open</td><td>15K+ audience required, 45-day frequency cap</td></tr>
+                        <tr><td><strong>Text Ads</strong></td><td>Low-cost awareness</td><td>0.02-0.05%</td><td>Desktop only, lowest CPM</td></tr>
+                    </table>
+
+                    <h3>Format Selection by Funnel Stage</h3>
+                    <table>
+                        <tr><th>Funnel Stage</th><th>Primary Format</th><th>Secondary Format</th></tr>
+                        <tr><td><strong>Awareness</strong></td><td>Video, Carousel</td><td>Document</td></tr>
+                        <tr><td><strong>Consideration</strong></td><td>Single Image, Document</td><td>Video</td></tr>
+                        <tr><td><strong>Conversion</strong></td><td>Single Image, Message</td><td>Carousel</td></tr>
+                        <tr><td><strong>Retargeting</strong></td><td>Single Image, Message</td><td>Carousel</td></tr>
+                    </table>
+
+                    <div class="callout">
+                        <strong>Creative Rotation:</strong> Run 3-5 ads per campaign. LinkedIn will auto-optimize to best performers. Refresh creatives every 4-6 weeks to combat frequency fatigue.
+                    </div>
+                </div>
+
+                <!-- Section 10: Retargeting Structure -->
+                <div class="content-section">
+                    <h2>Retargeting Campaign Structure</h2>
+                    <p>Retargeting is where LinkedIn Ads ROI gets serious. Proper structure is critical.</p>
+
+                    <h3>Three-Tier Retargeting Model</h3>
+
+                    <h4>Tier 1: Hot Retargeting (Highest Intent)</h4>
+                    <table>
+                        <tr><th>Audience</th><th>Window</th><th>Offer</th></tr>
+                        <tr><td>Pricing page visitors</td><td>7-30 days</td><td>Demo, consultation</td></tr>
+                        <tr><td>Demo/contact page visitors</td><td>7-30 days</td><td>Schedule call, limited offer</td></tr>
+                        <tr><td>Lead Gen Form abandoners</td><td>7-14 days</td><td>Simplified offer, testimonial</td></tr>
+                        <tr><td>Video 75%+ viewers</td><td>30 days</td><td>Next step CTA</td></tr>
+                    </table>
+
+                    <h4>Tier 2: Warm Retargeting (Engaged)</h4>
+                    <table>
+                        <tr><th>Audience</th><th>Window</th><th>Offer</th></tr>
+                        <tr><td>All website visitors</td><td>30-90 days</td><td>Case study, comparison guide</td></tr>
+                        <tr><td>Blog visitors (3+ pages)</td><td>30-60 days</td><td>Related gated content</td></tr>
+                        <tr><td>Video 50%+ viewers</td><td>60 days</td><td>Product walkthrough</td></tr>
+                        <tr><td>Ad engagers</td><td>30-90 days</td><td>Deeper content</td></tr>
+                    </table>
+
+                    <h4>Tier 3: Nurture Retargeting (Long-term)</h4>
+                    <table>
+                        <tr><th>Audience</th><th>Window</th><th>Offer</th></tr>
+                        <tr><td>Email subscriber list</td><td>90-180 days</td><td>New content, webinars</td></tr>
+                        <tr><td>Past converters (non-customers)</td><td>90-180 days</td><td>Re-engagement offer</td></tr>
+                        <tr><td>Event attendees</td><td>60-90 days</td><td>Follow-up content</td></tr>
+                    </table>
+
+                    <div class="callout callout-green">
+                        <strong>Critical Exclusions:</strong> Always exclude current customers and open opportunities from retargeting campaigns. Exclude Hot tier from Warm tier, and both from Nurture tier to prevent overlap.
+                    </div>
+                </div>
+
+                <!-- Section 11: A/B Testing -->
+                <div class="content-section">
+                    <h2>A/B Testing Structure</h2>
+                    <p>Systematic testing separates top-performing accounts from mediocre ones. Build testing into your campaign structure from day one.</p>
+
+                    <h3>Testing Hierarchy</h3>
+                    <p>Test these variables in priority order (highest impact first):</p>
+                    <ol>
+                        <li><strong>Offer:</strong> What you are promoting (demo vs guide vs webinar)</li>
+                        <li><strong>Audience:</strong> Who you are targeting (persona A vs persona B)</li>
+                        <li><strong>Format:</strong> How you deliver (single image vs video vs carousel)</li>
+                        <li><strong>Creative:</strong> Visual elements (image A vs image B)</li>
+                        <li><strong>Copy:</strong> Messaging (headline A vs headline B)</li>
+                    </ol>
+
+                    <h3>Testing Best Practices</h3>
+                    <ul class="checklist">
+                        <li class="checked">Test one variable at a time for clear attribution</li>
+                        <li class="checked">Run tests for minimum 7 days or 1,000 impressions</li>
+                        <li class="checked">Use Campaign Manager's A/B test feature when available</li>
+                        <li class="checked">Document hypothesis, test setup, and results</li>
+                        <li class="checked">Aim for 95% statistical confidence before concluding</li>
+                        <li class="checked">Archive losing variants, don't delete (historical data)</li>
+                    </ul>
+
+                    <h3>Sample Testing Calendar</h3>
+                    <table>
+                        <tr><th>Week</th><th>Test Type</th><th>Variable</th><th>Hypothesis</th></tr>
+                        <tr><td>1-2</td><td>Offer</td><td>Demo vs Consultation</td><td>Consultation lower friction, higher volume</td></tr>
+                        <tr><td>3-4</td><td>Format</td><td>Single Image vs Carousel</td><td>Carousel better for multi-feature product</td></tr>
+                        <tr><td>5-6</td><td>Creative</td><td>Product shot vs People</td><td>People imagery increases CTR</td></tr>
+                        <tr><td>7-8</td><td>Copy</td><td>Problem-focused vs Benefit-focused</td><td>Problem-focused drives urgency</td></tr>
+                    </table>
+                </div>
+
+                <!-- Section 12: Common Mistakes -->
+                <div class="content-section">
+                    <h2>Common Mistakes to Avoid</h2>
+                    <p>These mistakes destroy LinkedIn Ads performance. Audit your account against this list.</p>
+
+                    <h3>Account Structure Mistakes</h3>
+                    <table>
+                        <tr><th>Mistake</th><th>Impact</th><th>Fix</th></tr>
+                        <tr><td>Too many personas per campaign</td><td>Cant optimize messaging or bids by persona</td><td>Separate campaigns for each persona</td></tr>
+                        <tr><td>No naming convention</td><td>Reporting chaos, optimization paralysis</td><td>Implement framework from this playbook</td></tr>
+                        <tr><td>Audience overlap between campaigns</td><td>Competing against yourself, inflated CPMs</td><td>Use exclusion audiences religiously</td></tr>
+                        <tr><td>Mixing cold + retargeting</td><td>Attribution confusion, wrong messaging</td><td>Separate campaign groups</td></tr>
+                    </table>
+
+                    <h3>Budget Mistakes</h3>
+                    <table>
+                        <tr><th>Mistake</th><th>Impact</th><th>Fix</th></tr>
+                        <tr><td>Setting budget too low</td><td>Campaigns never exit learning phase</td><td>Minimum $50/day per campaign</td></tr>
+                        <tr><td>Auto-optimize at Campaign Group level</td><td>Budget concentrates in one campaign</td><td>Set budgets at Campaign level for control</td></tr>
+                        <tr><td>Not budgeting for retargeting</td><td>Missing highest-ROI traffic</td><td>Allocate 20-30% to retargeting</td></tr>
+                        <tr><td>Spreading too thin</td><td>No campaign gets enough data</td><td>Fewer campaigns, higher budget each</td></tr>
+                    </table>
+
+                    <h3>Targeting Mistakes</h3>
+                    <table>
+                        <tr><th>Mistake</th><th>Impact</th><th>Fix</th></tr>
+                        <tr><td>Audience too small (&lt;50K)</td><td>Delivery issues, high CPMs</td><td>Broaden targeting or combine personas</td></tr>
+                        <tr><td>Audience too broad (&gt;1M)</td><td>Wasted spend on non-ICP</td><td>Narrow with additional filters</td></tr>
+                        <tr><td>Not excluding customers</td><td>Paying to reach people already bought</td><td>Upload customer list as exclusion</td></tr>
+                        <tr><td>Targeting by company name only</td><td>Missing the right people at those companies</td><td>Add job function and seniority</td></tr>
+                    </table>
+
+                    <div class="callout callout-orange">
+                        <strong>The Biggest Mistake:</strong> Optimizing for CPL instead of pipeline. A $50 CPL that converts to $500K pipeline beats a $20 CPL that goes nowhere. Track lead-to-opp and lead-to-revenue, not just lead volume.
+                    </div>
+                </div>
+
+                <!-- Section 13: Implementation Checklist -->
+                <div class="content-section">
+                    <h2>Implementation Checklist</h2>
+                    <p>Use this checklist when setting up or auditing your LinkedIn Ads account structure.</p>
+
+                    <h3>Pre-Launch Checklist</h3>
+                    <ul class="checklist">
+                        <li>LinkedIn Insight Tag installed on all website pages</li>
+                        <li>Conversion tracking configured for key actions (demo, form submit)</li>
+                        <li>Customer list uploaded as exclusion audience</li>
+                        <li>Website visitor audiences created (all visitors, high-intent pages)</li>
+                        <li>Naming convention documented and shared with team</li>
+                        <li>Campaign Group structure defined (by objective)</li>
+                        <li>Persona mapping complete with targeting criteria</li>
+                        <li>Budget allocation plan documented</li>
+                    </ul>
+
+                    <h3>Campaign Launch Checklist</h3>
+                    <ul class="checklist">
+                        <li>Campaign name follows convention</li>
+                        <li>Audience size is 50K+ (or 15K+ for Message)</li>
+                        <li>Customer and employee exclusions applied</li>
+                        <li>No overlap with other active campaigns</li>
+                        <li>3-5 ad variations per campaign</li>
+                        <li>Daily budget is at least $50</li>
+                        <li>Bid strategy aligns with objective</li>
+                        <li>UTM parameters configured for tracking</li>
+                    </ul>
+
+                    <h3>Weekly Optimization Checklist</h3>
+                    <ul class="checklist">
+                        <li>Review CPL by campaign, pause underperformers</li>
+                        <li>Check frequency, refresh creatives if above 5</li>
+                        <li>Shift budget to winning campaigns</li>
+                        <li>Review audience insights for new exclusions</li>
+                        <li>Check lead quality in CRM, adjust targeting if needed</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Gate Overlay -->
+            <div class="gate-overlay" id="gateOverlay">
+                <div class="gate-card">
+                    <h3>Unlock the Full Playbook</h3>
+                    <p>Get persona segmentation frameworks, budget allocation templates, retargeting structures, A/B testing guides, and implementation checklists.</p>
+                    <form class="email-form" id="unlockForm" onsubmit="handleUnlock(event)">
+                        <input type="email" name="email" placeholder="you@company.com" required>
+                        <button type="submit">Unlock Full Playbook</button>
+                    </form>
+                    <p class="note">Plus get the PDF version emailed to you</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Resources -->
+        <section>
+            <h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1rem;">Related Resources</h2>
+            <div class="related-links">
+                <a href="/tools/linkedin-budget-calculator/" class="related-link">LinkedIn Budget Calculator</a>
+                <a href="/b2b-benchmarks/linkedin-ads-benchmarks/" class="related-link">LinkedIn Ads Benchmarks</a>
+                <a href="/linkedin-audit/" class="related-link">LinkedIn Ads Audit Template</a>
+                <a href="/playbooks/lead-scoring-framework/" class="related-link">Lead Scoring Framework</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <!-- Column 1: Brand -->
+                <div class="footer-brand">
+                    <img src="/42-logo.png" alt="42 Agency">
+                    <p>B2B performance marketing for companies that sell to enterprises.</p>
+                    <div class="footer-social">
+                        <a href="https://linkedin.com/company/42agency" target="_blank">LinkedIn</a>
+                        <a href="https://x.com/42aboratory" target="_blank">X</a>
+                        <a href="https://www.youtube.com/@Get42Agency" target="_blank">YouTube</a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Assess -->
+                <div class="footer-col">
+                    <h4>Assess</h4>
+                    <a href="/assessments/hubspot-health/">HubSpot Health Check</a>
+                    <a href="/assess/calculator/">Benchmark Calculator</a>
+                    <a href="/linkedin-audit/">LinkedIn Ads Audit</a>
+                    <a href="/google-ads-audit/">Google Ads Audit</a>
+                    <a href="/meta-audit/">Meta Ads Audit</a>
+                    <a href="/hubspot-audit/">HubSpot Audit</a>
+                </div>
+
+                <!-- Column 3: Benchmarks -->
+                <div class="footer-col">
+                    <h4>Benchmarks</h4>
+                    <a href="/b2b-benchmarks/">All B2B Benchmarks</a>
+                    <a href="/b2b-benchmarks/linkedin-ads-benchmarks/">LinkedIn Ads</a>
+                    <a href="/b2b-benchmarks/google-ads-benchmarks/">Google Ads</a>
+                    <a href="/b2b-benchmarks/linkedin-inmail-benchmarks/">InMail Benchmarks</a>
+                    <a href="/b2b-benchmarks/legal-tech-linkedin-ads/" class="sublink">Legal Tech</a>
+                    <a href="/b2b-benchmarks/healthcare-tech-linkedin-ads/" class="sublink">Healthcare Tech</a>
+                    <a href="/b2b-benchmarks/fintech-linkedin-ads/" class="sublink">FinTech</a>
+                </div>
+
+                <!-- Column 4: AI Tools + Resources -->
+                <div class="footer-col">
+                    <h4>AI Tools</h4>
+                    <a href="https://copilot.42agency.com" target="_blank">LinkedIn Ads Copilot</a>
+                    <a href="https://copilot.42agency.com/linkedin-ads-targeting" target="_blank">Targeting Guide</a>
+                    <h4 style="margin-top: 1.5rem;">Resources</h4>
+                    <a href="/zenabm/">ABM Toolkit</a>
+                    <a href="/mops-funnel/">MOPS Funnel Workbook</a>
+                    <a href="/exitfive/">Claude Code 101</a>
+                </div>
+
+                <!-- Column 5: 42 Agency -->
+                <div class="footer-col">
+                    <h4>42 Agency</h4>
+                    <a href="https://42agency.com" target="_blank">Website</a>
+                    <a href="https://www.42agency.com/contact-us" target="_blank">Contact Us</a>
+                    <a href="https://42agency.com/case-studies" target="_blank">Case Studies</a>
+                    <a href="https://42slash.com" target="_blank">42/ Essays</a>
+                    <a href="https://42agency.com/careers" target="_blank">Careers</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 42 Agency. All rights reserved.</p>
+                <p><a href="https://42agency.com/privacy">Privacy</a> &middot; <a href="https://42agency.com/terms">Terms</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/email-validation.js"></script>
+    <script>
+        // Check if already unlocked
+        if (localStorage.getItem('playbook_unlocked_linkedin-campaign-structure')) {
+            document.getElementById('gatedContent').classList.add('unlocked');
+            document.getElementById('gateOverlay').classList.add('hidden');
+            document.getElementById('downloadBanner').classList.add('visible');
+        }
+
+        async function handleUnlock(e) {
+            e.preventDefault();
+            const email = e.target.email.value;
+            const button = e.target.querySelector('button');
+            button.disabled = true;
+            button.textContent = 'Unlocking...';
+
+            try {
+                const response = await fetch('/api/playbook-download', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        playbook: 'linkedin-campaign-structure'
+                    })
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    // Track event
+                    if (window.dataLayer) window.dataLayer.push({ event: 'playbook_unlocked', playbook: 'linkedin-campaign-structure' });
+
+                    // Save unlock state
+                    localStorage.setItem('playbook_unlocked_linkedin-campaign-structure', 'true');
+
+                    // Reveal content
+                    document.getElementById('gatedContent').classList.add('unlocked');
+                    document.getElementById('gateOverlay').classList.add('hidden');
+                    document.getElementById('downloadBanner').classList.add('visible');
+
+                    // Scroll to content
+                    document.getElementById('gatedContent').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    throw new Error('Failed');
+                }
+            } catch (error) {
+                button.textContent = 'Try Again';
+                button.disabled = false;
+            }
+        }
+    </script>
+    <!-- Vercel Analytics -->
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

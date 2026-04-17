@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Touch Attribution Setup Guide | B2B Attribution Models | 42 Agency</title>
+    <meta name="description" content="Complete guide to implementing multi-touch attribution in B2B marketing. Learn attribution models, UTM setup, HubSpot and Salesforce configuration, and how to validate your attribution data.">
+    <link rel="canonical" href="https://intel.42agency.com/playbooks/attribution-setup/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MM5BTNS');</script>
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/44888286.js"></script>
+
+    <!-- FAQ Schema for GEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is multi-touch attribution in B2B marketing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Multi-touch attribution is a methodology for assigning credit to multiple marketing touchpoints that influence a B2B buying decision. Unlike single-touch models (first or last click), multi-touch attribution recognizes that enterprise deals involve 6-8 touchpoints across 3-6 months before conversion. Common models include Linear (equal credit), U-shaped (40% first, 40% last, 20% middle), and W-shaped (30% first, 30% lead creation, 30% opportunity creation, 10% middle)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which attribution model should I use for B2B?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For most B2B companies, W-shaped attribution is recommended because it credits the three most important conversion points: first touch (brand discovery), lead creation (marketing conversion), and opportunity creation (sales conversion). Use First-touch if optimizing for awareness, Last-touch if optimizing for sales efficiency, Linear for balanced credit, and Custom weighted models once you have 12+ months of conversion data to analyze."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I set up UTM tracking for attribution?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Implement a consistent UTM taxonomy across all campaigns: utm_source (platform), utm_medium (channel type), utm_campaign (campaign name), utm_content (ad/asset variant), utm_term (keyword). Store original UTM values in hidden form fields and persist them in CRM contact records. Use a UTM builder tool to ensure consistency across teams. Always lowercase UTM values to prevent fragmentation in reporting."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I track offline touchpoints in attribution?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For events and conferences, create unique landing pages or QR codes with UTM parameters. For sales calls and meetings, log them as CRM activities and include them in your attribution model. For direct mail, use personalized URLs (PURLs) or unique promo codes. Connect all offline interactions to contact records in your CRM so they appear in the attribution path alongside digital touchpoints."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is self-reported attribution and should I use it?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Self-reported attribution asks prospects 'How did you hear about us?' on forms. It captures dark funnel touchpoints that tracking misses: podcast mentions, word-of-mouth, community discussions, LinkedIn organic posts. Use it alongside technical attribution, not as a replacement. Compare self-reported vs tracked data to identify blind spots. Many companies find 40-60% of attributed value comes from channels invisible to tracking (dark social)."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- HowTo Schema for GEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Implement Multi-Touch Attribution",
+      "description": "A step-by-step guide to setting up multi-touch attribution for B2B marketing, including UTM tracking, CRM configuration, and reporting dashboards.",
+      "image": "https://intel.42agency.com/images/attribution-setup.png",
+      "totalTime": "P4W",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "USD",
+        "value": "0"
+      },
+      "tool": [
+        {
+          "@type": "HowToTool",
+          "name": "HubSpot or Salesforce CRM"
+        },
+        {
+          "@type": "HowToTool",
+          "name": "Google Tag Manager"
+        },
+        {
+          "@type": "HowToTool",
+          "name": "Marketing automation platform"
+        }
+      ],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Define Your Attribution Model",
+          "text": "Choose the attribution model that aligns with your business goals. First-touch for awareness optimization, Last-touch for sales efficiency, Linear for balanced credit, U-shaped for lead gen focus, W-shaped for full-funnel B2B, or Custom weighted based on historical data analysis.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Start with W-shaped for most B2B companies as it credits key conversion points"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Plan to evolve to custom weighting after 12 months of data collection"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Implement UTM Tracking Infrastructure",
+          "text": "Create a standardized UTM taxonomy and implement tracking across all channels. Define utm_source, utm_medium, utm_campaign, utm_content, and utm_term conventions. Build a shared UTM builder for team consistency.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Document UTM naming conventions in a shared wiki or doc"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Use lowercase values only to prevent data fragmentation"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Include UTM capture in all web forms via hidden fields"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Configure CRM Attribution Fields",
+          "text": "Create custom fields in your CRM to store attribution data. For HubSpot: use built-in attribution reports plus custom properties for first/last touch source. For Salesforce: configure Campaign Member objects and enable Campaign Influence.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Store Original Source (first touch) and Converting Source (last touch) separately"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Create a touchpoint log object for full multi-touch visibility"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Set Up Tracking Pixels and Cookies",
+          "text": "Implement first-party tracking to capture user journeys across sessions. Use Google Tag Manager to deploy tracking consistently. Set up cross-domain tracking if you have multiple properties. Implement server-side tracking for iOS and ad-blocker resilience.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Use first-party cookies with 1-year expiration for B2B long sales cycles"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Implement consent management for GDPR/CCPA compliance"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "Add Self-Reported Attribution",
+          "text": "Add 'How did you hear about us?' to key conversion forms to capture dark funnel touchpoints. Use a dropdown with common sources plus 'Other' free text. Compare self-reported data to technical attribution to identify tracking blind spots.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Place this field on demo request and contact forms, not all forms"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Review responses monthly to discover new channels and influencers"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 6,
+          "name": "Build Attribution Dashboards",
+          "text": "Create reporting dashboards that show channel performance by attribution model. Include: Channel contribution by model, Touchpoint frequency analysis, Time-to-conversion by first touch, Revenue attribution by source.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Build separate dashboards for marketing (MQL attribution) and revenue (closed-won attribution)"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Include self-reported vs tracked comparison view"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 7,
+          "name": "Validate and Calibrate",
+          "text": "Regularly audit attribution data quality. Check for UTM coverage gaps, compare platform-reported vs CRM-attributed conversions, and review anomalies. Calibrate model weights based on actual conversion patterns.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Run monthly data quality audits checking for null/unknown sources"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Compare attributed revenue to actual revenue to ensure model accuracy"
+            }
+          ]
+        }
+      ],
+      "author": {
+        "@type": "Organization",
+        "name": "42 Agency",
+        "url": "https://www.42agency.com"
+      }
+    }
+    </script>
+
+    <style>
+        :root { --accent: #DFFE68; --black: #1a1a1a; --gray: #4a4a4a; --light-gray: #f5f5f5; --green: #10B981; --blue: #3B82F6; --orange: #F59E0B; --purple: #8B5CF6; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--light-gray); color: var(--black); line-height: 1.7; }
+        .header { border-bottom: 2px solid var(--black); padding: 0.75rem 1.5rem; background: white; position: sticky; top: 0; z-index: 50; }
+        .header-inner { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 28px; }
+        .nav { display: flex; align-items: center; gap: 0.25rem; }
+        .nav a { padding: 0.5rem 1rem; color: var(--gray); text-decoration: none; font-size: 0.9rem; font-weight: 500; border-radius: 6px; }
+        .nav a:hover { color: var(--black); background: var(--light-gray); }
+        .nav a.active { background: var(--accent); color: var(--black); font-weight: 600; }
+        .nav-cta { background: var(--black); color: white !important; font-weight: 600; }
+        @media (max-width: 768px) { .nav { display: none; } }
+        .breadcrumbs { background: white; border-bottom: 2px solid var(--black); padding: 0.75rem 1.5rem; }
+        .breadcrumbs-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; }
+        .breadcrumbs a { color: var(--gray); text-decoration: none; }
+        .breadcrumbs .current { color: var(--black); font-weight: 600; }
+
+        .main { max-width: 800px; margin: 0 auto; padding: 3rem 2rem; }
+
+        /* Hero */
+        .hero { text-align: center; margin-bottom: 3rem; }
+        .hero-badge { display: inline-block; background: var(--purple); color: white; padding: 0.4rem 1rem; font-size: 0.75rem; font-weight: 700; border-radius: 20px; margin-bottom: 1rem; text-transform: uppercase; }
+        h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 1rem; }
+        .subtitle { color: var(--gray); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        /* Stats */
+        .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0 3rem; }
+        .stat-item { text-align: center; padding: 1rem; background: white; border: 2px solid var(--black); border-radius: 12px; box-shadow: 3px 3px 0 var(--black); }
+        .stat-value { font-size: 1.75rem; font-weight: 800; color: var(--purple); }
+        .stat-label { font-size: 0.75rem; color: var(--gray); text-transform: uppercase; }
+
+        /* Content Sections */
+        .content-section { background: white; border: 2px solid var(--black); border-radius: 16px; padding: 2rem; box-shadow: 4px 4px 0 var(--black); margin-bottom: 2rem; }
+        .content-section h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 3px solid var(--accent); }
+        .content-section h3 { font-size: 1.1rem; font-weight: 700; margin: 1.5rem 0 0.75rem; color: var(--black); }
+        .content-section h4 { font-size: 0.95rem; font-weight: 700; margin: 1.25rem 0 0.5rem; color: var(--gray); }
+        .content-section p { margin-bottom: 1rem; color: #333; }
+        .content-section ul, .content-section ol { margin: 1rem 0 1rem 1.5rem; color: #333; }
+        .content-section li { margin-bottom: 0.5rem; }
+        .content-section table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+        .content-section th, .content-section td { padding: 0.6rem 0.75rem; text-align: left; border: 1px solid #ddd; }
+        .content-section th { background: #f5f5f5; font-weight: 700; }
+        .content-section tr:nth-child(even) { background: #fafafa; }
+        .content-section code { background: #f0f0f0; padding: 0.2rem 0.4rem; border-radius: 4px; font-size: 0.85rem; font-family: 'Monaco', 'Consolas', monospace; }
+        .content-section pre { background: #1a1a1a; color: #f0f0f0; padding: 1rem; border-radius: 8px; overflow-x: auto; margin: 1rem 0; font-size: 0.85rem; }
+        .content-section pre code { background: none; padding: 0; color: inherit; }
+
+        .callout { background: var(--accent); border-left: 4px solid var(--black); padding: 1rem 1.25rem; margin: 1.25rem 0; border-radius: 0 8px 8px 0; }
+        .callout strong { display: block; margin-bottom: 0.25rem; }
+        .callout.warning { background: #FEF3C7; border-color: var(--orange); }
+        .callout.info { background: #DBEAFE; border-color: var(--blue); }
+
+        .model-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0; }
+        .model-card { background: #f9f9f9; border: 2px solid #ddd; border-radius: 12px; padding: 1.25rem; }
+        .model-card h4 { margin: 0 0 0.5rem; font-size: 1rem; color: var(--black); }
+        .model-card p { margin: 0; font-size: 0.9rem; color: var(--gray); }
+        .model-card .formula { background: white; border: 1px solid #ddd; padding: 0.5rem; border-radius: 6px; margin-top: 0.75rem; font-family: monospace; font-size: 0.8rem; text-align: center; }
+        .model-card.recommended { border-color: var(--purple); background: #F5F3FF; }
+        .model-card.recommended::before { content: 'RECOMMENDED'; display: block; font-size: 0.65rem; font-weight: 700; color: var(--purple); margin-bottom: 0.5rem; letter-spacing: 0.5px; }
+
+        /* Gated Content */
+        .gated-wrapper { position: relative; }
+        .gated-content { filter: blur(5px); pointer-events: none; user-select: none; }
+        .gated-content.unlocked { filter: none; pointer-events: auto; user-select: auto; }
+
+        .gate-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.95) 15%, rgba(255,255,255,1) 30%); display: flex; align-items: flex-start; justify-content: center; padding-top: 4rem; }
+        .gate-overlay.hidden { display: none; }
+
+        .gate-card { background: var(--accent); border: 2px solid var(--black); border-radius: 16px; padding: 2.5rem; box-shadow: 6px 6px 0 var(--black); text-align: center; max-width: 450px; margin: 0 1rem; }
+        .gate-card h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .gate-card p { color: var(--gray); margin-bottom: 1.5rem; }
+        .email-form { display: flex; flex-direction: column; gap: 0.75rem; }
+        .email-form input { padding: 0.875rem; border: 2px solid var(--black); border-radius: 8px; font-size: 1rem; text-align: center; }
+        .email-form button { padding: 0.875rem 1.5rem; background: var(--black); color: white; border: none; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; }
+        .email-form button:hover { background: #333; }
+        .gate-card .note { font-size: 0.8rem; color: #666; margin-top: 1rem; }
+
+        /* Download Banner */
+        .download-banner { display: none; background: var(--accent); border: 2px solid var(--black); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; text-align: center; box-shadow: 4px 4px 0 var(--black); }
+        .download-banner.visible { display: block; }
+        .download-banner p { margin-bottom: 1rem; font-weight: 600; }
+        .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--black); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; }
+        .download-btn:hover { background: #333; }
+
+        /* Related */
+        .related-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2rem; }
+        .related-link { display: block; padding: 1rem; background: white; border: 2px solid var(--black); border-radius: 8px; text-decoration: none; color: var(--black); font-weight: 600; box-shadow: 3px 3px 0 var(--black); }
+        .related-link:hover { background: var(--accent); }
+
+        /* Footer */
+        .footer { background: var(--black); padding: 4rem 1.5rem 2rem; border-top: 2px solid var(--black); }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr repeat(4, 1fr); gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid #333; }
+        .footer-brand img { height: 24px; filter: brightness(0) invert(1); margin-bottom: 1rem; }
+        .footer-brand p { font-size: 0.85rem; color: #999; line-height: 1.6; }
+        .footer-social { display: flex; gap: 1rem; margin-top: 1rem; }
+        .footer-social a { color: #999; text-decoration: none; font-size: 0.85rem; }
+        .footer-social a:hover { color: white; }
+        .footer-col h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1rem; color: var(--accent); }
+        .footer-col a { display: block; color: #999; text-decoration: none; font-size: 0.85rem; margin-bottom: 0.6rem; }
+        .footer-col a:hover { color: white; }
+        .footer-col .sublink { padding-left: 0.75rem; font-size: 0.8rem; color: #666; }
+        .footer-bottom { padding-top: 2rem; display: flex; justify-content: space-between; font-size: 0.8rem; color: #666; }
+        .footer-bottom a { color: #666; text-decoration: none; }
+        .footer-bottom a:hover { color: #999; }
+        @media (max-width: 900px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } }
+
+        @media (max-width: 768px) {
+            .stats-row { grid-template-columns: 1fr; }
+            .related-links { grid-template-columns: 1fr; }
+            .model-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+            .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MM5BTNS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <header class="header">
+        <div class="header-inner">
+            <a href="/" class="logo"><img src="/42-logo.png" alt="42 Agency"></a>
+            <nav class="nav">
+                <a href="/assess/">Assess</a>
+                <a href="/b2b-benchmarks/">Benchmarks</a>
+                <a href="/tools/">Tools</a>
+                <a href="/playbooks/" class="active">Playbooks</a>
+                <a href="https://www.42agency.com/contact-us" target="_blank" class="nav-cta">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <a href="/">Home</a><span>/</span><a href="/playbooks/">Playbooks</a><span>/</span><span class="current">Attribution Setup</span>
+        </div>
+    </nav>
+
+    <main class="main">
+        <section class="hero">
+            <span class="hero-badge">MOPS Framework</span>
+            <h1>Multi-Touch Attribution Setup Guide</h1>
+            <p class="subtitle">Implement attribution that actually answers "which channels drive revenue?" Configure UTMs, CRM fields, and reporting dashboards that prove marketing ROI.</p>
+        </section>
+
+        <div class="stats-row">
+            <div class="stat-item">
+                <div class="stat-value">6-8</div>
+                <div class="stat-label">B2B Touchpoints Avg</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">40-60%</div>
+                <div class="stat-label">Dark Funnel Hidden</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">4 Weeks</div>
+                <div class="stat-label">Implementation Time</div>
+            </div>
+        </div>
+
+        <!-- Download Banner (shows after unlock) -->
+        <div class="download-banner" id="downloadBanner">
+            <p>You've unlocked the full guide. Download the PDF version:</p>
+            <a href="/playbooks/attribution-setup/attribution-setup-playbook.pdf" download class="download-btn">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                Download PDF
+            </a>
+        </div>
+
+        <!-- UNGATED: Section 1-2 (30%) -->
+        <div class="content-section">
+            <h2>Attribution Models Explained</h2>
+            <p>Before implementing attribution, you need to understand the models available and which one fits your business. Each model answers a different question about marketing effectiveness.</p>
+
+            <div class="model-grid">
+                <div class="model-card">
+                    <h4>First-Touch Attribution</h4>
+                    <p>100% credit to the first interaction that brought a lead into your funnel.</p>
+                    <div class="formula">First Touch = 100%</div>
+                </div>
+                <div class="model-card">
+                    <h4>Last-Touch Attribution</h4>
+                    <p>100% credit to the final interaction before conversion.</p>
+                    <div class="formula">Last Touch = 100%</div>
+                </div>
+                <div class="model-card">
+                    <h4>Linear Attribution</h4>
+                    <p>Equal credit distributed across all touchpoints in the journey.</p>
+                    <div class="formula">Each Touch = 100% / N</div>
+                </div>
+                <div class="model-card">
+                    <h4>U-Shaped (Position-Based)</h4>
+                    <p>Heavy credit to first and last touch, with remaining credit split among middle touches.</p>
+                    <div class="formula">First: 40% | Middle: 20% | Last: 40%</div>
+                </div>
+                <div class="model-card recommended">
+                    <h4>W-Shaped Attribution</h4>
+                    <p>Credit to three key moments: first touch, lead creation, and opportunity creation.</p>
+                    <div class="formula">First: 30% | Lead: 30% | Opp: 30% | Other: 10%</div>
+                </div>
+                <div class="model-card">
+                    <h4>Custom Weighted</h4>
+                    <p>Data-driven weights based on your historical conversion patterns.</p>
+                    <div class="formula">Weights = Historical Analysis</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>When to Use Each Model</h2>
+            <p>The "best" attribution model depends on what you're optimizing for and your sales cycle complexity:</p>
+
+            <table>
+                <tr><th>Model</th><th>Best For</th><th>Limitations</th></tr>
+                <tr>
+                    <td><strong>First-Touch</strong></td>
+                    <td>Understanding which channels create awareness and fill top-of-funnel</td>
+                    <td>Ignores nurture and sales influence; overvalues broad reach campaigns</td>
+                </tr>
+                <tr>
+                    <td><strong>Last-Touch</strong></td>
+                    <td>Sales teams wanting to know what closes deals; short sales cycles</td>
+                    <td>Undervalues awareness and consideration; favors branded search</td>
+                </tr>
+                <tr>
+                    <td><strong>Linear</strong></td>
+                    <td>Simple baseline model; organizations new to attribution</td>
+                    <td>Treats all touches equally even when they're not equal impact</td>
+                </tr>
+                <tr>
+                    <td><strong>U-Shaped</strong></td>
+                    <td>Lead generation focus; marketing-qualified conversions</td>
+                    <td>Misses the sales handoff moment critical in B2B</td>
+                </tr>
+                <tr>
+                    <td><strong>W-Shaped</strong></td>
+                    <td>B2B with defined funnel stages; complex buying committees</td>
+                    <td>Requires accurate lead/opp creation timestamps</td>
+                </tr>
+                <tr>
+                    <td><strong>Custom</strong></td>
+                    <td>Mature marketing orgs with 12+ months of clean data</td>
+                    <td>Requires data science resources; can overfit to past patterns</td>
+                </tr>
+            </table>
+
+            <div class="callout">
+                <strong>B2B Recommendation:</strong> Start with W-shaped attribution. It captures the three moments that matter most in B2B: how leads discover you, what converts them to leads, and what creates sales opportunities. Evolve to custom weighting after collecting 12 months of conversion data.
+            </div>
+        </div>
+
+        <!-- GATED: Remaining sections (70%) -->
+        <div class="gated-wrapper">
+            <div class="gated-content" id="gatedContent">
+
+                <div class="content-section">
+                    <h2>Technical Setup Requirements</h2>
+                    <p>Proper attribution requires consistent data capture across your entire marketing stack. Here's what you need to implement:</p>
+
+                    <h3>1. UTM Parameter Taxonomy</h3>
+                    <p>Create a standardized UTM naming convention that all team members follow:</p>
+                    <table>
+                        <tr><th>Parameter</th><th>Purpose</th><th>Examples</th></tr>
+                        <tr>
+                            <td><code>utm_source</code></td>
+                            <td>The platform/site sending traffic</td>
+                            <td>linkedin, google, facebook, newsletter</td>
+                        </tr>
+                        <tr>
+                            <td><code>utm_medium</code></td>
+                            <td>The marketing channel/type</td>
+                            <td>paid-social, cpc, email, organic-social</td>
+                        </tr>
+                        <tr>
+                            <td><code>utm_campaign</code></td>
+                            <td>Campaign name or initiative</td>
+                            <td>q1-abm-fintech, webinar-march-2026</td>
+                        </tr>
+                        <tr>
+                            <td><code>utm_content</code></td>
+                            <td>Ad/creative/asset variant</td>
+                            <td>carousel-v2, headline-test-b, cta-demo</td>
+                        </tr>
+                        <tr>
+                            <td><code>utm_term</code></td>
+                            <td>Keyword (paid search) or audience</td>
+                            <td>b2b+attribution, enterprise-it-directors</td>
+                        </tr>
+                    </table>
+
+                    <div class="callout warning">
+                        <strong>Critical Rules:</strong>
+                        <ul style="margin: 0.5rem 0 0 1.5rem;">
+                            <li>Always use lowercase (linkedin not LinkedIn)</li>
+                            <li>Use hyphens not underscores in values (paid-social not paid_social)</li>
+                            <li>No spaces ever - they break URLs</li>
+                            <li>Document everything in a shared UTM dictionary</li>
+                        </ul>
+                    </div>
+
+                    <h3>2. CRM Field Setup</h3>
+                    <p>Create these custom fields in your CRM to capture attribution data:</p>
+                    <table>
+                        <tr><th>Field Name</th><th>Type</th><th>Purpose</th></tr>
+                        <tr><td>Original Source</td><td>Text</td><td>First touch utm_source</td></tr>
+                        <tr><td>Original Medium</td><td>Text</td><td>First touch utm_medium</td></tr>
+                        <tr><td>Original Campaign</td><td>Text</td><td>First touch utm_campaign</td></tr>
+                        <tr><td>Converting Source</td><td>Text</td><td>Last touch before form fill</td></tr>
+                        <tr><td>Converting Medium</td><td>Text</td><td>Last touch medium</td></tr>
+                        <tr><td>Converting Campaign</td><td>Text</td><td>Last touch campaign</td></tr>
+                        <tr><td>Self-Reported Source</td><td>Dropdown</td><td>"How did you hear about us?"</td></tr>
+                        <tr><td>First Touch Date</td><td>Date</td><td>When first cookie was set</td></tr>
+                    </table>
+
+                    <h3>3. Tracking Pixel Implementation</h3>
+                    <p>Deploy these tracking mechanisms via Google Tag Manager:</p>
+                    <ul>
+                        <li><strong>First-party cookie:</strong> Set a 365-day cookie on first visit capturing UTM values</li>
+                        <li><strong>Session cookie:</strong> Track current session UTMs for last-touch attribution</li>
+                        <li><strong>Platform pixels:</strong> LinkedIn Insight Tag, Meta Pixel, Google Ads tag</li>
+                        <li><strong>CRM tracking:</strong> HubSpot or Salesforce tracking script</li>
+                    </ul>
+
+                    <pre><code>// Example: Capture and persist UTMs in first-party cookie
+function captureUTMs() {
+  const params = new URLSearchParams(window.location.search);
+  const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign',
+                   'utm_content', 'utm_term'];
+
+  let utmData = {};
+  utmKeys.forEach(key => {
+    if (params.get(key)) {
+      utmData[key] = params.get(key).toLowerCase();
+    }
+  });
+
+  // Only set if we have UTM data and no existing cookie
+  if (Object.keys(utmData).length && !getCookie('attribution_first')) {
+    setCookie('attribution_first', JSON.stringify(utmData), 365);
+  }
+
+  // Always update session/last-touch cookie
+  if (Object.keys(utmData).length) {
+    setCookie('attribution_session', JSON.stringify(utmData), 1);
+  }
+}</code></pre>
+                </div>
+
+                <div class="content-section">
+                    <h2>HubSpot Attribution Setup</h2>
+                    <p>HubSpot provides built-in attribution reporting, but requires proper configuration to be accurate:</p>
+
+                    <h3>Step 1: Enable Attribution Reporting</h3>
+                    <ol>
+                        <li>Go to Reports > Attribution</li>
+                        <li>Enable "Contact Create Attribution" and "Deal Create Attribution"</li>
+                        <li>Select your default attribution model (start with Linear)</li>
+                    </ol>
+
+                    <h3>Step 2: Create Custom Attribution Properties</h3>
+                    <p>HubSpot's built-in fields capture some UTM data automatically, but create these custom properties for full control:</p>
+                    <table>
+                        <tr><th>Property</th><th>Type</th><th>Populated By</th></tr>
+                        <tr><td>Attribution - Original Source</td><td>Single-line text</td><td>Workflow on first form submission</td></tr>
+                        <tr><td>Attribution - Original Medium</td><td>Single-line text</td><td>Workflow on first form submission</td></tr>
+                        <tr><td>Attribution - Original Campaign</td><td>Single-line text</td><td>Workflow on first form submission</td></tr>
+                        <tr><td>Attribution - Converting Source</td><td>Single-line text</td><td>Most recent form submission</td></tr>
+                        <tr><td>Attribution - Self Reported</td><td>Dropdown</td><td>Form field: "How did you hear about us?"</td></tr>
+                    </table>
+
+                    <h3>Step 3: Form Field Mapping</h3>
+                    <p>Add hidden fields to your forms to capture UTM parameters:</p>
+                    <ul>
+                        <li>Add hidden form fields for each UTM parameter</li>
+                        <li>Use JavaScript to populate from URL or cookies</li>
+                        <li>Map hidden fields to HubSpot contact properties</li>
+                    </ul>
+
+                    <pre><code>// HubSpot form ready callback
+window.addEventListener('message', function(event) {
+  if (event.data.type === 'hsFormCallback' &&
+      event.data.eventName === 'onFormReady') {
+
+    // Get UTM data from cookie
+    const utmCookie = getCookie('attribution_first');
+    if (utmCookie) {
+      const utmData = JSON.parse(utmCookie);
+
+      // Populate hidden fields
+      const form = document.querySelector('form');
+      if (form.querySelector('[name="utm_source"]')) {
+        form.querySelector('[name="utm_source"]').value =
+          utmData.utm_source || '';
+      }
+      // Repeat for other UTM fields
+    }
+  }
+});</code></pre>
+
+                    <h3>Step 4: Build Attribution Reports</h3>
+                    <p>Create these essential HubSpot reports:</p>
+                    <ol>
+                        <li><strong>Contacts by Original Source:</strong> Bar chart showing first-touch distribution</li>
+                        <li><strong>Deals by Original Source:</strong> Revenue attributed to first touch</li>
+                        <li><strong>Source to Deal Conversion:</strong> Funnel showing conversion rates by channel</li>
+                        <li><strong>Self-Reported vs Tracked:</strong> Compare "How did you hear" to UTM data</li>
+                    </ol>
+                </div>
+
+                <div class="content-section">
+                    <h2>Salesforce Campaign Attribution Setup</h2>
+                    <p>Salesforce requires Campaign Member tracking and Campaign Influence configuration for multi-touch attribution:</p>
+
+                    <h3>Step 1: Enable Campaign Influence</h3>
+                    <ol>
+                        <li>Setup > Campaign Influence > Enable Customizable Campaign Influence</li>
+                        <li>Create attribution models (First Touch, Last Touch, Linear)</li>
+                        <li>Set auto-association rules for campaigns</li>
+                    </ol>
+
+                    <h3>Step 2: Configure Campaign Hierarchy</h3>
+                    <p>Structure campaigns to enable roll-up reporting:</p>
+                    <ul>
+                        <li><strong>Parent Campaigns:</strong> Channel level (LinkedIn, Google Ads, Events)</li>
+                        <li><strong>Child Campaigns:</strong> Individual initiatives (Q1 ABM, Webinar Series)</li>
+                        <li><strong>Member Status:</strong> Define stages (Sent, Responded, Attended)</li>
+                    </ul>
+
+                    <h3>Step 3: Create Custom Fields on Campaign</h3>
+                    <table>
+                        <tr><th>Field</th><th>Purpose</th></tr>
+                        <tr><td>Channel</td><td>Picklist: Paid Search, Paid Social, Email, Event, Organic</td></tr>
+                        <tr><td>Campaign Type</td><td>Picklist: Awareness, Consideration, Conversion</td></tr>
+                        <tr><td>Budget Allocated</td><td>Currency field for ROI calculation</td></tr>
+                        <tr><td>UTM Campaign</td><td>Text field matching your UTM taxonomy</td></tr>
+                    </table>
+
+                    <h3>Step 4: Automate Campaign Member Creation</h3>
+                    <p>Use Flow or Process Builder to automatically add leads to campaigns:</p>
+                    <ul>
+                        <li>When Lead Created with UTM_Campaign = X, add to Campaign X</li>
+                        <li>When Form Submitted (webinar), add to webinar campaign</li>
+                        <li>When Activity Logged (meeting), add to Sales Engagement campaign</li>
+                    </ul>
+
+                    <div class="callout info">
+                        <strong>Pro Tip:</strong> Use Salesforce Campaign Influence reports to see influenced pipeline and revenue. Navigate to Reports > Campaign Influence to build attribution dashboards that show which campaigns influenced which opportunities.
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Common Attribution Mistakes</h2>
+                    <p>These errors invalidate attribution data and lead to wrong budget decisions:</p>
+
+                    <h3>1. Inconsistent UTM Naming</h3>
+                    <p>"LinkedIn" vs "linkedin" vs "li" vs "linked-in" fragments your data. Use a shared UTM builder and enforce naming conventions.</p>
+
+                    <h3>2. Missing First-Touch Data</h3>
+                    <p>Only capturing last-touch UTMs means you can't see what channels create demand. Implement first-party cookies that persist across sessions.</p>
+
+                    <h3>3. Ignoring Dark Funnel</h3>
+                    <p>40-60% of B2B discovery happens in places you can't track: podcasts, communities, word-of-mouth, LinkedIn DMs. Use self-reported attribution to capture this.</p>
+
+                    <h3>4. Not Tracking Offline Touchpoints</h3>
+                    <p>Sales calls, events, and conferences don't automatically appear in attribution. Log these as CRM activities and include them in your model.</p>
+
+                    <h3>5. Using Platform-Reported Data</h3>
+                    <p>LinkedIn, Google, and Meta all take credit for the same conversion. Use your CRM as source of truth, not platform dashboards.</p>
+
+                    <h3>6. Reporting on Clicks, Not Revenue</h3>
+                    <p>Channel A has 1000 clicks but $10K revenue. Channel B has 100 clicks but $100K revenue. Always tie attribution to pipeline and closed-won revenue.</p>
+
+                    <div class="callout warning">
+                        <strong>The Biggest Mistake:</strong> Treating attribution as a one-time setup. Attribution requires ongoing maintenance: quarterly model review, regular data quality audits, and continuous UTM enforcement.
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Attribution Reporting Dashboards</h2>
+                    <p>Build these dashboards to answer the questions executives actually ask:</p>
+
+                    <h3>Dashboard 1: Channel Performance Overview</h3>
+                    <table>
+                        <tr><th>Metric</th><th>Chart Type</th><th>Filters</th></tr>
+                        <tr><td>Pipeline by First-Touch Channel</td><td>Stacked Bar</td><td>Date range, Deal stage</td></tr>
+                        <tr><td>Revenue by First-Touch Channel</td><td>Stacked Bar</td><td>Date range, Closed-Won</td></tr>
+                        <tr><td>CAC by Channel</td><td>Table</td><td>Rolling 90 days</td></tr>
+                        <tr><td>Channel Mix Trend</td><td>Line chart</td><td>Monthly, 12-month view</td></tr>
+                    </table>
+
+                    <h3>Dashboard 2: Campaign Performance</h3>
+                    <table>
+                        <tr><th>Metric</th><th>Chart Type</th><th>Purpose</th></tr>
+                        <tr><td>Top 10 Campaigns by Influenced Pipeline</td><td>Horizontal bar</td><td>Which campaigns create pipe?</td></tr>
+                        <tr><td>Campaign ROI Table</td><td>Table with sparklines</td><td>Spend vs influenced revenue</td></tr>
+                        <tr><td>Multi-Touch Path Analysis</td><td>Sankey diagram</td><td>How do channels work together?</td></tr>
+                    </table>
+
+                    <h3>Dashboard 3: Self-Reported vs Tracked</h3>
+                    <table>
+                        <tr><th>Metric</th><th>Chart Type</th><th>Purpose</th></tr>
+                        <tr><td>Self-Reported Distribution</td><td>Pie chart</td><td>What do customers say?</td></tr>
+                        <tr><td>Tracked vs Self-Reported Comparison</td><td>Grouped bar</td><td>Where are tracking blind spots?</td></tr>
+                        <tr><td>Dark Funnel Mentions</td><td>Word cloud/table</td><td>What sources aren't tracked?</td></tr>
+                    </table>
+                </div>
+
+                <div class="content-section">
+                    <h2>How to Validate Attribution Data</h2>
+                    <p>Run these audits monthly to ensure attribution data quality:</p>
+
+                    <h3>Audit 1: UTM Coverage Check</h3>
+                    <ol>
+                        <li>Pull all leads created in last 30 days</li>
+                        <li>Calculate % with Original Source populated</li>
+                        <li>Target: >90% coverage. Investigate gaps.</li>
+                    </ol>
+
+                    <h3>Audit 2: Platform vs CRM Comparison</h3>
+                    <ol>
+                        <li>Export conversions from LinkedIn/Google/Meta dashboards</li>
+                        <li>Compare to CRM leads attributed to those channels</li>
+                        <li>Variance >20% indicates tracking issues</li>
+                    </ol>
+
+                    <h3>Audit 3: Revenue Reconciliation</h3>
+                    <ol>
+                        <li>Sum attributed revenue across all channels</li>
+                        <li>Compare to actual closed-won revenue</li>
+                        <li>Difference = unattributed/direct revenue</li>
+                    </ol>
+
+                    <h3>Audit 4: Self-Reported Quality</h3>
+                    <ol>
+                        <li>Review "Other" responses in self-reported field</li>
+                        <li>Add frequently mentioned sources as options</li>
+                        <li>Flag inconsistencies (says Google, UTM says LinkedIn)</li>
+                    </ol>
+
+                    <div class="callout">
+                        <strong>Data Quality Targets:</strong>
+                        <ul style="margin: 0.5rem 0 0 1.5rem;">
+                            <li>UTM coverage: >90% of non-direct leads</li>
+                            <li>Platform variance: <20% difference from CRM</li>
+                            <li>Revenue reconciliation: <10% unattributed</li>
+                            <li>Self-reported completion: >70% on demo forms</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Self-Reported Attribution: The "How Did You Hear About Us" Question</h2>
+                    <p>Technical attribution can't track dark social, podcasts, or word-of-mouth. Self-reported attribution fills this gap.</p>
+
+                    <h3>Why It Matters</h3>
+                    <p>Studies show 40-60% of B2B buyers discover vendors through channels that are invisible to tracking:</p>
+                    <ul>
+                        <li>Colleague recommendation (no click, no UTM)</li>
+                        <li>Podcast mention (listening, not clicking)</li>
+                        <li>LinkedIn organic post (shared in DMs)</li>
+                        <li>Community discussion (Slack, Discord, Reddit)</li>
+                        <li>Industry event conversation (no digital trail)</li>
+                    </ul>
+
+                    <h3>Implementation Best Practices</h3>
+                    <table>
+                        <tr><th>Practice</th><th>Why</th></tr>
+                        <tr><td>Use dropdown + Other text field</td><td>Structured data + flexibility for new channels</td></tr>
+                        <tr><td>Put on high-intent forms only</td><td>Demo request, Contact Us - not every newsletter signup</td></tr>
+                        <tr><td>Make it optional</td><td>Don't block conversions for this data</td></tr>
+                        <tr><td>Review monthly</td><td>Add frequently mentioned sources as dropdown options</td></tr>
+                    </table>
+
+                    <h3>Recommended Dropdown Options</h3>
+                    <ul>
+                        <li>Google/Search engine</li>
+                        <li>LinkedIn (ad or post)</li>
+                        <li>Colleague/Friend referral</li>
+                        <li>Podcast</li>
+                        <li>Industry event/Conference</li>
+                        <li>Newsletter/Email</li>
+                        <li>Online community (Slack, Reddit, etc.)</li>
+                        <li>Blog/Article</li>
+                        <li>Review site (G2, Capterra)</li>
+                        <li>Other (please specify)</li>
+                    </ul>
+
+                    <h3>Analyzing Self-Reported Data</h3>
+                    <ol>
+                        <li><strong>Compare to tracked:</strong> If 30% say "Podcast" but 0% tracked to podcast UTMs, you're missing podcast attribution</li>
+                        <li><strong>Weight by revenue:</strong> Which self-reported sources produce highest-value deals?</li>
+                        <li><strong>Segment by ICP:</strong> Enterprise customers often discover differently than SMB</li>
+                    </ol>
+
+                    <div class="callout info">
+                        <strong>Pro Tip:</strong> When self-reported and tracked data conflict, believe self-reported. If someone says "colleague referral" but has a LinkedIn UTM, they likely clicked a link their colleague shared - the colleague is the true source.
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Gate Overlay -->
+            <div class="gate-overlay" id="gateOverlay">
+                <div class="gate-card">
+                    <h3>Unlock the Full Guide</h3>
+                    <p>Get UTM templates, CRM field configurations, HubSpot/Salesforce setup guides, and dashboard templates.</p>
+                    <form class="email-form" id="unlockForm" onsubmit="handleUnlock(event)">
+                        <input type="email" name="email" placeholder="you@company.com" required>
+                        <button type="submit">Unlock Full Guide</button>
+                    </form>
+                    <p class="note">Plus get the PDF version emailed to you</p>
+                </div>
+            </div>
+        </div>
+
+        <section>
+            <h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1rem;">Related Resources</h2>
+            <div class="related-links">
+                <a href="/playbooks/lead-scoring-framework/" class="related-link">Lead Scoring Framework</a>
+                <a href="/assessments/hubspot-health/" class="related-link">HubSpot Health Check</a>
+                <a href="/assess/calculator/" class="related-link">Benchmark Calculator</a>
+                <a href="/playbooks/intent-signals/" class="related-link">Intent Signals Playbook</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <!-- Column 1: Brand -->
+                <div class="footer-brand">
+                    <img src="/42-logo.png" alt="42 Agency">
+                    <p>B2B performance marketing for companies that sell to enterprises.</p>
+                    <div class="footer-social">
+                        <a href="https://linkedin.com/company/42agency" target="_blank">LinkedIn</a>
+                        <a href="https://x.com/42aboratory" target="_blank">X</a>
+                        <a href="https://www.youtube.com/@Get42Agency" target="_blank">YouTube</a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Assess -->
+                <div class="footer-col">
+                    <h4>Assess</h4>
+                    <a href="/assessments/hubspot-health/">HubSpot Health Check</a>
+                    <a href="/assess/calculator/">Benchmark Calculator</a>
+                    <a href="/linkedin-audit/">LinkedIn Ads Audit</a>
+                    <a href="/google-ads-audit/">Google Ads Audit</a>
+                    <a href="/meta-audit/">Meta Ads Audit</a>
+                    <a href="/hubspot-audit/">HubSpot Audit</a>
+                </div>
+
+                <!-- Column 3: Benchmarks -->
+                <div class="footer-col">
+                    <h4>Benchmarks</h4>
+                    <a href="/b2b-benchmarks/">All B2B Benchmarks</a>
+                    <a href="/b2b-benchmarks/linkedin-ads-benchmarks/">LinkedIn Ads</a>
+                    <a href="/b2b-benchmarks/google-ads-benchmarks/">Google Ads</a>
+                    <a href="/b2b-benchmarks/linkedin-inmail-benchmarks/">InMail Benchmarks</a>
+                    <a href="/b2b-benchmarks/legal-tech-linkedin-ads/" class="sublink">Legal Tech</a>
+                    <a href="/b2b-benchmarks/healthcare-tech-linkedin-ads/" class="sublink">Healthcare Tech</a>
+                    <a href="/b2b-benchmarks/fintech-linkedin-ads/" class="sublink">FinTech</a>
+                </div>
+
+                <!-- Column 4: AI Tools + Resources -->
+                <div class="footer-col">
+                    <h4>AI Tools</h4>
+                    <a href="https://copilot.42agency.com" target="_blank">LinkedIn Ads Copilot</a>
+                    <a href="https://copilot.42agency.com/linkedin-ads-targeting" target="_blank">Targeting Guide</a>
+                    <h4 style="margin-top: 1.5rem;">Playbooks</h4>
+                    <a href="/playbooks/">All Playbooks</a>
+                    <a href="/playbooks/lead-scoring-framework/">Lead Scoring</a>
+                    <a href="/playbooks/intent-signals/">Intent Signals</a>
+                </div>
+
+                <!-- Column 5: 42 Agency -->
+                <div class="footer-col">
+                    <h4>42 Agency</h4>
+                    <a href="https://42agency.com" target="_blank">Website</a>
+                    <a href="https://www.42agency.com/contact-us" target="_blank">Contact Us</a>
+                    <a href="https://42agency.com/case-studies" target="_blank">Case Studies</a>
+                    <a href="https://42slash.com" target="_blank">42/ Essays</a>
+                    <a href="https://42agency.com/careers" target="_blank">Careers</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 42 Agency. All rights reserved.</p>
+                <p><a href="https://42agency.com/privacy">Privacy</a> &middot; <a href="https://42agency.com/terms">Terms</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/email-validation.js"></script>
+    <script>
+        // Check if already unlocked
+        if (localStorage.getItem('playbook_unlocked_attribution-setup')) {
+            document.getElementById('gatedContent').classList.add('unlocked');
+            document.getElementById('gateOverlay').classList.add('hidden');
+            document.getElementById('downloadBanner').classList.add('visible');
+        }
+
+        async function handleUnlock(e) {
+            e.preventDefault();
+            const email = e.target.email.value;
+            const button = e.target.querySelector('button');
+            button.disabled = true;
+            button.textContent = 'Unlocking...';
+
+            try {
+                const response = await fetch('/api/playbook-download', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        playbook: 'attribution-setup'
+                    })
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    // Track event
+                    if (window.dataLayer) window.dataLayer.push({ event: 'playbook_unlocked', playbook: 'attribution-setup' });
+
+                    // Save unlock state
+                    localStorage.setItem('playbook_unlocked_attribution-setup', 'true');
+
+                    // Reveal content
+                    document.getElementById('gatedContent').classList.add('unlocked');
+                    document.getElementById('gateOverlay').classList.add('hidden');
+                    document.getElementById('downloadBanner').classList.add('visible');
+
+                    // Scroll to content
+                    document.getElementById('gatedContent').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    throw new Error('Failed');
+                }
+            } catch (error) {
+                button.textContent = 'Try Again';
+                button.disabled = false;
+            }
+        }
+    </script>
+    <!-- Vercel Analytics -->
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

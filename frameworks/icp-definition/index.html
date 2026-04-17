@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ICP Definition Framework for B2B | Ideal Customer Profile Guide | 42 Agency</title>
+  <meta name="description" content="The complete ICP Definition Framework for B2B: Define your Ideal Customer Profile with firmographic, technographic, and behavioral criteria. Free template with scoring methodology and validation process.">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    :root {
+      --accent: #DFFE68;
+      --accent-hover: #C8E85C;
+      --black: #1a1a1a;
+      --gray: #4a4a4a;
+      --muted: #6b6b6b;
+      --light-gray: #f5f5f5;
+    }
+    .header { border-bottom: 2px solid var(--black); padding: 0.75rem 1.5rem; background: white; position: sticky; top: 0; z-index: 50; }
+    .header-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .logo img { height: 28px; width: auto; }
+    .nav { display: flex; align-items: center; gap: 0.25rem; }
+    .nav a { padding: 0.5rem 1rem; color: var(--gray); text-decoration: none; font-size: 0.9rem; font-weight: 500; border-radius: 6px; transition: all 0.15s; }
+    .nav a:hover { color: var(--black); background: var(--light-gray); }
+    .nav-cta { margin-left: 0.5rem; padding: 0.5rem 1rem; background: var(--black); color: white !important; border-radius: 6px; font-weight: 600; }
+    @media (max-width: 768px) { .nav { display: none; } }
+    .footer { border-top: 2px solid var(--black); background: var(--black); padding: 4rem 1.5rem 2rem; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr repeat(4, 1fr); gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid #333; }
+    .footer-brand img { height: 24px; filter: brightness(0) invert(1); margin-bottom: 1rem; }
+    .footer-brand p { font-size: 0.85rem; color: #999; line-height: 1.6; }
+    .footer-col h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1rem; color: var(--accent); }
+    .footer-col a { display: block; color: #999; text-decoration: none; font-size: 0.85rem; margin-bottom: 0.6rem; }
+    .footer-col a:hover { color: white; }
+    .footer-col .sublink { padding-left: 0.75rem; font-size: 0.8rem; color: #666; }
+    .footer-bottom { padding-top: 2rem; display: flex; justify-content: space-between; font-size: 0.8rem; color: #666; }
+    .footer-bottom a { color: #666; text-decoration: none; }
+    .footer-bottom a:hover { color: white; }
+    @media (max-width: 900px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } }
+  </style>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MM5BTNS');</script>
+
+  <!-- HubSpot Tracking -->
+  <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/44888286.js"></script>
+
+  <!-- HowTo Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Define Your B2B Ideal Customer Profile (ICP)",
+    "description": "A comprehensive framework for defining your Ideal Customer Profile using firmographic, technographic, and behavioral criteria with validation against closed-won data.",
+    "author": {
+      "@type": "Organization",
+      "name": "42 Agency",
+      "url": "https://www.42agency.com"
+    },
+    "totalTime": "PT4H",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Analyze Closed-Won Customers",
+        "text": "Export your closed-won deals from the past 12-24 months. Identify patterns in company size, industry, revenue, and deal characteristics. Focus on customers with highest LTV and fastest sales cycles."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Define Firmographic Criteria",
+        "text": "Document industry verticals, company size ranges, revenue thresholds, geographic requirements, and organizational structure patterns from your best customers."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Map Technographic Requirements",
+        "text": "Identify technology stack patterns: required integrations, complementary tools, competitor products, and tech maturity indicators that correlate with success."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Identify Behavioral Signals",
+        "text": "Define growth indicators, timing triggers, and buying signals: recent funding, hiring patterns, expansion signals, and technology adoption events."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 5,
+        "name": "Establish Negative Filters",
+        "text": "Document disqualifying criteria: industries to avoid, company characteristics that correlate with churn, and deal patterns that indicate poor fit."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 6,
+        "name": "Build ICP Scoring Model",
+        "text": "Create a weighted scoring system with tiers (Tier 1: 85-100 points, Tier 2: 70-84 points, Tier 3: 55-69 points) to prioritize accounts and allocate resources."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 7,
+        "name": "Validate Against Data",
+        "text": "Apply your ICP criteria to historical deals. Verify that Tier 1 accounts convert at 2-3x the rate of Tier 3. Refine criteria until model accurately predicts outcomes."
+      }
+    ]
+  }
+  </script>
+
+  <!-- FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between ICP and Buyer Persona?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An Ideal Customer Profile (ICP) defines the company-level characteristics of your best-fit accounts: industry, size, revenue, tech stack, and growth stage. A Buyer Persona describes the individual decision-makers within those companies: their job title, responsibilities, pain points, and buying behavior. ICP answers 'which companies should we target?' while Buyer Persona answers 'who within those companies should we reach?'"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many criteria should be in an ICP?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An effective ICP typically includes 8-12 core criteria across three categories: firmographics (4-5 criteria like industry, size, revenue), technographics (2-3 criteria like required tech stack), and behavioral signals (2-4 criteria like funding or hiring). More than 15 criteria makes the ICP too restrictive; fewer than 6 makes it too broad to be actionable."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I validate my ICP?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Validate your ICP by scoring your historical closed-won and closed-lost deals against your criteria. Your Tier 1 ICP accounts should show: 2-3x higher win rates than Tier 3, 30-50% shorter sales cycles, 20-40% higher average deal sizes, and lower churn rates. If the data doesn't show these patterns, refine your criteria."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How often should I update my ICP?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Review your ICP quarterly and do a comprehensive refresh annually. Triggers for immediate review include: launching new products, entering new markets, significant changes in win/loss patterns, or shifts in your competitive landscape. Track ICP drift by comparing new closed-won customers against your documented criteria."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the most common ICP mistakes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The two most common mistakes are: (1) Too broad - listing every possible customer type without prioritization, resulting in unfocused marketing and sales efforts. (2) Too narrow - over-constraining criteria based on outlier customers, leaving viable market segments untapped. Other mistakes include ignoring negative criteria, not validating against data, and confusing ICP with total addressable market (TAM)."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body class="bg-white text-gray-900">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MM5BTNS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="/" class="logo">
+        <img src="/42-logo.png" alt="42 Agency">
+      </a>
+      <nav class="nav">
+        <a href="/assess/">Assess</a>
+        <a href="/b2b-benchmarks/">Benchmarks</a>
+        <a href="/tools/">Tools</a>
+        <a href="/playbooks/">Playbooks</a>
+        <a href="https://www.42agency.com/contact-us" target="_blank" class="nav-cta">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="bg-gray-100 border-b-2 border-gray-900 py-16 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <span class="inline-block px-3 py-1 bg-white border-2 border-gray-900 rounded-full text-xs font-bold mb-6">ICP FRAMEWORK</span>
+      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">ICP Definition Framework for B2B</h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">Define, score, and validate your Ideal Customer Profile with firmographic, technographic, and behavioral criteria</p>
+    </div>
+  </section>
+
+  <!-- ICP vs Buyer Persona -->
+  <section class="py-16 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-[#DFFE68] border-2 border-gray-900 rounded-2xl p-8 shadow-[6px_6px_0px_0px_#1a1a1a] mb-12">
+        <h2 class="text-xl font-extrabold tracking-tight mb-4">ICP vs Buyer Persona: Know the Difference</h2>
+        <p class="text-lg mb-6">These are not interchangeable. Your ICP and Buyer Personas serve different purposes in your GTM strategy.</p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-white border-2 border-gray-900 rounded-xl p-6">
+            <h3 class="font-bold text-lg mb-3">Ideal Customer Profile (ICP)</h3>
+            <p class="text-sm text-gray-600 mb-4"><strong>Company-level</strong> characteristics</p>
+            <ul class="space-y-2 text-sm">
+              <li class="flex items-start gap-2">
+                <span class="text-green-600 font-bold">+</span>
+                <span>Which companies to target</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-600 font-bold">+</span>
+                <span>Firmographic attributes</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-600 font-bold">+</span>
+                <span>Account-level qualification</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-600 font-bold">+</span>
+                <span>Used for account prioritization</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white border-2 border-gray-900 rounded-xl p-6">
+            <h3 class="font-bold text-lg mb-3">Buyer Persona</h3>
+            <p class="text-sm text-gray-600 mb-4"><strong>Individual-level</strong> characteristics</p>
+            <ul class="space-y-2 text-sm">
+              <li class="flex items-start gap-2">
+                <span class="text-blue-600 font-bold">+</span>
+                <span>Who to reach within companies</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-blue-600 font-bold">+</span>
+                <span>Job titles, pain points, goals</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-blue-600 font-bold">+</span>
+                <span>Contact-level qualification</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-blue-600 font-bold">+</span>
+                <span>Used for messaging and content</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="text-sm mt-6 bg-gray-900 text-white p-4 rounded-lg"><strong>In practice:</strong> Define your ICP first to identify target accounts, then develop Buyer Personas for the 3-5 key decision-makers within those accounts.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visual Framework Diagram -->
+  <section class="py-16 px-6 bg-gray-100 border-y-2 border-gray-900">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-2xl font-extrabold tracking-tight mb-8 text-center">The ICP Framework: Three Pillars</h2>
+
+      <div class="grid md:grid-cols-3 gap-6 mb-8">
+        <!-- Firmographic -->
+        <div class="bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[4px_4px_0px_0px_#F59E0B]">
+          <div class="w-12 h-12 bg-orange-100 border-2 border-orange-500 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+            </svg>
+          </div>
+          <span class="inline-block px-2 py-1 bg-orange-100 border border-orange-400 rounded text-xs font-bold text-orange-700 mb-3">PILLAR 1</span>
+          <h3 class="font-bold text-lg mb-2">Firmographic Criteria</h3>
+          <p class="text-sm text-gray-600 mb-4">Company-level attributes that define organizational fit</p>
+          <ul class="text-sm space-y-1 text-gray-700">
+            <li>Industry vertical</li>
+            <li>Company size (employees)</li>
+            <li>Annual revenue</li>
+            <li>Geography/HQ location</li>
+            <li>Business model (B2B/B2C)</li>
+          </ul>
+        </div>
+
+        <!-- Technographic -->
+        <div class="bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[4px_4px_0px_0px_#3B82F6]">
+          <div class="w-12 h-12 bg-blue-100 border-2 border-blue-500 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <span class="inline-block px-2 py-1 bg-blue-100 border border-blue-400 rounded text-xs font-bold text-blue-700 mb-3">PILLAR 2</span>
+          <h3 class="font-bold text-lg mb-2">Technographic Criteria</h3>
+          <p class="text-sm text-gray-600 mb-4">Technology stack indicators that signal product fit</p>
+          <ul class="text-sm space-y-1 text-gray-700">
+            <li>Current tech stack</li>
+            <li>Required integrations</li>
+            <li>Competitor products</li>
+            <li>Tech maturity level</li>
+            <li>IT infrastructure</li>
+          </ul>
+        </div>
+
+        <!-- Behavioral -->
+        <div class="bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[4px_4px_0px_0px_#10B981]">
+          <div class="w-12 h-12 bg-green-100 border-2 border-green-500 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+            </svg>
+          </div>
+          <span class="inline-block px-2 py-1 bg-green-100 border border-green-400 rounded text-xs font-bold text-green-700 mb-3">PILLAR 3</span>
+          <h3 class="font-bold text-lg mb-2">Behavioral Signals</h3>
+          <p class="text-sm text-gray-600 mb-4">Timing and growth indicators that signal buying readiness</p>
+          <ul class="text-sm space-y-1 text-gray-700">
+            <li>Recent funding rounds</li>
+            <li>Hiring patterns</li>
+            <li>Expansion signals</li>
+            <li>Leadership changes</li>
+            <li>Technology adoption</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Negative Filters -->
+      <div class="bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[4px_4px_0px_0px_#EF4444]">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 bg-red-100 border-2 border-red-500 rounded-xl flex items-center justify-center shrink-0">
+            <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path>
+            </svg>
+          </div>
+          <div>
+            <span class="inline-block px-2 py-1 bg-red-100 border border-red-400 rounded text-xs font-bold text-red-700 mb-2">EQUALLY IMPORTANT</span>
+            <h3 class="font-bold text-lg mb-2">Negative Filters (Disqualification Criteria)</h3>
+            <p class="text-sm text-gray-600 mb-4">Knowing who NOT to target is as important as knowing who to target. Define explicit disqualification criteria.</p>
+            <div class="grid md:grid-cols-3 gap-4 text-sm">
+              <div>
+                <p class="font-medium mb-1">Industry Exclusions</p>
+                <p class="text-gray-600">Regulated industries you can't serve, sunset sectors</p>
+              </div>
+              <div>
+                <p class="font-medium mb-1">Company Exclusions</p>
+                <p class="text-gray-600">Too small for ROI, too large for support capacity</p>
+              </div>
+              <div>
+                <p class="font-medium mb-1">Behavioral Red Flags</p>
+                <p class="text-gray-600">Recently churned, active competitor contract, low tech adoption</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Firmographic Criteria Deep Dive -->
+  <section class="py-16 px-6">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-extrabold tracking-tight mb-8">Firmographic Criteria: Who They Are</h2>
+
+      <div class="bg-white border-2 border-gray-900 rounded-xl overflow-hidden shadow-[4px_4px_0px_0px_#1a1a1a] mb-8">
+        <table class="w-full">
+          <thead class="bg-gray-900 text-white">
+            <tr>
+              <th class="px-6 py-4 text-left font-bold">Criterion</th>
+              <th class="px-6 py-4 text-left font-bold">What to Define</th>
+              <th class="px-6 py-4 text-left font-bold">Data Sources</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y-2 divide-gray-200">
+            <tr>
+              <td class="px-6 py-4 font-medium">Industry Vertical</td>
+              <td class="px-6 py-4 text-gray-600">2-5 primary verticals, NAICS/SIC codes</td>
+              <td class="px-6 py-4"><span class="px-2 py-1 bg-gray-100 rounded text-xs">LinkedIn, ZoomInfo, Clearbit</span></td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 font-medium">Company Size</td>
+              <td class="px-6 py-4 text-gray-600">Employee count ranges (e.g., 50-500)</td>
+              <td class="px-6 py-4"><span class="px-2 py-1 bg-gray-100 rounded text-xs">LinkedIn, Apollo, Crunchbase</span></td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 font-medium">Annual Revenue</td>
+              <td class="px-6 py-4 text-gray-600">Revenue bands (e.g., $10M-$100M ARR)</td>
+              <td class="px-6 py-4"><span class="px-2 py-1 bg-gray-100 rounded text-xs">ZoomInfo, PrivCo, PitchBook</span></td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 font-medium">Geography</td>
+              <td class="px-6 py-4 text-gray-600">HQ location, operating regions, time zones</td>
+              <td class="px-6 py-4"><span class="px-2 py-1 bg-gray-100 rounded text-xs">LinkedIn, Company website</span></td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 font-medium">Business Model</td>
+              <td class="px-6 py-4 text-gray-600">B2B vs B2C, SaaS vs services, growth stage</td>
+              <td class="px-6 py-4"><span class="px-2 py-1 bg-gray-100 rounded text-xs">Crunchbase, Company website</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="bg-gray-100 border-2 border-gray-900 rounded-xl p-6">
+        <h3 class="font-bold mb-3">Example: SaaS Marketing Automation Platform</h3>
+        <div class="grid md:grid-cols-2 gap-4 text-sm">
+          <div>
+            <p class="font-medium text-green-700 mb-2">Target (Tier 1)</p>
+            <ul class="space-y-1 text-gray-700">
+              <li>B2B SaaS companies</li>
+              <li>50-500 employees</li>
+              <li>$5M-$50M ARR</li>
+              <li>North America or UK</li>
+              <li>Series A through Series C</li>
+            </ul>
+          </div>
+          <div>
+            <p class="font-medium text-red-700 mb-2">Exclude</p>
+            <ul class="space-y-1 text-gray-700">
+              <li>B2C or e-commerce</li>
+              <li>Under 20 employees (no marketing team)</li>
+              <li>Over 1,000 employees (enterprise needs)</li>
+              <li>Bootstrapped with no growth plans</li>
+              <li>Agency or services business</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technographic Criteria -->
+  <section class="py-16 px-6 bg-gray-100 border-y-2 border-gray-900">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-extrabold tracking-tight mb-8">Technographic Criteria: What They Use</h2>
+
+      <p class="text-lg mb-8">Technology signals indicate product fit, buying maturity, and integration feasibility. Map the tech stack patterns of your best customers.</p>
+
+      <div class="grid md:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[4px_4px_0px_0px_#1a1a1a]">
+          <h3 class="font-bold text-lg mb-4">Required Technologies</h3>
+          <p class="text-sm text-gray-600 mb-4">Tools that must be present for your product to work or deliver value</p>
+          <ul class="space-y-2 text-sm">
+            <li class="flex items-start gap-2">
+              <span class="w-5 h-5 bg-green-100 border border-green-500 rounded flex items-center justify-center text-green-600 text-xs shrink-0">+</span>
+              <span>CRM (Salesforce, HubSpot) for integrations</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="w-5 h-5 bg-green-100 border border-green-500 rounded flex items-center justify-center text-green-600 text-xs shrink-0">+</span>
+              <span>Marketing automation for data sync</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="w-5 h-5 bg-green-100 border border-green-500 rounded flex items-center justify-center text-green-600 text-xs shrink-0">+</span>
+              <span>Analytics platform for ROI tracking</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[4px_4px_0px_0px_#1a1a1a]">
+          <h3 class="font-bold text-lg mb-4">Complementary Technologies</h3>
+          <p class="text-sm text-gray-600 mb-4">Tools that indicate tech maturity and expansion potential</p>
+          <ul class="space-y-2 text-sm">
+            <li class="flex items-start gap-2">
+              <span class="w-5 h-5 bg-blue-100 border border-blue-500 rounded flex items-center justify-center text-blue-600 text-xs shrink-0">~</span>
+              <span>Data enrichment tools (Clearbit, ZoomInfo)</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="w-5 h-5 bg-blue-100 border border-blue-500 rounded flex items-center justify-center text-blue-600 text-xs shrink-0">~</span>
+              <span>Sales engagement (Outreach, Salesloft)</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="w-5 h-5 bg-blue-100 border border-blue-500 rounded flex items-center justify-center text-blue-600 text-xs shrink-0">~</span>
+              <span>BI tools (Looker, Tableau)</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[4px_4px_0px_0px_#1a1a1a]">
+          <h3 class="font-bold text-lg mb-4">Competitor Signals</h3>
+          <p class="text-sm text-gray-600 mb-4">Competitive products that indicate market education or displacement opportunity</p>
+          <ul class="space-y-2 text-sm">
+            <li class="flex items-start gap-2">
+              <span class="w-5 h-5 bg-orange-100 border border-orange-500 rounded flex items-center justify-center text-orange-600 text-xs shrink-0">!</span>
+              <span>Using outdated competitor (ripe for switch)</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="w-5 h-5 bg-orange-100 border border-orange-500 rounded flex items-center justify-center text-orange-600 text-xs shrink-0">!</span>
+              <span>Point solutions (consolidation play)</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="w-5 h-5 bg-orange-100 border border-orange-500 rounded flex items-center justify-center text-orange-600 text-xs shrink-0">!</span>
+              <span>Contract renewal timing</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[4px_4px_0px_0px_#1a1a1a]">
+          <h3 class="font-bold text-lg mb-4">Disqualifying Tech</h3>
+          <p class="text-sm text-gray-600 mb-4">Technologies that indicate poor fit or recent competitive loss</p>
+          <ul class="space-y-2 text-sm">
+            <li class="flex items-start gap-2">
+              <span class="w-5 h-5 bg-red-100 border border-red-500 rounded flex items-center justify-center text-red-600 text-xs shrink-0">X</span>
+              <span>Recently purchased competitor (locked in)</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="w-5 h-5 bg-red-100 border border-red-500 rounded flex items-center justify-center text-red-600 text-xs shrink-0">X</span>
+              <span>Incompatible infrastructure</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="w-5 h-5 bg-red-100 border border-red-500 rounded flex items-center justify-center text-red-600 text-xs shrink-0">X</span>
+              <span>Missing prerequisites</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-white border-2 border-gray-900 rounded-xl p-6">
+        <h3 class="font-bold mb-3">Technographic Data Sources</h3>
+        <div class="grid md:grid-cols-4 gap-4 text-sm">
+          <div class="text-center p-4 bg-gray-50 rounded-lg">
+            <p class="font-medium">BuiltWith</p>
+            <p class="text-gray-500 text-xs">Web technologies</p>
+          </div>
+          <div class="text-center p-4 bg-gray-50 rounded-lg">
+            <p class="font-medium">Slintel/6sense</p>
+            <p class="text-gray-500 text-xs">Intent + tech stack</p>
+          </div>
+          <div class="text-center p-4 bg-gray-50 rounded-lg">
+            <p class="font-medium">HG Insights</p>
+            <p class="text-gray-500 text-xs">Technology install base</p>
+          </div>
+          <div class="text-center p-4 bg-gray-50 rounded-lg">
+            <p class="font-medium">Clearbit/Apollo</p>
+            <p class="text-gray-500 text-xs">Tech stack enrichment</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Behavioral Signals -->
+  <section class="py-16 px-6">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-extrabold tracking-tight mb-8">Behavioral Signals: When They're Ready</h2>
+
+      <p class="text-lg mb-8">Timing is everything in B2B sales. Behavioral signals indicate companies entering active buying cycles or experiencing growth triggers that create need for your solution.</p>
+
+      <div class="bg-white border-2 border-gray-900 rounded-xl overflow-hidden shadow-[4px_4px_0px_0px_#1a1a1a] mb-8">
+        <table class="w-full">
+          <thead class="bg-gray-900 text-white">
+            <tr>
+              <th class="px-6 py-4 text-left font-bold">Signal Type</th>
+              <th class="px-6 py-4 text-left font-bold">Examples</th>
+              <th class="px-6 py-4 text-center font-bold">Intent Level</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y-2 divide-gray-200">
+            <tr>
+              <td class="px-6 py-4 font-medium">Funding Events</td>
+              <td class="px-6 py-4 text-gray-600">Series A-D raised, PE acquisition, IPO prep</td>
+              <td class="px-6 py-4 text-center"><span class="px-3 py-1 bg-green-100 border-2 border-green-500 rounded-full text-xs font-bold text-green-700">High</span></td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 font-medium">Hiring Patterns</td>
+              <td class="px-6 py-4 text-gray-600">New VP/Director roles, team expansion, new department</td>
+              <td class="px-6 py-4 text-center"><span class="px-3 py-1 bg-green-100 border-2 border-green-500 rounded-full text-xs font-bold text-green-700">High</span></td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 font-medium">Leadership Changes</td>
+              <td class="px-6 py-4 text-gray-600">New CRO/CMO/CTO, executive hires from your customers</td>
+              <td class="px-6 py-4 text-center"><span class="px-3 py-1 bg-green-100 border-2 border-green-500 rounded-full text-xs font-bold text-green-700">High</span></td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 font-medium">Expansion Signals</td>
+              <td class="px-6 py-4 text-gray-600">New office, new market entry, M&A activity</td>
+              <td class="px-6 py-4 text-center"><span class="px-3 py-1 bg-yellow-100 border-2 border-yellow-500 rounded-full text-xs font-bold text-yellow-700">Medium</span></td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 font-medium">Technology Adoption</td>
+              <td class="px-6 py-4 text-gray-600">New tool implementation, stack modernization</td>
+              <td class="px-6 py-4 text-center"><span class="px-3 py-1 bg-yellow-100 border-2 border-yellow-500 rounded-full text-xs font-bold text-yellow-700">Medium</span></td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 font-medium">Content Engagement</td>
+              <td class="px-6 py-4 text-gray-600">G2/Capterra research, industry event attendance</td>
+              <td class="px-6 py-4 text-center"><span class="px-3 py-1 bg-blue-100 border-2 border-blue-500 rounded-full text-xs font-bold text-blue-700">Intent</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[3px_3px_0px_0px_#1a1a1a]">
+          <h3 class="font-bold mb-3">Signal Monitoring Tools</h3>
+          <ul class="space-y-2 text-sm">
+            <li><strong>Crunchbase / PitchBook</strong> - Funding and M&A</li>
+            <li><strong>LinkedIn Sales Navigator</strong> - Job changes, hiring</li>
+            <li><strong>UserGems</strong> - Champion tracking</li>
+            <li><strong>Bombora / 6sense</strong> - Intent data</li>
+            <li><strong>Google Alerts / Feedly</strong> - News monitoring</li>
+          </ul>
+        </div>
+        <div class="bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[3px_3px_0px_0px_#1a1a1a]">
+          <h3 class="font-bold mb-3">Operationalizing Signals</h3>
+          <ul class="space-y-2 text-sm">
+            <li><strong>Trigger-based campaigns</strong> - Auto-enroll on signal</li>
+            <li><strong>Sales alerts</strong> - Notify reps immediately</li>
+            <li><strong>Account scoring</strong> - Weight behavioral signals</li>
+            <li><strong>Sequence timing</strong> - Strike while iron is hot</li>
+            <li><strong>Personalization</strong> - Reference the trigger</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Negative Filters -->
+  <section class="py-16 px-6 bg-gray-100 border-y-2 border-gray-900">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-extrabold tracking-tight mb-8">Negative Filters: Who to Exclude</h2>
+
+      <div class="bg-red-50 border-2 border-red-500 rounded-xl p-6 mb-8">
+        <p class="text-lg"><strong>Critical insight:</strong> Your negative filters should be as specific as your positive criteria. Vague exclusions like "companies that aren't a good fit" waste time. Define explicit, data-backed disqualification criteria.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[4px_4px_0px_0px_#EF4444]">
+          <h3 class="font-bold text-lg mb-4 text-red-700">Automatic Disqualification</h3>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start gap-3">
+              <span class="text-red-600 font-bold">X</span>
+              <div>
+                <p class="font-medium">Industry exclusions</p>
+                <p class="text-gray-600">Regulated sectors you can't serve (healthcare compliance, government contracts)</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-red-600 font-bold">X</span>
+              <div>
+                <p class="font-medium">Size mismatch</p>
+                <p class="text-gray-600">Below minimum viable deal size or above support capacity</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-red-600 font-bold">X</span>
+              <div>
+                <p class="font-medium">Recent competitive loss</p>
+                <p class="text-gray-600">Signed competitor contract in last 12 months</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-red-600 font-bold">X</span>
+              <div>
+                <p class="font-medium">Previous churn</p>
+                <p class="text-gray-600">Cancelled customer within last 24 months</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[4px_4px_0px_0px_#F59E0B]">
+          <h3 class="font-bold text-lg mb-4 text-orange-700">Warning Signals (Score Reduction)</h3>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start gap-3">
+              <span class="text-orange-600 font-bold">!</span>
+              <div>
+                <p class="font-medium">Budget uncertainty</p>
+                <p class="text-gray-600">Pre-revenue, bootstrap with no funding plans</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-orange-600 font-bold">!</span>
+              <div>
+                <p class="font-medium">Decision complexity</p>
+                <p class="text-gray-600">Public sector, 10+ stakeholder buying committees</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-orange-600 font-bold">!</span>
+              <div>
+                <p class="font-medium">Technical constraints</p>
+                <p class="text-gray-600">Legacy infrastructure, custom integrations required</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-orange-600 font-bold">!</span>
+              <div>
+                <p class="font-medium">Growth trajectory</p>
+                <p class="text-gray-600">Declining revenue, layoffs, restructuring</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-white border-2 border-gray-900 rounded-xl p-6">
+        <h3 class="font-bold mb-3">Build Your Negative Filter List From:</h3>
+        <ol class="space-y-2 text-sm">
+          <li class="flex gap-3"><span class="font-bold">1.</span>Closed-Lost analysis - patterns in deals that never closed</li>
+          <li class="flex gap-3"><span class="font-bold">2.</span>Churn analysis - characteristics of churned customers</li>
+          <li class="flex gap-3"><span class="font-bold">3.</span>Long sales cycles - what extended deals by 2x+</li>
+          <li class="flex gap-3"><span class="font-bold">4.</span>Low NPS customers - what made them unhappy</li>
+          <li class="flex gap-3"><span class="font-bold">5.</span>Sales team feedback - "always avoid" accounts</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ICP Scoring Methodology -->
+  <section class="py-16 px-6">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-extrabold tracking-tight mb-8">ICP Scoring Methodology</h2>
+
+      <p class="text-lg mb-8">Convert your ICP criteria into a quantitative scoring model to prioritize accounts and allocate GTM resources effectively.</p>
+
+      <div class="bg-white border-2 border-gray-900 rounded-xl p-8 shadow-[4px_4px_0px_0px_#1a1a1a] mb-8">
+        <h3 class="font-bold text-lg mb-6">100-Point ICP Scoring Model</h3>
+
+        <div class="space-y-6">
+          <!-- Firmographic -->
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <span class="font-bold text-orange-700">Firmographic Fit</span>
+              <span class="px-3 py-1 bg-orange-100 border-2 border-orange-400 rounded-full text-sm font-bold">40 points max</span>
+            </div>
+            <div class="bg-gray-50 rounded-lg p-4">
+              <div class="grid grid-cols-2 gap-4 text-sm">
+                <div class="flex justify-between"><span>Industry match</span><span class="font-medium">0-15 pts</span></div>
+                <div class="flex justify-between"><span>Company size</span><span class="font-medium">0-10 pts</span></div>
+                <div class="flex justify-between"><span>Revenue range</span><span class="font-medium">0-10 pts</span></div>
+                <div class="flex justify-between"><span>Geography</span><span class="font-medium">0-5 pts</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Technographic -->
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <span class="font-bold text-blue-700">Technographic Fit</span>
+              <span class="px-3 py-1 bg-blue-100 border-2 border-blue-400 rounded-full text-sm font-bold">30 points max</span>
+            </div>
+            <div class="bg-gray-50 rounded-lg p-4">
+              <div class="grid grid-cols-2 gap-4 text-sm">
+                <div class="flex justify-between"><span>Required tech present</span><span class="font-medium">0-15 pts</span></div>
+                <div class="flex justify-between"><span>Complementary tech</span><span class="font-medium">0-10 pts</span></div>
+                <div class="flex justify-between"><span>Competitor signals</span><span class="font-medium">0-5 pts</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Behavioral -->
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <span class="font-bold text-green-700">Behavioral Signals</span>
+              <span class="px-3 py-1 bg-green-100 border-2 border-green-400 rounded-full text-sm font-bold">30 points max</span>
+            </div>
+            <div class="bg-gray-50 rounded-lg p-4">
+              <div class="grid grid-cols-2 gap-4 text-sm">
+                <div class="flex justify-between"><span>Funding/growth event</span><span class="font-medium">0-15 pts</span></div>
+                <div class="flex justify-between"><span>Hiring signals</span><span class="font-medium">0-10 pts</span></div>
+                <div class="flex justify-between"><span>Intent data</span><span class="font-medium">0-5 pts</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tier System -->
+      <div class="bg-white border-2 border-gray-900 rounded-xl overflow-hidden shadow-[4px_4px_0px_0px_#1a1a1a] mb-8">
+        <table class="w-full">
+          <thead class="bg-gray-900 text-white">
+            <tr>
+              <th class="px-6 py-4 text-left font-bold">Tier</th>
+              <th class="px-6 py-4 text-center font-bold">Score Range</th>
+              <th class="px-6 py-4 text-left font-bold">GTM Treatment</th>
+              <th class="px-6 py-4 text-center font-bold">% of TAM</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y-2 divide-gray-200">
+            <tr class="bg-green-50">
+              <td class="px-6 py-4 font-bold text-green-700">Tier 1</td>
+              <td class="px-6 py-4 text-center"><span class="px-3 py-1 bg-green-100 border-2 border-green-500 rounded-full text-sm font-bold text-green-700">85-100</span></td>
+              <td class="px-6 py-4 text-gray-700">ABM - Personalized multi-channel campaigns, 1:1 outreach</td>
+              <td class="px-6 py-4 text-center font-medium">5-10%</td>
+            </tr>
+            <tr class="bg-blue-50">
+              <td class="px-6 py-4 font-bold text-blue-700">Tier 2</td>
+              <td class="px-6 py-4 text-center"><span class="px-3 py-1 bg-blue-100 border-2 border-blue-500 rounded-full text-sm font-bold text-blue-700">70-84</span></td>
+              <td class="px-6 py-4 text-gray-700">ABM Lite - Industry/persona-specific campaigns, targeted ads</td>
+              <td class="px-6 py-4 text-center font-medium">15-25%</td>
+            </tr>
+            <tr class="bg-yellow-50">
+              <td class="px-6 py-4 font-bold text-yellow-700">Tier 3</td>
+              <td class="px-6 py-4 text-center"><span class="px-3 py-1 bg-yellow-100 border-2 border-yellow-500 rounded-full text-sm font-bold text-yellow-700">55-69</span></td>
+              <td class="px-6 py-4 text-gray-700">Demand Gen - Scaled campaigns, inbound focus, nurture</td>
+              <td class="px-6 py-4 text-center font-medium">25-35%</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="px-6 py-4 font-bold text-gray-500">Below Tier</td>
+              <td class="px-6 py-4 text-center"><span class="px-3 py-1 bg-gray-100 border-2 border-gray-400 rounded-full text-sm font-bold text-gray-600">&lt;55</span></td>
+              <td class="px-6 py-4 text-gray-600">Inbound only - Let them come to you, no outbound spend</td>
+              <td class="px-6 py-4 text-center font-medium">30-50%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="bg-[#DFFE68] border-2 border-gray-900 rounded-xl p-6">
+        <h3 class="font-bold mb-3">Scoring Best Practices</h3>
+        <ul class="space-y-2 text-sm">
+          <li><strong>Weight firmographics highest</strong> - They don't change and predict fit best</li>
+          <li><strong>Update behavioral scores frequently</strong> - Funding and hiring are time-sensitive</li>
+          <li><strong>Apply negative scores</strong> - Disqualifying criteria should subtract points</li>
+          <li><strong>Calibrate quarterly</strong> - Compare tier distribution to actual conversion rates</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Validation Against Data -->
+  <section class="py-16 px-6 bg-gray-100 border-y-2 border-gray-900">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-extrabold tracking-tight mb-8">Validating ICP Against Closed-Won Data</h2>
+
+      <p class="text-lg mb-8">Your ICP should be validated against real outcomes, not assumptions. Apply your criteria retroactively to confirm the model predicts success.</p>
+
+      <div class="bg-white border-2 border-gray-900 rounded-xl p-8 shadow-[4px_4px_0px_0px_#1a1a1a] mb-8">
+        <h3 class="font-bold text-lg mb-6">Validation Process</h3>
+        <ol class="space-y-6">
+          <li class="flex gap-4">
+            <span class="w-10 h-10 bg-gray-900 text-white rounded-lg flex items-center justify-center font-bold shrink-0">1</span>
+            <div>
+              <p class="font-bold mb-1">Export Historical Data</p>
+              <p class="text-gray-600">Pull 12-24 months of closed-won and closed-lost deals with full account attributes (industry, size, revenue, tech stack, entry point).</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="w-10 h-10 bg-gray-900 text-white rounded-lg flex items-center justify-center font-bold shrink-0">2</span>
+            <div>
+              <p class="font-bold mb-1">Score Retroactively</p>
+              <p class="text-gray-600">Apply your ICP scoring model to each historical account. Calculate what tier they would have been assigned at time of first touch.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="w-10 h-10 bg-gray-900 text-white rounded-lg flex items-center justify-center font-bold shrink-0">3</span>
+            <div>
+              <p class="font-bold mb-1">Analyze by Tier</p>
+              <p class="text-gray-600">Compare win rates, deal sizes, sales cycles, and LTV across tiers. Tier 1 should significantly outperform Tier 3.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="w-10 h-10 bg-gray-900 text-white rounded-lg flex items-center justify-center font-bold shrink-0">4</span>
+            <div>
+              <p class="font-bold mb-1">Refine Criteria</p>
+              <p class="text-gray-600">If Tier 1 doesn't show 2-3x better outcomes, adjust weights or criteria. Look for attributes that actually predict success.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="w-10 h-10 bg-gray-900 text-white rounded-lg flex items-center justify-center font-bold shrink-0">5</span>
+            <div>
+              <p class="font-bold mb-1">Ongoing Monitoring</p>
+              <p class="text-gray-600">Track ICP accuracy monthly. Flag when new closed-won customers don't match Tier 1 criteria - it may indicate ICP drift.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <!-- Validation Benchmarks -->
+      <div class="grid md:grid-cols-4 gap-4">
+        <div class="bg-white border-2 border-gray-900 rounded-xl p-6 text-center shadow-[3px_3px_0px_0px_#10B981]">
+          <p class="text-3xl font-extrabold text-green-600 mb-2">2-3x</p>
+          <p class="text-sm font-medium">Higher Win Rate</p>
+          <p class="text-xs text-gray-500">Tier 1 vs Tier 3</p>
+        </div>
+        <div class="bg-white border-2 border-gray-900 rounded-xl p-6 text-center shadow-[3px_3px_0px_0px_#3B82F6]">
+          <p class="text-3xl font-extrabold text-blue-600 mb-2">30-50%</p>
+          <p class="text-sm font-medium">Shorter Cycles</p>
+          <p class="text-xs text-gray-500">Tier 1 vs Tier 3</p>
+        </div>
+        <div class="bg-white border-2 border-gray-900 rounded-xl p-6 text-center shadow-[3px_3px_0px_0px_#F59E0B]">
+          <p class="text-3xl font-extrabold text-orange-600 mb-2">20-40%</p>
+          <p class="text-sm font-medium">Larger Deals</p>
+          <p class="text-xs text-gray-500">Tier 1 vs Tier 3</p>
+        </div>
+        <div class="bg-white border-2 border-gray-900 rounded-xl p-6 text-center shadow-[3px_3px_0px_0px_#8B5CF6]">
+          <p class="text-3xl font-extrabold text-purple-600 mb-2">40-60%</p>
+          <p class="text-sm font-medium">Lower Churn</p>
+          <p class="text-xs text-gray-500">Tier 1 vs Tier 3</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ICP Documentation Template -->
+  <section class="py-16 px-6">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-extrabold tracking-tight mb-8">ICP Documentation Template</h2>
+
+      <p class="text-lg mb-8">Your ICP should be documented in a format that's easily referenced by sales, marketing, and partnerships. Use this template structure.</p>
+
+      <div class="bg-white border-2 border-gray-900 rounded-xl overflow-hidden shadow-[4px_4px_0px_0px_#1a1a1a]">
+        <!-- Template Header -->
+        <div class="bg-gray-900 text-white px-6 py-4">
+          <h3 class="font-bold text-lg">ICP Document Template</h3>
+        </div>
+
+        <div class="p-6 space-y-6">
+          <!-- Section 1 -->
+          <div class="border-b-2 border-gray-200 pb-6">
+            <h4 class="font-bold text-lg mb-4 flex items-center gap-2">
+              <span class="w-6 h-6 bg-orange-100 border-2 border-orange-500 rounded flex items-center justify-center text-orange-600 text-xs font-bold">1</span>
+              Firmographic Criteria
+            </h4>
+            <div class="bg-gray-50 rounded-lg p-4 text-sm space-y-3">
+              <div class="grid grid-cols-3 gap-4">
+                <div><strong>Industry:</strong></div>
+                <div class="col-span-2 text-gray-600">[Primary: SaaS, FinTech | Secondary: E-commerce, Healthcare Tech]</div>
+              </div>
+              <div class="grid grid-cols-3 gap-4">
+                <div><strong>Company Size:</strong></div>
+                <div class="col-span-2 text-gray-600">[50-500 employees (sweet spot: 100-250)]</div>
+              </div>
+              <div class="grid grid-cols-3 gap-4">
+                <div><strong>Revenue:</strong></div>
+                <div class="col-span-2 text-gray-600">[$5M-$50M ARR (sweet spot: $10M-$30M)]</div>
+              </div>
+              <div class="grid grid-cols-3 gap-4">
+                <div><strong>Geography:</strong></div>
+                <div class="col-span-2 text-gray-600">[HQ: North America, UK, Australia | Operating: English-speaking markets]</div>
+              </div>
+              <div class="grid grid-cols-3 gap-4">
+                <div><strong>Stage:</strong></div>
+                <div class="col-span-2 text-gray-600">[Series A through Series C | Growth mode, not pre-revenue]</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2 -->
+          <div class="border-b-2 border-gray-200 pb-6">
+            <h4 class="font-bold text-lg mb-4 flex items-center gap-2">
+              <span class="w-6 h-6 bg-blue-100 border-2 border-blue-500 rounded flex items-center justify-center text-blue-600 text-xs font-bold">2</span>
+              Technographic Criteria
+            </h4>
+            <div class="bg-gray-50 rounded-lg p-4 text-sm space-y-3">
+              <div class="grid grid-cols-3 gap-4">
+                <div><strong>Required:</strong></div>
+                <div class="col-span-2 text-gray-600">[CRM (Salesforce or HubSpot), Marketing Automation (Marketo, Pardot, HubSpot)]</div>
+              </div>
+              <div class="grid grid-cols-3 gap-4">
+                <div><strong>Preferred:</strong></div>
+                <div class="col-span-2 text-gray-600">[Clearbit, 6sense, Outreach/Salesloft, Segment, Snowflake]</div>
+              </div>
+              <div class="grid grid-cols-3 gap-4">
+                <div><strong>Competitor:</strong></div>
+                <div class="col-span-2 text-gray-600">[Using [Competitor A] or legacy point solutions = displacement opportunity]</div>
+              </div>
+              <div class="grid grid-cols-3 gap-4">
+                <div><strong>Disqualifying:</strong></div>
+                <div class="col-span-2 text-gray-600">[No CRM, recently purchased [Competitor B], custom-built internal tools]</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3 -->
+          <div class="border-b-2 border-gray-200 pb-6">
+            <h4 class="font-bold text-lg mb-4 flex items-center gap-2">
+              <span class="w-6 h-6 bg-green-100 border-2 border-green-500 rounded flex items-center justify-center text-green-600 text-xs font-bold">3</span>
+              Behavioral Signals
+            </h4>
+            <div class="bg-gray-50 rounded-lg p-4 text-sm space-y-3">
+              <div class="grid grid-cols-3 gap-4">
+                <div><strong>High Intent:</strong></div>
+                <div class="col-span-2 text-gray-600">[Raised funding in last 6 months, Hired VP Marketing/RevOps, New CMO from customer company]</div>
+              </div>
+              <div class="grid grid-cols-3 gap-4">
+                <div><strong>Medium Intent:</strong></div>
+                <div class="col-span-2 text-gray-600">[Expanding sales team, New market entry, G2/Capterra research activity]</div>
+              </div>
+              <div class="grid grid-cols-3 gap-4">
+                <div><strong>Timing Triggers:</strong></div>
+                <div class="col-span-2 text-gray-600">[Q4 budget planning, Contract renewals (competitor), Fiscal year start]</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 4 -->
+          <div class="border-b-2 border-gray-200 pb-6">
+            <h4 class="font-bold text-lg mb-4 flex items-center gap-2">
+              <span class="w-6 h-6 bg-red-100 border-2 border-red-500 rounded flex items-center justify-center text-red-600 text-xs font-bold">4</span>
+              Negative Filters
+            </h4>
+            <div class="bg-gray-50 rounded-lg p-4 text-sm space-y-3">
+              <div class="grid grid-cols-3 gap-4">
+                <div><strong>Hard Disqualify:</strong></div>
+                <div class="col-span-2 text-gray-600">[Government/public sector, Healthcare (HIPAA constraints), Under 20 employees, Previous churn]</div>
+              </div>
+              <div class="grid grid-cols-3 gap-4">
+                <div><strong>Soft Disqualify:</strong></div>
+                <div class="col-span-2 text-gray-600">[Agencies, Bootstrapped with no growth plans, Over 2,000 employees (enterprise needs)]</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 5 -->
+          <div>
+            <h4 class="font-bold text-lg mb-4 flex items-center gap-2">
+              <span class="w-6 h-6 bg-purple-100 border-2 border-purple-500 rounded flex items-center justify-center text-purple-600 text-xs font-bold">5</span>
+              Buyer Personas (Within ICP Companies)
+            </h4>
+            <div class="bg-gray-50 rounded-lg p-4 text-sm space-y-3">
+              <div class="grid grid-cols-3 gap-4">
+                <div><strong>Primary:</strong></div>
+                <div class="col-span-2 text-gray-600">[VP Marketing, VP Demand Gen, Director RevOps]</div>
+              </div>
+              <div class="grid grid-cols-3 gap-4">
+                <div><strong>Secondary:</strong></div>
+                <div class="col-span-2 text-gray-600">[CMO (decision maker), VP Sales (influencer), CFO (budget holder)]</div>
+              </div>
+              <div class="grid grid-cols-3 gap-4">
+                <div><strong>Champion:</strong></div>
+                <div class="col-span-2 text-gray-600">[Marketing Manager, Growth Manager, RevOps Manager]</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common Mistakes -->
+  <section class="py-16 px-6 bg-gray-100 border-y-2 border-gray-900">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-extrabold tracking-tight mb-8">Common ICP Mistakes to Avoid</h2>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Too Broad -->
+        <div class="bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[4px_4px_0px_0px_#EF4444]">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-10 h-10 bg-red-100 border-2 border-red-500 rounded-xl flex items-center justify-center">
+              <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path>
+              </svg>
+            </span>
+            <h3 class="font-bold text-lg text-red-700">Too Broad</h3>
+          </div>
+          <p class="text-gray-600 mb-4">Your ICP includes most of the market, providing no focus for GTM efforts.</p>
+          <div class="space-y-3 text-sm">
+            <div class="bg-red-50 p-3 rounded-lg">
+              <p class="font-medium text-red-800 mb-1">Signs:</p>
+              <ul class="text-red-700 space-y-1">
+                <li>TAM = "All B2B companies"</li>
+                <li>No industries excluded</li>
+                <li>Size range: "10 to 10,000 employees"</li>
+                <li>Win rate below 10%</li>
+              </ul>
+            </div>
+            <div class="bg-green-50 p-3 rounded-lg">
+              <p class="font-medium text-green-800 mb-1">Fix:</p>
+              <ul class="text-green-700 space-y-1">
+                <li>Analyze top 20 customers deeply</li>
+                <li>Find patterns, not possibilities</li>
+                <li>Be willing to exclude segments</li>
+                <li>Start narrow, expand with data</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Too Narrow -->
+        <div class="bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[4px_4px_0px_0px_#F59E0B]">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-10 h-10 bg-orange-100 border-2 border-orange-500 rounded-xl flex items-center justify-center">
+              <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+            </span>
+            <h3 class="font-bold text-lg text-orange-700">Too Narrow</h3>
+          </div>
+          <p class="text-gray-600 mb-4">Your ICP is so restrictive that you can't generate enough pipeline.</p>
+          <div class="space-y-3 text-sm">
+            <div class="bg-orange-50 p-3 rounded-lg">
+              <p class="font-medium text-orange-800 mb-1">Signs:</p>
+              <ul class="text-orange-700 space-y-1">
+                <li>TAM under 500 companies</li>
+                <li>Based on 1-2 outlier customers</li>
+                <li>15+ required criteria</li>
+                <li>Can't hit pipeline targets</li>
+              </ul>
+            </div>
+            <div class="bg-green-50 p-3 rounded-lg">
+              <p class="font-medium text-green-800 mb-1">Fix:</p>
+              <ul class="text-green-700 space-y-1">
+                <li>Separate must-haves from nice-to-haves</li>
+                <li>Use tiered approach (expand Tier 2/3)</li>
+                <li>Test adjacent segments</li>
+                <li>Weight criteria, don't require all</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Not Validated -->
+        <div class="bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[4px_4px_0px_0px_#3B82F6]">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-10 h-10 bg-blue-100 border-2 border-blue-500 rounded-xl flex items-center justify-center">
+              <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </span>
+            <h3 class="font-bold text-lg text-blue-700">Not Data-Validated</h3>
+          </div>
+          <p class="text-gray-600 mb-4">ICP based on assumptions or wishful thinking, not closed-won analysis.</p>
+          <div class="space-y-3 text-sm">
+            <div class="bg-blue-50 p-3 rounded-lg">
+              <p class="font-medium text-blue-800 mb-1">Signs:</p>
+              <ul class="text-blue-700 space-y-1">
+                <li>"We want to sell to enterprise"</li>
+                <li>No historical analysis done</li>
+                <li>Founder/sales intuition only</li>
+                <li>ICP doesn't match customers</li>
+              </ul>
+            </div>
+            <div class="bg-green-50 p-3 rounded-lg">
+              <p class="font-medium text-green-800 mb-1">Fix:</p>
+              <ul class="text-green-700 space-y-1">
+                <li>Export and analyze all closed-won deals</li>
+                <li>Find common attributes</li>
+                <li>Validate with conversion data</li>
+                <li>Update based on reality, not hope</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Static ICP -->
+        <div class="bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[4px_4px_0px_0px_#8B5CF6]">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-10 h-10 bg-purple-100 border-2 border-purple-500 rounded-xl flex items-center justify-center">
+              <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </span>
+            <h3 class="font-bold text-lg text-purple-700">Never Updated</h3>
+          </div>
+          <p class="text-gray-600 mb-4">ICP defined once and never revisited, despite market and product changes.</p>
+          <div class="space-y-3 text-sm">
+            <div class="bg-purple-50 p-3 rounded-lg">
+              <p class="font-medium text-purple-800 mb-1">Signs:</p>
+              <ul class="text-purple-700 space-y-1">
+                <li>ICP is 2+ years old</li>
+                <li>New products not reflected</li>
+                <li>New markets not considered</li>
+                <li>Win patterns have shifted</li>
+              </ul>
+            </div>
+            <div class="bg-green-50 p-3 rounded-lg">
+              <p class="font-medium text-green-800 mb-1">Fix:</p>
+              <ul class="text-green-700 space-y-1">
+                <li>Quarterly ICP review cadence</li>
+                <li>Annual comprehensive refresh</li>
+                <li>Track ICP match % of new wins</li>
+                <li>Trigger review on major changes</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-16 px-6">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-extrabold tracking-tight mb-8 text-center">Frequently Asked Questions</h2>
+
+      <div class="space-y-4">
+        <details class="bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[3px_3px_0px_0px_#1a1a1a]">
+          <summary class="font-bold cursor-pointer">What is the difference between ICP and Buyer Persona?</summary>
+          <p class="mt-4 text-gray-600">An Ideal Customer Profile (ICP) defines company-level characteristics: industry, size, revenue, tech stack, and growth stage. A Buyer Persona describes individual decision-makers: job title, responsibilities, pain points, and buying behavior. ICP answers "which companies should we target?" while Buyer Persona answers "who within those companies should we reach?"</p>
+        </details>
+
+        <details class="bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[3px_3px_0px_0px_#1a1a1a]">
+          <summary class="font-bold cursor-pointer">How many criteria should be in an ICP?</summary>
+          <p class="mt-4 text-gray-600">An effective ICP typically includes 8-12 core criteria across three categories: firmographics (4-5 criteria like industry, size, revenue), technographics (2-3 criteria like required tech stack), and behavioral signals (2-4 criteria like funding or hiring). More than 15 criteria makes the ICP too restrictive; fewer than 6 makes it too broad to be actionable.</p>
+        </details>
+
+        <details class="bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[3px_3px_0px_0px_#1a1a1a]">
+          <summary class="font-bold cursor-pointer">How do I validate my ICP?</summary>
+          <p class="mt-4 text-gray-600">Validate your ICP by scoring historical closed-won and closed-lost deals against your criteria. Your Tier 1 ICP accounts should show: 2-3x higher win rates than Tier 3, 30-50% shorter sales cycles, 20-40% higher average deal sizes, and lower churn rates. If the data doesn't show these patterns, refine your criteria.</p>
+        </details>
+
+        <details class="bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[3px_3px_0px_0px_#1a1a1a]">
+          <summary class="font-bold cursor-pointer">How often should I update my ICP?</summary>
+          <p class="mt-4 text-gray-600">Review your ICP quarterly and do a comprehensive refresh annually. Triggers for immediate review include: launching new products, entering new markets, significant changes in win/loss patterns, or shifts in your competitive landscape. Track ICP drift by comparing new closed-won customers against your documented criteria.</p>
+        </details>
+
+        <details class="bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[3px_3px_0px_0px_#1a1a1a]">
+          <summary class="font-bold cursor-pointer">What are the most common ICP mistakes?</summary>
+          <p class="mt-4 text-gray-600">The two most common mistakes are: (1) Too broad - listing every possible customer type without prioritization, resulting in unfocused marketing and sales efforts. (2) Too narrow - over-constraining criteria based on outlier customers, leaving viable market segments untapped. Other mistakes include ignoring negative criteria, not validating against data, and confusing ICP with total addressable market (TAM).</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-[#DFFE68] border-2 border-gray-900 rounded-2xl p-8 md:p-12 shadow-[6px_6px_0px_0px_#1a1a1a] text-center">
+        <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight mb-4">Need Help Defining Your ICP?</h2>
+        <p class="text-lg mb-8 max-w-xl mx-auto">Our team has built ICP frameworks for 100+ B2B companies. We can help you analyze your closed-won data, define scoring criteria, and operationalize your ICP across sales and marketing.</p>
+        <a href="https://www.42agency.com/contact-us" class="inline-block bg-gray-900 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-800 transition-colors">
+          Get Expert Help
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Resources -->
+  <section class="py-16 px-6 bg-gray-100 border-t-2 border-gray-900">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-extrabold tracking-tight mb-8 text-center">Related Resources</h2>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <a href="/frameworks/42-lead-scoring/" class="block bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[4px_4px_0px_0px_#1a1a1a] hover:shadow-[6px_6px_0px_0px_#1a1a1a] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all">
+          <span class="inline-block px-2 py-1 bg-green-100 border border-green-400 rounded text-xs font-bold text-green-700 mb-3">FRAMEWORK</span>
+          <h3 class="font-bold mb-2">Lead Scoring Model</h3>
+          <p class="text-sm text-gray-600">Two-axis scoring framework for accurate B2B lead prioritization.</p>
+        </a>
+
+        <a href="/playbooks/abm-enrichment/" class="block bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[4px_4px_0px_0px_#1a1a1a] hover:shadow-[6px_6px_0px_0px_#1a1a1a] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all">
+          <span class="inline-block px-2 py-1 bg-blue-100 border border-blue-400 rounded text-xs font-bold text-blue-700 mb-3">PLAYBOOK</span>
+          <h3 class="font-bold mb-2">ABM Enrichment</h3>
+          <p class="text-sm text-gray-600">Enrich your ICP accounts with buying committee and technographic data.</p>
+        </a>
+
+        <a href="/assessments/hubspot-health/" class="block bg-white border-2 border-gray-900 rounded-xl p-6 shadow-[4px_4px_0px_0px_#1a1a1a] hover:shadow-[6px_6px_0px_0px_#1a1a1a] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all">
+          <span class="inline-block px-2 py-1 bg-orange-100 border border-orange-400 rounded text-xs font-bold text-orange-700 mb-3">ASSESSMENT</span>
+          <h3 class="font-bold mb-2">HubSpot Health Check</h3>
+          <p class="text-sm text-gray-600">Assess your CRM's ability to operationalize ICP scoring.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <!-- Column 1: Brand -->
+        <div class="footer-brand">
+          <img src="/42-logo.png" alt="42 Agency">
+          <p>B2B performance marketing for companies that sell to enterprises.</p>
+          <div style="margin-top: 1rem;">
+            <a href="https://linkedin.com/company/42agency" target="_blank" style="color: #999; margin-right: 1rem;">LinkedIn</a>
+            <a href="https://x.com/42aboratory" target="_blank" style="color: #999; margin-right: 1rem;">X</a>
+            <a href="https://www.youtube.com/@Get42Agency" target="_blank" style="color: #999;">YouTube</a>
+          </div>
+        </div>
+
+        <!-- Column 2: Assess -->
+        <div class="footer-col">
+          <h4>Assess</h4>
+          <a href="/assessments/hubspot-health/">HubSpot Health Check</a>
+          <a href="/assess/calculator/">Benchmark Calculator</a>
+          <a href="/linkedin-audit/">LinkedIn Ads Audit</a>
+          <a href="/google-ads-audit/">Google Ads Audit</a>
+          <a href="/meta-audit/">Meta Ads Audit</a>
+          <a href="/hubspot-audit/">HubSpot Audit</a>
+        </div>
+
+        <!-- Column 3: Benchmarks -->
+        <div class="footer-col">
+          <h4>Benchmarks</h4>
+          <a href="/b2b-benchmarks/">All B2B Benchmarks</a>
+          <a href="/b2b-benchmarks/linkedin-ads-benchmarks/">LinkedIn Ads</a>
+          <a href="/b2b-benchmarks/google-ads-benchmarks/">Google Ads</a>
+          <a href="/b2b-benchmarks/linkedin-inmail-benchmarks/">InMail Benchmarks</a>
+          <a href="/b2b-benchmarks/legal-tech-linkedin-ads/" class="sublink">Legal Tech</a>
+          <a href="/b2b-benchmarks/healthcare-tech-linkedin-ads/" class="sublink">Healthcare Tech</a>
+          <a href="/b2b-benchmarks/fintech-linkedin-ads/" class="sublink">FinTech</a>
+        </div>
+
+        <!-- Column 4: AI Tools + Resources -->
+        <div class="footer-col">
+          <h4>AI Tools</h4>
+          <a href="https://copilot.42agency.com" target="_blank">LinkedIn Ads Copilot</a>
+          <a href="https://copilot.42agency.com/linkedin-ads-targeting" target="_blank">Targeting Guide</a>
+          <h4 style="margin-top: 1.5rem;">Resources</h4>
+          <a href="/zenabm/">ABM Toolkit</a>
+          <a href="/mops-funnel/">MOPS Funnel Workbook</a>
+          <a href="/exitfive/">Claude Code 101</a>
+        </div>
+
+        <!-- Column 5: 42 Agency -->
+        <div class="footer-col">
+          <h4>42 Agency</h4>
+          <a href="https://42agency.com" target="_blank">Website</a>
+          <a href="https://www.42agency.com/contact-us" target="_blank">Contact Us</a>
+          <a href="https://42agency.com/case-studies" target="_blank">Case Studies</a>
+          <a href="https://42slash.com" target="_blank">42/ Essays</a>
+          <a href="https://42agency.com/careers" target="_blank">Careers</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 42 Agency. All rights reserved.</p>
+        <p><a href="https://42agency.com/privacy">Privacy</a> · <a href="https://42agency.com/terms">Terms</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Vercel Web Analytics -->
+  <script src="/_vercel/insights/script.js" defer></script>
+</body>
+</html>

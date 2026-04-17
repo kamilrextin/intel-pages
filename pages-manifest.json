@@ -1,6 +1,6 @@
 {
   "baseUrl": "https://intel.42agency.com",
-  "lastUpdated": "2026-04-11",
+  "lastUpdated": "2026-04-17",
   "categories": {
     "core": {
       "description": "Main hub and navigation pages",
@@ -37,11 +37,25 @@
       "description": "Soft-gated B2B playbooks",
       "pages": [
         "/playbooks/abm-enrichment/",
+        "/playbooks/attribution-setup/",
+        "/playbooks/b2b-retargeting/",
         "/playbooks/closed-lost-revival/",
+        "/playbooks/content-funnel-mapping/",
+        "/playbooks/conversion-tracking-setup/",
+        "/playbooks/demand-gen-plg/",
+        "/playbooks/event-follow-up/",
         "/playbooks/first-90-days/",
+        "/playbooks/google-ads-b2b-structure/",
+        "/playbooks/hubspot-setup-checklist/",
         "/playbooks/intent-signals/",
         "/playbooks/lead-reengagement/",
-        "/playbooks/lead-scoring-framework/"
+        "/playbooks/lead-scoring-framework/",
+        "/playbooks/linkedin-campaign-structure/",
+        "/playbooks/linkedin-saas/",
+        "/playbooks/meta-capi-setup/",
+        "/playbooks/post-demo-nurture/",
+        "/playbooks/utm-taxonomy/",
+        "/playbooks/webinar-promotion/"
       ]
     },
     "benchmarks": {
@@ -50,11 +64,14 @@
         "/b2b-benchmarks/calculator/",
         "/b2b-benchmarks/construction-tech-linkedin-ads/",
         "/b2b-benchmarks/consumer-b2b-linkedin-ads/",
+        "/b2b-benchmarks/cpc-cpl-by-industry/",
         "/b2b-benchmarks/devops-linkedin-ads/",
         "/b2b-benchmarks/digital-workplace-linkedin-ads/",
         "/b2b-benchmarks/ecommerce-retail-linkedin-ads/",
         "/b2b-benchmarks/edtech-hrtech-linkedin-ads/",
+        "/b2b-benchmarks/email-benchmarks/",
         "/b2b-benchmarks/fintech-linkedin-ads/",
+        "/b2b-benchmarks/funnel-conversion-rates/",
         "/b2b-benchmarks/google-ads-benchmarks/",
         "/b2b-benchmarks/healthcare-tech-linkedin-ads/",
         "/b2b-benchmarks/legal-tech-linkedin-ads/",
@@ -62,9 +79,11 @@
         "/b2b-benchmarks/linkedin-ads-benchmarks/",
         "/b2b-benchmarks/linkedin-inmail-benchmarks/",
         "/b2b-benchmarks/logistics-linkedin-ads/",
+        "/b2b-benchmarks/marketing-budget-benchmarks/",
         "/b2b-benchmarks/martech-salestech-linkedin-ads/",
         "/b2b-benchmarks/meta-ads-benchmarks/",
         "/b2b-benchmarks/privacy-security-linkedin-ads/",
+        "/b2b-benchmarks/sales-cycle-by-acv/",
         "/b2b-benchmarks/ucaas-telecom-linkedin-ads/"
       ]
     },
@@ -134,11 +153,14 @@
     "agents": {
       "description": "Claude Code agent pages",
       "pages": [
+        "/carrot-ci/",
         "/ci-agent/",
         "/claude-code/",
         "/claude-code/cheatsheet.html",
         "/exitfive/",
-        "/exitfive/cheatsheet.html"
+        "/exitfive/cheatsheet.html",
+        "/incheck-ci/",
+        "/puzzle-ci/"
       ]
     },
     "reports": {
@@ -153,6 +175,7 @@
       "description": "Client-specific intel pages (AI SDR generated)",
       "pages": [
         "/3e-abm-playbook/",
+        "/6sense-vs-demandbase-vs-rollworks/",
         "/a2x-a6591c/",
         "/acme-corp-2de127/",
         "/aquant-qpqrmj/",
@@ -161,6 +184,7 @@
         "/axonius-mm0325/",
         "/benevity/",
         "/bigco-d65d9b/",
+        "/bombora-vs-6sense-intent-data/",
         "/centml-1e798a/",
         "/clari-6d2658/",
         "/contactmonkey-f5fdc7/",
@@ -168,18 +192,30 @@
         "/dragonboat-0ae50a/",
         "/eagle-eye-networks/",
         "/enable-ci/",
+        "/envera/",
         "/flexor-030d27/",
         "/flightpath-sean/",
+        "/frameworks/42-lead-scoring/",
+        "/frameworks/budget-allocation/",
+        "/frameworks/channel-selection/",
+        "/frameworks/high-intent-keywords/",
+        "/frameworks/icp-definition/",
+        "/frameworks/landing-page/",
         "/glyphic-conquest/",
         "/glyphic-tamar/",
+        "/goldcast-vs-sequel-vs-hopin/",
         "/graphite-connect-c1e5cd/",
         "/graphite-connect-v2/",
         "/graphite-conquest/",
         "/healthmine-b3643d/",
         "/healthmine-conquest/",
+        "/hubspot-vs-marketo-vs-pardot/",
+        "/hubspot-vs-salesforce-startups/",
         "/itential-1ecc51/",
         "/itential-conquest/",
         "/lindus-health-v05xur/",
+        "/linkedin-ads-vs-google-ads/",
+        "/linkedin-inmail-vs-cold-email/",
         "/luminai-9cf0ae/",
         "/luminai-conquest/",
         "/mailgun-xr9sjy/",
@@ -188,6 +224,7 @@
         "/nue-ad0325/",
         "/numeric/",
         "/orca-rn0325/",
+        "/outreach-vs-salesloft-vs-apollo/",
         "/parloa-a63daf/",
         "/part3-ca-intel/",
         "/plotly-200117/",
@@ -216,7 +253,8 @@
         "/wix-conquest/",
         "/wix-sarah/",
         "/xyte-m7s9k2/",
-        "/zoneandco-tabatha/"
+        "/zoneandco-tabatha/",
+        "/zoominfo-vs-apollo-vs-clearbit/"
       ]
     },
     "aeo": {

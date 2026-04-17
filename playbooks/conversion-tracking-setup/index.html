@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2B Conversion Tracking Setup Guide | Google, LinkedIn, Meta | 42 Agency</title>
+    <meta name="description" content="Complete B2B conversion tracking setup guide. Google Ads GCLID, LinkedIn Insight Tag, Meta CAPI, HubSpot forms, and offline conversion imports. Platform-specific code snippets included.">
+    <link rel="canonical" href="https://intel.42agency.com/playbooks/conversion-tracking-setup/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MM5BTNS');</script>
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/44888286.js"></script>
+
+    <!-- FAQ Schema for GEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What conversions should B2B companies track?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B2B companies should track high-intent conversions (demo requests, contact form submissions, pricing page views, free trial signups), medium-intent conversions (content downloads, webinar registrations, newsletter signups), and micro-conversions (key page visits, video views, time on site). Assign conversion values based on close rate and average deal size to enable ROAS-based bidding."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I set up Google Ads offline conversion tracking?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "To set up Google Ads offline conversion tracking: 1) Capture and store the GCLID parameter when users visit your site, 2) Associate the GCLID with the lead in your CRM, 3) When leads convert to opportunities or closed-won, upload the conversion with the original GCLID, timestamp, and conversion value to Google Ads via the API or manual import. Enhanced conversions for leads uses email matching when GCLID is unavailable."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between thank you page and event-based tracking?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Thank you page tracking fires when a user lands on a confirmation page after form submission. It's simple but can miss conversions if users close the page before loading or if forms don't redirect. Event-based tracking fires on the form submission event itself, capturing more conversions but requiring JavaScript implementation. For B2B, use both: event-based as primary, thank you page as backup validation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I implement LinkedIn Conversions API (CAPI)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "LinkedIn CAPI implementation requires: 1) Create a conversion in Campaign Manager, 2) Get your Partner ID and Conversion Rule ID, 3) Hash user email using SHA256 before sending, 4) Send server-side POST request to LinkedIn's conversion endpoint with user data and conversion details. CAPI provides more reliable tracking than the Insight Tag alone and enables offline conversion import for CRM-based conversions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I assign conversion values for B2B?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Calculate B2B conversion values using: (Average Deal Size x Close Rate from that conversion type). For example, if demo requests close at 20% and average deal is $50,000, demo conversion value = $10,000. Content downloads might have 2% close rate = $1,000 value. This enables platform algorithms to optimize for revenue, not just volume, preventing low-quality lead inflation."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- HowTo Schema for GEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "B2B Conversion Tracking Setup Guide",
+      "description": "Complete guide to setting up conversion tracking across Google Ads, LinkedIn, Meta, and HubSpot for B2B companies with offline conversion import and value-based optimization.",
+      "image": "https://intel.42agency.com/images/conversion-tracking-guide.png",
+      "totalTime": "P1W",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "USD",
+        "value": "0"
+      },
+      "tool": [
+        {
+          "@type": "HowToTool",
+          "name": "Google Tag Manager"
+        },
+        {
+          "@type": "HowToTool",
+          "name": "HubSpot CRM"
+        },
+        {
+          "@type": "HowToTool",
+          "name": "Google Ads"
+        },
+        {
+          "@type": "HowToTool",
+          "name": "LinkedIn Campaign Manager"
+        }
+      ],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Define Your Conversion Types",
+          "text": "Identify and categorize all B2B conversions: High-intent (demo requests, contact forms, pricing page views), Medium-intent (content downloads, webinar registrations), Micro-conversions (key page visits, video plays). Assign conversion values based on historical close rates and average deal size.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Map each conversion type to a lifecycle stage in your CRM"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Calculate value = Average Deal Size x Close Rate from that conversion"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Set Up Google Tag Manager Foundation",
+          "text": "Install GTM container on all pages. Create variables for user data (email, company), configure triggers for form submissions, button clicks, and page views. Set up a dataLayer for passing conversion data from your forms and CRM.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Add GTM snippet immediately after opening <head> tag"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Create a dataLayer variable for capturing form field values"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Configure Google Ads Conversion Tracking",
+          "text": "Create conversions in Google Ads for each conversion type. Implement GCLID capture and storage in your CRM. Set up Enhanced Conversions for Leads using hashed email. Configure offline conversion import workflow for downstream conversions (SQL, Opportunity, Closed-Won).",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Store GCLID in a hidden form field and pass to CRM with lead data"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Upload offline conversions within 90 days of the original click"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Implement LinkedIn Conversion Tracking",
+          "text": "Install LinkedIn Insight Tag via GTM. Create conversion events in Campaign Manager for each conversion type. Implement LinkedIn Conversions API (CAPI) for server-side tracking and offline conversions. Hash email addresses using SHA256 before sending.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Use both Insight Tag and CAPI for redundant tracking"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Configure CAPI to send conversions when leads reach SQL or Closed-Won"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "Configure Meta Conversion Tracking",
+          "text": "Install Meta Pixel via GTM. Set up Meta Conversions API (CAPI) for server-side event tracking. Configure standard events (Lead, CompleteRegistration) and custom conversions. Implement event deduplication using event_id parameter.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Use Aggregated Event Measurement for iOS 14.5+ attribution"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Prioritize up to 8 conversion events per domain"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 6,
+          "name": "Connect HubSpot Form Tracking",
+          "text": "Enable HubSpot tracking code if not using GTM. Create HubSpot workflows to capture UTM parameters and ad click IDs (GCLID, li_fat_id). Set up form submission events in GTM that fire platform pixels. Configure HubSpot to pass conversion data to ad platforms via integrations or custom API.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Use HubSpot hidden fields to capture GCLID, utm_source, utm_campaign"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Create workflows that trigger when lifecycle stage changes to send offline conversions"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 7,
+          "name": "Test and Validate Tracking",
+          "text": "Use platform debug tools (Google Tag Assistant, Meta Pixel Helper, LinkedIn Insight Tag Helper). Submit test conversions and verify they appear in each platform within 24-48 hours. Validate offline conversion imports are matching to original ad clicks. Check for duplicate events and proper deduplication.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Create a test lead with known email and verify across all platforms"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Check conversion path reports to ensure attribution is working correctly"
+            }
+          ]
+        }
+      ],
+      "author": {
+        "@type": "Organization",
+        "name": "42 Agency",
+        "url": "https://www.42agency.com"
+      }
+    }
+    </script>
+
+    <style>
+        :root { --accent: #DFFE68; --black: #1a1a1a; --gray: #4a4a4a; --light-gray: #f5f5f5; --green: #10B981; --blue: #3B82F6; --orange: #F59E0B; --red: #EF4444; --linkedin: #0A66C2; --google: #4285F4; --meta: #0668E1; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--light-gray); color: var(--black); line-height: 1.7; }
+
+        /* Header */
+        .header { border-bottom: 2px solid var(--black); padding: 0.75rem 1.5rem; background: white; position: sticky; top: 0; z-index: 50; }
+        .header-inner { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 28px; }
+        .nav { display: flex; align-items: center; gap: 0.25rem; }
+        .nav a { padding: 0.5rem 1rem; color: var(--gray); text-decoration: none; font-size: 0.9rem; font-weight: 500; border-radius: 6px; }
+        .nav a:hover { color: var(--black); background: var(--light-gray); }
+        .nav a.active { background: var(--accent); color: var(--black); font-weight: 600; }
+        .nav-cta { background: var(--black); color: white !important; font-weight: 600; }
+        @media (max-width: 768px) { .nav { display: none; } }
+
+        /* Breadcrumbs */
+        .breadcrumbs { background: white; border-bottom: 2px solid var(--black); padding: 0.75rem 1.5rem; }
+        .breadcrumbs-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; }
+        .breadcrumbs a { color: var(--gray); text-decoration: none; }
+        .breadcrumbs .current { color: var(--black); font-weight: 600; }
+
+        .main { max-width: 800px; margin: 0 auto; padding: 3rem 2rem; }
+
+        /* Hero */
+        .hero { text-align: center; margin-bottom: 3rem; }
+        .hero-badge { display: inline-block; background: var(--google); color: white; padding: 0.4rem 1rem; font-size: 0.75rem; font-weight: 700; border-radius: 20px; margin-bottom: 1rem; text-transform: uppercase; }
+        h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 1rem; }
+        .subtitle { color: var(--gray); font-size: 1.1rem; max-width: 620px; margin: 0 auto; }
+
+        /* Stats */
+        .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 2rem 0 3rem; }
+        .stat-item { text-align: center; padding: 1rem; background: white; border: 2px solid var(--black); border-radius: 12px; box-shadow: 3px 3px 0 var(--black); }
+        .stat-value { font-size: 1.5rem; font-weight: 800; color: var(--green); }
+        .stat-label { font-size: 0.7rem; color: var(--gray); text-transform: uppercase; }
+
+        /* Platform Badges */
+        .platform-badges { display: flex; justify-content: center; gap: 0.75rem; margin: 1.5rem 0; flex-wrap: wrap; }
+        .platform-badge { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; border: 2px solid; }
+        .platform-badge.google { background: rgba(66, 133, 244, 0.1); border-color: var(--google); color: var(--google); }
+        .platform-badge.linkedin { background: rgba(10, 102, 194, 0.1); border-color: var(--linkedin); color: var(--linkedin); }
+        .platform-badge.meta { background: rgba(6, 104, 225, 0.1); border-color: var(--meta); color: var(--meta); }
+        .platform-badge.hubspot { background: rgba(255, 122, 89, 0.1); border-color: #FF7A59; color: #FF7A59; }
+
+        /* Content Sections */
+        .content-section { background: white; border: 2px solid var(--black); border-radius: 16px; padding: 2rem; box-shadow: 4px 4px 0 var(--black); margin-bottom: 2rem; }
+        .content-section h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 3px solid var(--accent); }
+        .content-section h3 { font-size: 1.1rem; font-weight: 700; margin: 1.5rem 0 0.75rem; }
+        .content-section h4 { font-size: 0.95rem; font-weight: 700; margin: 1.25rem 0 0.5rem; color: var(--gray); }
+        .content-section p { margin-bottom: 1rem; color: #333; }
+        .content-section ul, .content-section ol { margin: 1rem 0 1rem 1.5rem; color: #333; }
+        .content-section li { margin-bottom: 0.5rem; }
+        .content-section table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+        .content-section th, .content-section td { padding: 0.6rem 0.75rem; text-align: left; border: 1px solid #ddd; }
+        .content-section th { background: #f5f5f5; font-weight: 700; }
+        .content-section tr:nth-child(even) { background: #fafafa; }
+
+        .callout { background: var(--accent); border-left: 4px solid var(--black); padding: 1rem 1.25rem; margin: 1.25rem 0; border-radius: 0 8px 8px 0; }
+        .callout strong { display: block; margin-bottom: 0.25rem; }
+
+        .callout-warning { background: rgba(245, 158, 11, 0.15); border-left-color: var(--orange); }
+        .callout-info { background: rgba(59, 130, 246, 0.1); border-left-color: var(--blue); }
+
+        /* Code Blocks */
+        .code-block { background: #1a1a1a; color: #f5f5f5; border-radius: 8px; padding: 1rem; margin: 1rem 0; overflow-x: auto; font-family: 'Monaco', 'Consolas', monospace; font-size: 0.8rem; line-height: 1.5; }
+        .code-block code { color: #f5f5f5; }
+        .code-label { display: inline-block; background: var(--gray); color: white; padding: 0.2rem 0.5rem; font-size: 0.7rem; font-weight: 600; border-radius: 4px 4px 0 0; margin-bottom: -2px; text-transform: uppercase; }
+        .code-comment { color: #6b7280; }
+        .code-string { color: #10B981; }
+        .code-keyword { color: #F59E0B; }
+        .code-function { color: #3B82F6; }
+
+        /* Checklist */
+        .checklist { background: #fafafa; border: 1px solid #e5e5e5; border-radius: 8px; padding: 1rem 1.25rem; margin: 1rem 0; }
+        .checklist-title { font-weight: 700; margin-bottom: 0.75rem; font-size: 0.9rem; }
+        .checklist-item { display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.5rem; font-size: 0.9rem; }
+        .checklist-item input[type="checkbox"] { margin-top: 0.25rem; accent-color: var(--green); }
+
+        /* Gated Content */
+        .gated-wrapper { position: relative; }
+        .gated-content { filter: blur(5px); pointer-events: none; user-select: none; }
+        .gated-content.unlocked { filter: none; pointer-events: auto; user-select: auto; }
+
+        .gate-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.95) 15%, rgba(255,255,255,1) 30%); display: flex; align-items: flex-start; justify-content: center; padding-top: 4rem; }
+        .gate-overlay.hidden { display: none; }
+
+        .gate-card { background: var(--accent); border: 2px solid var(--black); border-radius: 16px; padding: 2.5rem; box-shadow: 6px 6px 0 var(--black); text-align: center; max-width: 450px; margin: 0 1rem; }
+        .gate-card h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .gate-card p { color: var(--gray); margin-bottom: 1.5rem; }
+        .email-form { display: flex; flex-direction: column; gap: 0.75rem; }
+        .email-form input { padding: 0.875rem; border: 2px solid var(--black); border-radius: 8px; font-size: 1rem; text-align: center; }
+        .email-form button { padding: 0.875rem 1.5rem; background: var(--black); color: white; border: none; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; }
+        .email-form button:hover { background: #333; }
+        .gate-card .note { font-size: 0.8rem; color: #666; margin-top: 1rem; }
+
+        /* Download Banner */
+        .download-banner { display: none; background: var(--accent); border: 2px solid var(--black); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; text-align: center; box-shadow: 4px 4px 0 var(--black); }
+        .download-banner.visible { display: block; }
+        .download-banner p { margin-bottom: 1rem; font-weight: 600; }
+        .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--black); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; }
+        .download-btn:hover { background: #333; }
+
+        /* Related */
+        .related-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2rem; }
+        .related-link { display: block; padding: 1rem; background: white; border: 2px solid var(--black); border-radius: 8px; text-decoration: none; color: var(--black); font-weight: 600; box-shadow: 3px 3px 0 var(--black); }
+        .related-link:hover { background: var(--accent); }
+
+        /* Footer */
+        .footer { background: var(--black); padding: 4rem 1.5rem 2rem; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr repeat(4, 1fr); gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid #333; }
+        .footer-brand img { height: 24px; filter: brightness(0) invert(1); margin-bottom: 1rem; }
+        .footer-brand p { font-size: 0.85rem; color: #999; line-height: 1.6; }
+        .footer-social { display: flex; gap: 1rem; margin-top: 1rem; }
+        .footer-social a { color: #999; text-decoration: none; font-size: 0.85rem; }
+        .footer-social a:hover { color: white; }
+        .footer-col h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1rem; color: var(--accent); }
+        .footer-col a { display: block; color: #999; text-decoration: none; font-size: 0.85rem; margin-bottom: 0.6rem; }
+        .footer-col a:hover { color: white; }
+        .footer-col .sublink { padding-left: 0.75rem; font-size: 0.8rem; color: #666; }
+        .footer-bottom { padding-top: 2rem; display: flex; justify-content: space-between; font-size: 0.8rem; color: #666; }
+        .footer-bottom a { color: #666; text-decoration: none; }
+        .footer-bottom a:hover { color: #999; }
+
+        @media (max-width: 900px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) {
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .related-links { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+        }
+        @media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MM5BTNS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <header class="header">
+        <div class="header-inner">
+            <a href="/" class="logo"><img src="/42-logo.png" alt="42 Agency"></a>
+            <nav class="nav">
+                <a href="/assess/">Assess</a>
+                <a href="/b2b-benchmarks/">Benchmarks</a>
+                <a href="/tools/">Tools</a>
+                <a href="/playbooks/" class="active">Playbooks</a>
+                <a href="https://www.42agency.com/contact-us" target="_blank" class="nav-cta">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <a href="/">Home</a><span>/</span><a href="/playbooks/">Playbooks</a><span>/</span><span class="current">Conversion Tracking Setup</span>
+        </div>
+    </nav>
+
+    <main class="main">
+        <section class="hero">
+            <span class="hero-badge">Technical Guide</span>
+            <h1>B2B Conversion Tracking Setup Guide</h1>
+            <p class="subtitle">Complete conversion tracking implementation for B2B. From pixel installation to offline conversion imports that feed your CRM data back to ad platforms.</p>
+
+            <div class="platform-badges">
+                <span class="platform-badge google">Google Ads</span>
+                <span class="platform-badge linkedin">LinkedIn</span>
+                <span class="platform-badge meta">Meta</span>
+                <span class="platform-badge hubspot">HubSpot</span>
+            </div>
+        </section>
+
+        <div class="stats-row">
+            <div class="stat-item">
+                <div class="stat-value">4</div>
+                <div class="stat-label">Platforms Covered</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">90 Days</div>
+                <div class="stat-label">GCLID Lookback</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">3x</div>
+                <div class="stat-label">Better Attribution</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">ROAS</div>
+                <div class="stat-label">Based Bidding</div>
+            </div>
+        </div>
+
+        <!-- Download Banner (shows after unlock) -->
+        <div class="download-banner" id="downloadBanner">
+            <p>You've unlocked the full guide. Download the PDF version:</p>
+            <a href="/playbooks/conversion-tracking-setup/conversion-tracking-setup-playbook.pdf" download class="download-btn">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                Download PDF
+            </a>
+        </div>
+
+        <!-- UNGATED: Sections 1-2 (approximately 30%) -->
+        <div class="content-section">
+            <h2>What Conversions to Track for B2B</h2>
+            <p>B2B conversion tracking is different from B2C. Most of your value comes from downstream conversions that happen weeks or months after the initial ad click. Your tracking strategy must account for this.</p>
+
+            <h3>Conversion Hierarchy</h3>
+            <table>
+                <tr><th>Intent Level</th><th>Conversion Type</th><th>Typical Value</th></tr>
+                <tr><td><strong>High Intent</strong></td><td>Demo request, Contact form, Pricing page view, Free trial signup</td><td>$5,000 - $15,000</td></tr>
+                <tr><td><strong>Medium Intent</strong></td><td>Content download (gated), Webinar registration, Newsletter signup</td><td>$500 - $2,000</td></tr>
+                <tr><td><strong>Micro-Conversion</strong></td><td>Key page visits, Video views (50%+), Time on site (3+ min)</td><td>$50 - $200</td></tr>
+                <tr><td><strong>Offline (CRM)</strong></td><td>MQL, SQL, Opportunity Created, Closed-Won</td><td>Based on pipeline</td></tr>
+            </table>
+
+            <div class="callout">
+                <strong>The B2B Difference:</strong> Unlike B2C where a purchase happens immediately, B2B conversions are spread across weeks. A demo request today might become a $100K deal in 6 months. Track all stages to give platforms complete signal.
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Conversion Value Assignment</h2>
+            <p>Assigning accurate values to conversions enables ROAS-based bidding and prevents platforms from optimizing for low-quality leads.</p>
+
+            <h3>Value Calculation Formula</h3>
+            <div class="code-block">
+                <code><span class="code-keyword">Conversion Value</span> = Average Deal Size x Close Rate from that conversion type</code>
+            </div>
+
+            <h3>Example Value Matrix</h3>
+            <table>
+                <tr><th>Conversion</th><th>Close Rate</th><th>Avg Deal: $50K</th><th>Value</th></tr>
+                <tr><td>Demo Request</td><td>20%</td><td>$50,000 x 0.20</td><td><strong>$10,000</strong></td></tr>
+                <tr><td>Pricing Page + Form</td><td>15%</td><td>$50,000 x 0.15</td><td><strong>$7,500</strong></td></tr>
+                <tr><td>Webinar Registration</td><td>5%</td><td>$50,000 x 0.05</td><td><strong>$2,500</strong></td></tr>
+                <tr><td>Content Download</td><td>2%</td><td>$50,000 x 0.02</td><td><strong>$1,000</strong></td></tr>
+                <tr><td>Newsletter Signup</td><td>0.5%</td><td>$50,000 x 0.005</td><td><strong>$250</strong></td></tr>
+            </table>
+
+            <div class="callout callout-warning">
+                <strong>Warning:</strong> Without conversion values, platforms optimize for volume. You'll get more newsletter signups (cheap) and fewer demo requests (expensive but valuable). This is why B2B campaigns often fail.
+            </div>
+        </div>
+
+        <!-- GATED: Remaining sections (70%) -->
+        <div class="gated-wrapper">
+            <div class="gated-content" id="gatedContent">
+
+                <div class="content-section">
+                    <h2>Google Ads Conversion Tracking</h2>
+                    <p>Google Ads offers the most sophisticated B2B conversion tracking with GCLID-based attribution, enhanced conversions, and offline import capabilities.</p>
+
+                    <h3>1. GCLID Capture and Storage</h3>
+                    <p>The GCLID (Google Click Identifier) is the key to connecting ad clicks to CRM conversions. Capture it on every landing page visit.</p>
+
+                    <span class="code-label">JavaScript - GCLID Capture</span>
+                    <div class="code-block">
+<code><span class="code-comment">// Capture GCLID from URL and store in cookie/localStorage</span>
+<span class="code-keyword">function</span> <span class="code-function">captureGclid</span>() {
+  <span class="code-keyword">const</span> urlParams = <span class="code-keyword">new</span> URLSearchParams(window.location.search);
+  <span class="code-keyword">const</span> gclid = urlParams.get(<span class="code-string">'gclid'</span>);
+
+  <span class="code-keyword">if</span> (gclid) {
+    <span class="code-comment">// Store for 90 days (Google's attribution window)</span>
+    <span class="code-keyword">const</span> expires = <span class="code-keyword">new</span> Date(Date.now() + 90 * 24 * 60 * 60 * 1000);
+    document.cookie = <span class="code-string">`gclid=${gclid}; expires=${expires.toUTCString()}; path=/`</span>;
+    localStorage.setItem(<span class="code-string">'gclid'</span>, gclid);
+  }
+}
+
+<span class="code-comment">// Run on page load</span>
+captureGclid();
+
+<span class="code-comment">// Retrieve GCLID for form submission</span>
+<span class="code-keyword">function</span> <span class="code-function">getGclid</span>() {
+  <span class="code-keyword">return</span> localStorage.getItem(<span class="code-string">'gclid'</span>) ||
+    document.cookie.match(<span class="code-string">/gclid=([^;]+)/</span>)?.[1] ||
+    <span class="code-string">''</span>;
+}</code>
+                    </div>
+
+                    <h3>2. Hidden Form Field Setup</h3>
+                    <p>Add hidden fields to all forms to capture GCLID and pass to your CRM.</p>
+
+                    <span class="code-label">HTML - Hidden Fields</span>
+                    <div class="code-block">
+<code><span class="code-comment">&lt;!-- Add to your form --&gt;</span>
+&lt;input type=<span class="code-string">"hidden"</span> name=<span class="code-string">"gclid"</span> id=<span class="code-string">"gclid"</span> value=<span class="code-string">""</span>&gt;
+&lt;input type=<span class="code-string">"hidden"</span> name=<span class="code-string">"utm_source"</span> id=<span class="code-string">"utm_source"</span> value=<span class="code-string">""</span>&gt;
+&lt;input type=<span class="code-string">"hidden"</span> name=<span class="code-string">"utm_medium"</span> id=<span class="code-string">"utm_medium"</span> value=<span class="code-string">""</span>&gt;
+&lt;input type=<span class="code-string">"hidden"</span> name=<span class="code-string">"utm_campaign"</span> id=<span class="code-string">"utm_campaign"</span> value=<span class="code-string">""</span>&gt;
+
+<span class="code-comment">&lt;!-- Populate on page load --&gt;</span>
+&lt;script&gt;
+document.getElementById(<span class="code-string">'gclid'</span>).value = getGclid();
+<span class="code-keyword">const</span> params = <span class="code-keyword">new</span> URLSearchParams(window.location.search);
+document.getElementById(<span class="code-string">'utm_source'</span>).value = params.get(<span class="code-string">'utm_source'</span>) || <span class="code-string">''</span>;
+document.getElementById(<span class="code-string">'utm_medium'</span>).value = params.get(<span class="code-string">'utm_medium'</span>) || <span class="code-string">''</span>;
+document.getElementById(<span class="code-string">'utm_campaign'</span>).value = params.get(<span class="code-string">'utm_campaign'</span>) || <span class="code-string">''</span>;
+&lt;/script&gt;</code>
+                    </div>
+
+                    <h3>3. Enhanced Conversions for Leads</h3>
+                    <p>When GCLID isn't available (cookie deletion, cross-device), Enhanced Conversions uses hashed email to match conversions.</p>
+
+                    <span class="code-label">GTM - Enhanced Conversions Setup</span>
+                    <div class="code-block">
+<code><span class="code-comment">// In your form submission handler, push to dataLayer</span>
+dataLayer.push({
+  <span class="code-string">'event'</span>: <span class="code-string">'form_submission'</span>,
+  <span class="code-string">'enhanced_conversion_data'</span>: {
+    <span class="code-string">'email'</span>: userEmail  <span class="code-comment">// GTM will hash automatically</span>
+  }
+});
+
+<span class="code-comment">// Configure in GTM:</span>
+<span class="code-comment">// 1. Go to Conversion Linker tag settings</span>
+<span class="code-comment">// 2. Enable "Enhanced conversions"</span>
+<span class="code-comment">// 3. Set user-provided data variable to {{enhanced_conversion_data}}</span></code>
+                    </div>
+
+                    <h3>4. Offline Conversion Import</h3>
+                    <p>Import downstream conversions (SQL, Opportunity, Closed-Won) from your CRM back to Google Ads.</p>
+
+                    <span class="code-label">Offline Conversion Import Format (CSV)</span>
+                    <div class="code-block">
+<code>Google Click ID,Conversion Name,Conversion Time,Conversion Value,Conversion Currency
+EAIaIQobChMI...,SQL,2026-04-10 14:30:00,5000,USD
+EAIaIQobChMI...,Closed Won,2026-04-15 09:15:00,50000,USD</code>
+                    </div>
+
+                    <div class="callout callout-info">
+                        <strong>API Upload (Recommended):</strong> For automated imports, use the Google Ads API to upload conversions in real-time when CRM stage changes. HubSpot's native Google Ads integration can do this automatically.
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>LinkedIn Conversion Tracking</h2>
+                    <p>LinkedIn offers the Insight Tag for web tracking and Conversions API (CAPI) for server-side and offline conversions.</p>
+
+                    <h3>1. Insight Tag Installation (GTM)</h3>
+                    <span class="code-label">GTM - LinkedIn Insight Tag</span>
+                    <div class="code-block">
+<code><span class="code-comment">&lt;!-- Create a Custom HTML tag in GTM --&gt;</span>
+&lt;script type=<span class="code-string">"text/javascript"</span>&gt;
+_linkedin_partner_id = <span class="code-string">"YOUR_PARTNER_ID"</span>;
+window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+&lt;/script&gt;
+&lt;script type=<span class="code-string">"text/javascript"</span>&gt;
+(<span class="code-keyword">function</span>(l) {
+  <span class="code-keyword">if</span> (!l){window.lintrk = <span class="code-keyword">function</span>(a,b){window.lintrk.q.push([a,b])};
+  window.lintrk.q=[]}
+  <span class="code-keyword">var</span> s = document.getElementsByTagName(<span class="code-string">"script"</span>)[0];
+  <span class="code-keyword">var</span> b = document.createElement(<span class="code-string">"script"</span>);
+  b.type = <span class="code-string">"text/javascript"</span>;b.async = <span class="code-keyword">true</span>;
+  b.src = <span class="code-string">"https://snap.licdn.com/li.lms-analytics/insight.min.js"</span>;
+  s.parentNode.insertBefore(b, s);
+})(window.lintrk);
+&lt;/script&gt;
+&lt;noscript&gt;
+&lt;img height=<span class="code-string">"1"</span> width=<span class="code-string">"1"</span> style=<span class="code-string">"display:none;"</span> alt=<span class="code-string">""</span>
+  src=<span class="code-string">"https://px.ads.linkedin.com/collect/?pid=YOUR_PARTNER_ID&fmt=gif"</span> /&gt;
+&lt;/noscript&gt;</code>
+                    </div>
+
+                    <h3>2. Event-Specific Conversion Tracking</h3>
+                    <span class="code-label">JavaScript - Fire LinkedIn Conversion</span>
+                    <div class="code-block">
+<code><span class="code-comment">// Fire conversion on form submission</span>
+<span class="code-keyword">function</span> <span class="code-function">trackLinkedInConversion</span>(conversionId) {
+  <span class="code-keyword">if</span> (<span class="code-keyword">typeof</span> lintrk !== <span class="code-string">'undefined'</span>) {
+    lintrk(<span class="code-string">'track'</span>, { conversion_id: conversionId });
+  }
+}
+
+<span class="code-comment">// Example: Demo request form</span>
+document.getElementById(<span class="code-string">'demoForm'</span>).addEventListener(<span class="code-string">'submit'</span>, <span class="code-keyword">function</span>() {
+  trackLinkedInConversion(<span class="code-string">'12345678'</span>); <span class="code-comment">// Your conversion ID</span>
+});</code>
+                    </div>
+
+                    <h3>3. LinkedIn Conversions API (CAPI)</h3>
+                    <p>Server-side tracking for reliable conversion data and offline imports.</p>
+
+                    <span class="code-label">Node.js - LinkedIn CAPI Implementation</span>
+                    <div class="code-block">
+<code><span class="code-keyword">const</span> crypto = require(<span class="code-string">'crypto'</span>);
+
+<span class="code-keyword">async function</span> <span class="code-function">sendLinkedInConversion</span>(email, conversionRuleId, conversionValue) {
+  <span class="code-comment">// Hash email using SHA256</span>
+  <span class="code-keyword">const</span> hashedEmail = crypto
+    .createHash(<span class="code-string">'sha256'</span>)
+    .update(email.toLowerCase().trim())
+    .digest(<span class="code-string">'hex'</span>);
+
+  <span class="code-keyword">const</span> conversionData = {
+    conversion: <span class="code-string">`urn:lla:llaPartnerConversion:${conversionRuleId}`</span>,
+    conversionHappenedAt: Date.now(),
+    conversionValue: {
+      currencyCode: <span class="code-string">'USD'</span>,
+      amount: String(conversionValue)
+    },
+    user: {
+      userIds: [{
+        idType: <span class="code-string">'SHA256_EMAIL'</span>,
+        idValue: hashedEmail
+      }]
+    },
+    eventId: <span class="code-string">`${Date.now()}-${Math.random().toString(36)}`</span>
+  };
+
+  <span class="code-keyword">const</span> response = <span class="code-keyword">await</span> fetch(
+    <span class="code-string">'https://api.linkedin.com/rest/conversionEvents'</span>,
+    {
+      method: <span class="code-string">'POST'</span>,
+      headers: {
+        <span class="code-string">'Authorization'</span>: <span class="code-string">`Bearer ${LINKEDIN_ACCESS_TOKEN}`</span>,
+        <span class="code-string">'Content-Type'</span>: <span class="code-string">'application/json'</span>,
+        <span class="code-string">'LinkedIn-Version'</span>: <span class="code-string">'202401'</span>
+      },
+      body: JSON.stringify({ elements: [conversionData] })
+    }
+  );
+
+  <span class="code-keyword">return</span> response.json();
+}</code>
+                    </div>
+
+                    <div class="callout">
+                        <strong>Best Practice:</strong> Use both Insight Tag (client-side) and CAPI (server-side) together. CAPI catches conversions that client-side tracking misses due to ad blockers or cookie restrictions.
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Meta Conversion Tracking</h2>
+                    <p>Meta (Facebook/Instagram) tracking requires both the Pixel and Conversions API for reliable B2B attribution, especially post-iOS 14.5.</p>
+
+                    <h3>1. Meta Pixel Installation (GTM)</h3>
+                    <span class="code-label">GTM - Meta Pixel Base Code</span>
+                    <div class="code-block">
+<code><span class="code-comment">&lt;!-- Create a Custom HTML tag in GTM --&gt;</span>
+&lt;script&gt;
+!<span class="code-keyword">function</span>(f,b,e,v,n,t,s)
+{<span class="code-keyword">if</span>(f.fbq)<span class="code-keyword">return</span>;n=f.fbq=<span class="code-keyword">function</span>(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+<span class="code-keyword">if</span>(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version=<span class="code-string">'2.0'</span>;
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,<span class="code-string">'script'</span>,
+<span class="code-string">'https://connect.facebook.net/en_US/fbevents.js'</span>);
+fbq(<span class="code-string">'init'</span>, <span class="code-string">'YOUR_PIXEL_ID'</span>);
+fbq(<span class="code-string">'track'</span>, <span class="code-string">'PageView'</span>);
+&lt;/script&gt;
+&lt;noscript&gt;&lt;img height=<span class="code-string">"1"</span> width=<span class="code-string">"1"</span> style=<span class="code-string">"display:none"</span>
+src=<span class="code-string">"https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"</span>
+/&gt;&lt;/noscript&gt;</code>
+                    </div>
+
+                    <h3>2. Standard Events for B2B</h3>
+                    <span class="code-label">JavaScript - B2B Conversion Events</span>
+                    <div class="code-block">
+<code><span class="code-comment">// Demo Request (High Intent)</span>
+fbq(<span class="code-string">'track'</span>, <span class="code-string">'Lead'</span>, {
+  content_name: <span class="code-string">'Demo Request'</span>,
+  value: 10000,
+  currency: <span class="code-string">'USD'</span>
+});
+
+<span class="code-comment">// Content Download (Medium Intent)</span>
+fbq(<span class="code-string">'track'</span>, <span class="code-string">'CompleteRegistration'</span>, {
+  content_name: <span class="code-string">'Whitepaper Download'</span>,
+  value: 1000,
+  currency: <span class="code-string">'USD'</span>
+});
+
+<span class="code-comment">// Pricing Page View (Intent Signal)</span>
+fbq(<span class="code-string">'track'</span>, <span class="code-string">'ViewContent'</span>, {
+  content_name: <span class="code-string">'Pricing Page'</span>,
+  value: 500,
+  currency: <span class="code-string">'USD'</span>
+});</code>
+                    </div>
+
+                    <h3>3. Meta Conversions API (CAPI)</h3>
+                    <span class="code-label">Node.js - Meta CAPI Implementation</span>
+                    <div class="code-block">
+<code><span class="code-keyword">const</span> crypto = require(<span class="code-string">'crypto'</span>);
+
+<span class="code-keyword">async function</span> <span class="code-function">sendMetaConversion</span>(eventName, email, value, eventId) {
+  <span class="code-keyword">const</span> hashedEmail = crypto
+    .createHash(<span class="code-string">'sha256'</span>)
+    .update(email.toLowerCase().trim())
+    .digest(<span class="code-string">'hex'</span>);
+
+  <span class="code-keyword">const</span> eventData = {
+    data: [{
+      event_name: eventName,
+      event_time: Math.floor(Date.now() / 1000),
+      event_id: eventId, <span class="code-comment">// For deduplication with Pixel</span>
+      action_source: <span class="code-string">'website'</span>,
+      user_data: {
+        em: [hashedEmail]
+      },
+      custom_data: {
+        currency: <span class="code-string">'USD'</span>,
+        value: value
+      }
+    }]
+  };
+
+  <span class="code-keyword">const</span> response = <span class="code-keyword">await</span> fetch(
+    <span class="code-string">`https://graph.facebook.com/v19.0/${PIXEL_ID}/events?access_token=${ACCESS_TOKEN}`</span>,
+    {
+      method: <span class="code-string">'POST'</span>,
+      headers: { <span class="code-string">'Content-Type'</span>: <span class="code-string">'application/json'</span> },
+      body: JSON.stringify(eventData)
+    }
+  );
+
+  <span class="code-keyword">return</span> response.json();
+}
+
+<span class="code-comment">// Usage with deduplication</span>
+<span class="code-keyword">const</span> eventId = <span class="code-string">`demo_${Date.now()}`</span>;
+sendMetaConversion(<span class="code-string">'Lead'</span>, <span class="code-string">'user@company.com'</span>, 10000, eventId);</code>
+                    </div>
+
+                    <div class="callout callout-warning">
+                        <strong>Event Deduplication:</strong> When using both Pixel and CAPI, pass the same <code>event_id</code> to both to prevent double-counting. Meta will deduplicate events with matching IDs within 48 hours.
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>HubSpot Form Tracking</h2>
+                    <p>HubSpot forms require specific configuration to capture ad click IDs and trigger platform pixels.</p>
+
+                    <h3>1. Hidden Fields for Click ID Capture</h3>
+                    <p>Add these hidden fields to all HubSpot forms to capture tracking parameters.</p>
+
+                    <table>
+                        <tr><th>Field Name</th><th>Property Type</th><th>Purpose</th></tr>
+                        <tr><td>gclid</td><td>Single-line text</td><td>Google Ads click ID</td></tr>
+                        <tr><td>li_fat_id</td><td>Single-line text</td><td>LinkedIn click ID</td></tr>
+                        <tr><td>fbclid</td><td>Single-line text</td><td>Meta click ID</td></tr>
+                        <tr><td>utm_source</td><td>Single-line text</td><td>Traffic source</td></tr>
+                        <tr><td>utm_medium</td><td>Single-line text</td><td>Marketing medium</td></tr>
+                        <tr><td>utm_campaign</td><td>Single-line text</td><td>Campaign name</td></tr>
+                        <tr><td>utm_content</td><td>Single-line text</td><td>Ad/content variant</td></tr>
+                    </table>
+
+                    <h3>2. Auto-Populate Hidden Fields</h3>
+                    <span class="code-label">JavaScript - HubSpot Hidden Field Population</span>
+                    <div class="code-block">
+<code><span class="code-comment">// Add to your site's global JS, runs after HubSpot forms load</span>
+window.addEventListener(<span class="code-string">'message'</span>, <span class="code-keyword">function</span>(event) {
+  <span class="code-keyword">if</span> (event.data.type === <span class="code-string">'hsFormCallback'</span> &&
+      event.data.eventName === <span class="code-string">'onFormReady'</span>) {
+
+    <span class="code-keyword">const</span> params = <span class="code-keyword">new</span> URLSearchParams(window.location.search);
+    <span class="code-keyword">const</span> fields = {
+      <span class="code-string">'gclid'</span>: getGclid(), <span class="code-comment">// From stored cookie</span>
+      <span class="code-string">'li_fat_id'</span>: params.get(<span class="code-string">'li_fat_id'</span>) || localStorage.getItem(<span class="code-string">'li_fat_id'</span>),
+      <span class="code-string">'fbclid'</span>: params.get(<span class="code-string">'fbclid'</span>) || localStorage.getItem(<span class="code-string">'fbclid'</span>),
+      <span class="code-string">'utm_source'</span>: params.get(<span class="code-string">'utm_source'</span>),
+      <span class="code-string">'utm_medium'</span>: params.get(<span class="code-string">'utm_medium'</span>),
+      <span class="code-string">'utm_campaign'</span>: params.get(<span class="code-string">'utm_campaign'</span>),
+      <span class="code-string">'utm_content'</span>: params.get(<span class="code-string">'utm_content'</span>)
+    };
+
+    Object.keys(fields).forEach(<span class="code-keyword">function</span>(fieldName) {
+      <span class="code-keyword">if</span> (fields[fieldName]) {
+        <span class="code-keyword">const</span> input = document.querySelector(
+          <span class="code-string">`input[name="${fieldName}"]`</span>
+        );
+        <span class="code-keyword">if</span> (input) input.value = fields[fieldName];
+      }
+    });
+  }
+});</code>
+                    </div>
+
+                    <h3>3. GTM Trigger for HubSpot Form Submissions</h3>
+                    <span class="code-label">GTM - HubSpot Form Submission Trigger</span>
+                    <div class="code-block">
+<code><span class="code-comment">// Create a Custom Event trigger in GTM</span>
+<span class="code-comment">// Event name: hsFormCallback</span>
+
+<span class="code-comment">// Then add this Custom HTML tag to capture submissions:</span>
+&lt;script&gt;
+window.addEventListener(<span class="code-string">'message'</span>, <span class="code-keyword">function</span>(event) {
+  <span class="code-keyword">if</span> (event.data.type === <span class="code-string">'hsFormCallback'</span> &&
+      event.data.eventName === <span class="code-string">'onFormSubmit'</span>) {
+
+    <span class="code-keyword">var</span> formId = event.data.id;
+    <span class="code-keyword">var</span> formData = event.data.data;
+
+    <span class="code-comment">// Push to dataLayer for GTM tags</span>
+    dataLayer.push({
+      <span class="code-string">'event'</span>: <span class="code-string">'hubspot_form_submit'</span>,
+      <span class="code-string">'hs_form_id'</span>: formId,
+      <span class="code-string">'hs_form_data'</span>: formData
+    });
+  }
+});
+&lt;/script&gt;</code>
+                    </div>
+
+                    <h3>4. HubSpot Workflow for Offline Conversions</h3>
+                    <p>Create workflows to send offline conversions when lifecycle stage changes.</p>
+
+                    <div class="checklist">
+                        <div class="checklist-title">HubSpot Workflow Setup</div>
+                        <div class="checklist-item"><input type="checkbox"> Trigger: Lifecycle stage becomes SQL</div>
+                        <div class="checklist-item"><input type="checkbox"> Condition: GCLID is known</div>
+                        <div class="checklist-item"><input type="checkbox"> Action: Webhook to Google Ads offline import API</div>
+                        <div class="checklist-item"><input type="checkbox"> Trigger: Lifecycle stage becomes Opportunity</div>
+                        <div class="checklist-item"><input type="checkbox"> Action: Webhook to LinkedIn CAPI with opportunity value</div>
+                        <div class="checklist-item"><input type="checkbox"> Trigger: Deal stage becomes Closed Won</div>
+                        <div class="checklist-item"><input type="checkbox"> Action: Webhook to all platforms with actual deal value</div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Thank You Page vs Event-Based Tracking</h2>
+                    <p>Both methods have trade-offs. Use them together for complete coverage.</p>
+
+                    <table>
+                        <tr><th>Method</th><th>Pros</th><th>Cons</th><th>Best For</th></tr>
+                        <tr>
+                            <td><strong>Thank You Page</strong></td>
+                            <td>Simple setup, URL-based triggers, works with any form</td>
+                            <td>Misses conversions if page doesn't load, requires redirect</td>
+                            <td>Backup tracking, simple forms</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Event-Based</strong></td>
+                            <td>Fires immediately, captures more conversions, works with AJAX forms</td>
+                            <td>Requires JavaScript, can be blocked</td>
+                            <td>Primary tracking method</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Server-Side (CAPI)</strong></td>
+                            <td>Most reliable, not blocked by browsers, enables offline import</td>
+                            <td>More complex setup, requires backend integration</td>
+                            <td>Critical conversions, CRM events</td>
+                        </tr>
+                    </table>
+
+                    <div class="callout">
+                        <strong>Recommendation:</strong> Use event-based tracking as primary, thank you page as backup validation, and server-side CAPI for all high-value conversions and CRM lifecycle changes.
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Testing and Validation Checklist</h2>
+                    <p>Before launching campaigns, validate that all tracking is working correctly.</p>
+
+                    <h3>Pre-Launch Testing</h3>
+                    <div class="checklist">
+                        <div class="checklist-title">Google Ads</div>
+                        <div class="checklist-item"><input type="checkbox"> Tag Assistant shows Google Ads tag firing</div>
+                        <div class="checklist-item"><input type="checkbox"> GCLID captured and stored in cookie</div>
+                        <div class="checklist-item"><input type="checkbox"> Test form submission creates lead with GCLID in CRM</div>
+                        <div class="checklist-item"><input type="checkbox"> Conversion appears in Google Ads within 24 hours</div>
+                        <div class="checklist-item"><input type="checkbox"> Enhanced Conversions showing matched status</div>
+                    </div>
+
+                    <div class="checklist">
+                        <div class="checklist-title">LinkedIn</div>
+                        <div class="checklist-item"><input type="checkbox"> LinkedIn Insight Tag Helper shows tag active</div>
+                        <div class="checklist-item"><input type="checkbox"> Conversion events fire on form submission</div>
+                        <div class="checklist-item"><input type="checkbox"> CAPI test event returns 200 response</div>
+                        <div class="checklist-item"><input type="checkbox"> Conversions appear in Campaign Manager within 48 hours</div>
+                    </div>
+
+                    <div class="checklist">
+                        <div class="checklist-title">Meta</div>
+                        <div class="checklist-item"><input type="checkbox"> Meta Pixel Helper shows Pixel active</div>
+                        <div class="checklist-item"><input type="checkbox"> Standard events fire with correct parameters</div>
+                        <div class="checklist-item"><input type="checkbox"> CAPI events appear in Events Manager Test Events</div>
+                        <div class="checklist-item"><input type="checkbox"> Deduplication working (no double events)</div>
+                        <div class="checklist-item"><input type="checkbox"> Event Match Quality score is Good or Great</div>
+                    </div>
+
+                    <div class="checklist">
+                        <div class="checklist-title">HubSpot Integration</div>
+                        <div class="checklist-item"><input type="checkbox"> Hidden fields populated on form load</div>
+                        <div class="checklist-item"><input type="checkbox"> Form submission triggers GTM events</div>
+                        <div class="checklist-item"><input type="checkbox"> UTM parameters stored on contact record</div>
+                        <div class="checklist-item"><input type="checkbox"> Lifecycle stage change triggers offline conversion workflow</div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Common Tracking Mistakes</h2>
+                    <p>Avoid these pitfalls that break B2B conversion tracking.</p>
+
+                    <table>
+                        <tr><th>Mistake</th><th>Impact</th><th>Fix</th></tr>
+                        <tr>
+                            <td><strong>Not storing GCLID</strong></td>
+                            <td>Can't attribute offline conversions to Google Ads</td>
+                            <td>Capture GCLID in cookie (90-day expiry) and pass to CRM</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Missing conversion values</strong></td>
+                            <td>Platform optimizes for volume, not quality</td>
+                            <td>Calculate values based on close rate x deal size</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Only tracking form submissions</strong></td>
+                            <td>Losing attribution for CRM conversions</td>
+                            <td>Implement offline conversion import for SQL/Opp/Won</td>
+                        </tr>
+                        <tr>
+                            <td><strong>No CAPI implementation</strong></td>
+                            <td>Missing 30-40% of conversions due to ad blockers</td>
+                            <td>Add server-side tracking alongside Pixel/Tag</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Duplicate events</strong></td>
+                            <td>Inflated conversion counts, bad bidding signals</td>
+                            <td>Use event_id for deduplication between client and server</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cookie expiry too short</strong></td>
+                            <td>B2B sales cycles exceed tracking window</td>
+                            <td>Use 90-day cookies, store click IDs in CRM</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Thank you page only</strong></td>
+                            <td>Missing AJAX form submissions</td>
+                            <td>Use event-based tracking as primary method</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Not hashing PII</strong></td>
+                            <td>Privacy violations, potential fines</td>
+                            <td>Always SHA256 hash emails before sending to APIs</td>
+                        </tr>
+                    </table>
+
+                    <div class="callout callout-warning">
+                        <strong>The Biggest Mistake:</strong> Treating B2B tracking like B2C. In B2B, the real conversion (closed deal) happens weeks or months after the click. If you only track form fills, platforms optimize for the wrong outcome.
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Gate Overlay -->
+            <div class="gate-overlay" id="gateOverlay">
+                <div class="gate-card">
+                    <h3>Unlock the Full Guide</h3>
+                    <p>Get platform-specific code snippets, HubSpot workflows, and the complete testing checklist.</p>
+                    <form class="email-form" id="unlockForm" onsubmit="handleUnlock(event)">
+                        <input type="email" name="email" placeholder="you@company.com" required>
+                        <button type="submit">Unlock Full Guide</button>
+                    </form>
+                    <p class="note">Plus get the PDF version emailed to you</p>
+                </div>
+            </div>
+        </div>
+
+        <section>
+            <h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1rem;">Related Resources</h2>
+            <div class="related-links">
+                <a href="/b2b-benchmarks/google-ads-benchmarks/" class="related-link">Google Ads Benchmarks</a>
+                <a href="/b2b-benchmarks/linkedin-ads-benchmarks/" class="related-link">LinkedIn Ads Benchmarks</a>
+                <a href="/tools/google-ads-budget-calculator/" class="related-link">Google Ads Budget Calculator</a>
+                <a href="/assessments/hubspot-health/" class="related-link">HubSpot Health Check</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <!-- Column 1: Brand -->
+                <div class="footer-brand">
+                    <img src="/42-logo.png" alt="42 Agency">
+                    <p>B2B performance marketing for companies that sell to enterprises.</p>
+                    <div class="footer-social">
+                        <a href="https://linkedin.com/company/42agency" target="_blank">LinkedIn</a>
+                        <a href="https://x.com/42aboratory" target="_blank">X</a>
+                        <a href="https://www.youtube.com/@Get42Agency" target="_blank">YouTube</a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Assess -->
+                <div class="footer-col">
+                    <h4>Assess</h4>
+                    <a href="/assessments/hubspot-health/">HubSpot Health Check</a>
+                    <a href="/assess/calculator/">Benchmark Calculator</a>
+                    <a href="/linkedin-audit/">LinkedIn Ads Audit</a>
+                    <a href="/google-ads-audit/">Google Ads Audit</a>
+                    <a href="/meta-audit/">Meta Ads Audit</a>
+                    <a href="/hubspot-audit/">HubSpot Audit</a>
+                </div>
+
+                <!-- Column 3: Benchmarks -->
+                <div class="footer-col">
+                    <h4>Benchmarks</h4>
+                    <a href="/b2b-benchmarks/">All B2B Benchmarks</a>
+                    <a href="/b2b-benchmarks/linkedin-ads-benchmarks/">LinkedIn Ads</a>
+                    <a href="/b2b-benchmarks/google-ads-benchmarks/">Google Ads</a>
+                    <a href="/b2b-benchmarks/linkedin-inmail-benchmarks/">InMail Benchmarks</a>
+                    <a href="/b2b-benchmarks/legal-tech-linkedin-ads/" class="sublink">Legal Tech</a>
+                    <a href="/b2b-benchmarks/healthcare-tech-linkedin-ads/" class="sublink">Healthcare Tech</a>
+                    <a href="/b2b-benchmarks/fintech-linkedin-ads/" class="sublink">FinTech</a>
+                </div>
+
+                <!-- Column 4: AI Tools + Resources -->
+                <div class="footer-col">
+                    <h4>AI Tools</h4>
+                    <a href="https://copilot.42agency.com" target="_blank">LinkedIn Ads Copilot</a>
+                    <a href="https://copilot.42agency.com/linkedin-ads-targeting" target="_blank">Targeting Guide</a>
+                    <h4 style="margin-top: 1.5rem;">Resources</h4>
+                    <a href="/zenabm/">ABM Toolkit</a>
+                    <a href="/mops-funnel/">MOPS Funnel Workbook</a>
+                    <a href="/exitfive/">Claude Code 101</a>
+                </div>
+
+                <!-- Column 5: 42 Agency -->
+                <div class="footer-col">
+                    <h4>42 Agency</h4>
+                    <a href="https://42agency.com" target="_blank">Website</a>
+                    <a href="https://www.42agency.com/contact-us" target="_blank">Contact Us</a>
+                    <a href="https://42agency.com/case-studies" target="_blank">Case Studies</a>
+                    <a href="https://42slash.com" target="_blank">42/ Essays</a>
+                    <a href="https://42agency.com/careers" target="_blank">Careers</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 42 Agency. All rights reserved.</p>
+                <p><a href="https://42agency.com/privacy">Privacy</a> &middot; <a href="https://42agency.com/terms">Terms</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/email-validation.js"></script>
+    <script>
+        // GCLID capture function
+        function captureGclid() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const gclid = urlParams.get('gclid');
+            if (gclid) {
+                const expires = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000);
+                document.cookie = `gclid=${gclid}; expires=${expires.toUTCString()}; path=/`;
+                localStorage.setItem('gclid', gclid);
+            }
+        }
+        captureGclid();
+
+        function getGclid() {
+            return localStorage.getItem('gclid') ||
+                document.cookie.match(/gclid=([^;]+)/)?.[1] || '';
+        }
+
+        // Check if already unlocked
+        if (localStorage.getItem('playbook_unlocked_conversion-tracking-setup')) {
+            document.getElementById('gatedContent').classList.add('unlocked');
+            document.getElementById('gateOverlay').classList.add('hidden');
+            document.getElementById('downloadBanner').classList.add('visible');
+        }
+
+        async function handleUnlock(e) {
+            e.preventDefault();
+            const email = e.target.email.value;
+            const button = e.target.querySelector('button');
+            button.disabled = true;
+            button.textContent = 'Unlocking...';
+
+            try {
+                const response = await fetch('/api/playbook-download', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        playbook: 'conversion-tracking-setup'
+                    })
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    // Track event
+                    if (window.dataLayer) window.dataLayer.push({ event: 'playbook_unlocked', playbook: 'conversion-tracking-setup' });
+
+                    // Save unlock state
+                    localStorage.setItem('playbook_unlocked_conversion-tracking-setup', 'true');
+
+                    // Reveal content
+                    document.getElementById('gatedContent').classList.add('unlocked');
+                    document.getElementById('gateOverlay').classList.add('hidden');
+                    document.getElementById('downloadBanner').classList.add('visible');
+
+                    // Scroll to content
+                    document.getElementById('gatedContent').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    throw new Error('Failed');
+                }
+            } catch (error) {
+                button.textContent = 'Try Again';
+                button.disabled = false;
+            }
+        }
+    </script>
+    <!-- Vercel Analytics -->
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

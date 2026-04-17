@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta Conversions API (CAPI) Setup Guide | Server-Side Tracking | 42 Agency</title>
+    <meta name="description" content="Complete guide to implementing Meta Conversions API (CAPI) for B2B. Recover iOS14 signal loss with server-side tracking, event deduplication, and Event Match Quality optimization.">
+    <link rel="canonical" href="https://intel.42agency.com/playbooks/meta-capi-setup/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MM5BTNS');</script>
+
+    <!-- HubSpot Tracking -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/44888286.js"></script>
+
+    <!-- FAQPage Schema for GEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Meta Conversions API (CAPI)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Meta Conversions API (CAPI) is a server-side tracking solution that sends conversion events directly from your server to Meta's servers, bypassing browser-based tracking limitations. Unlike the Meta Pixel which relies on browser cookies and JavaScript, CAPI sends data server-to-server, making it immune to ad blockers, browser privacy settings, and iOS tracking restrictions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is CAPI important after iOS 14?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Apple's iOS 14.5 App Tracking Transparency (ATT) framework lets users opt out of tracking. With opt-out rates exceeding 85%, browser-based Meta Pixel tracking loses most iOS conversion data. CAPI solves this by sending conversion events server-side using first-party data (email, phone) that users voluntarily provided, bypassing the need for cross-app tracking consent."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is event deduplication in CAPI?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Event deduplication prevents the same conversion from being counted twice when you send events via both Pixel (browser) and CAPI (server). Meta uses the event_id parameter to match and dedupe events. Both Pixel and CAPI events must include identical event_id values (typically a UUID or transaction ID). Meta keeps the first event received and discards duplicates within a 48-hour window."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Event Match Quality (EMQ) work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Event Match Quality (EMQ) is Meta's 0-10 score measuring how well your CAPI events can be matched to Facebook users. Higher EMQ means better ad targeting and attribution. EMQ improves when you send more customer parameters: email (hashed), phone (hashed), first name, last name, city, state, zip code, country, external_id (your CRM ID), client_ip_address, client_user_agent, and fbc/fbp cookies. Aim for EMQ of 6+ for optimal performance."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I use direct API integration, GTM Server-Side, or HubSpot native CAPI?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Choose based on your tech stack and resources. GTM Server-Side is ideal for most B2B companies: it requires minimal coding, supports deduplication, and centralizes all tracking in one place. HubSpot native CAPI is easiest if HubSpot is your primary form handler but only captures HubSpot form submissions. Direct API integration offers maximum control but requires developer resources and ongoing maintenance. Most B2B companies should start with GTM Server-Side."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- HowTo Schema for GEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Implement Meta Conversions API (CAPI)",
+      "description": "Step-by-step guide to setting up server-side tracking with Meta CAPI to recover conversion data lost to iOS14 privacy changes and browser tracking restrictions.",
+      "image": "https://intel.42agency.com/images/meta-capi-setup.png",
+      "totalTime": "PT4H",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "USD",
+        "value": "0"
+      },
+      "tool": [
+        {
+          "@type": "HowToTool",
+          "name": "Meta Events Manager"
+        },
+        {
+          "@type": "HowToTool",
+          "name": "Google Tag Manager"
+        },
+        {
+          "@type": "HowToTool",
+          "name": "GTM Server-Side Container (optional)"
+        }
+      ],
+      "supply": [
+        {
+          "@type": "HowToSupply",
+          "name": "Meta Pixel ID"
+        },
+        {
+          "@type": "HowToSupply",
+          "name": "Meta Conversions API Access Token"
+        }
+      ],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Generate CAPI Access Token",
+          "text": "In Meta Events Manager, navigate to your Pixel, click Settings, and scroll to Conversions API. Click Generate Access Token. This token authenticates your server-side requests. Store it securely as an environment variable, never in client-side code.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Use a System User token for production (more stable than personal tokens)"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Regenerate tokens if team members leave or tokens are exposed"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Map Events to Send",
+          "text": "Identify which conversion events to track via CAPI. Standard B2B events: PageView (optional, high volume), Lead (form submissions), CompleteRegistration (signups), Contact (demo requests), and Purchase (for e-commerce). Map each event to a trigger in your CRM or backend system.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Start with Lead events as they're highest value for B2B"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "PageView via CAPI is optional since Pixel handles it well"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Implement Event ID for Deduplication",
+          "text": "Generate a unique event_id for each conversion. Pass this same event_id to both Pixel (browser) and CAPI (server). Use UUID v4 or a deterministic ID like transaction_id. Store event_id in dataLayer when the event fires, then include it in your CAPI payload.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Generate event_id client-side and pass to server via form data or dataLayer"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Never generate different event_ids for Pixel vs CAPI or you'll double-count"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Send Events via GTM Server-Side or Direct API",
+          "text": "For GTM Server-Side: Deploy a server container (Google Cloud Run is free tier eligible), configure the Meta CAPI tag to receive events from your web container. For Direct API: Send POST requests to https://graph.facebook.com/v18.0/{pixel_id}/events with your access token and event payload.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "GTM Server-Side simplifies deduplication with built-in event_id handling"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Send events within 1 hour of occurrence for best attribution"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "Maximize Event Match Quality",
+          "text": "Include as many customer parameters as possible: em (hashed email), ph (hashed phone), fn (first name), ln (last name), ct (city), st (state), zp (zip), country, external_id, client_ip_address, client_user_agent, fbc and fbp cookies. Hash PII with SHA256 before sending. Check EMQ score in Events Manager and aim for 6+.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Pass fbc and fbp cookies from browser to server for click attribution"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "external_id (your CRM contact ID) significantly improves matching"
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 6,
+          "name": "Test and Validate",
+          "text": "Use Meta's Test Events tool in Events Manager. Send test events with test_event_code parameter. Verify events appear in Test Events tab, check deduplication is working (duplicate events show as 'Deduplicated'), and confirm EMQ score meets target. Remove test_event_code for production.",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": "Test each event type: PageView, Lead, CompleteRegistration"
+            },
+            {
+              "@type": "HowToDirection",
+              "text": "Verify Pixel and CAPI events dedupe correctly by checking total count"
+            }
+          ]
+        }
+      ],
+      "author": {
+        "@type": "Organization",
+        "name": "42 Agency",
+        "url": "https://www.42agency.com"
+      }
+    }
+    </script>
+
+    <style>
+        :root { --accent: #DFFE68; --accent-dark: #C8E85C; --black: #1a1a1a; --gray: #4a4a4a; --muted: #6b6b6b; --light-gray: #f5f5f5; --green: #10B981; --blue: #3B82F6; --orange: #F59E0B; --meta: #0668E1; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--light-gray); color: var(--black); line-height: 1.7; }
+
+        /* Header */
+        .header { border-bottom: 2px solid var(--black); padding: 0.75rem 1.5rem; background: white; position: sticky; top: 0; z-index: 50; }
+        .header-inner { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 28px; }
+        .nav { display: flex; align-items: center; gap: 0.25rem; }
+        .nav a { padding: 0.5rem 1rem; color: var(--gray); text-decoration: none; font-size: 0.9rem; font-weight: 500; border-radius: 6px; transition: all 0.15s; }
+        .nav a:hover { color: var(--black); background: var(--light-gray); }
+        .nav a.active { background: var(--accent); color: var(--black); font-weight: 600; }
+        .nav-cta { background: var(--black); color: white !important; font-weight: 600; }
+        .nav-cta:hover { background: #333 !important; }
+        @media (max-width: 768px) { .nav { display: none; } }
+
+        /* Breadcrumbs */
+        .breadcrumbs { background: white; border-bottom: 2px solid var(--black); padding: 0.75rem 1.5rem; }
+        .breadcrumbs-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; }
+        .breadcrumbs a { color: var(--gray); text-decoration: none; }
+        .breadcrumbs a:hover { color: var(--black); }
+        .breadcrumbs .current { color: var(--black); font-weight: 600; }
+
+        .main { max-width: 800px; margin: 0 auto; padding: 3rem 2rem; }
+
+        /* Hero */
+        .hero { text-align: center; margin-bottom: 3rem; }
+        .hero-badge { display: inline-block; background: var(--meta); color: white; padding: 0.4rem 1rem; font-size: 0.75rem; font-weight: 700; border-radius: 20px; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 1rem; line-height: 1.2; }
+        .subtitle { color: var(--gray); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        /* Stats */
+        .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0 3rem; }
+        .stat-item { text-align: center; padding: 1rem; background: white; border: 2px solid var(--black); border-radius: 12px; box-shadow: 3px 3px 0 var(--black); }
+        .stat-value { font-size: 1.75rem; font-weight: 800; color: var(--meta); }
+        .stat-label { font-size: 0.75rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.3px; }
+
+        /* Content Sections */
+        .content-section { background: white; border: 2px solid var(--black); border-radius: 16px; padding: 2rem; box-shadow: 4px 4px 0 var(--black); margin-bottom: 2rem; }
+        .content-section h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 3px solid var(--accent); }
+        .content-section h3 { font-size: 1.1rem; font-weight: 700; margin: 1.5rem 0 0.75rem; color: var(--black); }
+        .content-section p { margin-bottom: 1rem; color: #333; }
+        .content-section ul, .content-section ol { margin: 1rem 0 1rem 1.5rem; color: #333; }
+        .content-section li { margin-bottom: 0.5rem; }
+        .content-section table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+        .content-section th, .content-section td { padding: 0.6rem 0.75rem; text-align: left; border: 1px solid #ddd; }
+        .content-section th { background: #f5f5f5; font-weight: 700; }
+        .content-section tr:nth-child(even) { background: #fafafa; }
+
+        .callout { background: var(--accent); border-left: 4px solid var(--black); padding: 1rem 1.25rem; margin: 1.25rem 0; border-radius: 0 8px 8px 0; }
+        .callout strong { display: block; margin-bottom: 0.25rem; }
+
+        .callout-warning { background: #FEF3C7; border-left: 4px solid var(--orange); }
+        .callout-info { background: #DBEAFE; border-left: 4px solid var(--blue); }
+        .callout-meta { background: #E0E7FF; border-left: 4px solid var(--meta); }
+
+        code { background: #f0f0f0; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; font-family: 'SF Mono', Monaco, monospace; }
+        pre { background: var(--black); color: #f0f0f0; padding: 1rem 1.25rem; border-radius: 8px; overflow-x: auto; margin: 1rem 0; font-size: 0.85rem; line-height: 1.5; }
+        pre code { background: transparent; padding: 0; color: inherit; }
+
+        /* Gated Content */
+        .gated-wrapper { position: relative; }
+        .gated-content { filter: blur(5px); pointer-events: none; user-select: none; }
+        .gated-content.unlocked { filter: none; pointer-events: auto; user-select: auto; }
+
+        .gate-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.95) 15%, rgba(255,255,255,1) 30%); display: flex; align-items: flex-start; justify-content: center; padding-top: 4rem; }
+        .gate-overlay.hidden { display: none; }
+
+        .gate-card { background: var(--accent); border: 2px solid var(--black); border-radius: 16px; padding: 2.5rem; box-shadow: 6px 6px 0 var(--black); text-align: center; max-width: 450px; margin: 0 1rem; }
+        .gate-card h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .gate-card p { color: var(--gray); margin-bottom: 1.5rem; }
+        .email-form { display: flex; flex-direction: column; gap: 0.75rem; }
+        .email-form input { padding: 0.875rem; border: 2px solid var(--black); border-radius: 8px; font-size: 1rem; text-align: center; }
+        .email-form input:focus { outline: none; border-color: var(--meta); }
+        .email-form button { padding: 0.875rem 1.5rem; background: var(--black); color: white; border: none; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: background 0.15s; }
+        .email-form button:hover { background: #333; }
+        .gate-card .note { font-size: 0.8rem; color: #666; margin-top: 1rem; }
+
+        /* Download Banner */
+        .download-banner { display: none; background: var(--accent); border: 2px solid var(--black); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; text-align: center; box-shadow: 4px 4px 0 var(--black); }
+        .download-banner.visible { display: block; }
+        .download-banner p { margin-bottom: 1rem; font-weight: 600; }
+        .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--black); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; transition: background 0.15s; }
+        .download-btn:hover { background: #333; }
+
+        /* Comparison Table */
+        .comparison-table { overflow-x: auto; }
+        .comparison-table table { min-width: 600px; }
+        .comparison-table th:first-child { width: 25%; }
+        .check { color: var(--green); font-weight: 700; }
+        .partial { color: var(--orange); font-weight: 700; }
+        .no { color: #999; }
+
+        /* Step Cards */
+        .step-card { display: flex; gap: 1rem; margin: 1.5rem 0; padding: 1.25rem; background: var(--light-gray); border-radius: 12px; border: 2px solid #e5e5e5; }
+        .step-number { flex-shrink: 0; width: 36px; height: 36px; background: var(--meta); color: white; font-weight: 800; font-size: 1rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .step-content h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem; }
+        .step-content p { font-size: 0.9rem; color: var(--gray); margin: 0; }
+
+        /* Related */
+        .related-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2rem; }
+        .related-link { display: block; padding: 1rem; background: white; border: 2px solid var(--black); border-radius: 8px; text-decoration: none; color: var(--black); font-weight: 600; box-shadow: 3px 3px 0 var(--black); transition: all 0.15s; }
+        .related-link:hover { background: var(--accent); transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--black); }
+
+        /* CTA Section */
+        .cta-section { background: var(--accent); border: 2px solid var(--black); border-radius: 16px; padding: 2.5rem; text-align: center; box-shadow: 6px 6px 0 var(--black); margin-top: 3rem; }
+        .cta-section h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.75rem; }
+        .cta-section p { color: var(--gray); margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .cta-btn { display: inline-block; padding: 0.875rem 2rem; background: var(--black); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; transition: background 0.15s; }
+        .cta-btn:hover { background: #333; }
+
+        /* Footer */
+        .footer { background: var(--black); color: white; padding: 4rem 2rem 2rem; margin-top: 3rem; border-top: 2px solid var(--black); }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr repeat(4, 1fr); gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid #333; }
+        .footer-brand img { height: 24px; filter: brightness(0) invert(1); margin-bottom: 1rem; }
+        .footer-brand p { font-size: 0.85rem; color: #999; line-height: 1.6; }
+        .footer-social { display: flex; gap: 1rem; margin-top: 1rem; }
+        .footer-social a { color: #999; text-decoration: none; font-size: 0.85rem; }
+        .footer-social a:hover { color: white; }
+        .footer-col h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1rem; color: var(--accent); }
+        .footer-col a { display: block; color: #999; text-decoration: none; font-size: 0.85rem; margin-bottom: 0.6rem; }
+        .footer-col a:hover { color: white; }
+        .footer-col .sublink { padding-left: 0.75rem; font-size: 0.8rem; color: #666; }
+        .footer-bottom { padding-top: 2rem; display: flex; justify-content: space-between; font-size: 0.8rem; color: #666; }
+        .footer-bottom a { color: #666; text-decoration: none; }
+        .footer-bottom a:hover { color: white; }
+        @media (max-width: 900px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } }
+
+        @media (max-width: 768px) {
+            .stats-row { grid-template-columns: 1fr; }
+            .related-links { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+            .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MM5BTNS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <header class="header">
+        <div class="header-inner">
+            <a href="/" class="logo"><img src="/42-logo.png" alt="42 Agency"></a>
+            <nav class="nav">
+                <a href="/assess/">Assess</a>
+                <a href="/b2b-benchmarks/">Benchmarks</a>
+                <a href="/tools/">Tools</a>
+                <a href="/playbooks/" class="active">Playbooks</a>
+                <a href="https://www.42agency.com/contact-us" target="_blank" class="nav-cta">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <a href="/">Home</a><span>/</span><a href="/playbooks/">Playbooks</a><span>/</span><span class="current">Meta CAPI Setup</span>
+        </div>
+    </nav>
+
+    <main class="main">
+        <section class="hero">
+            <span class="hero-badge">Server-Side Tracking</span>
+            <h1>Meta Conversions API (CAPI) Setup Guide</h1>
+            <p class="subtitle">Recover conversion data lost to iOS14 and cookie deprecation. Complete guide to implementing server-side tracking with event deduplication and EMQ optimization.</p>
+        </section>
+
+        <div class="stats-row">
+            <div class="stat-item">
+                <div class="stat-value">85%+</div>
+                <div class="stat-label">iOS Opt-Out Rate</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">30-50%</div>
+                <div class="stat-label">Signal Recovery</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">6+ EMQ</div>
+                <div class="stat-label">Target Score</div>
+            </div>
+        </div>
+
+        <!-- Download Banner (shows after unlock) -->
+        <div class="download-banner" id="downloadBanner">
+            <p>You've unlocked the full guide. Download the PDF version:</p>
+            <a href="/playbooks/meta-capi-setup/meta-capi-setup-playbook.pdf" download class="download-btn">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                Download PDF
+            </a>
+        </div>
+
+        <!-- UNGATED: Section 1-2 (30%) -->
+        <div class="content-section">
+            <h2>Why CAPI Matters: The iOS14 Signal Crisis</h2>
+            <p>Apple's iOS 14.5 App Tracking Transparency (ATT) changed everything for Meta advertisers. Users must now explicitly opt-in to cross-app tracking, and <strong>over 85% choose to opt out</strong>.</p>
+            <p>This means the Meta Pixel, which relies on browser-based tracking, is blind to most iOS conversions. Combined with increasing browser restrictions (ITP in Safari, Enhanced Tracking Protection in Firefox), cookie-based tracking is dying.</p>
+
+            <h3>What You're Losing Without CAPI</h3>
+            <ul>
+                <li><strong>Attribution gaps:</strong> Conversions happen but aren't tied to ads, so you can't optimize</li>
+                <li><strong>Audience degradation:</strong> Retargeting pools shrink as fewer users are trackable</li>
+                <li><strong>Modeling quality:</strong> Meta's optimization algorithms need conversion data to learn</li>
+                <li><strong>Reporting accuracy:</strong> Your dashboards undercount actual performance</li>
+            </ul>
+
+            <div class="callout callout-meta">
+                <strong>The Solution:</strong> Meta Conversions API sends events server-to-server using first-party data (email, phone) that users voluntarily provided. No cookies, no browser restrictions, no opt-out impact.
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>CAPI vs Pixel: How They Work Together</h2>
+            <p>CAPI doesn't replace the Meta Pixel. It <strong>complements</strong> it. The ideal setup runs both in parallel:</p>
+
+            <table>
+                <tr>
+                    <th>Feature</th>
+                    <th>Meta Pixel (Browser)</th>
+                    <th>CAPI (Server)</th>
+                </tr>
+                <tr>
+                    <td>Tracking Method</td>
+                    <td>JavaScript + Cookies</td>
+                    <td>Server-to-Server API</td>
+                </tr>
+                <tr>
+                    <td>Blocked by Ad Blockers</td>
+                    <td class="no">Yes</td>
+                    <td class="check">No</td>
+                </tr>
+                <tr>
+                    <td>Affected by iOS ATT</td>
+                    <td class="no">Yes (85%+ opt-out)</td>
+                    <td class="check">No</td>
+                </tr>
+                <tr>
+                    <td>Affected by Cookie Deprecation</td>
+                    <td class="no">Yes</td>
+                    <td class="check">No</td>
+                </tr>
+                <tr>
+                    <td>Real-Time Data</td>
+                    <td class="check">Instant</td>
+                    <td class="partial">Near-instant (async)</td>
+                </tr>
+                <tr>
+                    <td>PII Handling</td>
+                    <td>Client-side hashing</td>
+                    <td>Server-side hashing (more secure)</td>
+                </tr>
+            </table>
+
+            <div class="callout">
+                <strong>Best Practice:</strong> Run Pixel AND CAPI together with proper deduplication. The Pixel catches what it can, CAPI fills the gaps. Combined, you recover 30-50% of previously lost conversions.
+            </div>
+        </div>
+
+        <!-- GATED: Remaining sections (70%) -->
+        <div class="gated-wrapper">
+            <div class="gated-content" id="gatedContent">
+
+                <div class="content-section">
+                    <h2>Implementation Options Compared</h2>
+                    <p>Choose your CAPI implementation based on your tech stack and resources:</p>
+
+                    <div class="comparison-table">
+                        <table>
+                            <tr>
+                                <th>Method</th>
+                                <th>Best For</th>
+                                <th>Complexity</th>
+                                <th>Cost</th>
+                                <th>Deduplication</th>
+                            </tr>
+                            <tr>
+                                <td><strong>GTM Server-Side</strong></td>
+                                <td>Most B2B companies</td>
+                                <td>Medium</td>
+                                <td>$0-50/mo</td>
+                                <td class="check">Built-in</td>
+                            </tr>
+                            <tr>
+                                <td><strong>HubSpot Native</strong></td>
+                                <td>HubSpot-only forms</td>
+                                <td>Low</td>
+                                <td>Free (Pro+)</td>
+                                <td class="check">Automatic</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Direct API</strong></td>
+                                <td>Custom backends</td>
+                                <td>High</td>
+                                <td>Dev time</td>
+                                <td class="partial">Manual</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Partner Integrations</strong></td>
+                                <td>Segment, Zapier, etc.</td>
+                                <td>Low</td>
+                                <td>Varies</td>
+                                <td class="partial">Depends</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <h3>GTM Server-Side (Recommended)</h3>
+                    <p>GTM Server-Side is the sweet spot for most B2B companies. It centralizes all tracking, handles deduplication automatically, and works with any form provider.</p>
+
+                    <div class="step-card">
+                        <span class="step-number">1</span>
+                        <div class="step-content">
+                            <h4>Deploy Server Container</h4>
+                            <p>Create a GTM Server container and deploy to Google Cloud Run (free tier eligible) or your preferred host.</p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <span class="step-number">2</span>
+                        <div class="step-content">
+                            <h4>Configure GA4 Client</h4>
+                            <p>Set up the GA4 Client to receive events from your web container via the Measurement Protocol.</p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <span class="step-number">3</span>
+                        <div class="step-content">
+                            <h4>Add Meta CAPI Tag</h4>
+                            <p>Use the official Meta Conversions API tag to transform and forward events to Meta's servers.</p>
+                        </div>
+                    </div>
+
+                    <h3>HubSpot Native CAPI</h3>
+                    <p>If HubSpot handles all your forms, enable native CAPI in Settings > Marketing > Ads > Meta integration. HubSpot automatically sends Lead events with full customer parameters.</p>
+
+                    <div class="callout callout-warning">
+                        <strong>Limitation:</strong> HubSpot native CAPI only captures HubSpot form submissions. If you use Typeform, Calendly, or custom forms, you'll need GTM Server-Side or Direct API as well.
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Event Setup: What to Track</h2>
+                    <p>Map your key conversion points to Meta standard events:</p>
+
+                    <table>
+                        <tr>
+                            <th>Your Action</th>
+                            <th>Meta Event</th>
+                            <th>Priority</th>
+                            <th>Notes</th>
+                        </tr>
+                        <tr>
+                            <td>Form submission (gated content)</td>
+                            <td><code>Lead</code></td>
+                            <td>High</td>
+                            <td>Primary conversion for B2B</td>
+                        </tr>
+                        <tr>
+                            <td>Demo/consultation request</td>
+                            <td><code>Lead</code> or <code>Contact</code></td>
+                            <td>High</td>
+                            <td>Use Contact for higher-intent</td>
+                        </tr>
+                        <tr>
+                            <td>Free trial signup</td>
+                            <td><code>CompleteRegistration</code></td>
+                            <td>High</td>
+                            <td>Product-led growth companies</td>
+                        </tr>
+                        <tr>
+                            <td>Newsletter signup</td>
+                            <td><code>Subscribe</code></td>
+                            <td>Medium</td>
+                            <td>Lower intent but useful</td>
+                        </tr>
+                        <tr>
+                            <td>Pricing page view</td>
+                            <td><code>ViewContent</code></td>
+                            <td>Medium</td>
+                            <td>Custom params: content_type=pricing</td>
+                        </tr>
+                        <tr>
+                            <td>All page views</td>
+                            <td><code>PageView</code></td>
+                            <td>Low</td>
+                            <td>Pixel handles this well</td>
+                        </tr>
+                    </table>
+
+                    <h3>Example CAPI Payload (Lead Event)</h3>
+                    <pre><code>{
+  "data": [{
+    "event_name": "Lead",
+    "event_time": 1713276000,
+    "event_id": "lead_abc123_1713276000",
+    "event_source_url": "https://yoursite.com/demo",
+    "action_source": "website",
+    "user_data": {
+      "em": ["sha256_hashed_email"],
+      "ph": ["sha256_hashed_phone"],
+      "fn": ["sha256_hashed_firstname"],
+      "ln": ["sha256_hashed_lastname"],
+      "ct": ["sha256_hashed_city"],
+      "st": ["sha256_hashed_state"],
+      "zp": ["sha256_hashed_zip"],
+      "country": ["sha256_hashed_country"],
+      "external_id": ["your_crm_contact_id"],
+      "client_ip_address": "192.168.1.1",
+      "client_user_agent": "Mozilla/5.0...",
+      "fbc": "fb.1.1713276000.AbCdEf",
+      "fbp": "fb.1.1713276000.1234567890"
+    },
+    "custom_data": {
+      "lead_source": "demo_request",
+      "value": 500,
+      "currency": "USD"
+    }
+  }],
+  "access_token": "YOUR_ACCESS_TOKEN"
+}</code></pre>
+                </div>
+
+                <div class="content-section">
+                    <h2>Deduplication Strategy</h2>
+                    <p>When running Pixel + CAPI together, you MUST deduplicate to avoid counting conversions twice.</p>
+
+                    <h3>How Deduplication Works</h3>
+                    <ol>
+                        <li>Generate a unique <code>event_id</code> when the conversion happens (client-side)</li>
+                        <li>Pass the <strong>same event_id</strong> to both Pixel and CAPI</li>
+                        <li>Meta matches events by <code>event_name</code> + <code>event_id</code></li>
+                        <li>If both arrive within 48 hours, Meta keeps only one (the first received)</li>
+                    </ol>
+
+                    <h3>Generating event_id</h3>
+                    <p>Use a deterministic ID when possible (e.g., transaction ID, form submission ID). Otherwise, generate a UUID on form submit:</p>
+
+                    <pre><code>// Generate event_id on form submit
+const eventId = `lead_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+
+// Push to dataLayer for GTM
+dataLayer.push({
+  'event': 'form_submit',
+  'event_id': eventId,
+  'user_email': userEmail  // For CAPI payload
+});
+
+// Fire Pixel with same event_id
+fbq('track', 'Lead', {}, { eventID: eventId });</code></pre>
+
+                    <div class="callout callout-warning">
+                        <strong>Common Mistake:</strong> Generating different event_ids for Pixel vs CAPI. This defeats deduplication and double-counts conversions. Always pass the same ID to both.
+                    </div>
+
+                    <h3>Verifying Deduplication</h3>
+                    <p>In Events Manager > Test Events, check the "Deduplication" column. You should see "Deduplicated" for events that arrived via both Pixel and CAPI.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>Testing and Validation</h2>
+                    <p>Always test in Meta's Test Events tool before going live.</p>
+
+                    <h3>Test Mode Setup</h3>
+                    <ol>
+                        <li>Go to Events Manager > Your Pixel > Test Events</li>
+                        <li>Copy your <code>test_event_code</code></li>
+                        <li>Add it to your CAPI payload: <code>"test_event_code": "TEST12345"</code></li>
+                        <li>Submit a test conversion on your site</li>
+                        <li>Verify it appears in the Test Events tab</li>
+                    </ol>
+
+                    <h3>Validation Checklist</h3>
+                    <table>
+                        <tr>
+                            <th>Check</th>
+                            <th>Expected Result</th>
+                            <th>Fix If Wrong</th>
+                        </tr>
+                        <tr>
+                            <td>Event appears in Test Events</td>
+                            <td>Yes, within seconds</td>
+                            <td>Check API response, verify endpoint</td>
+                        </tr>
+                        <tr>
+                            <td>Deduplication shows "Deduplicated"</td>
+                            <td>Yes, if Pixel also fired</td>
+                            <td>Verify same event_id passed to both</td>
+                        </tr>
+                        <tr>
+                            <td>EMQ score is 6+</td>
+                            <td>Yes</td>
+                            <td>Add more customer parameters</td>
+                        </tr>
+                        <tr>
+                            <td>No API errors in response</td>
+                            <td>200 OK</td>
+                            <td>Check payload format, access token</td>
+                        </tr>
+                    </table>
+
+                    <div class="callout callout-info">
+                        <strong>Remove test_event_code for production!</strong> Test events don't affect your ads. Remember to remove the test_event_code parameter when you're ready to go live.
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Event Match Quality (EMQ) Optimization</h2>
+                    <p>EMQ is Meta's 0-10 score measuring how well your events can be matched to Facebook users. Higher EMQ = better targeting and attribution.</p>
+
+                    <h3>Parameters That Improve EMQ</h3>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Key</th>
+                            <th>Impact</th>
+                            <th>Notes</th>
+                        </tr>
+                        <tr>
+                            <td>Email (hashed)</td>
+                            <td><code>em</code></td>
+                            <td class="check">High</td>
+                            <td>Most important - always include</td>
+                        </tr>
+                        <tr>
+                            <td>Phone (hashed)</td>
+                            <td><code>ph</code></td>
+                            <td class="check">High</td>
+                            <td>Format: country code + number</td>
+                        </tr>
+                        <tr>
+                            <td>External ID</td>
+                            <td><code>external_id</code></td>
+                            <td class="check">High</td>
+                            <td>Your CRM contact ID</td>
+                        </tr>
+                        <tr>
+                            <td>Click ID (fbc)</td>
+                            <td><code>fbc</code></td>
+                            <td class="check">High</td>
+                            <td>From _fbc cookie</td>
+                        </tr>
+                        <tr>
+                            <td>Browser ID (fbp)</td>
+                            <td><code>fbp</code></td>
+                            <td class="partial">Medium</td>
+                            <td>From _fbp cookie</td>
+                        </tr>
+                        <tr>
+                            <td>First Name</td>
+                            <td><code>fn</code></td>
+                            <td class="partial">Medium</td>
+                            <td>Lowercase, hashed</td>
+                        </tr>
+                        <tr>
+                            <td>Last Name</td>
+                            <td><code>ln</code></td>
+                            <td class="partial">Medium</td>
+                            <td>Lowercase, hashed</td>
+                        </tr>
+                        <tr>
+                            <td>IP Address</td>
+                            <td><code>client_ip_address</code></td>
+                            <td class="partial">Medium</td>
+                            <td>NOT hashed</td>
+                        </tr>
+                        <tr>
+                            <td>User Agent</td>
+                            <td><code>client_user_agent</code></td>
+                            <td class="partial">Medium</td>
+                            <td>NOT hashed</td>
+                        </tr>
+                        <tr>
+                            <td>City, State, Zip</td>
+                            <td><code>ct, st, zp</code></td>
+                            <td class="no">Low</td>
+                            <td>Helpful but not critical</td>
+                        </tr>
+                    </table>
+
+                    <h3>Hashing Requirements</h3>
+                    <ul>
+                        <li>Use <strong>SHA256</strong> for all PII (email, phone, names, location)</li>
+                        <li>Lowercase and trim whitespace BEFORE hashing</li>
+                        <li>Phone: remove special characters, include country code (e.g., 14155551234)</li>
+                        <li>IP address and user agent are NOT hashed</li>
+                    </ul>
+
+                    <pre><code>// Example: Hashing email in JavaScript
+const crypto = require('crypto');
+const email = '  John.Doe@Example.com  ';
+const normalized = email.toLowerCase().trim();
+const hashed = crypto.createHash('sha256').update(normalized).digest('hex');
+// Result: e7b4c9f3a2...</code></pre>
+                </div>
+
+                <div class="content-section">
+                    <h2>Implementation Checklist</h2>
+                    <p>Use this checklist to ensure your CAPI implementation is complete:</p>
+
+                    <h3>Setup</h3>
+                    <ul>
+                        <li>Generate CAPI access token in Events Manager</li>
+                        <li>Store token securely (environment variable, not client-side)</li>
+                        <li>Map conversion events to Meta standard events</li>
+                        <li>Choose implementation method (GTM SS, HubSpot, Direct)</li>
+                    </ul>
+
+                    <h3>Deduplication</h3>
+                    <ul>
+                        <li>Generate event_id on conversion trigger</li>
+                        <li>Pass same event_id to Pixel AND CAPI</li>
+                        <li>Verify deduplication in Test Events</li>
+                    </ul>
+
+                    <h3>Event Quality</h3>
+                    <ul>
+                        <li>Include hashed email on all events</li>
+                        <li>Include fbc and fbp cookies (pass from browser)</li>
+                        <li>Include external_id (CRM contact ID)</li>
+                        <li>Include client_ip_address and client_user_agent</li>
+                        <li>Verify EMQ score is 6+ in Events Manager</li>
+                    </ul>
+
+                    <h3>Validation</h3>
+                    <ul>
+                        <li>Test with test_event_code in Test Events</li>
+                        <li>Verify events appear within seconds</li>
+                        <li>Confirm no API errors in response</li>
+                        <li>Remove test_event_code for production</li>
+                        <li>Monitor Event Match Quality over 7 days</li>
+                    </ul>
+
+                    <div class="callout">
+                        <strong>Timeline:</strong> Expect 2-4 hours for GTM Server-Side setup, 30 minutes for HubSpot native, or 1-2 days for direct API integration. EMQ optimization is ongoing.
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Gate Overlay -->
+            <div class="gate-overlay" id="gateOverlay">
+                <div class="gate-card">
+                    <h3>Unlock the Full Guide</h3>
+                    <p>Get implementation details, code examples, deduplication setup, and EMQ optimization checklist.</p>
+                    <form class="email-form" id="unlockForm" onsubmit="handleUnlock(event)">
+                        <input type="email" name="email" placeholder="you@company.com" required>
+                        <button type="submit">Unlock Full Guide</button>
+                    </form>
+                    <p class="note">Plus get the PDF version emailed to you</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Need Help Implementing CAPI?</h2>
+            <p>Our team has set up Meta CAPI for dozens of B2B companies. Get server-side tracking right the first time.</p>
+            <a href="https://www.42agency.com/contact-us" target="_blank" class="cta-btn">Talk to Our Team</a>
+        </section>
+
+        <section>
+            <h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1rem; margin-top: 3rem;">Related Resources</h2>
+            <div class="related-links">
+                <a href="/playbooks/conversion-tracking-setup/" class="related-link">Conversion Tracking Setup</a>
+                <a href="/playbooks/attribution-setup/" class="related-link">Attribution Setup Guide</a>
+                <a href="/meta-audit/" class="related-link">Meta Ads Audit Template</a>
+                <a href="/b2b-benchmarks/" class="related-link">B2B Benchmarks</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <!-- Column 1: Brand -->
+                <div class="footer-brand">
+                    <img src="/42-logo.png" alt="42 Agency">
+                    <p>B2B performance marketing for companies that sell to enterprises.</p>
+                    <div class="footer-social">
+                        <a href="https://linkedin.com/company/42agency" target="_blank">LinkedIn</a>
+                        <a href="https://x.com/42aboratory" target="_blank">X</a>
+                        <a href="https://www.youtube.com/@Get42Agency" target="_blank">YouTube</a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Assess -->
+                <div class="footer-col">
+                    <h4>Assess</h4>
+                    <a href="/assessments/hubspot-health/">HubSpot Health Check</a>
+                    <a href="/assess/calculator/">Benchmark Calculator</a>
+                    <a href="/linkedin-audit/">LinkedIn Ads Audit</a>
+                    <a href="/google-ads-audit/">Google Ads Audit</a>
+                    <a href="/meta-audit/">Meta Ads Audit</a>
+                    <a href="/hubspot-audit/">HubSpot Audit</a>
+                </div>
+
+                <!-- Column 3: Benchmarks -->
+                <div class="footer-col">
+                    <h4>Benchmarks</h4>
+                    <a href="/b2b-benchmarks/">All B2B Benchmarks</a>
+                    <a href="/b2b-benchmarks/linkedin-ads-benchmarks/">LinkedIn Ads</a>
+                    <a href="/b2b-benchmarks/google-ads-benchmarks/">Google Ads</a>
+                    <a href="/b2b-benchmarks/linkedin-inmail-benchmarks/">InMail Benchmarks</a>
+                    <a href="/b2b-benchmarks/legal-tech-linkedin-ads/" class="sublink">Legal Tech</a>
+                    <a href="/b2b-benchmarks/healthcare-tech-linkedin-ads/" class="sublink">Healthcare Tech</a>
+                    <a href="/b2b-benchmarks/fintech-linkedin-ads/" class="sublink">FinTech</a>
+                </div>
+
+                <!-- Column 4: AI Tools + Resources -->
+                <div class="footer-col">
+                    <h4>AI Tools</h4>
+                    <a href="https://copilot.42agency.com" target="_blank">LinkedIn Ads Copilot</a>
+                    <a href="https://copilot.42agency.com/linkedin-ads-targeting" target="_blank">Targeting Guide</a>
+                    <h4 style="margin-top: 1.5rem;">Resources</h4>
+                    <a href="/zenabm/">ABM Toolkit</a>
+                    <a href="/mops-funnel/">MOPS Funnel Workbook</a>
+                    <a href="/exitfive/">Claude Code 101</a>
+                </div>
+
+                <!-- Column 5: 42 Agency -->
+                <div class="footer-col">
+                    <h4>42 Agency</h4>
+                    <a href="https://42agency.com" target="_blank">Website</a>
+                    <a href="https://www.42agency.com/contact-us" target="_blank">Contact Us</a>
+                    <a href="https://42agency.com/case-studies" target="_blank">Case Studies</a>
+                    <a href="https://42slash.com" target="_blank">42/ Essays</a>
+                    <a href="https://42agency.com/careers" target="_blank">Careers</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 42 Agency. All rights reserved.</p>
+                <p><a href="https://42agency.com/privacy">Privacy</a> · <a href="https://42agency.com/terms">Terms</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/email-validation.js"></script>
+    <script>
+        // Check if already unlocked
+        if (localStorage.getItem('playbook_unlocked_meta-capi-setup')) {
+            document.getElementById('gatedContent').classList.add('unlocked');
+            document.getElementById('gateOverlay').classList.add('hidden');
+            document.getElementById('downloadBanner').classList.add('visible');
+        }
+
+        async function handleUnlock(e) {
+            e.preventDefault();
+            const email = e.target.email.value;
+            const button = e.target.querySelector('button');
+            button.disabled = true;
+            button.textContent = 'Unlocking...';
+
+            try {
+                const response = await fetch('/api/playbook-download', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        playbook: 'meta-capi-setup'
+                    })
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    // Track event
+                    if (window.dataLayer) window.dataLayer.push({ event: 'playbook_unlocked', playbook: 'meta-capi-setup' });
+
+                    // Save unlock state
+                    localStorage.setItem('playbook_unlocked_meta-capi-setup', 'true');
+
+                    // Reveal content
+                    document.getElementById('gatedContent').classList.add('unlocked');
+                    document.getElementById('gateOverlay').classList.add('hidden');
+                    document.getElementById('downloadBanner').classList.add('visible');
+
+                    // Scroll to content
+                    document.getElementById('gatedContent').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    throw new Error('Failed');
+                }
+            } catch (error) {
+                button.textContent = 'Try Again';
+                button.disabled = false;
+            }
+        }
+    </script>
+    <!-- Vercel Analytics -->
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
